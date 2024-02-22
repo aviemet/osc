@@ -1,0 +1,29 @@
+<% module_namespacing do -%>
+class <%= class_name %>Controller < ApplicationController
+
+  def index
+    render inertia: "<%= class_name %>/Index"
+  end
+
+  def show
+    render inertia: "<%= class_name %>/Show"
+  end
+
+  def new
+    render inertia: "<%= class_name %>/New"
+  end
+
+  def edit
+    render inertia: "<%= class_name %>/Edit"
+  end
+
+  def create
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+end
+<% end -%>

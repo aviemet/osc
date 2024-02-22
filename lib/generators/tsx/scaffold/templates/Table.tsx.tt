@@ -1,0 +1,28 @@
+import React from 'react'
+import { Table, Link } from '@/Components'
+
+interface <%= human_name %>TableProps {
+	<%= singular_table_name %>: Schema.<%= human_name %>
+}
+
+const <%= human_name %>Table = ({ <%= singular_table_name %> }: <%= human_name %>TableProps) => {
+	return (
+		<Table>
+			<Table.Head></Table.Head>
+				<Table.Body>
+					<%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+						<Table.Row>
+							<Table.Cell>
+								<%%= render <%= singular_table_name %> %>
+							<Table.Cell>
+							<Table.Cell>
+								<Link to={ Routes.<%= singular_table_name %>(<%= singular_table_name %>) }>"Show this <%= human_name.downcase %>"</Link>
+							<Table.Cell>
+						<Table.Row>
+					<%% end %>
+			</Table.Body>
+		</Table>
+	)
+}
+
+export default <%= human_name %>Table

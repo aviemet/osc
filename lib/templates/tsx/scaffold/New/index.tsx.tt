@@ -1,0 +1,29 @@
+import React from 'react'
+import { Heading, Page, Section } from '@/Components'
+import { Routes } from '@/lib'
+import <%= singular_table_name.camelize %>Form from '../Form'
+
+interface INew<%= singular_table_name.camelize %>Props {
+	<%= singular_table_name %>: Schema.<%= plural_table_name.camelize %>FormData
+}
+
+const New<%= singular_table_name.camelize %> = ({ ...data }: INew<%= singular_table_name.camelize %>Props) => {
+	const title = 'New <%= human_name.titleize %>'
+
+	return (
+		<Page title={ title }>
+
+			<Section>
+				<Heading>{ title }</Heading>
+
+				<<%= singular_table_name.camelize %>Form
+					to={ Routes.<%= plural_table_name.camelize(:lower) %>() }
+					{ ...data }
+				/>
+			</Section>
+
+		</Page>
+	)
+}
+
+export default New<%= singular_table_name.camelize %>

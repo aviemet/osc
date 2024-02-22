@@ -1,0 +1,29 @@
+import React from 'react'
+import { Routes } from '@/lib'
+import { IndexPageTemplate } from '@/Layouts/AppLayout/Components'
+import { NewIcon } from '@/Components/Icons'
+import <%= plural_table_name.camelize %>Table from '../Table'
+
+interface I<%= singular_table_name.camelize %>IndexProps {
+	<%= plural_table_name %>: Schema.<%= plural_table_name.camelize %>Index[]
+	pagination: Schema.Pagination
+}
+
+const <%= plural_table_name.camelize %>Index = ({ <%= plural_table_name %>, pagination }: I<%= singular_table_name.camelize %>IndexProps) => {
+	return (
+		<IndexPageTemplate
+			title="<%= plural_table_name.camelize %>"
+			model="<%= plural_table_name %>"
+			rows={ <%= plural_table_name %> }
+			pagination={ pagination }
+			deleteRoute={ Routes.<%= plural_table_name.camelize(:lower) %>() }
+			menuOptions={ [
+				{ label: 'New <%= human_name.titleize %>', href: Routes.new<%= singular_table_name.camelize %>(), icon: NewIcon },
+			] }
+		>
+			<<%= plural_table_name.camelize %>Table />
+		</IndexPageTemplate>
+	)
+}
+
+export default <%= plural_table_name.camelize %>Index

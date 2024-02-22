@@ -1,0 +1,18 @@
+import React from 'react'
+import { Container, Link } from '@/Components'
+import { Routes } from '@/lib'
+
+const Show = ({ <%= singular_table_name %> }) => {
+	return (
+		<Container>
+			<h1><%%= render @<%= singular_table_name %> %></h1>
+
+			<div>
+				<Link to={ Routes.edit<%= human_name %>(<%= singular_table_name %>) }>Edit</Link>
+				<Link to={ Routes.edit<%= human_name.pluralize %>() }>Index</Link>
+			</div>
+		</Container>
+	)
+}
+
+export default Show

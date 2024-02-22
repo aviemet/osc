@@ -1,0 +1,26 @@
+import React from 'react'
+import { Container, Link } from '@/Components'
+import { Routes } from '@/lib'
+import Form from './Form'
+
+interface New<%= human_name.downcase %>Props {
+	<%= singular_table_name %>: Schema.<%= human_name %>
+}
+
+const New<%= human_name.downcase %> = () => {
+	return (
+		<Container>
+			<h1>New <%= human_name.downcase %></h1>
+
+			<Form
+				method='put'
+				to={ Routes.<%= plural_table_name %>() }
+				<%= singular_table_name %>={ <%= singular_table_name %> }
+			/>
+
+			<Link to={ Routes.<%= plural_table_name %>() }>"Back to <%= human_name.pluralize.downcase %>"</Link>
+		</Container>
+	)
+}
+
+export default New<%= human_name.downcase %>

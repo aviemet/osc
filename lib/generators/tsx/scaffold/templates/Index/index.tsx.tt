@@ -1,0 +1,18 @@
+import React from 'react'
+import { Link } from '@/Components'
+import { Routes } from '@/lib'
+import Table from './Table'
+
+const Index = ({ <%= plural_table_name %> }) => {
+	return (
+		<div>
+			<h1><%= human_name.pluralize %></h1>
+
+			<Table <%= human_name.pluralize.downcase %>={ <%= human_name.pluralize.downcase %> } />
+
+			<Link to={ Routes.new<%= human_name %>}>New <%= human_name %></Link>
+		</div>
+	)
+}
+
+export default Index

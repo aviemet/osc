@@ -1,0 +1,20 @@
+links {
+	a:hover {
+		text-decoration: 'none';
+	} 
+}
+
+limit {
+	.mantine-Select-wrapper {
+		display: inline-block;
+		maxWidth: 60;
+
+		.mantine-Select-rightSection {
+			width: 1.25rem;
+		}
+
+		.mantine-Select-input {
+			paddingRight: 1.25rem;
+		}
+	}
+}

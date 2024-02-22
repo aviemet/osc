@@ -1,0 +1,41 @@
+<% module_namespacing do -%>
+class <%= class_name %> < <%= parent_class_name.classify %>
+  include PgSearch::Model
+
+  pg_search_scope(
+    :search,
+    against: [<% attributes.each_with_index do |attribute, i| -%><%= "#{i == 0 ? "" : ", "}:#{attribute.name}" %><% end -%>],
+    <% unless attributes.select(&:reference?).empty? -%>associated_against: {
+      <% attributes.select(&:reference?).each_with_index do |attribute, i| -%><%= "#{i == 0 ? "" : ", "}#{attribute.name}" %><% end -%>: [],
+    },
+    <% end -%>
+using: {
+      tsearch: { prefix: true },
+      trigram: {}
+    },
+  )
+
+  resourcify
+
+<% attributes.select(&:reference?).each do |attribute| -%>
+  belongs_to :<%= attribute.name %><%= ", polymorphic: true" if attribute.polymorphic? %>
+<% end -%>
+<% attributes.select(&:rich_text?).each do |attribute| -%>
+  has_rich_text :<%= attribute.name %>
+<% end -%>
+<% attributes.select(&:attachment?).each do |attribute| -%>
+  has_one_attached :<%= attribute.name %>
+<% end -%>
+<% attributes.select(&:attachments?).each do |attribute| -%>
+  has_many_attached :<%= attribute.name %>
+<% end -%>
+<% attributes.select(&:token?).each do |attribute| -%>
+  has_secure_token<% if attribute.name != "token" %> :<%= attribute.name %><% end %>
+<% end -%>
+<% if attributes.any?(&:password_digest?) -%>
+  has_secure_password
+<% end -%>
+
+  scope :includes_associated, -> { includes([<% attributes.select(&:reference?).each_with_index do |attribute, i| -%><%= "#{i == 0 ? "" : ", "}:#{attribute.name}" %><% end -%>]) }
+end
+<% end -%>

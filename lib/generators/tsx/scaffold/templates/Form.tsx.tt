@@ -1,0 +1,29 @@
+import React from 'react'
+import { Form, Submit } from '@/Components/Form'
+import { type UseFormProps } from 'use-inertia-form'
+
+export interface <%= human_name %>FormProps {
+	to: string
+	method?: HTTPVerb
+	onSubmit?: (object: UseFormProps) => boolean|void
+	<%= singular_table_name %>: Schema.<%= human_name %>
+}
+
+const <%= human_name %>Form = ({ to, method = 'post', onSubmit, <%= singular_table_name %> }: <%= human_name %>FormProps) => {
+	return (
+		<Form
+			model="<%= singular_table_name %>"
+			data={ { <%= singular_table_name %> } }
+			to={ to }
+			method={ method }
+			onSubmit={ onSubmit }
+		>
+
+			<Submit>
+				{ <%= singular_table_name %>.id ? 'Update' : 'Create' } <%= human_name %>
+			</Submit>
+		</Form>
+	)
+}
+
+export default <%= human_name %>Form
