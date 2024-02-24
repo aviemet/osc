@@ -12,7 +12,6 @@ class Api::UsersController < Api::ApiController
     end
   end
 
-  # @route PATCH /api/users/:id/update_table_preferences (api_update_table_preferences)
   def update_table_preferences
     authorize user
     if user.update(

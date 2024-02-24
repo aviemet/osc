@@ -35,7 +35,7 @@ const Login = () => {
 		<Form model="user" data={ defaultData } to={ Routes.newUserSession() } onSubmit={ handleSubmit } grid={ false } className={ classes.form }>
 
 			<div>
-				<Heading>Inventory</Heading>
+				<Heading>OSC</Heading>
 			</div>
 
 			<Field>

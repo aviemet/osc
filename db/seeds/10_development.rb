@@ -11,4 +11,11 @@ if Rails.env == "development"
 
     user.add_role :super_admin
   end
+
+  if Screen.count == 0
+    Screen.create({
+      title: "Main",
+      order: 1,
+    })
+  end
 end

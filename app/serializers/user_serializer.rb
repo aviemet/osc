@@ -26,14 +26,12 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  sign_in_count          :integer          default(0), not null
-#  table_preferences      :jsonb
 #  unconfirmed_email      :string
 #  unlock_token           :string
 #  user_preferences       :jsonb
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  invited_by_id          :bigint
-#  person_id              :bigint
 #
 # Indexes
 #
@@ -42,20 +40,12 @@
 #  index_users_on_invitation_token      (invitation_token) UNIQUE
 #  index_users_on_invited_by            (invited_by_type,invited_by_id)
 #  index_users_on_invited_by_id         (invited_by_id)
-#  index_users_on_person_id             (person_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
-#  index_users_on_table_preferences     (table_preferences) USING gin
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #  index_users_on_user_preferences      (user_preferences) USING gin
 #
-# Foreign Keys
-#
-#  fk_rails_...  (person_id => people.id)
-#
 class UserSerializer < ApplicationSerializer
   object_as :user
-
-  
 
   attributes(
     :email,
@@ -84,8 +74,6 @@ class UserSerializer < ApplicationSerializer
     :invited_by_id,
     :invitations_count,
     :active,
-    :person_id,
-    :table_preferences,
     :user_preferences,
   )
 end

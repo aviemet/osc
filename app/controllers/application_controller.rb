@@ -19,12 +19,10 @@ class ApplicationController < ActionController::Base
   inertia_share do
     share_object = {
       menu: nil,
-      params: request.params.to_h.except("controller", "action")
     }
 
     if current_user
       share_object[:menu] = {
-        circles: current_user.circles.render(view: :share),
       }
     end
 
@@ -55,7 +53,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(_resouce)
-    circles_path
+    screens_path
   end
 
   private

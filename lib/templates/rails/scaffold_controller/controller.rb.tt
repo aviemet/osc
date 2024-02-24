@@ -13,10 +13,10 @@ class <%= controller_class_name %>Controller < ApplicationController
   def index
     authorize <%= plural_table_name %>
 
-    paginated_%= plural_table_name %> = %= plural_table_name %>.page(params[:page] || 1).per(current_user.limit(:items))
+    paginated_<%= plural_table_name %> = <%= plural_table_name %>.page(params[:page] || 1).per(current_user.limit(:items))
 
     render inertia: "<%= class_name.pluralize %>/Index", props: {
-      <%= plural_table_name %>: -> { <%= plural_table_name %>.render(view: :index) }
+      <%= plural_table_name %>: -> { paginated_<%= plural_table_name %>.render(view: :index) }
     }
   end
 
