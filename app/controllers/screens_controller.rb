@@ -24,7 +24,8 @@ class ScreensController < ApplicationController
   def edit
     authorize screen
     render inertia: "Screens/Edit", props: {
-      screen: screen.render(view: :edit)
+      screen: -> { screen.render(view: :edit) },
+      screens: -> { Screen.all.render(view: :options) },
     }
   end
 
@@ -32,7 +33,7 @@ class ScreensController < ApplicationController
   def create
     authorize Screen.new
     if screen.save
-      redirect_to screen, notice: "Screen was successfully created."
+      redirect_to edit_screen_path(screen.slug), notice: "Screen was successfully created."
     else
       redirect_to new_screen_path, inertia: { errors: screen.errors }
     end
