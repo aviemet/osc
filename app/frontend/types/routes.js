@@ -577,6 +577,23 @@ export const cancelUserRegistration = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7
 
 /**
  * Generates rails route to
+ * /controls/:id(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const control = /*#__PURE__*/ __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"controls"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /controls(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const controls = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"controls"],[1,[2,[8,"."],[3,"format"]]]]]);
+
+/**
+ * Generates rails route to
  * /logout(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
@@ -672,6 +689,40 @@ export const newUserSession = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2
  * @returns {string} route path
  */
 export const newUserUnlock = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"users"],[2,[7,"/"],[2,[6,"unlock"],[2,[7,"/"],[2,[6,"new"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /payloads/:id(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const payload = /*#__PURE__*/ __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"payloads"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /payloads(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const payloads = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"payloads"],[1,[2,[8,"."],[3,"format"]]]]]);
+
+/**
+ * Generates rails route to
+ * /protocols/:id(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const protocol = /*#__PURE__*/ __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"protocols"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /protocols(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const protocols = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"protocols"],[1,[2,[8,"."],[3,"format"]]]]]);
 
 /**
  * Generates rails route to

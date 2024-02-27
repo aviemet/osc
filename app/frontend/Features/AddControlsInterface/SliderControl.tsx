@@ -14,7 +14,12 @@ const SliderControl = () => {
 	return (
 		<>
 			<div ref={ setNodeRef } style={ style }>
-				<Slider { ...listeners } { ...attributes }>Slider</Slider>
+				<Slider
+					label={ null }
+					value={ 50 }
+					{ ...listeners }
+					{ ...attributes }
+				>Slider</Slider>
 			</div>
 			<Text>Slider</Text>
 		</>

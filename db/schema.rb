@@ -10,9 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_23_194921) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_27_010637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "controls", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "type", null: false
+    t.point "position", null: false
+    t.decimal "min_value"
+    t.decimal "max_value"
+    t.decimal "value"
+    t.bigint "screen_id", null: false
+    t.bigint "protocol_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["protocol_id"], name: "index_controls_on_protocol_id"
+    t.index ["screen_id"], name: "index_controls_on_screen_id"
+  end
+
+  create_table "payloads", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "endpoint", null: false
+    t.string "payload"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "protocols", force: :cascade do |t|
+    t.string "title", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "protocols_payloads", force: :cascade do |t|
+    t.bigint "protocol_id", null: false
+    t.bigint "payload_id", null: false
+    t.integer "delay"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payload_id"], name: "index_protocols_payloads_on_payload_id"
+    t.index ["protocol_id"], name: "index_protocols_payloads_on_protocol_id"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -81,4 +120,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_23_194921) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "controls", "protocols"
+  add_foreign_key "controls", "screens"
+  add_foreign_key "protocols_payloads", "payloads"
+  add_foreign_key "protocols_payloads", "protocols"
 end

@@ -6,7 +6,7 @@ class <%= class_name %> < <%= parent_class_name.classify %>
     :search,
     against: [<% attributes.each_with_index do |attribute, i| -%><%= "#{i == 0 ? "" : ", "}:#{attribute.name}" %><% end -%>],
     <% unless attributes.select(&:reference?).empty? -%>associated_against: {
-      <% attributes.select(&:reference?).each_with_index do |attribute, i| -%><%= "#{i == 0 ? "" : ", "}#{attribute.name}" %><% end -%>: [],
+      <% attributes.select(&:reference?).each_with_index do |attribute, i| -%><%= "#{i == 0 ? "" : ", "}#{attribute.name}" %>: [],<% end -%>,
     },
     <% end -%>
 using: {

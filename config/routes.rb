@@ -36,6 +36,9 @@ Rails.application.routes.draw do
 
   resources :users
   resources :screens, param: :slug, except: [:new]
+  resources :payloads, only: [:create, :update, :destroy]
+  resources :protocols, only: [:create, :update, :destroy]
+  resources :controls, only: [:create, :update, :destroy]
 
   draw(:api)
 end

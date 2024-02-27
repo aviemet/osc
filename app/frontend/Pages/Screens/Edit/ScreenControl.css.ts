@@ -6,3 +6,8 @@ export const droppable = css`
 	height: 100%;
 	background-color: #CCC;
 `
+
+export const dragOverlay = css`
+	background-color: rgba(255,255,255,0.4);
+	border: 1px solid #333;
+`

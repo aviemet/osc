@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Modal, Page, Tabs } from '@/Components'
-import { DndContext, type DragMoveEvent, type DragEndEvent, type DragStartEvent } from '@dnd-kit/core'
+import { DndContext, DragOverlay, type DragMoveEvent, type DragEndEvent, type DragStartEvent } from '@dnd-kit/core'
 import { useDisclosure } from '@mantine/hooks'
 import { Routes } from '@/lib'
 import { CrossIcon } from '@/Components/Icons'
@@ -9,6 +9,7 @@ import ScreenForm from '../Form'
 import { useLocation } from '@/lib/hooks'
 import { router } from '@inertiajs/react'
 import { AddControlsInterface } from '@/Features'
+import ControlForm from '@/Pages/Controls/Form'
 
 interface IEditScreenProps {
 	screen: Schema.ScreensEdit
@@ -18,24 +19,23 @@ interface IEditScreenProps {
 const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 	const { paths } = useLocation()
 
-	const [opened, { open, close }] = useDisclosure(false)
+	const [newScreenModalOpened, { open: newScreenModalOpen, close: newScreenModalClose }] = useDisclosure(false)
+	const [newControlModalOpened, { open: newControlModalOpen, close: newControlModalClose }] = useDisclosure(false)
 
 	const title = 'Edit Screen'
 
 	const handleDragEnd = (event: DragEndEvent) => {
+		newControlModalOpen()
 		console.log({ dragEnd: event })
-	}
-
-	const handleDragMove = (event: DragMoveEvent) => {
-		console.log({ dragMove: event })
-	}
-
-	const handleDragStart = (event: DragStartEvent) => {
-		console.log({ dragStart: event })
+		// router.post(Routes.controls(), {
+		// 	control: {
+		// 		type: event.active.id,
+		// 	},
+		// })
 	}
 
 	return (
-		<DndContext onDragEnd={ handleDragEnd } onDragMove={ handleDragMove } onDragStart={ handleDragStart }>
+		<DndContext onDragEnd={ handleDragEnd }>
 			<Page title={ title }>
 
 				<AddControlsInterface />
@@ -49,7 +49,7 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 						{ screens.map(iScreen => (
 							<Tabs.Tab key={ iScreen.id } value={ iScreen.slug }>{ iScreen.title }</Tabs.Tab>
 						)) }
-						<Button onClick={ open }>+</Button>
+						<Button onClick={ newScreenModalOpen }>+</Button>
 						<Tabs.Link href={ Routes.screen(screen.slug) } position='right'><CrossIcon /></Tabs.Link>
 					</Tabs.List>
 
@@ -62,9 +62,14 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 				</Tabs>
 			</Page>
 
-			<Modal opened={ opened } onClose={ close }>
-				<ScreenForm to={ Routes.screens() } onSubmit={ close } />
+			<Modal opened={ newScreenModalOpened } onClose={ newScreenModalClose }>
+				<ScreenForm to={ Routes.screens() } onSubmit={ newScreenModalClose } />
 			</Modal>
+
+			<Modal opened={ newControlModalOpened } onClose={ newControlModalClose }>
+				<ControlForm to={ Routes.controls() } onSubmit={ newControlModalClose } />
+			</Modal>
+
 		</DndContext>
 	)
 }

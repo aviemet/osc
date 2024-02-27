@@ -1,5 +1,10 @@
 import React from 'react'
-import { useDroppable } from '@dnd-kit/core'
+import { DragOverlay, useDroppable } from '@dnd-kit/core'
+import {
+	restrictToVerticalAxis,
+	restrictToWindowEdges,
+	createSnapModifier,
+} from '@dnd-kit/modifiers'
 import { Box } from '@mantine/core'
 import cx from 'clsx'
 import * as classes from './ScreenControl.css'
@@ -17,8 +22,22 @@ const ScreenControlEditInterface = ({ screen }: ScreenControlEditInterfaceProps)
 		backgroundColor: isOver ? 'green' : undefined,
 	}
 
+	const gridSize = 10
+
+	const snapToGridModifier = createSnapModifier(gridSize)
+
 	return (
-		<Box className={ cx(classes.droppable) } ref={ setNodeRef } style={ style }></Box>
+		<Box
+			className={ cx(classes.droppable) }
+			ref={ setNodeRef }
+			style={ style }
+		>
+			<DragOverlay
+				modifiers={ [snapToGridModifier, restrictToWindowEdges] }
+				className={ cx(classes.dragOverlay) }
+			>
+			</DragOverlay>
+		</Box>
 	)
 }
 

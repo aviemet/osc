@@ -13,13 +13,6 @@ export interface ScreenFormProps {
 	screen?: Partial<Schema.ScreensFormData>
 }
 
-export interface ScreenEditFormProps {
-	to: string
-	method?: HTTPVerb
-	onSubmit?: (object: UseFormProps<TScreenFormData>) => boolean|void
-	screen: Schema.ScreensFormData
-}
-
 const emptyScreen: Partial<Schema.ScreensFormData> = {
 	title: '',
 }
@@ -28,7 +21,7 @@ const ScreenForm = ({ method = 'post', screen, ...props }: ScreenFormProps) => {
 	return (
 		<Form<Partial<Schema.ScreensFormData>>
 			model="screen"
-			data={ screen ? { screen } : { screen : emptyScreen } }
+			data={ screen ? { screen } : { screen: emptyScreen } }
 			method={ method }
 			{ ...props }
 		>
