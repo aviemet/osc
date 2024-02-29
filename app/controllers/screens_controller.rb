@@ -3,11 +3,11 @@ class ScreensController < ApplicationController
 
   expose :screens, -> { Screen.includes_associated }
   expose :screen, id: -> { params[:slug] }, scope: -> { Screen.includes_associated }, find_by: :slug
+  expose :main_screen, -> { Screen.order(:order).first }
 
   # @route GET / (root)
   # @route GET /screens (screens)
   def index
-    main_screen = Screen.order(:order).first
     redirect_to main_screen
   end
 
@@ -20,9 +20,16 @@ class ScreensController < ApplicationController
     }
   end
 
+  # @route GET /screens/edit (edit_screens)
   # @route GET /screens/:slug/edit (edit_screen)
   def edit
+    if params[:slug].nil?
+      redirect_to edit_screen_path(main_screen)
+      return
+    end
+
     authorize screen
+
     render inertia: "Screens/Edit", props: {
       screen: -> { screen.render(view: :edit) },
       screens: -> { Screen.all.render(view: :options) },

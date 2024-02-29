@@ -13,8 +13,10 @@ export { default as Tabs } from './Tabs'
 
 // Export UI library components as a proxy to allow easy refactoring
 export {
-	Box,
+	AppShell,
 	Badge,
+	Box,
+	Burger,
 	Card,
 	Center,
 	Container,
@@ -27,6 +29,7 @@ export {
 	SimpleGrid,
 	Stack,
 	Text,
+	Title,
 	Tooltip,
 	ThemeIcon as Icon,
 } from '@mantine/core'

@@ -26,7 +26,7 @@ class ProtocolsPayload < ApplicationRecord
     :search,
     against: [:protocol, :payload, :delay],
     associated_against: {
-      protocol: [], payload: [],
+      protocol: [:title], payload: [:title],
     },
     using: {
       tsearch: { prefix: true },

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, TextInput, Submit } from '@/Components/Form'
+import { Form, TextInput, Submit, RichText } from '@/Components/Form'
 import { type UseFormProps } from 'use-inertia-form'
 
 type TProtocolFormData = {
@@ -22,6 +22,8 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 			{ ...props }
 		>
 			<TextInput name="title" label="Title" />
+			<RichText name="description" label="Description" />
+
 			<Submit>{ protocol.id ? 'Update' : 'Create' } Protocol</Submit>
 		</Form>
 	)

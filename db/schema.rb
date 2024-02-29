@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_27_010637) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_29_095136) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,16 +29,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_27_010637) do
     t.index ["screen_id"], name: "index_controls_on_screen_id"
   end
 
+  create_table "endpoints", force: :cascade do |t|
+    t.string "title"
+    t.string "url"
+    t.text "description"
+    t.bigint "server_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["server_id"], name: "index_endpoints_on_server_id"
+  end
+
   create_table "payloads", force: :cascade do |t|
     t.string "title", null: false
-    t.string "endpoint", null: false
+    t.bigint "endpoint_id", null: false
     t.string "payload"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["endpoint_id"], name: "index_payloads_on_endpoint_id"
   end
 
   create_table "protocols", force: :cascade do |t|
     t.string "title", null: false
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -70,6 +82,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_27_010637) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_screens_on_slug", unique: true
+  end
+
+  create_table "servers", force: :cascade do |t|
+    t.string "title"
+    t.string "hostname"
+    t.integer "port"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -122,6 +143,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_27_010637) do
 
   add_foreign_key "controls", "protocols"
   add_foreign_key "controls", "screens"
+  add_foreign_key "endpoints", "servers"
+  add_foreign_key "payloads", "endpoints"
   add_foreign_key "protocols_payloads", "payloads"
   add_foreign_key "protocols_payloads", "protocols"
 end

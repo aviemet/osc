@@ -2,10 +2,11 @@
 #
 # Table name: protocols
 #
-#  id         :bigint           not null, primary key
-#  title      :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :bigint           not null, primary key
+#  description :text
+#  title       :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 class Protocol < ApplicationRecord
   include PgSearch::Model
@@ -21,8 +22,8 @@ class Protocol < ApplicationRecord
 
   resourcify
 
-  has_many :protocols_paylod
-  has_many :payloads, through: :protocols_paylod
+  has_many :protocols_payloads, dependent: :nullify
+  has_many :payloads, through: :protocols_payloads
 
   scope :includes_associated, -> { includes([]) }
 end

@@ -172,6 +172,30 @@ export const destroyUserSession: ((
 
 /**
  * Generates rails route to
+ * /endpoints/:id/edit(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const editEndpoint: ((
+  id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /protocols/:id/edit(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const editProtocol: ((
+  id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /screens/:slug/edit(.:format)
  * @param {any} slug
  * @param {object | undefined} options
@@ -179,6 +203,16 @@ export const destroyUserSession: ((
  */
 export const editScreen: ((
   slug: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /screens/edit(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const editScreens: ((
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 
@@ -216,12 +250,54 @@ export const editUserRegistration: ((
 
 /**
  * Generates rails route to
+ * /endpoints/:id(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const endpoint: ((
+  id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /endpoints(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const endpoints: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /
  * @param {object | undefined} options
  * @returns {string} route path
  */
 export const home: ((
   options?: {} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /endpoints/new(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const newEndpoint: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /protocols/new(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const newProtocol: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 
 /**

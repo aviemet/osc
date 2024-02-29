@@ -1,5 +1,5 @@
 import React from 'react'
-import { Group, Heading, Menu, Page, Section } from '@/Components'
+import { DangerousHtml, Group, Heading, Menu, Page, Section } from '@/Components'
 import { Routes } from '@/lib'
 
 interface IShowProtocolProps {
@@ -7,12 +7,12 @@ interface IShowProtocolProps {
 }
 
 const ShowProtocol = ({ protocol }: IShowProtocolProps) => {
-	const title =  'Protocol'
+	const title = protocol.title || 'Protocol'
 
 	return (
 		<Page title={ title }>
 			<Section>
-				<Group position="apart">
+				<Group>
 					<Heading>{ title }</Heading>
 
 					<Menu position="bottom-end">
@@ -24,6 +24,8 @@ const ShowProtocol = ({ protocol }: IShowProtocolProps) => {
 						</Menu.Dropdown>
 					</Menu>
 				</Group>
+
+				<DangerousHtml>{ protocol.description }</DangerousHtml>
 
 			</Section>
 		</Page>

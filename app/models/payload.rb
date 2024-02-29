@@ -2,12 +2,20 @@
 #
 # Table name: payloads
 #
-#  id         :bigint           not null, primary key
-#  endpoint   :string           not null
-#  payload    :string
-#  title      :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :bigint           not null, primary key
+#  payload     :string
+#  title       :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  endpoint_id :bigint           not null
+#
+# Indexes
+#
+#  index_payloads_on_endpoint_id  (endpoint_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (endpoint_id => endpoints.id)
 #
 class Payload < ApplicationRecord
   include PgSearch::Model
@@ -23,8 +31,8 @@ class Payload < ApplicationRecord
 
   resourcify
 
-  has_many :protocols_paylod
-  has_many :protocols, through: :protocols_paylod
+  has_many :protocols_payloads, dependent: :nullify
+  has_many :protocols, through: :protocols_payloads
 
   scope :includes_associated, -> { includes([]) }
 end

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal, Page, Tabs } from '@/Components'
+import { Button, Menu, Modal, Page, Tabs } from '@/Components'
 import { DndContext, DragOverlay, type DragMoveEvent, type DragEndEvent, type DragStartEvent } from '@dnd-kit/core'
 import { useDisclosure } from '@mantine/hooks'
 import { Routes } from '@/lib'
@@ -10,6 +10,7 @@ import { useLocation } from '@/lib/hooks'
 import { router } from '@inertiajs/react'
 import { AddControlsInterface } from '@/Features'
 import ControlForm from '@/Pages/Controls/Form'
+import { Affix } from '@mantine/core'
 
 interface IEditScreenProps {
 	screen: Schema.ScreensEdit
@@ -38,10 +39,10 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 		<DndContext onDragEnd={ handleDragEnd }>
 			<Page title={ title }>
 
-				<AddControlsInterface />
+				{ /* <AddControlsInterface /> */ }
 
 				<Tabs
-					variant="pills"
+					variant="outline"
 					value={ paths[1] }
 					onChange={ value => value && router.get(Routes.editScreen(value)) }
 				>
@@ -49,8 +50,8 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 						{ screens.map(iScreen => (
 							<Tabs.Tab key={ iScreen.id } value={ iScreen.slug }>{ iScreen.title }</Tabs.Tab>
 						)) }
-						<Button onClick={ newScreenModalOpen }>+</Button>
-						<Tabs.Link href={ Routes.screen(screen.slug) } position='right'><CrossIcon /></Tabs.Link>
+						<Button onClick={ newScreenModalOpen } p="xs" variant="subtle">+</Button>
+						{ /* <Tabs.Link href={ Routes.screen(screen.slug) } position='right'><CrossIcon /></Tabs.Link> */ }
 					</Tabs.List>
 
 					{ screens.map(iScreen => (
@@ -60,6 +61,18 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 					)) }
 
 				</Tabs>
+				<Affix>
+					<Menu position="top-end">
+						<Menu.Target>
+							<Button radius="xl" p="sm" m="lg">+</Button>
+						</Menu.Target>
+						<Menu.Dropdown>
+							<Menu.Label>Button</Menu.Label>
+							<Menu.Label>Slider</Menu.Label>
+							<Menu.Label>Spacer</Menu.Label>
+						</Menu.Dropdown>
+					</Menu>
+				</Affix>
 			</Page>
 
 			<Modal opened={ newScreenModalOpened } onClose={ newScreenModalClose }>
