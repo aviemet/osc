@@ -140,6 +140,28 @@ export const cancelUserRegistration: ((
 
 /**
  * Generates rails route to
+ * /commands/:id(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const command: ((
+  id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /commands(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const commands: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /controls/:id(.:format)
  * @param {any} id
  * @param {object | undefined} options
@@ -213,6 +235,18 @@ export const editScreen: ((
  * @returns {string} route path
  */
 export const editScreens: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /servers/:id/edit(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const editServer: ((
+  id: RequiredRouteParameter,
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 
@@ -302,6 +336,16 @@ export const newProtocol: ((
 
 /**
  * Generates rails route to
+ * /servers/new(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const newServer: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /users/new(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
@@ -362,28 +406,6 @@ export const newUserUnlock: ((
 
 /**
  * Generates rails route to
- * /payloads/:id(.:format)
- * @param {any} id
- * @param {object | undefined} options
- * @returns {string} route path
- */
-export const payload: ((
-  id: RequiredRouteParameter,
-  options?: {format?: OptionalRouteParameter} & RouteOptions
-) => string) & RouteHelperExtras;
-
-/**
- * Generates rails route to
- * /payloads(.:format)
- * @param {object | undefined} options
- * @returns {string} route path
- */
-export const payloads: ((
-  options?: {format?: OptionalRouteParameter} & RouteOptions
-) => string) & RouteHelperExtras;
-
-/**
- * Generates rails route to
  * /protocols/:id(.:format)
  * @param {any} id
  * @param {object | undefined} options
@@ -433,6 +455,28 @@ export const screen: ((
  * @returns {string} route path
  */
 export const screens: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /servers/:id(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const server: ((
+  id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /servers(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const servers: ((
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 

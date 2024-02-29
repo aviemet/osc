@@ -27,8 +27,6 @@
 class ControlSerializer < ApplicationSerializer
   object_as :control
 
-  
-
   attributes(
     :title,
     :type,

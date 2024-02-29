@@ -41,7 +41,7 @@ class Control < ApplicationRecord
 
   resourcify
 
-  enum :type, { button: 0, slider: 1 }
+  enum :type, { button: 0, slider: 1, spacer: 2 }
 
   belongs_to :screen
   belongs_to :protocol

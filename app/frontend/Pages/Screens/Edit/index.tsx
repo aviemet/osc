@@ -68,8 +68,8 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 						</Menu.Target>
 						<Menu.Dropdown>
 							<Menu.Label>Button</Menu.Label>
-							<Menu.Label>Slider</Menu.Label>
-							<Menu.Label>Spacer</Menu.Label>
+							{ /* <Menu.Label>Slider</Menu.Label> */ }
+							{ /* <Menu.Label>Spacer</Menu.Label> */ }
 						</Menu.Dropdown>
 					</Menu>
 				</Affix>

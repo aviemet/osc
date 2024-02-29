@@ -577,6 +577,23 @@ export const cancelUserRegistration = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7
 
 /**
  * Generates rails route to
+ * /commands/:id(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const command = /*#__PURE__*/ __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"commands"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /commands(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const commands = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"commands"],[1,[2,[8,"."],[3,"format"]]]]]);
+
+/**
+ * Generates rails route to
  * /controls/:id(.:format)
  * @param {any} id
  * @param {object | undefined} options
@@ -634,6 +651,15 @@ export const editScreen = /*#__PURE__*/ __jsr.r({"slug":{"r":true},"format":{}},
  * @returns {string} route path
  */
 export const editScreens = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"screens"],[2,[7,"/"],[2,[6,"edit"],[1,[2,[8,"."],[3,"format"]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /servers/:id/edit(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const editServer = /*#__PURE__*/ __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"servers"],[2,[7,"/"],[2,[3,"id"],[2,[7,"/"],[2,[6,"edit"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
 
 /**
  * Generates rails route to
@@ -703,6 +729,14 @@ export const newProtocol = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6
 
 /**
  * Generates rails route to
+ * /servers/new(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const newServer = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"servers"],[2,[7,"/"],[2,[6,"new"],[1,[2,[8,"."],[3,"format"]]]]]]]);
+
+/**
+ * Generates rails route to
  * /users/new(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
@@ -751,23 +785,6 @@ export const newUserUnlock = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,
 
 /**
  * Generates rails route to
- * /payloads/:id(.:format)
- * @param {any} id
- * @param {object | undefined} options
- * @returns {string} route path
- */
-export const payload = /*#__PURE__*/ __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"payloads"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]);
-
-/**
- * Generates rails route to
- * /payloads(.:format)
- * @param {object | undefined} options
- * @returns {string} route path
- */
-export const payloads = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"payloads"],[1,[2,[8,"."],[3,"format"]]]]]);
-
-/**
- * Generates rails route to
  * /protocols/:id(.:format)
  * @param {any} id
  * @param {object | undefined} options
@@ -807,6 +824,23 @@ export const screen = /*#__PURE__*/ __jsr.r({"slug":{"r":true},"format":{}}, [2,
  * @returns {string} route path
  */
 export const screens = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"screens"],[1,[2,[8,"."],[3,"format"]]]]]);
+
+/**
+ * Generates rails route to
+ * /servers/:id(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const server = /*#__PURE__*/ __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"servers"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /servers(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const servers = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"servers"],[1,[2,[8,"."],[3,"format"]]]]]);
 
 /**
  * Generates rails route to

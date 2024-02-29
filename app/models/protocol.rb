@@ -22,8 +22,8 @@ class Protocol < ApplicationRecord
 
   resourcify
 
-  has_many :protocols_payloads, dependent: :nullify
-  has_many :payloads, through: :protocols_payloads
+  has_many :protocols_commands, dependent: :nullify
+  has_many :commands, through: :protocols_commands
 
   scope :includes_associated, -> { includes([]) }
 end

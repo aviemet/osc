@@ -13,8 +13,6 @@
 class ServerSerializer < ApplicationSerializer
   object_as :server
 
-  
-
   attributes(
     :title,
     :hostname,

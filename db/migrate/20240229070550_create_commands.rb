@@ -1,0 +1,16 @@
+class CreateCommands < ActiveRecord::Migration[7.1]
+  def change
+    create_table :commands do |t|
+      t.string :title, null: false
+      t.text :description
+
+      t.string :endpoint
+      t.references :server, null: false, foreign_key: true
+
+      t.integer :payload_type
+      t.string :payload # static value
+
+      t.timestamps
+    end
+  end
+end

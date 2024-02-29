@@ -24,7 +24,7 @@ class Server < ApplicationRecord
 
   resourcify
 
-  has_many :endpoints, dependent: :nullify
+  has_many :commands, dependent: :nullify
 
   scope :includes_associated, -> { includes([]) }
 end
