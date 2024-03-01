@@ -1,4 +1,5 @@
 import React from 'react'
+import { Box, Control } from '@/Components'
 
 interface ScreenControlLayoutProps {
 	screen: Schema.ScreensShow
@@ -6,7 +7,9 @@ interface ScreenControlLayoutProps {
 
 const ScreenControlLayout = ({ screen }: ScreenControlLayoutProps) => {
 	return (
-		<div>ScreenControlLayout</div>
+		<Box>
+			{ screen?.controls?.map(control => <Control key={ control.id } control={ control } />) }
+		</Box>
 	)
 }
 

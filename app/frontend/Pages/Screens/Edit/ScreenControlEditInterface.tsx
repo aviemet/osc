@@ -10,33 +10,16 @@ import cx from 'clsx'
 import * as classes from './ScreenControl.css'
 
 interface ScreenControlEditInterfaceProps {
-	screen: Schema.ScreensShow
+	screen: Schema.ScreensEdit
 }
 
 const ScreenControlEditInterface = ({ screen }: ScreenControlEditInterfaceProps) => {
-	const { isOver, setNodeRef } = useDroppable({
-		id: screen.slug,
-	})
-
-	const style = {
-		backgroundColor: isOver ? 'green' : undefined,
-	}
-
-	const gridSize = 10
-
-	const snapToGridModifier = createSnapModifier(gridSize)
-
+	console.log({ controls: screen.controls })
 	return (
-		<Box
-			className={ cx(classes.droppable) }
-			ref={ setNodeRef }
-			style={ style }
-		>
-			<DragOverlay
-				modifiers={ [snapToGridModifier, restrictToWindowEdges] }
-				className={ cx(classes.dragOverlay) }
-			>
-			</DragOverlay>
+		<Box>
+			{ screen?.controls.map(control => (
+				<></>
+			)) }
 		</Box>
 	)
 }

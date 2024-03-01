@@ -1,5 +1,6 @@
 export { default as Button } from './Button'
 export { default as ConditionalWrapper } from './ConditionalWrapper'
+export { default as Control } from './Control'
 export { default as DangerousHtml } from './DangerousHtml'
 export { default as Heading } from './Heading'
 export { default as Link, NavLink } from './Link'
@@ -27,6 +28,7 @@ export {
 	Modal,
 	Paper,
 	SimpleGrid,
+	Slider,
 	Stack,
 	Text,
 	Title,

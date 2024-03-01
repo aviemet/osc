@@ -29,12 +29,12 @@ class ControlSerializer < ApplicationSerializer
 
   attributes(
     :title,
-    :type,
-    :position,
+    :order,
     :min_value,
     :max_value,
     :value,
     :screen_id,
     :protocol_id,
+    control_type: { type: :string },
   )
 end

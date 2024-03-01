@@ -4,4 +4,6 @@ class Controls::ShowSerializer < ControlSerializer
     :updated_at,
     :created_at,
   )
+
+  belongs_to :protocol, serializer: Protocols::ShowSerializer
 end

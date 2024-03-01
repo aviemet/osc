@@ -16,6 +16,8 @@
 class ProtocolSerializer < ApplicationSerializer
   object_as :protocol
 
+  identifier :slug
+
   attributes(
     :title,
     :description,

@@ -61,6 +61,7 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 					)) }
 
 				</Tabs>
+
 				<Affix>
 					<Menu position="top-end">
 						<Menu.Target>
