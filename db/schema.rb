@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_29_095137) do
   create_table "commands", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
+    t.string "slug", null: false
     t.string "endpoint"
     t.bigint "server_id", null: false
     t.integer "payload_type"
@@ -26,12 +27,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_29_095137) do
     t.bigint "control_payload_id"
     t.index ["control_payload_id"], name: "index_commands_on_control_payload_id"
     t.index ["server_id"], name: "index_commands_on_server_id"
+    t.index ["slug"], name: "index_commands_on_slug", unique: true
   end
 
   create_table "controls", force: :cascade do |t|
     t.string "title", null: false
-    t.integer "type", null: false
-    t.point "position", null: false
+    t.integer "control_type", null: false
+    t.integer "order", null: false
     t.decimal "min_value"
     t.decimal "max_value"
     t.decimal "value"
@@ -46,8 +48,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_29_095137) do
   create_table "protocols", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
+    t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_protocols_on_slug", unique: true
   end
 
   create_table "protocols_commands", force: :cascade do |t|

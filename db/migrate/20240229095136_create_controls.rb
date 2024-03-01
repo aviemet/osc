@@ -2,8 +2,8 @@ class CreateControls < ActiveRecord::Migration[7.1]
   def change
     create_table :controls do |t|
       t.string :title, null: false
-      t.integer :type, null: false
-      t.point :position, null: false
+      t.integer :control_type, null: false
+      t.integer :order, null: false
       t.decimal :min_value
       t.decimal :max_value
       t.decimal :value

@@ -2,17 +2,17 @@
 #
 # Table name: controls
 #
-#  id          :bigint           not null, primary key
-#  max_value   :decimal(, )
-#  min_value   :decimal(, )
-#  position    :point            not null
-#  title       :string           not null
-#  type        :integer          not null
-#  value       :decimal(, )
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  protocol_id :bigint           not null
-#  screen_id   :bigint           not null
+#  id           :bigint           not null, primary key
+#  control_type :integer          not null
+#  max_value    :decimal(, )
+#  min_value    :decimal(, )
+#  order        :integer          not null
+#  title        :string           not null
+#  value        :decimal(, )
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  protocol_id  :bigint           not null
+#  screen_id    :bigint           not null
 #
 # Indexes
 #

@@ -7,6 +7,7 @@
 #  endpoint           :string
 #  payload            :string
 #  payload_type       :integer
+#  slug               :string           not null
 #  title              :string           not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
@@ -17,6 +18,7 @@
 #
 #  index_commands_on_control_payload_id  (control_payload_id)
 #  index_commands_on_server_id           (server_id)
+#  index_commands_on_slug                (slug) UNIQUE
 #
 # Foreign Keys
 #

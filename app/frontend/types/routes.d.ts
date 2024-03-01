@@ -194,12 +194,12 @@ export const destroyUserSession: ((
 
 /**
  * Generates rails route to
- * /endpoints/:id/edit(.:format)
+ * /commands/:id/edit(.:format)
  * @param {any} id
  * @param {object | undefined} options
  * @returns {string} route path
  */
-export const editEndpoint: ((
+export const editCommand: ((
   id: RequiredRouteParameter,
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
@@ -284,28 +284,6 @@ export const editUserRegistration: ((
 
 /**
  * Generates rails route to
- * /endpoints/:id(.:format)
- * @param {any} id
- * @param {object | undefined} options
- * @returns {string} route path
- */
-export const endpoint: ((
-  id: RequiredRouteParameter,
-  options?: {format?: OptionalRouteParameter} & RouteOptions
-) => string) & RouteHelperExtras;
-
-/**
- * Generates rails route to
- * /endpoints(.:format)
- * @param {object | undefined} options
- * @returns {string} route path
- */
-export const endpoints: ((
-  options?: {format?: OptionalRouteParameter} & RouteOptions
-) => string) & RouteHelperExtras;
-
-/**
- * Generates rails route to
  * /
  * @param {object | undefined} options
  * @returns {string} route path
@@ -316,11 +294,11 @@ export const home: ((
 
 /**
  * Generates rails route to
- * /endpoints/new(.:format)
+ * /commands/new(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
  */
-export const newEndpoint: ((
+export const newCommand: ((
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 

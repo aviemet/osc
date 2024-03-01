@@ -61,7 +61,6 @@ if Rails.env.development?
       "Wall Night Stop" => "/composition/layers/6/clear",
       "Wall Night Start" => "/composition/layers/6/clips/1/connect",
     }.each do |key, value|
-      ap({ key:, value: })
       Command.create({
         title: key,
         endpoint: value,
@@ -70,5 +69,56 @@ if Rails.env.development?
     end
 
     ap "Created #{Command.count} Command(s)"
+  end
+
+  if Protocol.count == 0
+    sunrise = Protocol.create({ title: "Sunrise" })
+    sunrise.commands << Command.where({ slug: [
+      "all-stop",
+      "wall-day-start",
+      "ceiling-day-start",
+    ], } )
+
+    twilight = Protocol.create({ title: "Twilight" })
+    twilight.commands << Command.where({ slug: [
+      "all-stop",
+      "wall-twilight-start",
+      "ceiling-twilight-start",
+    ] } )
+
+    sunset = Protocol.create({ title: "Sunset" })
+    sunset.commands << Command.where({ slug: [
+      "all-stop",
+      "wall-night-start",
+      "ceiling-night-start",
+    ] } )
+
+    ap "Created #{Protocol.count} Protocol(s)"
+  end
+
+  if Control.count == 0
+    screen = Screen.first
+    Control.create({
+      title: "Sunrise",
+      control_type: :button,
+      protocol: Protocol.find_by({ slug: "sunrise" }),
+      screen: screen,
+    })
+
+    Control.create({
+      title: "Twilight",
+      control_type: :button,
+      protocol: Protocol.find_by({ slug: "twilight" }),
+      screen: screen,
+    })
+
+    Control.create({
+      title: "Sunset",
+      control_type: :button,
+      protocol: Protocol.find_by({ slug: "sunset" }),
+      screen: screen,
+    })
+
+    ap "Created #{Control.count} Control(s)"
   end
 end

@@ -31,6 +31,8 @@ class Screen < ApplicationRecord
 
   slug :title
 
+  has_many :controls, dependent: :nullify
+
   scope :includes_associated, -> { includes([]) }
 
   private

@@ -7,6 +7,7 @@
 #  endpoint           :string
 #  payload            :string
 #  payload_type       :integer
+#  slug               :string           not null
 #  title              :string           not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
@@ -17,6 +18,7 @@
 #
 #  index_commands_on_control_payload_id  (control_payload_id)
 #  index_commands_on_server_id           (server_id)
+#  index_commands_on_slug                (slug) UNIQUE
 #
 # Foreign Keys
 #
@@ -39,11 +41,13 @@ class Command < ApplicationRecord
 
   enum :payload_type, { integer: 0, float: 1, string: 2, blob: 3, time: 4, symbol: 5, character: 6, boolean: 7 }
 
-  has_many :protocols_commands, dependent: :nullify
+  slug :title
+
+  has_many :protocols_commands, dependent: :destroy
   has_many :protocols, through: :protocols_commands
 
   belongs_to :server
-  belongs_to :control_payload, class_name: "Control"
+  belongs_to :control_payload, class_name: "Control", optional: true
 
   scope :includes_associated, -> { includes([]) }
 end

@@ -4,6 +4,9 @@ class CreateProtocols < ActiveRecord::Migration[7.1]
       t.string :title, null: false
       t.text :description
 
+      t.string :slug, null: false
+      t.index :slug, unique: true
+
       t.timestamps
     end
   end
