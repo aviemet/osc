@@ -95,3 +95,5 @@ group :test do
   gem "simplecov", "~> 0.22.0"
   gem "pundit-matchers", "~> 3.1"
 end
+
+gem "good_job", "~> 3.26"
