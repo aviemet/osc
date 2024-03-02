@@ -1,5 +1,7 @@
 import React from 'react'
 import { Button } from '@/Components'
+import { Routes } from '@/lib'
+import axios from 'axios'
 
 interface ButtonControlProps {
 	control: Schema.ControlsShow
@@ -7,7 +9,8 @@ interface ButtonControlProps {
 
 const ButtonControl = ({ control }: ButtonControlProps) => {
 	const handleButtonClick = () => {
-		// trigger protocol
+
+		axios.put(Routes.apiExecuteProtocol(control.protocol.id))
 	}
 
 	return (

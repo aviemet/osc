@@ -3,7 +3,11 @@ module.exports = {
 		'browser': true,
 		'node': true,
 	},
-	'extends': ['plugin:react/recommended', 'plugin:import/typescript'],
+	'extends': [
+		'plugin:react/recommended',
+		'plugin:import/typescript',
+		'plugin:@tanstack/eslint-plugin-query/recommended',
+	],
 	'plugins': ['react', '@typescript-eslint', 'import'],
 	'settings': {
 		'import/resolver': {

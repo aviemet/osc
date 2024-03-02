@@ -9,7 +9,7 @@ gem "pg", "~> 1.1"
 gem "puma", "~> 6.0"
 
 # Assets
-gem "inertia_rails", ">= 3.0.0"
+gem "inertia_rails", ">= 3.1"
 gem "vite_rails", "~> 3.0"
 
 # Models
@@ -32,8 +32,9 @@ gem "factory_bot", ">= 6.2"
 gem "js-routes", "~> 2.2"
 gem "foreman", "~> 0.87.2"
 gem "amazing_print", "~> 1.4"
-gem "delayed_job_active_record", "~> 4.1"
-gem "osc-ruby", "~> 1.1"
+gem "good_job", "~> 3.26"
+gem "ruby-osc", "~> 1.0"
+gem "eventmachine", "~> 1.2"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data"
@@ -42,6 +43,10 @@ gem "tzinfo-data"
 gem "bootsnap", require: false
 
 # Use Redis adapter to run Action Cable in production
+# gem "redis", ">= 4.0.1"
+
+# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
+# gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -95,5 +100,3 @@ group :test do
   gem "simplecov", "~> 0.22.0"
   gem "pundit-matchers", "~> 3.1"
 end
-
-gem "good_job", "~> 3.26"

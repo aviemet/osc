@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Osc
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
+    config.load_defaults 7.1
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -38,7 +38,7 @@ module Osc
 
     config.active_record.yaml_column_permitted_classes = [Symbol, Hash, Array, Time, Date, ActiveRecord::Base, ActiveSupport::HashWithIndifferentAccess]
 
-    config.active_job.queue_adapter = :good_job
+    # config.active_job.queue_adapter = :good_job
 
     # Establish db connection upon entering rails console
     console do

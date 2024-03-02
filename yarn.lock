@@ -2140,6 +2140,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/eslint-plugin-query@npm:^5.20.1":
+  version: 5.20.1
+  resolution: "@tanstack/eslint-plugin-query@npm:5.20.1"
+  dependencies:
+    "@typescript-eslint/utils": ^6.20.0
+  peerDependencies:
+    eslint: ^8.0.0
+  checksum: dd8542271643b9d1f033dd96340f0b3b00771cbf6792aa71ce657a36992386ee9da92cccfd3cb55c432477e89821661e0adfec51972333372114ce41abd1f11c
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-core@npm:5.24.1":
+  version: 5.24.1
+  resolution: "@tanstack/query-core@npm:5.24.1"
+  checksum: 652f9d92b4785b0a12f70ac8a86d42ee7f9d6f813ac51f2ab62ca0875525f0be65118484fb9b689bc9eb8c9909b11761955bdc5d37f446887868f04ad1cbe1d4
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.24.1":
+  version: 5.24.1
+  resolution: "@tanstack/react-query@npm:5.24.1"
+  dependencies:
+    "@tanstack/query-core": 5.24.1
+  peerDependencies:
+    react: ^18.0.0
+  checksum: 0927c92eb280c3a86e0f8d541caf60be087dc14222da037614038137a88b06dd4910ea83fc05706d41531dea1c5e58d9515f9011c0961c5e7016cf054563db3f
+  languageName: node
+  linkType: hard
+
 "@testing-library/dom@npm:^9.0.0":
   version: 9.3.4
   resolution: "@testing-library/dom@npm:9.3.4"
@@ -2940,7 +2969,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:6.21.0":
+"@typescript-eslint/utils@npm:6.21.0, @typescript-eslint/utils@npm:^6.20.0":
   version: 6.21.0
   resolution: "@typescript-eslint/utils@npm:6.21.0"
   dependencies:
@@ -8706,6 +8735,8 @@ __metadata:
     "@mantine/tiptap": ^7.5.0
     "@mantine/vanilla-extract": ^7.5.0
     "@tabler/icons-react": ^2.46.0
+    "@tanstack/eslint-plugin-query": ^5.20.1
+    "@tanstack/react-query": ^5.24.1
     "@testing-library/jest-dom": ^6.4.0
     "@testing-library/react": ^14.2.0
     "@testing-library/user-event": ^14.5.2
