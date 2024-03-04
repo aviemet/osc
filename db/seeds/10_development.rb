@@ -26,7 +26,7 @@ if Rails.env.development?
   if Server.count == 0
     Server.create({
       title: "Resolume",
-      hostname: "ws://localhost",
+      hostname: "localhost",
       port: 8081,
       description: "Resolume server",
     })

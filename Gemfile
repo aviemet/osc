@@ -33,7 +33,7 @@ gem "js-routes", "~> 2.2"
 gem "foreman", "~> 0.87.2"
 gem "amazing_print", "~> 1.4"
 gem "good_job", "~> 3.26"
-gem "ruby-osc", "~> 1.0"
+# gem "ruby-osc", "~> 1.0"
 gem "eventmachine", "~> 1.2"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
