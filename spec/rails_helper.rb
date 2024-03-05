@@ -2,11 +2,6 @@ require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 
-# Disable audits in test environment
-require 'public_activity'
-require 'public_activity/testing'
-PublicActivity.enabled = false
-
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
@@ -42,7 +37,7 @@ end
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{Rails.root}/spec/fixtures"
+  config.fixture_path = "#{Rails.root.join('spec/fixtures')}"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -118,11 +113,11 @@ RSpec.configure do |config|
 
   # Bullet
   if Bullet.enable?
-    config.before(:each) do
+    config.before do
       Bullet.start_request
     end
 
-    config.after(:each) do
+    config.after do
       Bullet.perform_out_of_channel_notifications if Bullet.notification?
       Bullet.end_request
     end

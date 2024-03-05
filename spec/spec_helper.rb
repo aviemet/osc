@@ -35,7 +35,6 @@ end
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require "money-rails/test_helpers"
 require 'amazing_print'
 
 RSpec.configure do |config|
