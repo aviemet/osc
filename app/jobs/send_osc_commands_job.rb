@@ -8,7 +8,7 @@ class SendOscCommandsJob < ApplicationJob
       client = OscService::Client.new(host: server.hostname, port: server.port)
 
       commands.each do |command|
-        client.send(OscService::Message.new(command.endpoint))
+        client.send(OscService::Message.new(command.message))
       end
     end
   end

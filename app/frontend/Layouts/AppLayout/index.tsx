@@ -25,6 +25,7 @@ const AppLayout = ({ children }: { children: any }) => {
 							<>
 								<Menu.Link href={ Routes.editScreens() }>Edit Screens</Menu.Link>
 								<Menu.Link href={ Routes.protocols() }>Edit Protocols</Menu.Link>
+								<Menu.Link href={ Routes.commands() }>Edit Commands</Menu.Link>
 							</>
 							:
 							<Menu.Label>Sign In</Menu.Label>

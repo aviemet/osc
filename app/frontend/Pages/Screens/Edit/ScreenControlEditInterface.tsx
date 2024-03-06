@@ -5,7 +5,7 @@ import {
 	restrictToWindowEdges,
 	createSnapModifier,
 } from '@dnd-kit/modifiers'
-import { Box } from '@mantine/core'
+import { Box, EditControl } from '@/Components'
 import cx from 'clsx'
 import * as classes from './ScreenControl.css'
 
@@ -14,12 +14,9 @@ interface ScreenControlEditInterfaceProps {
 }
 
 const ScreenControlEditInterface = ({ screen }: ScreenControlEditInterfaceProps) => {
-	console.log({ controls: screen.controls })
 	return (
 		<Box>
-			{ screen?.controls.map(control => (
-				<></>
-			)) }
+			{ screen?.controls?.map(control => <EditControl key={ control.id } control={ control } />) }
 		</Box>
 	)
 }

@@ -4,7 +4,7 @@
 #
 #  id                 :bigint           not null, primary key
 #  description        :text
-#  endpoint           :string
+#  message            :string
 #  payload            :string
 #  payload_type       :integer
 #  slug               :string           not null
@@ -31,7 +31,7 @@ class CommandSerializer < ApplicationSerializer
   attributes(
     :title,
     :description,
-    :endpoint,
+    :message,
     :payload,
   )
 end

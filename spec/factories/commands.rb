@@ -4,7 +4,7 @@
 #
 #  id                 :bigint           not null, primary key
 #  description        :text
-#  endpoint           :string
+#  message            :string
 #  payload            :string
 #  payload_type       :integer
 #  slug               :string           not null
@@ -27,8 +27,9 @@
 #
 FactoryBot.define do
   factory :command do
-    title { "MyString" }
-    endpoint { "MyString" }
-    command { "MyString" }
+    title { "OSC Message" }
+    message { "/test/message" }
+
+    server
   end
 end

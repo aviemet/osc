@@ -12,9 +12,8 @@
 #
 FactoryBot.define do
   factory :server do
-    title { "MyString" }
-    hostname { "MyString" }
-    port { 1 }
-    description { "MyText" }
+    title { "Test Server" }
+    hostname { "localhost" }
+    port { 9091 }
   end
 end

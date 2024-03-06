@@ -63,7 +63,7 @@ if Rails.env.development?
     }.each do |key, value|
       Command.create({
         title: key,
-        endpoint: value,
+        message: value,
         server: server
       })
     end

@@ -1,14 +1,13 @@
 import React from 'react'
 import { Button } from '@/Components'
 import { Routes } from '@/lib'
+import { type ControlProps } from '..'
 import axios from 'axios'
+import EditButton from '../EditButton'
 
-interface ButtonControlProps {
-	control: Schema.ControlsShow
-}
-
-const ButtonControl = ({ control }: ButtonControlProps) => {
+const ButtonControl = ({ control, edit = false, ...props }: ControlProps) => {
 	const handleButtonClick = () => {
+		if(edit) return
 
 		axios.put(Routes.apiExecuteProtocol(control.protocol.id))
 	}
@@ -16,7 +15,9 @@ const ButtonControl = ({ control }: ButtonControlProps) => {
 	return (
 		<Button
 			onClick={ handleButtonClick }
+			{ ...props }
 		>
+			{ edit && <EditButton control={ control } /> }
 			{ control.title }
 		</Button>
 	)

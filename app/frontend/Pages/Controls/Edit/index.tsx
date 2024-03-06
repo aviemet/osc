@@ -14,7 +14,7 @@ const EditControl = ({ control }: IEditControlProps) => {
 		<Page title={ title }>
 			<Section>
 				<Heading>{ title }</Heading>
-				
+
 				<ControlsForm
 					method='put'
 					to={ Routes.control() }

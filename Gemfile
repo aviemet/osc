@@ -32,7 +32,6 @@ gem "factory_bot", ">= 6.2"
 gem "js-routes", "~> 2.2"
 gem "foreman", "~> 0.87.2"
 gem "amazing_print", "~> 1.4"
-gem "good_job", "~> 3.26"
 # gem "ruby-osc", "~> 1.0"
 gem "eventmachine", "~> 1.2"
 
@@ -81,7 +80,6 @@ group :development do
   gem "web-console"
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  gem "spring"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

@@ -1,13 +1,10 @@
 import React from 'react'
 import { Box } from '@/Components'
+import { type ControlProps } from '..'
 
-interface SpacerControlProps {
-	control: Schema.ControlsShow
-}
-
-const SpacerControl = ({ control }: SpacerControlProps) => {
+const SpacerControl = ({ control, edit = false, ...props }: ControlProps) => {
 	return (
-		<Box>{ control.title }</Box>
+		<Box { ...props }>{ control.title }</Box>
 	)
 }
 

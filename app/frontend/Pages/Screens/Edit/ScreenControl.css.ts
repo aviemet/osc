@@ -11,3 +11,10 @@ export const dragOverlay = css`
 	background-color: rgba(255,255,255,0.4);
 	border: 1px solid #333;
 `
+
+export const tabsPanel = css`
+	padding: ${ vars.spacing.sm };
+	border-left: 1px solid var(--tab-border-color);
+	border-bottom: 1px solid var(--tab-border-color);
+	border-right: 1px solid var(--tab-border-color);
+`

@@ -1,13 +1,10 @@
 import React from 'react'
 import { Slider } from '@/Components'
+import { type ControlProps } from '..'
 
-interface SliderControlProps {
-	control: Schema.ControlsShow
-}
-
-const SliderControl = ({ control }: SliderControlProps) => {
+const SliderControl = ({ control, edit = false, ...props }: ControlProps) => {
 	return (
-		<Slider>{ control.title }</Slider>
+		<Slider { ...props }>{ control.title }</Slider>
 	)
 }
 

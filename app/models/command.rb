@@ -4,7 +4,7 @@
 #
 #  id                 :bigint           not null, primary key
 #  description        :text
-#  endpoint           :string
+#  message            :string
 #  payload            :string
 #  payload_type       :integer
 #  slug               :string           not null
@@ -30,7 +30,7 @@ class Command < ApplicationRecord
 
   pg_search_scope(
     :search,
-    against: [:title, :endpoint, :payload],
+    against: [:title, :message, :payload],
     using: {
       tsearch: { prefix: true },
       trigram: {}

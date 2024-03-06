@@ -6,5 +6,5 @@ class Controls::EditSerializer < ControlSerializer
     :created_at,
   )
 
-  has_many :commands, serializer: Commands::EditSerializer
+  belongs_to :protocol, serializer: Protocols::EditSerializer
 end

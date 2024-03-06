@@ -38,7 +38,7 @@ module Osc
 
     config.active_record.yaml_column_permitted_classes = [Symbol, Hash, Array, Time, Date, ActiveRecord::Base, ActiveSupport::HashWithIndifferentAccess]
 
-    config.active_job.queue_adapter = :good_job
+    # config.active_job.queue_adapter = :good_job
 
     # Establish db connection upon entering rails console
     console do

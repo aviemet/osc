@@ -22,7 +22,7 @@ const CommandForm = ({ method = 'post', command, ...props }: ICommandFormProps) 
 			{ ...props }
 		>
 			<TextInput name="title" label="Title" />
-			<TextInput name="endpoint" label="Endpoint" />
+			<TextInput name="message" label="Message" />
 			<TextInput name="payload" label="Payload" />
 			<Submit>{ command.id ? 'Update' : 'Create' } Command</Submit>
 		</Form>

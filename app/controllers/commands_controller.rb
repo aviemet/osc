@@ -4,6 +4,44 @@ class CommandsController < ApplicationController
   expose :commands, -> { search(Command.includes_associated, sortable_fields) }
   expose :command, find: ->(id, scope) { scope.includes_associated.find(id) }
 
+  # @route GET /commands (commands)
+  def index
+    authorize commands
+    paginated_commands = commands.page(params[:page] || 1)
+
+    render inertia: "Commands/Index", props: {
+      commands: paginated_commands.render,
+      pagination: -> { {
+        count: commands.count,
+        **pagination_data(paginated_commands)
+      } }
+    }
+  end
+
+  # @route GET /commands/:id (command)
+  def show
+    authorize command
+    render inertia: "Commands/Show", props: {
+      command: -> { command.render(view: :show) },
+    }
+  end
+
+  # @route GET /commands/new (new_command)
+  def new
+    authorize Protocol.new
+    render inertia: "Commands/New", props: {
+      command: -> { command.render(view: :edit) },
+    }
+  end
+
+  # @route GET /commands/:id/edit (edit_command)
+  def edit
+    authorize command
+    render inertia: "Commands/Edit", props: {
+      command: -> { command.render(view: :edit) },
+    }
+  end
+
   # @route POST /commands (commands)
   def create
     authorize Command.new
@@ -35,10 +73,10 @@ class CommandsController < ApplicationController
   private
 
   def sortable_fields
-    %w(title endpoint payload).freeze
+    %w(title message payload).freeze
   end
 
   def command_params
-    params.require(:command).permit(:title, :endpoint, :payload, :description)
+    params.require(:command).permit(:title, :message, :payload, :description)
   end
 end

@@ -11,6 +11,9 @@ import { router } from '@inertiajs/react'
 import { AddControlsInterface } from '@/Features'
 import ControlForm from '@/Pages/Controls/Form'
 import { Affix } from '@mantine/core'
+import cx from 'clsx'
+import * as classes from './ScreenControl.css'
+import NewScreenModal from './NewScreenModal'
 
 interface IEditScreenProps {
 	screen: Schema.ScreensEdit
@@ -26,7 +29,7 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 	const title = 'Edit Screen'
 
 	const handleDragEnd = (event: DragEndEvent) => {
-		newControlModalOpen()
+		// newControlModalOpen()
 		console.log({ dragEnd: event })
 		// router.post(Routes.controls(), {
 		// 	control: {
@@ -50,12 +53,12 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 						{ screens.map(iScreen => (
 							<Tabs.Tab key={ iScreen.id } value={ iScreen.slug }>{ iScreen.title }</Tabs.Tab>
 						)) }
-						<Button onClick={ newScreenModalOpen } p="xs" variant="subtle">+</Button>
+						<NewScreenModal trigger={ <Button p="xs" variant="subtle">+</Button> } />
 						{ /* <Tabs.Link href={ Routes.screen(screen.slug) } position='right'><CrossIcon /></Tabs.Link> */ }
 					</Tabs.List>
 
 					{ screens.map(iScreen => (
-						<Tabs.Panel key={ iScreen.id } value={ iScreen.slug }>
+						<Tabs.Panel key={ iScreen.id } value={ iScreen.slug } className={ classes.tabsPanel }>
 							<>{ iScreen.id === screen.id && <ScreenControlEditInterface screen={ screen } /> }</>
 						</Tabs.Panel>
 					)) }
@@ -76,13 +79,11 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 				</Affix>
 			</Page>
 
-			<Modal opened={ newScreenModalOpened } onClose={ newScreenModalClose }>
-				<ScreenForm to={ Routes.screens() } onSubmit={ newScreenModalClose } />
-			</Modal>
 
-			<Modal opened={ newControlModalOpened } onClose={ newControlModalClose }>
+
+			{ /* <Modal opened={ newControlModalOpened } onClose={ newControlModalClose }>
 				<ControlForm to={ Routes.controls() } onSubmit={ newControlModalClose } />
-			</Modal>
+			</Modal> */ }
 
 		</DndContext>
 	)

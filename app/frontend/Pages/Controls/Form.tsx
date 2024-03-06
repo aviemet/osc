@@ -15,8 +15,8 @@ export interface IControlFormProps {
 
 const emptyControl: Partial<Schema.ControlsFormData> = {
 	title: '',
-	type: undefined,
-	position: undefined,
+	control_type: undefined,
+	order: undefined,
 	value: undefined,
 	min_value: undefined,
 	max_value: undefined,
@@ -31,11 +31,12 @@ const ControlForm = ({ method = 'post', control, ...props }: IControlFormProps) 
 			{ ...props }
 		>
 			<TextInput name="title" label="Title" />
-			<TextInput name="type" label="Type" />
-			<TextInput name="position" label="Position" />
-			<TextInput name="min_value" label="Min_value" />
-			<TextInput name="max_value" label="Max_value" />
+			{ control?.control_type === 'slider' && <>
+				<TextInput name="min_value" label="Min Value" />
+				<TextInput name="max_value" label="Max Value" />
+			</> }
 			<TextInput name="value" label="Value" />
+			<br />
 			<Submit>{ control?.id ? 'Update' : 'Create' } Control</Submit>
 		</Form>
 	)

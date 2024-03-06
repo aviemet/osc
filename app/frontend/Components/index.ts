@@ -1,10 +1,11 @@
 export { default as Button } from './Button'
 export { default as ConditionalWrapper } from './ConditionalWrapper'
-export { default as Control } from './Control'
+export { default as Control, EditControl } from './Control'
 export { default as DangerousHtml } from './DangerousHtml'
 export { default as Heading } from './Heading'
 export { default as Link, NavLink } from './Link'
 export { default as Menu } from './Menu'
+export { default as Modal } from './Modal'
 export { default as Page, type PageProps } from './Page'
 export { default as RichTextEditor } from './RichTextEditor'
 export { default as Section } from './Section'
@@ -14,6 +15,7 @@ export { default as Tabs } from './Tabs'
 
 // Export UI library components as a proxy to allow easy refactoring
 export {
+	ActionIcon,
 	AppShell,
 	Badge,
 	Box,
@@ -25,7 +27,6 @@ export {
 	Flex,
 	Group,
 	List,
-	Modal,
 	Paper,
 	SimpleGrid,
 	Slider,
