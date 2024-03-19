@@ -2168,21 +2168,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.24.8":
-  version: 5.24.8
-  resolution: "@tanstack/query-core@npm:5.24.8"
-  checksum: 622f13628bd79f3b6619913c4b4fb70fcdf9bbe90188c2be38f813f14c8ed42ec4f38821c0a7b2a71c9382909a4beb50a122704df48b6e6cbffd8940a3b16075
+"@tanstack/query-core@npm:5.25.0":
+  version: 5.25.0
+  resolution: "@tanstack/query-core@npm:5.25.0"
+  checksum: c4a8ddebec1a46da8abaff465190bf133bd6454cd7c641d3c579af10d7514c3eceb61b181fc68564ca2a8e1be65ea28f49a5dea01a9463e23989234b52421008
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:^5.24.8":
-  version: 5.24.8
-  resolution: "@tanstack/react-query@npm:5.24.8"
+"@tanstack/react-query@npm:^5.25.0":
+  version: 5.25.0
+  resolution: "@tanstack/react-query@npm:5.25.0"
   dependencies:
-    "@tanstack/query-core": 5.24.8
+    "@tanstack/query-core": 5.25.0
   peerDependencies:
     react: ^18.0.0
-  checksum: a6b86e925e1c26dc83a640ff8bb215692d2aa952a713c0909335b1f42f0e686cbee2e5d2367242074c1436162132f198b334e209fe6dbbec2e87e53805b427a0
+  checksum: 09589477abf28d742c618d98c6c93d7887250cc718de0ecfeee63570093c1a01ce709dfd1687c30dab48fefcf3f322ba6b0481c710b7db00c3af2423df220140
   languageName: node
   linkType: hard
 
@@ -2786,12 +2786,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^18.0.0, @types/react-dom@npm:^18.2.19":
+"@types/react-dom@npm:^18.0.0":
   version: 18.2.19
   resolution: "@types/react-dom@npm:18.2.19"
   dependencies:
     "@types/react": "*"
   checksum: 087a19d8e4c1c0900ec4ac5ddb749a811a38274b25683d233c11755d2895cc6e475e8bf9bea3dee36519769298e078d4c2feab9ab4bd13b26bc2a6170716437e
+  languageName: node
+  linkType: hard
+
+"@types/react-dom@npm:^18.2.21":
+  version: 18.2.21
+  resolution: "@types/react-dom@npm:18.2.21"
+  dependencies:
+    "@types/react": "*"
+  checksum: 0ff00aedf5ffad90ed226c0ab0acdca609804c81af5dbde0d13a4ae53dac6bd92f85f1adc032c42966ec2e9417d13d18a41767434afa4d8c1979cad57348191b
   languageName: node
   linkType: hard
 
@@ -2806,14 +2815,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^18.2.61":
-  version: 18.2.61
-  resolution: "@types/react@npm:18.2.61"
+"@types/react@npm:^18.2.64":
+  version: 18.2.64
+  resolution: "@types/react@npm:18.2.64"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: a100c09bc0d6d1a0a42b3fa0944b71d209b5adea6515fc21109972ec3267185372cc416c0467b1998afce6b90fc80f4c0029b5d975afb0b3070d864c7a924a5e
+  checksum: 1fd28dc5e5d191619e0b001485f428a070bad11f55683a212d3bd937bdc979335913f90f4ca4f0510871e5f35d8f46b169a23276fb048d06584623d3652cc0f3
   languageName: node
   linkType: hard
 
@@ -8459,10 +8468,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"normalize-url@npm:^8.0.0":
-  version: 8.0.0
-  resolution: "normalize-url@npm:8.0.0"
-  checksum: 24c20b75ebfd526d8453084692720b49d111c63c0911f1b7447427829597841eef5a8ba3f6bb93d6654007b991c1f5cd85da2c907800e439e2e2ec6c2abd0fc0
+"normalize-url@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "normalize-url@npm:8.0.1"
+  checksum: 43ea9ef0d6d135dd1556ab67aa4b74820f0d9d15aa504b59fa35647c729f1147dfce48d3ad504998fd1010f089cfb82c86c6d9126eb5c5bd2e9bd25f3a97749b
   languageName: node
   linkType: hard
 
@@ -8714,7 +8723,7 @@ __metadata:
     "@mantine/vanilla-extract": ^7.6.1
     "@tabler/icons-react": ^2.47.0
     "@tanstack/eslint-plugin-query": ^5.20.1
-    "@tanstack/react-query": ^5.24.8
+    "@tanstack/react-query": ^5.25.0
     "@testing-library/jest-dom": ^6.4.2
     "@testing-library/react": ^14.2.1
     "@testing-library/user-event": ^14.5.2
@@ -8729,8 +8738,8 @@ __metadata:
     "@tiptap/starter-kit": ^2.2.4
     "@types/jest": ^29.5.12
     "@types/lodash": ^4.14.202
-    "@types/react": ^18.2.61
-    "@types/react-dom": ^18.2.19
+    "@types/react": ^18.2.64
+    "@types/react-dom": ^18.2.21
     "@typescript-eslint/eslint-plugin": ^7.1.1
     "@typescript-eslint/parser": ^7.1.1
     "@vitejs/plugin-react": ^4.2.1
@@ -8759,7 +8768,7 @@ __metadata:
     jsdom: ^24.0.0
     lint-staged: ^15.2.2
     lodash: ^4.17.21
-    normalize-url: ^8.0.0
+    normalize-url: ^8.0.1
     postcss-preset-mantine: ^1.13.0
     postcss-simple-vars: ^7.0.1
     react: ^18.2.0
@@ -8770,9 +8779,9 @@ __metadata:
     react-use-url: ^1.0.5
     ts-jest: ^29.1.2
     ts-node: ^10.9.2
-    typescript: ^5.3.3
+    typescript: ^5.4.2
     use-inertia-form: ^3.3.3
-    vite: ^5.1.4
+    vite: ^5.1.5
     vite-plugin-dynamic-import: ^1.5.0
     vite-plugin-full-reload: ^1.1.0
     vite-plugin-ruby: ^5.0.0
@@ -11029,23 +11038,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.3.3":
-  version: 5.3.3
-  resolution: "typescript@npm:5.3.3"
+"typescript@npm:^5.4.2":
+  version: 5.4.2
+  resolution: "typescript@npm:5.4.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 2007ccb6e51bbbf6fde0a78099efe04dc1c3dfbdff04ca3b6a8bc717991862b39fd6126c0c3ebf2d2d98ac5e960bcaa873826bb2bb241f14277034148f41f6a2
+  checksum: 96d80fde25a09bcb04d399082fb27a808a9e17c2111e43849d2aafbd642d835e4f4ef0de09b0ba795ec2a700be6c4c2c3f62bf4660c05404c948727b5bbfb32a
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^5.3.3#~builtin<compat/typescript>":
-  version: 5.3.3
-  resolution: "typescript@patch:typescript@npm%3A5.3.3#~builtin<compat/typescript>::version=5.3.3&hash=85af82"
+"typescript@patch:typescript@^5.4.2#~builtin<compat/typescript>":
+  version: 5.4.2
+  resolution: "typescript@patch:typescript@npm%3A5.4.2#~builtin<compat/typescript>::version=5.4.2&hash=85af82"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: f61375590b3162599f0f0d5b8737877ac0a7bc52761dbb585d67e7b8753a3a4c42d9a554c4cc929f591ffcf3a2b0602f65ae3ce74714fd5652623a816862b610
+  checksum: c1b669146bca5529873aae60870e243fa8140c85f57ca32c42f898f586d73ce4a6b4f6bb02ae312729e214d7f5859a0c70da3e527a116fdf5ad00c9fc733ecc6
   languageName: node
   linkType: hard
 
@@ -11335,7 +11344,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.0.0, vite@npm:^5.1.4":
+"vite@npm:^5.0.0":
   version: 5.1.4
   resolution: "vite@npm:5.1.4"
   dependencies:
@@ -11372,6 +11381,46 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: fb8b944c69fd738b412ad10471f01db01ed59b5d7fdf182b836b420b221a8bd5ada74d225a87aaa80cf8d2b693cc4a89ab7c291254a8b4e6faefd93843ebb9d3
+  languageName: node
+  linkType: hard
+
+"vite@npm:^5.1.5":
+  version: 5.1.5
+  resolution: "vite@npm:5.1.5"
+  dependencies:
+    esbuild: ^0.19.3
+    fsevents: ~2.3.3
+    postcss: ^8.4.35
+    rollup: ^4.2.0
+  peerDependencies:
+    "@types/node": ^18.0.0 || >=20.0.0
+    less: "*"
+    lightningcss: ^1.21.0
+    sass: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    lightningcss:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: 14c079ebe508d55198a3b1ca528d13515c745d7ae279e4864e89110a1661a4cfa880d894c2d7dcf557f6ed3ffc17fa3abea9d9ea4b6f256f0cab99d16a3b385b
   languageName: node
   linkType: hard
 
