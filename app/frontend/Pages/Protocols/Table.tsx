@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes } from '@/lib'
 import { Table, Link } from '@/Components'
-import { EditButton } from '@/Components/Button'
+import { DeleteButton } from '@/Components/Button'
 import { type ITableProps } from '@/Components/Table/Table'
 
 const ProtocolTable = (props: ITableProps) => {
@@ -17,10 +17,10 @@ const ProtocolTable = (props: ITableProps) => {
 				<Table.RowIterator render={ (protocol: Schema.ProtocolsIndex) => (
 					<Table.Row key={ protocol.id }>
 						<Table.Cell>
-							<Link href={ Routes.protocol(protocol.id) }>{ protocol.title }</Link>
+							<Link href={ Routes.editProtocol(protocol.id) }>{ protocol.title }</Link>
 						</Table.Cell>
 						<Table.Cell>
-							<EditButton href={ Routes.editProtocol(protocol.id) } />
+							<DeleteButton href={ Routes.protocol(protocol.id) } />
 						</Table.Cell>
 					</Table.Row>
 				) } />

@@ -19,12 +19,12 @@ class CommandsController < ApplicationController
   end
 
   # @route GET /commands/:id (command)
-  def show
-    authorize command
-    render inertia: "Commands/Show", props: {
-      command: -> { command.render(view: :show) },
-    }
-  end
+  # def show
+  #   authorize command
+  #   render inertia: "Commands/Show", props: {
+  #     command: -> { command.render(view: :show) },
+  #   }
+  # end
 
   # @route GET /commands/new (new_command)
   def new

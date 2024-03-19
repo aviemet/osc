@@ -19,7 +19,8 @@ const FormInput = forwardRef<HTMLInputElement, ITextFormInputProps>((
 		required,
 		compact = false,
 		errorKey,
-		field = true, ...props
+		field = true,
+		...props
 	},
 	ref,
 ) => {

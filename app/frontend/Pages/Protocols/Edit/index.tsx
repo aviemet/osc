@@ -14,10 +14,10 @@ const EditProtocol = ({ protocol }: IEditProtocolProps) => {
 		<Page title={ title }>
 			<Section>
 				<Heading>{ title }</Heading>
-				
+
 				<ProtocolsForm
 					method='put'
-					to={ Routes.protocol() }
+					to={ Routes.protocol(protocol.id) }
 					protocol={ protocol }
 				/>
 			</Section>

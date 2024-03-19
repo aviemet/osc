@@ -10,21 +10,28 @@ export interface ICommandFormProps {
 	to: string
 	method?: HTTPVerb
 	onSubmit?: (object: UseFormProps<TCommandFormData>) => boolean|void
-	command: Schema.CommandsFormData
+	command?: Schema.CommandsFormData
+}
+
+const emptyCommand: Schema.CommandsFormData = {
+	title: '',
 }
 
 const CommandForm = ({ method = 'post', command, ...props }: ICommandFormProps) => {
+	const formCommand = command ?? emptyCommand
+
 	return (
 		<Form
 			model="command"
-			data={ { command } }
+			data={ { command: formCommand } }
 			method={ method }
 			{ ...props }
 		>
 			<TextInput name="title" label="Title" />
 			<TextInput name="message" label="Message" />
 			<TextInput name="payload" label="Payload" />
-			<Submit>{ command.id ? 'Update' : 'Create' } Command</Submit>
+
+			<Submit>{ formCommand.id ? 'Update' : 'Create' } Command</Submit>
 		</Form>
 	)
 }

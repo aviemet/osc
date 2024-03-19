@@ -1,6 +1,9 @@
 import React from 'react'
 import { Form, TextInput, Submit, RichText } from '@/Components/Form'
-import { type UseFormProps } from 'use-inertia-form'
+import { DynamicInputs, type UseFormProps } from 'use-inertia-form'
+import { ModalFormButton } from '@/Components/Button'
+import CommandForm from '../Commands/Form'
+import { Routes } from '@/lib'
 
 type TProtocolFormData = {
 	protocol: Schema.ProtocolsFormData
@@ -23,6 +26,12 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 		>
 			<TextInput name="title" label="Title" />
 			<RichText name="description" label="Description" />
+			<ModalFormButton form={ <CommandForm to={ Routes.commands() } /> } title="WTF">Command</ModalFormButton>
+			{ /* <DynamicInputs emptyData={ {
+				protocol_id: '',
+			} }>
+
+			</DynamicInputs> */ }
 
 			<Submit>{ protocol.id ? 'Update' : 'Create' } Protocol</Submit>
 		</Form>

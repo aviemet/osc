@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes } from '@/lib'
 import { Table, Link } from '@/Components'
-import { EditButton } from '@/Components/Button'
+import { DeleteButton } from '@/Components/Button'
 import { type ITableProps } from '@/Components/Table/Table'
 
 const CommandTable = (props: ITableProps) => {
@@ -19,16 +19,16 @@ const CommandTable = (props: ITableProps) => {
 				<Table.RowIterator render={ (command: Schema.CommandsIndex) => (
 					<Table.Row key={ command.id }>
 						<Table.Cell>
-							<Link href={ Routes.command(command.id) }>{ command.title }</Link>
+							<Link href={ Routes.editCommand(command.id) }>{ command.title }</Link>
 						</Table.Cell>
 						<Table.Cell>
-							<Link href={ Routes.command(command.id) }>{ command.message }</Link>
+							<Link href={ Routes.editCommand(command.id) }>{ command.message }</Link>
 						</Table.Cell>
 						<Table.Cell>
-							<Link href={ Routes.command(command.id) }>{ command.payload }</Link>
+							<Link href={ Routes.editCommand(command.id) }>{ command.payload }</Link>
 						</Table.Cell>
 						<Table.Cell>
-							<EditButton href={ Routes.editCommand(command.id) } />
+							<DeleteButton href={ Routes.command(command.id) } />
 						</Table.Cell>
 					</Table.Row>
 				) } />

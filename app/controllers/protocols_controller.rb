@@ -19,12 +19,12 @@ class ProtocolsController < ApplicationController
   end
 
   # @route GET /protocols/:id (protocol)
-  def show
-    authorize protocol
-    render inertia: "Protocols/Show", props: {
-      protocol: -> { protocol.render(view: :show) },
-    }
-  end
+  # def show
+  #   authorize protocol
+  #   render inertia: "Protocols/Show", props: {
+  #     protocol: -> { protocol.render(view: :show) },
+  #   }
+  # end
 
   # @route GET /protocols/new (new_protocol)
   def new

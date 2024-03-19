@@ -8,7 +8,7 @@ interface IEditCommandProps {
 }
 
 const EditCommand = ({ command }: IEditCommandProps) => {
-	const title = 'Edit Command'
+	const title = `Command: ${command.title}`
 
 	return (
 		<Page title={ title }>
@@ -17,7 +17,7 @@ const EditCommand = ({ command }: IEditCommandProps) => {
 
 				<CommandsForm
 					method='put'
-					to={ Routes.command() }
+					to={ Routes.command(command.id) }
 					command={ command }
 				/>
 			</Section>
