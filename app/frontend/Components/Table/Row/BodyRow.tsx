@@ -24,12 +24,14 @@ const RowInContext = forwardRef<HTMLTableRowElement, IRowInContextProps>((
 			{ selectable && <RowCheckbox name={ name || '' } selected={ selected } /> }
 			{ React.Children.map(children, (cell, i) => {
 				if((
+					!cell ||
 					columns[i]?.hideable &&
 					model &&
 					table_preferences?.[model]?.hide?.[columns[i].hideable]
 				)) {
 					return <React.Fragment key={ columns[i]?.label } />
 				}
+
 				return React.cloneElement(cell, {
 					key: columns[i]?.label,
 					'data-cell': columns[i]?.label,

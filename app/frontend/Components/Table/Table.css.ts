@@ -9,9 +9,48 @@ export const wrapper = css`
 	max-height: 100%;
 `
 
+export const rowSpacing = css`
+	padding: ${vars.spacing.md};
+
+	border-collapse: separate;
+	border-spacing: 0 0.5em;
+	background-color: transparent !important;
+
+	
+	tbody {
+    border-collapse: separate;
+    border-spacing: 0 0.5em;
+
+		tr {
+			border-radius: ${vars.radius.lg};
+			position: relative;
+			box-shadow: ${vars.shadows.xs};
+			transition: box-shadow 0.2s ease-in-out;
+
+			&:hover {
+			box-shadow: ${vars.shadows.sm};
+			}
+		}
+
+		td {
+			background-color: ${vars.colors.gray[0]};
+			
+			&:first-of-type {
+				border-top-left-radius: ${vars.radius.lg};
+				border-bottom-left-radius: ${vars.radius.lg};
+			}
+
+			&:last-of-type {
+				border-top-right-radius: ${vars.radius.lg};
+				border-bottom-right-radius: ${vars.radius.lg};
+			}
+		}
+	}
+`
+
 export const table = css`
 	width: 100%;
-
+		
 	${vars.lightSelector} {
 		background-color: ${vars.colors.gray[2]};
 	}
@@ -50,6 +89,14 @@ export const table = css`
 		}
 	}
 
+	&.${rowSpacing} thead {
+		background-color: ${vars.colors.white};
+
+		th {
+			border-right: 1px solid ${vars.colors.gray[2]}
+		}
+	}
+
 	th, td {
 		padding: ${rem(6)};
 
@@ -63,7 +110,10 @@ export const table = css`
 		}
 	}
 
+
 	th {
+		text-align: left;
+
 		&.sortable {
 			position: relative;
 			padding-right: 1rem;

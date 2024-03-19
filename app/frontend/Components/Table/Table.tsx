@@ -20,6 +20,7 @@ import ConditionalWrapper from '../ConditionalWrapper'
 export interface ITableProps extends TableProps {
 	fixed?: boolean
 	wrapper?: boolean
+	rowSpacing?: boolean
 }
 
 type TableComponent = (({ children, className, fixed, wrapper, ...props }: ITableProps) => JSX.Element)
@@ -46,6 +47,7 @@ const TableComponent: TableComponent & TableObjects = ({
 	className,
 	wrapper = true,
 	fixed = false,
+	rowSpacing = false,
 	striped = true,
 	highlightOnHover = true,
 	...props
@@ -70,7 +72,7 @@ const TableComponent: TableComponent & TableObjects = ({
 			<Table
 				striped={ striped }
 				highlightOnHover={ highlightOnHover }
-				className={ cx(classes.table, className, { 'layout-fixed': fixed, 'layout-auto': !fixed }) }
+				className={ cx(className, classes.table, { [classes.rowSpacing]: rowSpacing, 'layout-fixed': fixed, 'layout-auto': !fixed }) }
 				// sx={ stylesArray }
 				{ ...props }
 			>

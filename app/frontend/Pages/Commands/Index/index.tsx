@@ -21,7 +21,7 @@ const CommandsIndex = ({ commands, pagination }: ICommandIndexProps) => {
 				{ label: 'New Command', href: Routes.newCommand(), icon: NewIcon },
 			] }
 		>
-			<CommandsTable />
+			<CommandsTable rowSpacing />
 		</IndexPageTemplate>
 	)
 }

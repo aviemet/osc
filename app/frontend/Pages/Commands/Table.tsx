@@ -6,7 +6,7 @@ import { type ITableProps } from '@/Components/Table/Table'
 
 const CommandTable = (props: ITableProps) => {
 	return (
-		<Table>
+		<Table { ...props }>
 			<Table.Head>
 				<Table.Row>
 					<Table.Cell sort="title">Title</Table.Cell>
