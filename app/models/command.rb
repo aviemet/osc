@@ -27,6 +27,7 @@
 #
 class Command < ApplicationRecord
   include PgSearch::Model
+  include PublicActivity::Model
 
   pg_search_scope(
     :search,
@@ -37,6 +38,7 @@ class Command < ApplicationRecord
     },
   )
 
+  tracked
   resourcify
 
   enum :payload_type, { integer: 0, float: 1, string: 2, blob: 3, time: 4, symbol: 5, character: 6, boolean: 7 }

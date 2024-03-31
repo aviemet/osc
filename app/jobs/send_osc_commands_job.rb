@@ -11,5 +11,6 @@ class SendOscCommandsJob < ApplicationJob
         client.send(OscService::Message.new(command.message))
       end
     end
+  rescue Errno::ECONNREFUSED
   end
 end

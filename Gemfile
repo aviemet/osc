@@ -26,14 +26,15 @@ gem "boolean_timestamp", "~> 1.1"
 gem "jsonb_accessor", "~> 1.3"
 gem "oj_serializers", "~> 2.0"
 gem "types_from_serializers", "~> 2.1"
+gem "public_activity", "~> 3.0"
 
 # Helpers
 gem "factory_bot", ">= 6.2"
 gem "js-routes", "~> 2.2"
 gem "foreman", "~> 0.87.2"
 gem "amazing_print", "~> 1.4"
-# gem "ruby-osc", "~> 1.0"
 gem "eventmachine", "~> 1.2"
+# gem "ruby-osc", "~> 1.0"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data"

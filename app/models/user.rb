@@ -45,6 +45,9 @@
 #  index_users_on_user_preferences      (user_preferences) USING gin
 #
 class User < ApplicationRecord
+  include PublicActivity::Model
+
+  tracked
   resourcify
   rolify
 
