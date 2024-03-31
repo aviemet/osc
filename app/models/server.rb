@@ -23,7 +23,7 @@ class Server < ApplicationRecord
     },
   )
 
-  tracked
+  tracked owner: proc { |controller| controller&.current_user }
   resourcify
 
   has_many :commands, dependent: :nullify

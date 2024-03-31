@@ -140,6 +140,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_175622) do
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
     t.boolean "active", default: true, null: false
+    t.jsonb "table_preferences", default: {}
     t.jsonb "user_preferences", default: {}
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -147,6 +148,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_175622) do
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["table_preferences"], name: "index_users_on_table_preferences", using: :gin
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
     t.index ["user_preferences"], name: "index_users_on_user_preferences", using: :gin
   end

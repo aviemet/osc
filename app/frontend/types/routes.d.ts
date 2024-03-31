@@ -108,6 +108,18 @@ export const apiSpotlights: ((
 
 /**
  * Generates rails route to
+ * /api/users/:id/update_table_preferences(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiUpdateTablePreferences: ((
+  id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /api/users/:id/update_user_preferences(.:format)
  * @param {any} id
  * @param {object | undefined} options

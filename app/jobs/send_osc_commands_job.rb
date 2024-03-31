@@ -12,5 +12,6 @@ class SendOscCommandsJob < ApplicationJob
       end
     end
   rescue Errno::ECONNREFUSED
+    server.create_activity key: :hostname
   end
 end

@@ -47,7 +47,7 @@ const TableComponent: TableComponent & TableObjects = ({
 	className,
 	wrapper = true,
 	fixed = false,
-	rowSpacing = true,
+	rowSpacing = false,
 	striped = true,
 	highlightOnHover = true,
 	...props

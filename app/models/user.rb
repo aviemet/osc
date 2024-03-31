@@ -26,6 +26,7 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  sign_in_count          :integer          default(0), not null
+#  table_preferences      :jsonb
 #  unconfirmed_email      :string
 #  unlock_token           :string
 #  user_preferences       :jsonb
@@ -41,13 +42,14 @@
 #  index_users_on_invited_by            (invited_by_type,invited_by_id)
 #  index_users_on_invited_by_id         (invited_by_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_table_preferences     (table_preferences) USING gin
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #  index_users_on_user_preferences      (user_preferences) USING gin
 #
 class User < ApplicationRecord
   include PublicActivity::Model
 
-  tracked
+  tracked owner: proc { |controller| controller&.current_user }
   resourcify
   rolify
 
