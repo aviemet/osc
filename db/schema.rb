@@ -57,6 +57,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_29_095137) do
   create_table "protocols_commands", force: :cascade do |t|
     t.bigint "protocol_id", null: false
     t.bigint "command_id", null: false
+    t.string "value"
     t.integer "delay"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

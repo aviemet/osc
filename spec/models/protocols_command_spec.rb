@@ -4,6 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  delay       :integer
+#  value       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  command_id  :bigint           not null

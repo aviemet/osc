@@ -23,6 +23,8 @@ const emptyControl: Partial<Schema.ControlsFormData> = {
 }
 
 const ControlForm = ({ method = 'post', control, ...props }: IControlFormProps) => {
+	console.log({ control })
+
 	return (
 		<Form<Partial<Schema.ControlsFormData>>
 			model="control"
@@ -35,7 +37,6 @@ const ControlForm = ({ method = 'post', control, ...props }: IControlFormProps) 
 				<TextInput name="min_value" label="Min Value" />
 				<TextInput name="max_value" label="Max Value" />
 			</> }
-			<TextInput name="value" label="Value" />
 			<br />
 			<Submit>{ control?.id ? 'Update' : 'Create' } Control</Submit>
 		</Form>
