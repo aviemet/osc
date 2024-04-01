@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
+  include PublicActivity::StoreController
 
   protect_from_forgery with: :exception
 
@@ -22,8 +23,7 @@ class ApplicationController < ActionController::Base
     }
 
     if current_user
-      share_object[:menu] = {
-      }
+      share_object[:menu] = {}
     end
 
     share_object

@@ -552,6 +552,15 @@ export const apiSpotlights = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,
 
 /**
  * Generates rails route to
+ * /api/users/:id/update_table_preferences(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiUpdateTablePreferences = /*#__PURE__*/ __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"api"],[2,[7,"/"],[2,[6,"users"],[2,[7,"/"],[2,[3,"id"],[2,[7,"/"],[2,[6,"update_table_preferences"],[1,[2,[8,"."],[3,"format"]]]]]]]]]]]);
+
+/**
+ * Generates rails route to
  * /api/users/:id/update_user_preferences(.:format)
  * @param {any} id
  * @param {object | undefined} options

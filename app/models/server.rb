@@ -12,6 +12,7 @@
 #
 class Server < ApplicationRecord
   include PgSearch::Model
+  include PublicActivity::Model
 
   pg_search_scope(
     :search,
@@ -22,6 +23,7 @@ class Server < ApplicationRecord
     },
   )
 
+  tracked owner: proc { |controller| controller&.current_user }
   resourcify
 
   has_many :commands, dependent: :nullify

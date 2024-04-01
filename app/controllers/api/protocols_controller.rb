@@ -3,7 +3,10 @@ class Api::ProtocolsController < ApplicationController
 
   # @route PUT /api/protocol/:id/execute (api_execute_protocol)
   def execute
-    render json: protocol, status: :accepted
+    protocol.create_activity key: :slug, owner: current_user
+
     SendOscCommandsJob.perform_later(protocol)
+
+    render json: protocol, status: :accepted
   end
 end

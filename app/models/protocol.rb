@@ -15,6 +15,7 @@
 #
 class Protocol < ApplicationRecord
   include PgSearch::Model
+  include PublicActivity::Model
 
   pg_search_scope(
     :search,
@@ -25,6 +26,7 @@ class Protocol < ApplicationRecord
     },
   )
 
+  tracked owner: proc { |controller| controller&.current_user }
   resourcify
 
   slug :title

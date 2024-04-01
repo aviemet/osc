@@ -11,5 +11,7 @@ class SendOscCommandsJob < ApplicationJob
         client.send(OscService::Message.new(command.message))
       end
     end
+  rescue Errno::ECONNREFUSED
+    server.create_activity key: :hostname
   end
 end
