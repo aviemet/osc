@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
+import { Select } from '@/Components/Form'
+import { type IAsyncDropdown } from '.'
+import { protocolsOptionsQuery } from '@/queries'
 
-const ProocolDropdown = () => {
-	return (
-		<div>ProocolDropdown</div>
-	)
+interface ProtocolDropdownProps extends Omit<IAsyncDropdown<Schema.ProtocolsOptions>, 'onSelect'> {
+	onSelect?: (data: Schema.ProtocolsOptions) => void
 }
 
-export default ProocolDropdown
+const ProtocolDropdown = forwardRef<HTMLInputElement, ProtocolDropdownProps>((
+	{ label = 'Protocol', name = 'protocol_id', initialData = [], value, onSelect, ...props },
+	ref,
+) => {
+	const { data } = protocolsOptionsQuery()
+
+	return (
+		<Select
+			label={ label }
+			name={ name }
+			options={ !data ? [] : data.map(protocol => ({
+				label: protocol.title,
+				value: protocol.slug,
+			})) }
+			{ ...props }
+		/>
+	)
+})
+
+export default ProtocolDropdown

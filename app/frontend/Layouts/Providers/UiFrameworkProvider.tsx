@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react'
 import { MantineProvider, createTheme, px, type CSSVariablesResolver } from '@mantine/core'
 import { type CSSVariables } from '@mantine/core/lib/core/MantineProvider/convert-css-variables/css-variables-object-to-string'
+import { ModalsProvider } from '@mantine/modals'
 import { Notifications } from '@mantine/notifications'
 import { theme as themeObject, vars } from '@/lib/theme'
 import useLayoutStore from '@/lib/store/LayoutStore'
@@ -57,8 +58,10 @@ const UiFrameworkProvider = ({ children }: { children: React.ReactNode }) => {
 			defaultColorScheme="dark"
 			cssVariablesResolver={ cssVariablesResolver }
 		>
-			<Notifications />
-			{ children }
+			<ModalsProvider labels={ { confirm: 'Submit', cancel: 'Cancel' } }>
+				<Notifications />
+				{ children }
+			</ModalsProvider>
 		</MantineProvider>
 	)
 }

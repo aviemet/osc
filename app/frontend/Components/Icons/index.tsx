@@ -47,6 +47,7 @@ export {
 } from 'react-icons/bs'
 
 export {
+	FaHome as HomeIcon,
 } from 'react-icons/fa'
 
 export {

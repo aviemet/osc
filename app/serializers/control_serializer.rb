@@ -37,4 +37,6 @@ class ControlSerializer < ApplicationSerializer
     :protocol_id,
     control_type: { type: :string },
   )
+
+  belongs_to :protocol, serializer: ProtocolSerializer
 end

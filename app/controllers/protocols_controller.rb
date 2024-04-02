@@ -18,7 +18,6 @@ class ProtocolsController < ApplicationController
     }
   end
 
-  # @route GET /protocols/:id (protocol)
   # def show
   #   authorize protocol
   #   render inertia: "Protocols/Show", props: {

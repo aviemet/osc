@@ -2175,6 +2175,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-devtools@npm:5.28.10":
+  version: 5.28.10
+  resolution: "@tanstack/query-devtools@npm:5.28.10"
+  checksum: 23c8cc7e2eb75cb0b27b3fa7e1a413417120945d2fb0a3d052b8c5ac9984af706c12dc86c5846c1fe42b6390af0cd450afb1bc12aae31c36e6e4f410ada5d49f
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query-devtools@npm:^5.28.10":
+  version: 5.28.10
+  resolution: "@tanstack/react-query-devtools@npm:5.28.10"
+  dependencies:
+    "@tanstack/query-devtools": 5.28.10
+  peerDependencies:
+    "@tanstack/react-query": ^5.28.9
+    react: ^18.0.0
+  checksum: 59f8deff7ded7dcbea5185b18fb16f3598ed8558a68f6525f481fcec3353820900c7c035c7513bac1388818e376d59c61e5057193bec3b19cc5f9b42ddf065b4
+  languageName: node
+  linkType: hard
+
 "@tanstack/react-query@npm:^5.25.0":
   version: 5.25.0
   resolution: "@tanstack/react-query@npm:5.25.0"
@@ -2746,6 +2765,15 @@ __metadata:
   dependencies:
     undici-types: ~5.26.4
   checksum: 79d339622fed1c0e64297c8b9f558815a91edb9fea3acb69c1201b919d450e12915cf98b1a96b2d2c121bf86f30b62b6de3708f8894c5319f8dfb3a991e3ccdd
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.12.2":
+  version: 20.12.2
+  resolution: "@types/node@npm:20.12.2"
+  dependencies:
+    undici-types: ~5.26.4
+  checksum: 3242ab04fe69ae32a2da29a7a2fce41fccb370bc1189de43d2dfbb491bd3253d3ee2070cbb5613061148e4862fdaa9cf62722c43128ce5c7d33fe83750956613
   languageName: node
   linkType: hard
 
@@ -8724,6 +8752,7 @@ __metadata:
     "@tabler/icons-react": ^2.47.0
     "@tanstack/eslint-plugin-query": ^5.20.1
     "@tanstack/react-query": ^5.25.0
+    "@tanstack/react-query-devtools": ^5.28.10
     "@testing-library/jest-dom": ^6.4.2
     "@testing-library/react": ^14.2.1
     "@testing-library/user-event": ^14.5.2
@@ -8738,6 +8767,7 @@ __metadata:
     "@tiptap/starter-kit": ^2.2.4
     "@types/jest": ^29.5.12
     "@types/lodash": ^4.14.202
+    "@types/node": ^20.12.2
     "@types/react": ^18.2.64
     "@types/react-dom": ^18.2.21
     "@typescript-eslint/eslint-plugin": ^7.1.1

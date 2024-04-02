@@ -1,9 +1,10 @@
 import React from 'react'
-import { AppShell, Burger, Container, Menu, Title } from '@/Components'
+import { AppShell, Burger, Container, Link, Menu, Title } from '@/Components'
 import { useAuth } from '@/lib/hooks'
 import { Routes } from '@/lib'
 
 import * as classes from './AppLayout.css'
+import { HomeIcon } from '@/Components/Icons'
 
 const AppLayout = ({ children }: { children: any }) => {
 	const { isLoggedIn } = useAuth()
@@ -14,6 +15,7 @@ const AppLayout = ({ children }: { children: any }) => {
 		>
 
 			<AppShell.Header className={ classes.layout } p="xs">
+				<Link href={ Routes.home() } mr="md"><HomeIcon size={ 28 } color="white" /></Link>
 				<Title size="h3">OSC Commands Interface</Title>
 				<Menu shadow="sm">
 					<Menu.Target>

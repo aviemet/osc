@@ -1,15 +1,14 @@
 import React from 'react'
-import { Form, TextInput, Submit } from '@/Components/Form'
-import { type UseFormProps } from 'use-inertia-form'
+import { Code, Paper, ScrollArea, Text } from '@/Components'
+import { Form, TextInput, Submit, type ExtendableFormProps } from '@/Components/Form'
+import { ProtocolDropdown } from '@/Components/Dropdowns'
+import { protocolQuery } from '@/queries'
 
 type TControlFormData = {
-	control: Schema.ControlsFormData
+	control: Partial<Schema.ControlsFormData>
 }
 
-export interface IControlFormProps {
-	to: string
-	method?: HTTPVerb
-	onSubmit?: (object: UseFormProps<TControlFormData>) => boolean|void
+export interface ControlFormProps extends ExtendableFormProps<TControlFormData> {
 	control?: Schema.ControlsFormData
 }
 
@@ -22,14 +21,15 @@ const emptyControl: Partial<Schema.ControlsFormData> = {
 	max_value: undefined,
 }
 
-const ControlForm = ({ method = 'post', control, ...props }: IControlFormProps) => {
-	console.log({ control })
+const ControlForm = ({ method = 'post', control, ...props }: ControlFormProps) => {
+	let protocol = control?.protocol
 
 	return (
-		<Form<Partial<Schema.ControlsFormData>>
+		<Form
 			model="control"
 			data={ control ? { control } : { control: emptyControl } }
 			method={ method }
+			remember={ false }
 			{ ...props }
 		>
 			<TextInput name="title" label="Title" />
@@ -37,7 +37,20 @@ const ControlForm = ({ method = 'post', control, ...props }: IControlFormProps) 
 				<TextInput name="min_value" label="Min Value" />
 				<TextInput name="max_value" label="Max Value" />
 			</> }
-			<br />
+
+			<ProtocolDropdown onChange={ (protocol, form) => {
+				console.log({ protocol, data: form.data })
+				// const thing = protocolQuery(control.slug)
+			} } />
+
+			{ protocol && <Text>{ protocol?.title } commands:</Text> }
+			<ScrollArea>
+				<Paper bg="dark" radius="md" p="md" className="field">{ protocol?.commands?.map(command => (
+					<Code style={ { display: 'block' } } mb="xs" key={ command.id }>{ command.message }</Code>
+				))
+				}</Paper>
+			</ScrollArea>
+
 			<Submit>{ control?.id ? 'Update' : 'Create' } Control</Submit>
 		</Form>
 	)

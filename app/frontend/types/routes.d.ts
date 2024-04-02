@@ -86,6 +86,38 @@ export const serialize: RouterExposedMethods['serialize'];
 
 /**
  * Generates rails route to
+ * /api/controls/:slug(.:format)
+ * @param {any} slug
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiControl: ((
+  slug: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /api/controls(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiControls: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /api/options/controls(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiControlsOptions: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /api/protocol/:id/execute(.:format)
  * @param {any} id
  * @param {object | undefined} options
@@ -93,6 +125,38 @@ export const serialize: RouterExposedMethods['serialize'];
  */
 export const apiExecuteProtocol: ((
   id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /api/protocols/:slug(.:format)
+ * @param {any} slug
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiProtocol: ((
+  slug: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /api/protocols(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiProtocols: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /api/options/protocols(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiProtocolsOptions: ((
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 

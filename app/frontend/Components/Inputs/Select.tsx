@@ -1,16 +1,22 @@
 import React, { forwardRef } from 'react'
-import { Select, type ComboboxData, type SelectProps } from '@mantine/core'
+import { Select, type ComboboxData, type SelectProps as MantineSelectProps } from '@mantine/core'
 import { router } from '@inertiajs/react'
 import { coerceArray } from '@/lib'
 import Label from '../Label'
 
-export interface ISelectProps extends Omit<SelectProps, 'data'> {
+function append(str: string, value: string) {
+	if(str.endsWith(value)) return str
+
+	return `${str}${value}`
+}
+
+export interface SelectProps extends Omit<MantineSelectProps, 'data'> {
 	options?: ComboboxData
 	onOpen?: () => void
 	fetchOnOpen?: string
 }
 
-const SelectComponent = forwardRef<HTMLInputElement, ISelectProps>((
+const SelectComponent = forwardRef<HTMLInputElement, SelectProps>((
 	{
 		options = [],
 		label,
@@ -31,7 +37,7 @@ const SelectComponent = forwardRef<HTMLInputElement, ISelectProps>((
 			router.reload({ only: coerceArray(fetchOnOpen) })
 		}
 
-		if(onDropdownOpen) onDropdownOpen()
+		onDropdownOpen?.()
 	}
 
 	return (
@@ -42,7 +48,7 @@ const SelectComponent = forwardRef<HTMLInputElement, ISelectProps>((
 			<Select
 				ref={ ref }
 				// Add "search" suffix to prevent password managers trying to autofill dropdowns
-				id={ `${inputId}-search` }
+				id={ inputId ? append(inputId, '-search') : undefined }
 				autoComplete="off"
 				name={ name }
 				size="md"

@@ -18,7 +18,6 @@ class CommandsController < ApplicationController
     }
   end
 
-  # @route GET /commands/:id (command)
   # def show
   #   authorize command
   #   render inertia: "Commands/Show", props: {
