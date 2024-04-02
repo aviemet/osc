@@ -5,4 +5,8 @@ class ProtocolPolicy < ApplicationPolicy
   def options?
     standard_auth(:options)
   end
+
+  def execute?
+    standard_auth(:options)
+  end
 end

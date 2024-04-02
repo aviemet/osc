@@ -1,0 +1,71 @@
+name: Ruby
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    env:
+      POSTGRES_USER: osc
+      POSTGRES_PASSWORD: osc
+      POSTGRES_HOST: localhost
+      POSTGRES_DB: osc_test
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports: ['5432:5432']
+        options:
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 19.x
+          cache: 'yarn'
+
+      - name: Set up Yarn
+        run: npm install -g yarn
+          
+      - name: Install Ruby dependencies
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Install Node.js dependencies
+        run: yarn install
+
+      - name: Prepare database
+        env:
+          DATABASE_URL: postgres://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@${{ env.POSTGRES_HOST }}:5432/${{ env.POSTGRES_DB }}
+          RAILS_ENV: test
+        run: |
+          bundle exec rails db:prepare
+
+      - name: Run tests
+        env:
+          DATABASE_URL: postgres://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@${{ env.POSTGRES_HOST }}:5432/${{ env.POSTGRES_DB }}
+        run: bundle exec rspec
+
+      - name: Run Vite tests
+        run: yarn test
