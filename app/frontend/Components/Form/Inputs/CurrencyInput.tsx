@@ -1,13 +1,11 @@
 import React, { forwardRef } from 'react'
-import CurrencyInput, { type ICurrencyInputProps } from '@/Components/Inputs/CurrencyInput'
+import CurrencyInput, { type CurrencyInputProps } from '@/Components/Inputs/CurrencyInput'
 import Field from '../Field'
-import cx from 'clsx'
 import { useInertiaInput } from 'use-inertia-form'
 import ConditionalWrapper from '@/Components/ConditionalWrapper'
+import { type BaseFormInputProps, type InputConflicts } from '.'
 
-interface INumberInputProps extends Omit<ICurrencyInputProps, 'name'|'onChange'|'onBlur'>, IInertiaInputProps {
-	field?: boolean
-}
+interface INumberInputProps extends Omit<CurrencyInputProps, InputConflicts>, BaseFormInputProps {}
 
 const FormInput = forwardRef<HTMLInputElement, INumberInputProps>((
 	{
@@ -15,9 +13,9 @@ const FormInput = forwardRef<HTMLInputElement, INumberInputProps>((
 		model,
 		onChange,
 		onBlur,
+		onFocus,
 		id,
 		required,
-		compact = false,
 		field = true,
 		...props
 	},
@@ -41,25 +39,24 @@ const FormInput = forwardRef<HTMLInputElement, INumberInputProps>((
 
 	return (
 		<ConditionalWrapper
+			condition={ props.hidden !== true && field }
 			wrapper={ children => (
 				<Field
 					type="text"
 					required={ required }
-					className={ cx({ compact }) }
 					errors={ !!error }
 				>
 					{ children }
 				</Field>
 			) }
-			condition={ field }
 		>
 			<CurrencyInput
 				id={ id || inputId }
-				className={ cx({ compact }) }
 				name={ inputName }
 				value={ value }
 				onChange={ handleChange }
 				onBlur={ handleBlur }
+				onFocus={ e => onFocus?.(e.target.value, form) }
 				error={ error }
 				ref={ ref }
 				{ ...props }

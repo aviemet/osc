@@ -1,15 +1,16 @@
 import React from 'react'
-import RichTextEditor, { type IRichTextEditorProps } from '../RichTextEditor'
+import RichTextEditor, { type RichTextEditorProps } from '../RichTextEditor'
 import Label from '../Label'
 
-export interface IRichTextProps extends IRichTextEditorProps {
+export interface RichTextInputProps extends RichTextEditorProps {
 	label?: React.ReactNode
 	required?: boolean
 	id?: string
 	name?: string
+	value?: string
 }
 
-const RichText = ( { label, name, required = false, id, ...props }: IRichTextProps) => {
+const RichText = ( { label, name, required = false, id, value = '', ...props }: RichTextInputProps) => {
 	const inputId = id || name
 
 	return (
@@ -17,7 +18,7 @@ const RichText = ( { label, name, required = false, id, ...props }: IRichTextPro
 			{ label && <Label required={ required } htmlFor={ inputId }>
 				{ label }
 			</Label> }
-			<RichTextEditor id={ inputId } { ...props } />
+			<RichTextEditor id={ inputId } { ...props }>{ value }</RichTextEditor>
 		</>
 	)
 }

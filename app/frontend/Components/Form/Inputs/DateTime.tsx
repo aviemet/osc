@@ -1,11 +1,19 @@
 import React from 'react'
 import Field from '../Field'
-import DateTimeInput, { type IDateTimeProps } from '@/Components/Inputs/DateTime'
-import { useInertiaInput } from 'use-inertia-form'
+import DateTimeInput, { type DateTimeInputProps } from '@/Components/Inputs/DateTime'
+import { UseFormProps, useInertiaInput } from 'use-inertia-form'
 import ConditionalWrapper from '@/Components/ConditionalWrapper'
+import { type BaseFormInputProps, type InputConflicts } from '.'
 
-interface IDateTimeFormProps extends Omit<IDateTimeProps, 'name'|'onChange'|'onBlur'>, IInertiaInputProps {
-	field?: boolean
+interface IDateTimeFormProps
+	extends
+	Omit<DateTimeInputProps, InputConflicts>,
+	Omit<BaseFormInputProps, InputConflicts> {
+
+	name: string
+	onChange: (date: Date, form: UseFormProps) => void
+	onBlur: (date: Date, form: UseFormProps) => void
+	onFocus: (date: Date, form: UseFormProps) => void
 }
 
 const DateTime = ({
@@ -13,6 +21,7 @@ const DateTime = ({
 	required,
 	onChange,
 	onBlur,
+	onFocus,
 	id,
 	model,
 	field = true,
@@ -23,11 +32,15 @@ const DateTime = ({
 	const handleChange = (date: Date) => {
 		setValue(date)
 
-		if(onChange) onChange(date, form)
+		onChange?.(date, form)
 	}
 
 	const handleBlur = () => {
-		if(onBlur) onBlur(value, form)
+		onBlur?.(value, form)
+	}
+
+	const handleFocus = () => {
+		onFocus?.(value, form)
 	}
 
 	return (
@@ -49,6 +62,7 @@ const DateTime = ({
 				value={ value }
 				onChange={ handleChange }
 				onBlur={ handleBlur }
+				onFocus={ handleFocus }
 				required={ required }
 				error={ error }
 				{ ...props }

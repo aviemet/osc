@@ -1,10 +1,10 @@
 import React, { useRef } from 'react'
-import { usePage } from '@inertiajs/react'
 import { Link } from '@/Components'
 import cx from 'clsx'
 import { type ICellProps } from './index'
 import { useTableContext } from '../TableContext'
 import { Box } from '@mantine/core'
+import { usePageProps } from '@/lib/hooks'
 
 interface IHeadCellWithContextProps extends ICellProps {
 	rows?: Record<string, any>[]
@@ -19,7 +19,7 @@ const HeadCellWithContext = ({
 	hideable,
 	...props
 }: IHeadCellWithContextProps) => {
-	const { auth: { user: { table_preferences } } } = usePage<SharedInertiaProps>().props
+	const { auth: { user: { table_preferences } } } = usePageProps()
 	const { tableState: { model } } = useTableContext()
 
 	const thRef = useRef<HTMLTableCellElement>(null)

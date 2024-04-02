@@ -1,25 +1,32 @@
 import React from 'react'
 import { NestedObject, UseFormProps, useInertiaInput } from 'use-inertia-form'
-import { IFormInputProps } from '.'
 import { ConditionalWrapper } from '@/Components'
 import Field from '../Field'
-import MultiSelect, { type IMultiSelectProps } from '@/Components/Inputs/MultiSelect'
+import MultiSelect, { type MultiSelectProps } from '@/Components/Inputs/MultiSelect'
+import { type ComboboxData } from '@mantine/core'
+import { type BaseFormInputProps } from '.'
 
-type OmittedDropdownTypes = 'name'|'onBlur'|'onChange'|'onDropdownOpen'|'onDropdownClose'
-export interface IFormDropdownProps<TForm extends NestedObject = NestedObject>
-	extends Omit<IMultiSelectProps, OmittedDropdownTypes>,
-	IFormInputProps<string[], TForm> {
-	onDropdownOpen?: (form: UseFormProps<any>) => void
-	onDropdownClose?: (form: UseFormProps<any>) => void
+type OmittedOverwrittenTypes = 'onFocus'|'onBlur'|'onChange'|'onClear'|'onDropdownOpen'|'onDropdownClose'|'onOptionSubmit'
+export interface FormMultiSelectProps<TForm extends NestedObject = NestedObject>
+	extends Omit<MultiSelectProps, OmittedOverwrittenTypes|'name'>,
+	Omit<BaseFormInputProps, OmittedOverwrittenTypes> {
+
+	onChange?: (values: string[], options: ComboboxData, form: UseFormProps<TForm>) => void
+	onBlur?: (values: string[], options: ComboboxData, form: UseFormProps<TForm>) => void
+	onFocus?: (values: string[], options: ComboboxData, form: UseFormProps<TForm>) => void
+	onClear?: (options: ComboboxData, form: UseFormProps<TForm>) => void
+	onDropdownOpen?: (options: ComboboxData, form: UseFormProps<TForm>) => void
+	onDropdownClose?: (options: ComboboxData, form: UseFormProps<TForm>) => void
+	onOptionSubmit?: (values: string[], options: ComboboxData, form: UseFormProps<TForm>) => void
 }
 
 const MultiSelectComponent = <TForm extends NestedObject = NestedObject>(
 	{
+		name,
 		options = [],
 		label,
 		required,
 		id,
-		name,
 		errorKey,
 		model,
 		field = true,
@@ -28,30 +35,31 @@ const MultiSelectComponent = <TForm extends NestedObject = NestedObject>(
 		onDropdownOpen,
 		onDropdownClose,
 		...props
-	}: IFormDropdownProps<TForm>,
+	}: FormMultiSelectProps<TForm>,
 ) => {
 	const { form, inputName, inputId, value, setValue, error } = useInertiaInput<string[], TForm>({ name, model, errorKey })
 
 	const handleBlur = () => {
-		if(onBlur) onBlur(value, form)
+		onBlur?.(value, options || [],  form)
 	}
 
 	const handleChange = (values: string[]) => {
 		setValue(values)
 
-		onChange?.(values, form)
+		onChange?.(values, options || [], form)
 	}
 
 	const handleDropdownOpen = () => {
-		if(onDropdownOpen) onDropdownOpen(form)
+		onDropdownOpen?.(options || [],form)
 	}
 
 	const handleDropdownClose = () => {
-		if(onDropdownClose) onDropdownClose(form)
+		onDropdownClose?.(options || [],form)
 	}
 
 	return (
 		<ConditionalWrapper
+			condition={ props.hidden !== true && field }
 			wrapper={ children => (
 				<Field
 					type="select"
@@ -61,7 +69,6 @@ const MultiSelectComponent = <TForm extends NestedObject = NestedObject>(
 					{ children }
 				</Field>
 			) }
-			condition={ field }
 		>
 			<MultiSelect
 				// Add "search" suffix to prevent password managers trying to autofill dropdowns
@@ -76,7 +83,6 @@ const MultiSelectComponent = <TForm extends NestedObject = NestedObject>(
 				onChange={ handleChange }
 				onDropdownClose={ handleDropdownClose }
 				onDropdownOpen={ handleDropdownOpen }
-				wrapper={ false }
 				{ ...props }
 			/>
 		</ConditionalWrapper>

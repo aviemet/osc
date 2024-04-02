@@ -4,21 +4,25 @@ import SelectInput, { type SelectProps } from '@/Components/Inputs/Select'
 import { ConditionalWrapper, Group } from '@/Components'
 import { ModalFormButton } from '@/Components/Button'
 import { useInertiaInput, type UseFormProps, NestedObject } from 'use-inertia-form'
-import { ComboboxData } from '@mantine/core'
+import { type ComboboxData, type ComboboxItem, type ComboboxItemGroup } from '@mantine/core'
+import { type BaseFormInputProps } from '.'
 
-type OmittedDropdownTypes = 'name'|'defaultValue'|'onBlur'|'onChange'|'onDropdownOpen'|'onDropdownClose'|'onSelect'
-export interface ISelectFormProps<TForm extends NestedObject = NestedObject>
+type SelectOption = string | ComboboxItem | ComboboxItemGroup<string | ComboboxItem>
+
+type OmittedOverwrittenTypes = 'onFocus'|'onBlur'|'onChange'|'onClear'|'onDropdownOpen'|'onDropdownClose'|'onOptionSubmit'
+export interface FormSelectProps<TForm extends NestedObject = NestedObject>
 	extends
-	Omit<SelectProps, OmittedDropdownTypes>,
-	IInertiaInputProps {
+	Omit<SelectProps, OmittedOverwrittenTypes|'name'|'defaultValue'>,
+	Omit<BaseFormInputProps, OmittedOverwrittenTypes> {
+
 	defaultValue?: string
-	onChange?: (option: ComboboxData|null, form: UseFormProps<TForm>) => void
-	onClear?: (form: UseFormProps<TForm>) => void
-	onDropdownOpen?: (form: UseFormProps<TForm>) => void
-	onDropdownClose?: (form: UseFormProps<TForm>) => void
-	onSelect?: (form: UseFormProps<TForm>) => void
-	onOptionSubmit?: (option: ComboboxData|null, form: UseFormProps<TForm>) => void
-	onSearchChange?: (value: string, form: UseFormProps<TForm>) => void
+	onChange?: (option: SelectOption|null, options: ComboboxData, form: UseFormProps<TForm>) => void
+	onBlur?: (option: SelectOption|null, options: ComboboxData, form: UseFormProps<TForm>) => void
+	onFocus?: (option: SelectOption|null, options: ComboboxData, form: UseFormProps<TForm>) => void
+	onClear?: (options: ComboboxData, form: UseFormProps<TForm>) => void
+	onDropdownOpen?: (options: ComboboxData, form: UseFormProps<TForm>) => void
+	onDropdownClose?: (options: ComboboxData, form: UseFormProps<TForm>) => void
+	onOptionSubmit?: (option: SelectOption|null, options: ComboboxData, form: UseFormProps<TForm>) => void
 	endpoint?: string
 	newForm?: React.ReactElement
 	field?: boolean
@@ -34,9 +38,11 @@ const Select = <TForm extends NestedObject = NestedObject>(
 		onSearchChange,
 		onChange,
 		onBlur,
+		onFocus,
+		onClear,
 		onDropdownOpen,
 		onDropdownClose,
-		onSelect,
+		onOptionSubmit,
 		fetchOnOpen,
 		endpoint,
 		newForm,
@@ -45,34 +51,38 @@ const Select = <TForm extends NestedObject = NestedObject>(
 		errorKey,
 		options,
 		...props
-	}: ISelectFormProps<TForm>,
+	}: FormSelectProps<TForm>,
 ) => {
 	const { form, inputName, inputId, value, setValue, error } = useInertiaInput<string, TForm>({ name, model, errorKey })
 
 	const handleChange = (option: string|null) => {
 		setValue(option ? option : '')
 
-		onChange?.(option, form)
+		onChange?.(option, options || [], form)
 	}
 
 	const handleBlur = () => {
-		onBlur?.(String(value), form)
+		onBlur?.(String(value), options || [],  form)
+	}
+
+	const handleFocus = () => {
+		onFocus?.(String(value), options || [], form)
 	}
 
 	const handleDropdownOpen = () => {
-		onDropdownOpen?.(form)
+		onDropdownOpen?.(options || [], form)
 	}
 
 	const handleDropdownClose = () => {
-		onDropdownClose?.(form)
+		onDropdownClose?.(options || [], form)
 	}
 
 	const handleNewFormSuccess = (data: { id: string|number }) => {
 		setValue(String(data.id))
 	}
 
-	const handleSelect = () => {
-		onSelect?.(form)
+	const handleClear = () => {
+		onClear?.(options || [], form)
 	}
 
 	return (
@@ -91,7 +101,7 @@ const Select = <TForm extends NestedObject = NestedObject>(
 		>
 			<>
 				<ConditionalWrapper
-					condition={ field }
+					condition={ props.hidden !== true && field }
 					wrapper={ children => (
 						<Field
 							type="select"
@@ -111,9 +121,10 @@ const Select = <TForm extends NestedObject = NestedObject>(
 						value={ String(value) }
 						onChange={ handleChange }
 						onBlur={ handleBlur }
+						onFocus={ handleFocus }
 						onDropdownClose={ handleDropdownClose }
 						onDropdownOpen={ handleDropdownOpen }
-						onSelect={ handleSelect }
+						onClear={ handleClear }
 						defaultValue={ defaultValue ?? String(value) }
 						error={ error }
 						options={ options }

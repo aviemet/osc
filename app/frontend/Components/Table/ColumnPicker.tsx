@@ -1,5 +1,5 @@
 import React from 'react'
-import { router, usePage } from '@inertiajs/react'
+import { router } from '@inertiajs/react'
 import { Routes } from '@/lib'
 import axios from 'axios'
 import { Menu } from '@/Components'
@@ -7,9 +7,10 @@ import { ColumnsIcon } from '@/Components/Icons'
 import { Checkbox } from '@/Components/Inputs'
 import { useTableContext } from './TableContext'
 import { Button } from '@mantine/core'
+import { usePageProps } from '@/lib/hooks'
 
 const ColumnPicker = () => {
-	const { auth: { user } } = usePage<SharedInertiaProps>().props
+	const { auth: { user } } = usePageProps()
 	const { tableState: { hideable, columns, model } } = useTableContext()
 
 	if(!hideable || !model) return <></>

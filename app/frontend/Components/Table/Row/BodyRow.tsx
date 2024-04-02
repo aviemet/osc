@@ -2,8 +2,8 @@ import React, { forwardRef } from 'react'
 import { type ITableRow } from './index'
 import { Box } from '@mantine/core'
 import RowCheckbox from './RowCheckbox'
-import { usePage } from '@inertiajs/react'
 import { useTableContext } from '../TableContext'
+import { usePageProps } from '@/lib/hooks'
 
 interface IRowInContextProps extends ITableRow {
 	name?: string
@@ -16,7 +16,7 @@ const RowInContext = forwardRef<HTMLTableRowElement, IRowInContextProps>((
 	{ children, name, rows, selectable, selected, ...props },
 	ref,
 ) => {
-	const { auth: { user: { table_preferences } } } = usePage<SharedInertiaProps>().props
+	const { auth: { user: { table_preferences } } } = usePageProps()
 	const { tableState: { model, columns } } = useTableContext()
 
 	return (

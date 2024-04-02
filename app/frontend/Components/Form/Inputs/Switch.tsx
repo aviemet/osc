@@ -1,43 +1,58 @@
 import React, { forwardRef } from 'react'
 import Field from '../Field'
-import SwitchInput, { type ISwitchProps } from '@/Components/Inputs/Switch'
+import SwitchInput, { type SwitchProps } from '@/Components/Inputs/Switch'
 import { useInertiaInput } from 'use-inertia-form'
 import ConditionalWrapper from '@/Components/ConditionalWrapper'
+import { type BaseFormInputProps, type InputConflicts } from '.'
 
-interface IFormSwitchProps extends Omit<ISwitchProps, 'onBlur'|'onChange'|'name'>, IInertiaInputProps {
-	field?: boolean
-}
+interface FormSwitchProps extends Omit<SwitchProps, InputConflicts>, BaseFormInputProps<boolean> {}
 
-const FormSwitchComponent = forwardRef<HTMLInputElement, IFormSwitchProps>((
-	{ name, onChange, onBlur, id, required, model, field = true, ...props },
+const FormSwitchComponent = forwardRef<HTMLInputElement, FormSwitchProps>((
+	{
+		name,
+		onChange,
+		onBlur,
+		onFocus,
+		id,
+		required,
+		model,
+		field = true,
+		...props
+	},
 	ref,
 ) => {
 	const { form, inputName, inputId, value, setValue, error } = useInertiaInput<boolean>({ name, model })
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setValue(e.target.checked)
-		if(onChange) onChange(e, form)
+		const value = e.target.checked
+		setValue(value)
+
+		onChange?.(value, form)
 	}
 
-	const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setValue(e.target.checked)
-		if(onBlur) onBlur(e, form)
+	const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+		const value = e.target.checked
+		setValue(value)
+
+		onBlur?.(value, form)
 	}
 
 	return (
-		<ConditionalWrapper wrapper={ children => (
-			<Field
-				type="checkbox"
-				required={ required }
-				errors={ !!error }
-				grid={ false }
-			>
-				{ children }
-			</Field>
-		) }
-		condition={ field }
+		<ConditionalWrapper
+			condition={ props.hidden !== true && field }
+			wrapper={ children => (
+				<Field
+					type="checkbox"
+					required={ required }
+					errors={ !!error }
+					grid={ false }
+				>
+					{ children }
+				</Field>
+			) }
 		>
 			<SwitchInput
+				ref={ ref }
 				id={ id || inputId }
 				name={ inputName }
 				defaultChecked={ Boolean(value) }
@@ -45,8 +60,8 @@ const FormSwitchComponent = forwardRef<HTMLInputElement, IFormSwitchProps>((
 				value={ name }
 				onChange={ handleChange }
 				onBlur={ handleBlur }
+				onFocus={ e => onFocus?.(e.target.checked, form) }
 				error={ error }
-				ref={ ref }
 				{ ...props }
 			/>
 		</ConditionalWrapper>

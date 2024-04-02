@@ -1,14 +1,15 @@
 import React from 'react'
 import { Code, Paper, ScrollArea, Text } from '@/Components'
-import { Form, TextInput, Submit, type ExtendableFormProps } from '@/Components/Form'
+import { Form, TextInput, Submit } from '@/Components/Form'
 import { ProtocolDropdown } from '@/Components/Dropdowns'
 import { protocolQuery } from '@/queries'
+import { FormProps } from 'use-inertia-form'
 
 type TControlFormData = {
 	control: Partial<Schema.ControlsFormData>
 }
 
-export interface ControlFormProps extends ExtendableFormProps<TControlFormData> {
+export interface ControlFormProps extends Omit<FormProps<TControlFormData>, 'data'> {
 	control?: Schema.ControlsFormData
 }
 

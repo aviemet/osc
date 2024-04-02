@@ -1,23 +1,21 @@
 import React, { forwardRef } from 'react'
-import PasswordInput, { type IPasswordInputProps } from '@/Components/Inputs/PasswordInput'
+import PasswordInput, { type PasswordInputProps } from '@/Components/Inputs/PasswordInput'
 import Field from '../Field'
-import cx from 'clsx'
 import { useInertiaInput } from 'use-inertia-form'
 import ConditionalWrapper from '@/Components/ConditionalWrapper'
+import { type BaseFormInputProps, type InputConflicts } from '.'
 
-interface IPasswordFormInputProps extends Omit<IPasswordInputProps, 'onBlur'|'onChange'|'name'>, IInertiaInputProps {
-	field?: boolean
-}
+interface FormPasswordInputProps extends Omit<PasswordInputProps, InputConflicts>, BaseFormInputProps {}
 
-const FormInput = forwardRef<HTMLInputElement, IPasswordFormInputProps>((
+const FormInput = forwardRef<HTMLInputElement, FormPasswordInputProps>((
 	{
 		name,
 		model,
 		onChange,
 		onBlur,
+		onFocus,
 		id,
 		required,
-		compact = false,
 		field = true,
 		...props
 	},
@@ -41,25 +39,24 @@ const FormInput = forwardRef<HTMLInputElement, IPasswordFormInputProps>((
 
 	return (
 		<ConditionalWrapper
+			condition={ props.hidden !== true && field }
 			wrapper={ children => (
 				<Field
 					type="password"
 					required={ required }
-					className={ cx({ compact }) }
 					errors={ !!error }
 				>
 					{ children }
 				</Field>
 			) }
-			condition={ field }
 		>
 			<PasswordInput
 				id={ id || inputId }
-				className={ cx({ compact }) }
 				name={ inputName }
 				value={ value }
 				onChange={ handleChange }
 				onBlur={ handleBlur }
+				onFocus={ e => onFocus?.(e.target.value, form) }
 				error={ error }
 				ref={ ref }
 				{ ...props }

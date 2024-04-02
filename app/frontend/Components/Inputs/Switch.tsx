@@ -1,14 +1,18 @@
-import React from 'react'
-import { Switch, type SwitchProps } from '@mantine/core'
+import React, { forwardRef } from 'react'
+import { Switch, type SwitchProps as MantineSwitchProps } from '@mantine/core'
 
-export interface ISwitchProps extends SwitchProps {}
+export interface SwitchProps extends MantineSwitchProps {}
 
-const SwitchComponent = ({ id, name, style, ...props }: ISwitchProps) => {
+const SwitchComponent = forwardRef<HTMLInputElement, SwitchProps>((
+	{ id, name, style, ...props },
+	ref,
+) => {
 	const inputId = id ?? name
 
 	return (
 		<>
 			<Switch
+				ref={ ref }
 				id={ inputId }
 				name={ name }
 				required={ props.required }
@@ -17,6 +21,6 @@ const SwitchComponent = ({ id, name, style, ...props }: ISwitchProps) => {
 			/>
 		</>
 	)
-}
+})
 
 export default SwitchComponent

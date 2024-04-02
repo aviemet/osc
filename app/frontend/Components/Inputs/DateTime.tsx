@@ -1,9 +1,9 @@
 import React from 'react'
 import Label from '../Label'
-import { DateTimePicker, DateTimePickerProps } from '@mantine/dates'
+import { DateTimePicker, type DateTimePickerProps as MantineDateTimePickerProps } from '@mantine/dates'
 import { isEmpty } from 'lodash'
 
-export interface IDateTimeProps extends DateTimePickerProps {
+export interface DateTimeInputProps extends MantineDateTimePickerProps {
 	name?: string
 	id?: string
 	value?: Date
@@ -21,7 +21,7 @@ const DateTime = ({
 	radius = 'xs',
 	valueFormat = 'L LT',
 	...props
-}: IDateTimeProps) => {
+}: DateTimeInputProps) => {
 	const inputId = id || name
 
 	return (

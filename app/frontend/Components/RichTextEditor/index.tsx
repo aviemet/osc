@@ -1,5 +1,5 @@
 import React from 'react'
-import { RichTextEditor, Link, type RichTextEditorProps } from '@mantine/tiptap'
+import { RichTextEditor, Link, type RichTextEditorProps as MantineRichTextEditorProps } from '@mantine/tiptap'
 import { useEditor } from '@tiptap/react'
 import Highlight from '@tiptap/extension-highlight'
 import StarterKit from '@tiptap/starter-kit'
@@ -9,12 +9,12 @@ import Superscript from '@tiptap/extension-superscript'
 import SubScript from '@tiptap/extension-subscript'
 import { DEFAULT_LABELS } from './tiptapLabels'
 
-export interface IRichTextEditorProps extends Omit<RichTextEditorProps, 'children'|'editor'|'onChange'> {
+export interface RichTextEditorProps extends Omit<MantineRichTextEditorProps, 'children'|'editor'|'onChange'> {
 	children?: string
 	onChange?: (value: string) => void
 }
 
-const RichTextEditorComponent = ({ children, onChange }: IRichTextEditorProps) => {
+const RichTextEditorComponent = ({ children, onChange }: RichTextEditorProps) => {
 	const editor = useEditor({
 		extensions: [
 			StarterKit,

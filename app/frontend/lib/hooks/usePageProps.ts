@@ -6,7 +6,6 @@ export interface SharedInertiaProps extends PageProps {
 		form_authenticity_token: string
 		user: Schema.UsersShare
 	}
-	circle: Schema.Circle
 	flash: FlashMessage
 	errors: Errors & ErrorBag
 }

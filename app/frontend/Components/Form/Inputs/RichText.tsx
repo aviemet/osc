@@ -1,13 +1,12 @@
 import React from 'react'
 import Field from '../Field'
-import RichTextInput, { type IRichTextProps } from '@/Components/Inputs/RichText'
+import RichTextInput, { type RichTextInputProps } from '@/Components/Inputs/RichText'
 import cx from 'clsx'
 import { useInertiaInput } from 'use-inertia-form'
 import ConditionalWrapper from '@/Components/ConditionalWrapper'
+import { type BaseFormInputProps, type InputConflicts } from '.'
 
-interface IRichTextFormProps extends Omit<IRichTextProps, 'name'|'onBlur'|'onChange'>, IInertiaInputProps {
-	field?: boolean
-}
+interface FormRichTextInputProps extends Omit<RichTextInputProps, InputConflicts>, BaseFormInputProps {}
 
 const RichText = ({
 	label,
@@ -16,22 +15,29 @@ const RichText = ({
 	id,
 	onChange,
 	onBlur,
+	onFocus,
 	model,
 	field = true,
 	...props
-}: IRichTextFormProps) => {
+}: FormRichTextInputProps) => {
 	const { form, inputName, inputId, value, setValue, error } = useInertiaInput<string>({ name, model })
 
-	const handleChange = (v, delta, sources, editor) => {
+	const handleChange = (v: string) => {
 		setValue(v)
-		if(onChange) onChange(v, form)
+		onChange?.(v, form)
 	}
+
 	const handleBlur = () => {
-		if(onBlur) onBlur(value, form )
+		onBlur?.(value, form )
+	}
+
+	const handleFocus = () => {
+		onFocus?.(value, form )
 	}
 
 	return (
 		<ConditionalWrapper
+			condition={ props.hidden !== true && field }
 			wrapper={ children => (
 				<Field
 					type="textarea"
@@ -41,7 +47,6 @@ const RichText = ({
 					{ children }
 				</Field>
 			) }
-			condition={ field }
 		>
 			<>
 				{ label && <label className={ cx({ required }) } htmlFor={ id || inputId }>
@@ -52,6 +57,7 @@ const RichText = ({
 					name={ inputName }
 					onChange={ handleChange }
 					onBlur={ handleBlur }
+					onFocus={ handleFocus }
 					value={ value }
 					{ ...props }
 				/>

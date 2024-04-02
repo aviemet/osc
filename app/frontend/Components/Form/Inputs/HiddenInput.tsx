@@ -2,14 +2,15 @@ import React, { forwardRef } from 'react'
 import { HiddenInput } from '@/Components/Inputs'
 import { useInertiaInput } from 'use-inertia-form'
 import { InputProps } from 'react-html-props'
+import { type BaseFormInputProps, type InputConflicts } from '.'
 
-interface ITextInputProps extends Omit<InputProps, 'name'|'ref'|'onBlur'|'onChange'>, IInertiaInputProps {
-	name: string
-	model?: string
-}
+interface FormHiddenInputProps
+	extends
+	Omit<InputProps, InputConflicts>,
+	Omit<BaseFormInputProps, 'onFocus'|'onBlur'> {}
 
-const FormInput = forwardRef<HTMLInputElement, ITextInputProps>((
-	{ name, model, onChange, onBlur, id, ...props },
+const FormInput = forwardRef<HTMLInputElement, FormHiddenInputProps>((
+	{ name, model, onChange, id, ...props },
 	ref,
 ) => {
 	const { form, inputName, inputId, value, setValue } = useInertiaInput({ name, model })

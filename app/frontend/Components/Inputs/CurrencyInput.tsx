@@ -2,9 +2,9 @@ import React, { forwardRef } from 'react'
 import { TextInput, type TextInputProps } from '@mantine/core'
 import Label from '../Label'
 
-export interface ICurrencyInputProps extends TextInputProps {}
+export interface CurrencyInputProps extends TextInputProps {}
 
-const TextInputComponent = forwardRef<HTMLInputElement, ICurrencyInputProps>((
+const TextInputComponent = forwardRef<HTMLInputElement, CurrencyInputProps>((
 	{ label, name, value, required = false, id, pattern, size = 'md', ...props },
 	ref,
 ) => {
