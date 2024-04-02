@@ -17,7 +17,6 @@ module Osc
     # in config/environments, which are processed later.
     #
     config.time_zone = "Pacific Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
 
     config.autoload_paths += %W(#{config.root}/lib)
 
@@ -38,7 +37,8 @@ module Osc
 
     config.active_record.yaml_column_permitted_classes = [Symbol, Hash, Array, Time, Date, ActiveRecord::Base, ActiveSupport::HashWithIndifferentAccess]
 
-    # config.active_job.queue_adapter = :good_job
+    config.credentials.key_path = Rails.root.join("config/secrets/master.key")
+    config.credentials.content_path = Rails.root.join("config/secrets/credentials.yml.enc")
 
     # Establish db connection upon entering rails console
     console do
