@@ -9,7 +9,10 @@ class SendOscCommandsJob < ApplicationJob
       ap({ server:, client: })
 
       commands.each do |command|
-        ap({ command:, message: OscService::Message.new(command.message, cast(command.value, command.payload_type)) })
+        ap({
+          command:,
+          message: OscService::Message.new(command.message, cast(command.value, command.payload_type))
+        })
         client.send(OscService::Message.new(command.message, cast(command.value, command.payload_type)))
       end
     end
@@ -22,6 +25,8 @@ class SendOscCommandsJob < ApplicationJob
 
   def cast(value, type)
     case type
+    when nil
+      ""
     when "integer"
       value.to_i
     when "float"
