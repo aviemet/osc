@@ -8,7 +8,6 @@ module OscService
     end
 
     def send(msg)
-      ap({ encoded_message: msg.encode })
       @socket.send msg.encode, 2
     end
   end
