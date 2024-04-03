@@ -9,13 +9,15 @@ class SendOscCommandsJob < ApplicationJob
 
       commands.each do |command|
         client.send(OscService::Message.new(command.message, cast(command.value, command.payload_type)))
+      rescue Errno::ECONNREFUSED => e
+        log_connection_error(command.server, e)
       end
     end
-  rescue Errno::ECONNREFUSED => e
-    protocol.commands.first.server.create_activity key: :hostname
   rescue StandardError => e
-    ap({ other: e })
+    Rails.logger.error({ error: e })
   end
+
+  private
 
   def cast(value, type)
     case type
@@ -34,5 +36,9 @@ class SendOscCommandsJob < ApplicationJob
     else
       value
     end
+  end
+
+  def log_connection_error(server, error)
+    server.create_activity key: "connection.error", params: { error: error.to_s }
   end
 end
