@@ -1,7 +1,9 @@
 class CreateServers < ActiveRecord::Migration[7.1]
   def change
     create_table :servers do |t|
-      t.string :title
+      t.string :title, null: false
+      t.string :slug, null: false
+      t.index :slug, unique: true
       t.string :hostname
       t.integer :port
       t.text :description

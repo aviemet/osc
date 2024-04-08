@@ -2,8 +2,8 @@ class ServersController < ApplicationController
   include Searchable
 
   expose :servers, -> { search(Server.includes_associated, sortable_fields) }
-    expose :server, find: ->(id, scope){ scope.includes_associated.find(id) }
-  
+  expose :server, id: -> { params[:slug] }, scope: -> { Server.includes_associated }, find_by: :slug
+
   # @route GET /servers (servers)
   def index
     authorize servers
@@ -15,7 +15,7 @@ class ServersController < ApplicationController
     }
   end
 
-  # @route GET /servers/:id (server)
+  # @route GET /servers/:slug (server)
   def show
     authorize server
     render inertia: "Servers/Show", props: {
@@ -31,7 +31,7 @@ class ServersController < ApplicationController
     }
   end
 
-  # @route GET /servers/:id/edit (edit_server)
+  # @route GET /servers/:slug/edit (edit_server)
   def edit
     authorize server
     render inertia: "Servers/Edit", props: {
@@ -49,8 +49,8 @@ class ServersController < ApplicationController
     end
   end
 
-  # @route PATCH /servers/:id (server)
-  # @route PUT /servers/:id (server)
+  # @route PATCH /servers/:slug (server)
+  # @route PUT /servers/:slug (server)
   def update
     authorize server
     if server.update(server_params)
@@ -60,7 +60,7 @@ class ServersController < ApplicationController
     end
   end
 
-  # @route DELETE /servers/:id (server)
+  # @route DELETE /servers/:slug (server)
   def destroy
     authorize server
     server.destroy!

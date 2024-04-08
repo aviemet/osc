@@ -2,7 +2,7 @@ class CommandsController < ApplicationController
   include Searchable
 
   expose :commands, -> { search(Command.includes_associated, sortable_fields) }
-  expose :command, find: ->(id, scope) { scope.includes_associated.find(id) }
+  expose :command, id: -> { params[:slug] }, scope: -> { Command.includes_associated }, find_by: :slug
 
   # @route GET /commands (commands)
   def index
@@ -18,22 +18,23 @@ class CommandsController < ApplicationController
     }
   end
 
-  # def show
-  #   authorize command
-  #   render inertia: "Commands/Show", props: {
-  #     command: -> { command.render(view: :show) },
-  #   }
-  # end
+  # @route GET /commands/:slug (command)
+  def show
+    authorize command
+    render inertia: "Commands/Show", props: {
+      command: -> { command.render(view: :show) },
+    }
+  end
 
   # @route GET /commands/new (new_command)
   def new
     authorize Protocol.new
     render inertia: "Commands/New", props: {
-      command: -> { command.render(view: :edit) },
+      command: -> { command.render(view: :form_data) }
     }
   end
 
-  # @route GET /commands/:id/edit (edit_command)
+  # @route GET /commands/:slug/edit (edit_command)
   def edit
     authorize command
     render inertia: "Commands/Edit", props: {
@@ -51,8 +52,8 @@ class CommandsController < ApplicationController
     end
   end
 
-  # @route PATCH /commands/:id (command)
-  # @route PUT /commands/:id (command)
+  # @route PATCH /commands/:slug (command)
+  # @route PUT /commands/:slug (command)
   def update
     authorize command
     if command.update(command_params)
@@ -62,7 +63,7 @@ class CommandsController < ApplicationController
     end
   end
 
-  # @route DELETE /commands/:id (command)
+  # @route DELETE /commands/:slug (command)
   def destroy
     authorize command
     command.destroy!
@@ -76,6 +77,6 @@ class CommandsController < ApplicationController
   end
 
   def command_params
-    params.require(:command).permit(:title, :message, :payload, :description)
+    params.require(:command).permit(:title, :message, :payload_type, :payload, :description, :server_id, :control_payload_id)
   end
 end

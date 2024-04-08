@@ -17,7 +17,7 @@ const EditCommand = ({ command }: IEditCommandProps) => {
 
 				<CommandsForm
 					method='put'
-					to={ Routes.command(command.id) }
+					to={ Routes.command(command.slug) }
 					command={ command }
 				/>
 			</Section>

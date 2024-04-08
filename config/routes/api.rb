@@ -6,10 +6,15 @@ namespace :api do
 
   resources :spotlights, only: [:index]
 
+  resources :servers, except: [:edit, :new]
+
   put "protocol/:id/execute", to: "protocols#execute", as: :execute_protocol
   resources :protocols, except: [:edit, :new], param: :slug
 
   resources :controls, except: [:edit, :new], param: :slug
+
+  get "commands/payload_types", to: "commands#payload_types", as: :commands_payload_types
+  resources :commands, except: [:edit, :new], param: :slug
 
   scope :options do
     [:controls, :protocols].each do |model|

@@ -1,6 +1,7 @@
 import React from 'react'
-import { Form, TextInput, Submit } from '@/Components/Form'
+import { Form, TextInput, Submit, RichText } from '@/Components/Form'
 import { type UseFormProps } from 'use-inertia-form'
+import { CommandPayloadTypesDropdown, ServerDropdown } from '@/Components/Dropdowns'
 
 type TCommandFormData = {
 	command: Schema.CommandsFormData
@@ -13,8 +14,13 @@ export interface ICommandFormProps {
 	command?: Schema.CommandsFormData
 }
 
-const emptyCommand: Schema.CommandsFormData = {
+const emptyCommand: Partial<Schema.CommandsFormData> = {
 	title: '',
+	server_id: undefined,
+	message: '',
+	description: '',
+	payload_type: undefined,
+	payload: '',
 }
 
 const CommandForm = ({ method = 'post', command, ...props }: ICommandFormProps) => {
@@ -28,8 +34,10 @@ const CommandForm = ({ method = 'post', command, ...props }: ICommandFormProps) 
 			{ ...props }
 		>
 			<TextInput name="title" label="Title" />
-			<TextInput name="message" label="Message" />
-			<TextInput name="payload" label="Payload" />
+			<ServerDropdown />
+			<TextInput name="message" label="Message String" placeholder='e.g. /path/notation/with/values/1' />
+			<CommandPayloadTypesDropdown />
+			<RichText name="description" label="Description" />
 
 			<Submit>{ formCommand.id ? 'Update' : 'Create' } Command</Submit>
 		</Form>

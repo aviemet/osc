@@ -104,12 +104,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_175622) do
   end
 
   create_table "servers", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
+    t.string "slug", null: false
     t.string "hostname"
     t.integer "port"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_servers_on_slug", unique: true
   end
 
   create_table "users", force: :cascade do |t|

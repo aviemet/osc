@@ -28,10 +28,14 @@
 class CommandSerializer < ApplicationSerializer
   object_as :command
 
+  identifier :slug
+
   attributes(
     :title,
     :description,
     :message,
+    :payload_type,
     :payload,
+    :server_id,
   )
 end

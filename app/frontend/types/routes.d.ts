@@ -86,6 +86,38 @@ export const serialize: RouterExposedMethods['serialize'];
 
 /**
  * Generates rails route to
+ * /api/commands/:slug(.:format)
+ * @param {any} slug
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiCommand: ((
+  slug: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /api/commands(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiCommands: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /api/commands/payload_types(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiCommandsPayloadTypes: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /api/controls/:slug(.:format)
  * @param {any} slug
  * @param {object | undefined} options
@@ -162,6 +194,28 @@ export const apiProtocolsOptions: ((
 
 /**
  * Generates rails route to
+ * /api/servers/:id(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiServer: ((
+  id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /api/servers(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiServers: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /api/spotlights(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
@@ -228,13 +282,13 @@ export const cancelUserRegistration: ((
 
 /**
  * Generates rails route to
- * /commands/:id(.:format)
- * @param {any} id
+ * /commands/:slug(.:format)
+ * @param {any} slug
  * @param {object | undefined} options
  * @returns {string} route path
  */
 export const command: ((
-  id: RequiredRouteParameter,
+  slug: RequiredRouteParameter,
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 
@@ -282,13 +336,13 @@ export const destroyUserSession: ((
 
 /**
  * Generates rails route to
- * /commands/:id/edit(.:format)
- * @param {any} id
+ * /commands/:slug/edit(.:format)
+ * @param {any} slug
  * @param {object | undefined} options
  * @returns {string} route path
  */
 export const editCommand: ((
-  id: RequiredRouteParameter,
+  slug: RequiredRouteParameter,
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 
@@ -328,13 +382,13 @@ export const editScreens: ((
 
 /**
  * Generates rails route to
- * /servers/:id/edit(.:format)
- * @param {any} id
+ * /servers/:slug/edit(.:format)
+ * @param {any} slug
  * @param {object | undefined} options
  * @returns {string} route path
  */
 export const editServer: ((
-  id: RequiredRouteParameter,
+  slug: RequiredRouteParameter,
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 
@@ -526,13 +580,13 @@ export const screens: ((
 
 /**
  * Generates rails route to
- * /servers/:id(.:format)
- * @param {any} id
+ * /servers/:slug(.:format)
+ * @param {any} slug
  * @param {object | undefined} options
  * @returns {string} route path
  */
 export const server: ((
-  id: RequiredRouteParameter,
+  slug: RequiredRouteParameter,
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 

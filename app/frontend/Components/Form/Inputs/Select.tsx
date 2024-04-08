@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import Field from '../Field'
 import SelectInput, { type SelectProps } from '@/Components/Inputs/Select'
 import { ConditionalWrapper, Group } from '@/Components'
@@ -52,6 +52,7 @@ const Select = <TForm extends NestedObject = NestedObject>(
 		options,
 		...props
 	}: FormSelectProps<TForm>,
+	ref: React.ForwardedRef<HTMLInputElement>,
 ) => {
 	const { form, inputName, inputId, value, setValue, error } = useInertiaInput<string, TForm>({ name, model, errorKey })
 
@@ -113,6 +114,7 @@ const Select = <TForm extends NestedObject = NestedObject>(
 					) }
 				>
 					<SelectInput
+						ref={ ref }
 						// Add "search" suffix to prevent password managers trying to autofill dropdowns
 						id={ `${id || inputId}-search` }
 						autoComplete="off"
@@ -141,4 +143,5 @@ const Select = <TForm extends NestedObject = NestedObject>(
 	)
 }
 
-export default Select
+export default forwardRef<HTMLInputElement, FormSelectProps<NestedObject>>(Select)
+

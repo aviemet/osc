@@ -6,12 +6,19 @@
 #  description :text
 #  hostname    :string
 #  port        :integer
-#  title       :string
+#  slug        :string           not null
+#  title       :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
+# Indexes
+#
+#  index_servers_on_slug  (slug) UNIQUE
+#
 class ServerSerializer < ApplicationSerializer
   object_as :server
+
+  identifier :slug
 
   attributes(
     :title,

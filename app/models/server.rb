@@ -6,9 +6,14 @@
 #  description :text
 #  hostname    :string
 #  port        :integer
-#  title       :string
+#  slug        :string           not null
+#  title       :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#
+# Indexes
+#
+#  index_servers_on_slug  (slug) UNIQUE
 #
 class Server < ApplicationRecord
   include PgSearch::Model
@@ -25,6 +30,8 @@ class Server < ApplicationRecord
 
   tracked owner: proc { |controller| controller&.current_user }
   resourcify
+
+  slug :title
 
   has_many :commands, dependent: :nullify
 

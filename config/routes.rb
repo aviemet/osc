@@ -39,11 +39,11 @@ Rails.application.routes.draw do
   # RESOURCEFUL PATHS #
 
   resources :users
-  resources :servers
+  resources :servers, param: :slug
   get "screens/edit", to: "screens#edit", as: "edit_screens"
   resources :screens, param: :slug, except: [:new]
-  resources :protocols, except: [:show]
-  resources :commands, except: [:show]
+  resources :protocols
+  resources :commands, param: :slug
   resources :controls, only: [:create, :update, :destroy]
 
   draw(:api)
