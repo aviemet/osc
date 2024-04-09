@@ -15,7 +15,7 @@ RSpec.describe OscService do
 
       message = OscService::Message.new(command.message)
 
-      expect(mock_socket).to receive(:send).with(message.encode, 0) # rubocop:disable RSpec/MessageSpies
+      expect(mock_socket).to receive(:send).with(message.encode, 2) # rubocop:disable RSpec/MessageSpies
 
       udp_receiver = UDPSocket.new
       udp_receiver.bind(command.server.hostname, command.server.port)

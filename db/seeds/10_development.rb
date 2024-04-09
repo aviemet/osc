@@ -64,6 +64,7 @@ if Rails.env.development?
       Command.create({
         title: key,
         message: value,
+        payload_type: 0,
         server: server
       })
     end

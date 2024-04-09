@@ -150,6 +150,18 @@ export const apiControlsOptions: ((
 
 /**
  * Generates rails route to
+ * /api/command/:id/execute(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiExecuteCommand: ((
+  id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /api/protocol/:id/execute(.:format)
  * @param {any} id
  * @param {object | undefined} options

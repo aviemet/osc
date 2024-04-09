@@ -14,6 +14,7 @@ namespace :api do
   resources :controls, except: [:edit, :new], param: :slug
 
   get "commands/payload_types", to: "commands#payload_types", as: :commands_payload_types
+  put "command/:id/execute", to: "commands#execute", as: :execute_command
   resources :commands, except: [:edit, :new], param: :slug
 
   scope :options do

@@ -585,6 +585,15 @@ export const apiControlsOptions = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"
 
 /**
  * Generates rails route to
+ * /api/command/:id/execute(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiExecuteCommand = /*#__PURE__*/ __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"api"],[2,[7,"/"],[2,[6,"command"],[2,[7,"/"],[2,[3,"id"],[2,[7,"/"],[2,[6,"execute"],[1,[2,[8,"."],[3,"format"]]]]]]]]]]]);
+
+/**
+ * Generates rails route to
  * /api/protocol/:id/execute(.:format)
  * @param {any} id
  * @param {object | undefined} options

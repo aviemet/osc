@@ -13,7 +13,7 @@ class Api::ControlsController < ApplicationController
 
     control.create_activity key: :slug, owner: current_user
 
-    SendOscCommandsJob.perform_later(control)
+    SendOscProtocolJob.perform_later(control)
 
     render json: control, status: :accepted
   end

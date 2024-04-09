@@ -29,6 +29,7 @@ FactoryBot.define do
   factory :command do
     title { "OSC Message" }
     message { "/test/message" }
+    payload_type { 0 }
 
     server
   end

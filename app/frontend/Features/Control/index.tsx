@@ -4,19 +4,46 @@ import SliderControl from './Slider'
 import SpacerControl from './Spacer'
 import { type BoxProps } from '@mantine/core'
 
-export interface ControlProps extends BoxProps {
+export interface CommonControlProps extends BoxProps {
+	control?: Schema.ControlsShow
+	edit?: boolean
+}
+
+interface ControlAutoTypeProps extends BoxProps {
 	control: Schema.ControlsShow
 	edit?: boolean
 }
 
-const Control = ({ control, ...props }: ControlProps) => {
+const Control = ({ control, ...props }: ControlAutoTypeProps) => {
 	switch(control.control_type) {
 		case 'button':
-			return <ButtonControl control={ control } { ...props } m="xs" />
+			return (
+				<ButtonControl
+					protocol={ control.protocol }
+					m="xs"
+					{ ...props }
+				>
+					{ control.title }
+				</ButtonControl>
+			)
 		case 'slider':
-			return <SliderControl control={ control } { ...props } m="xs" />
+			return (
+				<SliderControl
+					protocol={ control.protocol }
+					m="xs"
+					{ ...props }
+				>
+					{ control.title }
+				</SliderControl>
+			)
 		case 'spacer':
-			return <SpacerControl control={ control } { ...props } m="xs" />
+			return (
+				<SpacerControl
+					m="xs"
+					{ ...props }
+				>
+				</SpacerControl>
+			)
 		default:
 			return <></>
 	}

@@ -6,5 +6,5 @@ class Commands::ShowSerializer < CommandSerializer
     :created_at,
   )
 
-  belongs_to :server, serializer: ServerSerializer
+  belongs_to :server, serializer: Servers::ReferenceSerializer
 end

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Box } from '@/Components'
-import { type ControlProps } from '..'
+import { type CommonControlProps } from '..'
 
-const SpacerControl = ({ control, edit = false, ...props }: ControlProps) => {
+const SpacerControl = ({ edit = false, ...props }: CommonControlProps) => {
 	return (
-		<Box { ...props }>{ control.title }</Box>
+		<Box { ...props }></Box>
 	)
 }
 

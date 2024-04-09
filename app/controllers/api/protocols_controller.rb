@@ -14,7 +14,7 @@ class Api::ProtocolsController < ApplicationController
 
     protocol.create_activity key: :slug, owner: current_user
 
-    SendOscCommandsJob.perform_later(protocol)
+    SendOscProtocolJob.perform_later(protocol)
 
     render json: protocol, status: :accepted
   end

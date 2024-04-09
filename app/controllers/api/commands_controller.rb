@@ -12,6 +12,17 @@ class Api::CommandsController < ApplicationController
     render json: {}, staus: :ok
   end
 
+  # @route PUT /api/command/:id/execute (api_execute_command)
+  def execute
+    authorize command
+
+    command.create_activity key: :slug, owner: current_user
+
+    SendOscCommandJob.perform_later(command)
+
+    render json: command, status: :accepted
+  end
+
   # @route GET /api/commands/payload_types (api_commands_payload_types)
   def payload_types
     types_array = []

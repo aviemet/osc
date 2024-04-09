@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes } from '@/lib'
 import { Table, Link } from '@/Components'
-import { DeleteButton } from '@/Components/Button'
+import { DeleteButton, EditButton } from '@/Components/Button'
 import { type ITableProps } from '@/Components/Table/Table'
 
 const CommandTable = (props: ITableProps) => {
@@ -28,7 +28,8 @@ const CommandTable = (props: ITableProps) => {
 							<Link href={ Routes.command(command.slug) }>{ command.payload }</Link>
 						</Table.Cell>
 						<Table.Cell>
-							<DeleteButton href={ Routes.command(command.slug) } />
+							<DeleteButton href={ Routes.command(command.slug) } mr="xs" />
+							<EditButton href={ Routes.editCommand(command.slug) } />
 						</Table.Cell>
 					</Table.Row>
 				) } />

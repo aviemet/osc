@@ -7,9 +7,15 @@ interface IDeleteButtonProps extends Omit<LinkProps, 'children'> {
 	label?: string
 }
 
-const DeleteButton = ({ href, label }: IDeleteButtonProps) => {
+const DeleteButton = ({ href, label, ...props }: IDeleteButtonProps) => {
 	return (
-		<Link as="button" method="delete" href={ href } aria-label={ `Delete ${label}` }>
+		<Link
+			as="button"
+			method="delete"
+			href={ href }
+			aria-label={ `Delete ${label}` }
+			{ ...props }
+		>
 			<TrashIcon />
 		</Link>
 	)
