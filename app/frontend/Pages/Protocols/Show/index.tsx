@@ -1,5 +1,5 @@
 import React from 'react'
-import { DangerousHtml, Group, Heading, Menu, Page, Section } from '@/Components'
+import { Box, Code, DangerousHtml, Group, Heading, Menu, Page, Section, Table } from '@/Components'
 import { Routes } from '@/lib'
 
 interface IShowProtocolProps {
@@ -8,7 +8,7 @@ interface IShowProtocolProps {
 
 const ShowProtocol = ({ protocol }: IShowProtocolProps) => {
 	const title = protocol.title || 'Protocol'
-
+	console.log({ protocol })
 	return (
 		<Page title={ title }>
 			<Section>
@@ -24,6 +24,20 @@ const ShowProtocol = ({ protocol }: IShowProtocolProps) => {
 						</Menu.Dropdown>
 					</Menu>
 				</Group>
+
+				<Box>Commands:</Box>
+				<Table>
+					<Table.Body>
+						{ protocol.commands.map(command => (
+							<Table.Row key={ command.id }>
+								<Table.Cell>{ command.title }</Table.Cell>
+								<Table.Cell><Code>{ command.server.title }:{ command.address }</Code></Table.Cell>
+								<Table.Cell>{ command.payload }</Table.Cell>
+							</Table.Row>
+
+						)) }
+					</Table.Body>
+				</Table>
 
 				<DangerousHtml>{ protocol.description }</DangerousHtml>
 

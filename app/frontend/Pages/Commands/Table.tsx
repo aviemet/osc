@@ -10,7 +10,7 @@ const CommandTable = (props: ITableProps) => {
 			<Table.Head>
 				<Table.Row>
 					<Table.Cell sort="title">Title</Table.Cell>
-					<Table.Cell sort="message">Message</Table.Cell>
+					<Table.Cell sort="address">Address</Table.Cell>
 					<Table.Cell sort="payload">Payload</Table.Cell>
 					<Table.Cell className="actions">Actions</Table.Cell>
 				</Table.Row>
@@ -22,7 +22,7 @@ const CommandTable = (props: ITableProps) => {
 							<Link href={ Routes.command(command.slug) }>{ command.title }</Link>
 						</Table.Cell>
 						<Table.Cell>
-							<Link href={ Routes.command(command.slug) }>{ command.message }</Link>
+							<Link href={ Routes.command(command.slug) }>{ command.address }</Link>
 						</Table.Cell>
 						<Table.Cell>
 							<Link href={ Routes.command(command.slug) }>{ command.payload }</Link>

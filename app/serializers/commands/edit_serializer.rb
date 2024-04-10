@@ -1,5 +1,4 @@
 class Commands::EditSerializer < CommandSerializer
-
   attributes(
     :id,
     :slug,

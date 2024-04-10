@@ -4,6 +4,6 @@ import { css } from '@linaria/core'
 
 export const form = css`
 	.field {
-		margin-bottom: ${vars.spacing.md}
+		/* margin-bottom: ${vars.spacing.md} */
 	}
 `

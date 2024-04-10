@@ -6,7 +6,7 @@ class CreateCommands < ActiveRecord::Migration[7.1]
       t.string :slug, null: false
       t.index :slug, unique: true
 
-      t.string :message
+      t.string :address
       t.references :server, null: false, foreign_key: true
 
       t.integer :payload_type

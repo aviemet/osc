@@ -73,7 +73,6 @@ const TableComponent: TableComponent & TableObjects = ({
 				striped={ striped }
 				highlightOnHover={ highlightOnHover }
 				className={ cx(className, classes.table, { [classes.rowSpacing]: rowSpacing, 'layout-fixed': fixed, 'layout-auto': !fixed }) }
-				// sx={ stylesArray }
 				{ ...props }
 			>
 				{ children }

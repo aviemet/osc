@@ -47,7 +47,7 @@ const ControlForm = ({ method = 'post', control, ...props }: ControlFormProps) =
 			{ protocol && <Text>{ protocol?.title } commands:</Text> }
 			<ScrollArea>
 				<Paper bg="dark" radius="md" p="md" className="field">{ protocol?.commands?.map(command => (
-					<Code style={ { display: 'block' } } mb="xs" key={ command.id }>{ command.message }</Code>
+					<Code style={ { display: 'block' } } mb="xs" key={ command.id }>{ command.address }</Code>
 				))
 				}</Paper>
 			</ScrollArea>

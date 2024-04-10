@@ -55,6 +55,7 @@ class CommandsController < ApplicationController
   # @route PATCH /commands/:slug (command)
   # @route PUT /commands/:slug (command)
   def update
+    ap({ params:, command_params: })
     authorize command
     if command.update(command_params)
       redirect_to command, notice: "Command was successfully updated."
@@ -73,10 +74,10 @@ class CommandsController < ApplicationController
   private
 
   def sortable_fields
-    %w(title message payload).freeze
+    %w(title address payload).freeze
   end
 
   def command_params
-    params.require(:command).permit(:title, :message, :payload_type, :payload, :description, :server_id, :control_payload_id)
+    params.require(:command).permit(:title, :address, :payload_type, :payload, :description, :server_id, :control_payload_id, values_attributes: [:label, :value])
   end
 end

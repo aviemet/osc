@@ -26,6 +26,7 @@ export {
 	Container,
 	Divider,
 	Flex,
+	Grid,
 	Group,
 	List,
 	Paper,

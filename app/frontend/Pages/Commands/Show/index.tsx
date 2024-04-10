@@ -19,7 +19,7 @@ const ShowCommand = ({ command }: IShowCommandProps) => {
 					<Menu position="bottom-end">
 						<Menu.Target />
 						<Menu.Dropdown>
-							<Menu.Link href={ Routes.editCommand(command.id) }>
+							<Menu.Link href={ Routes.editCommand(command.slug) }>
 								Edit Control
 							</Menu.Link>
 						</Menu.Dropdown>
@@ -28,7 +28,7 @@ const ShowCommand = ({ command }: IShowCommandProps) => {
 			</Section>
 
 			<Box>Server: <Link href={ Routes.server(command.server.slug) }>{ command.server.title }</Link> </Box>
-			<Box>Message String: <Code>{ command.message }</Code></Box>
+			<Box>Address String: <Code>{ command.address }</Code></Box>
 			<Box>Payload Type: <Code>{ command.payload_type }</Code></Box>
 
 			<DangerousHtml>{ command.description }</DangerousHtml>

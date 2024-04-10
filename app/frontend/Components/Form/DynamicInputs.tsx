@@ -17,7 +17,7 @@ const DynamicInputs = ({ children, model, label, emptyData }: IDynamicInputsProp
 		<>
 			<Flex>
 				<Box style={ { flex: 1 } }>{ label }</Box>
-				<Button onClick={ addInput }size='xs' mb="xs" mr="xs">
+				<Button onClick={ addInput } size='xs' mb="xs" mr="xs">
 					<PlusCircleIcon />
 				</Button>
 			</Flex>

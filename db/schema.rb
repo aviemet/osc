@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_31_175622) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_10_185520) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,11 +33,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_175622) do
     t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable"
   end
 
+  create_table "command_values", force: :cascade do |t|
+    t.string "label"
+    t.string "value", null: false
+    t.bigint "command_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["command_id"], name: "index_command_values_on_command_id"
+  end
+
   create_table "commands", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
     t.string "slug", null: false
-    t.string "message"
+    t.string "address"
     t.bigint "server_id", null: false
     t.integer "payload_type"
     t.string "payload"
@@ -164,6 +173,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_175622) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "command_values", "commands"
   add_foreign_key "commands", "controls", column: "control_payload_id"
   add_foreign_key "commands", "servers"
   add_foreign_key "controls", "protocols"

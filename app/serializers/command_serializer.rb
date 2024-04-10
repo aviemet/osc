@@ -3,8 +3,8 @@
 # Table name: commands
 #
 #  id                 :bigint           not null, primary key
+#  address            :string
 #  description        :text
-#  message            :string
 #  payload            :string
 #  payload_type       :integer
 #  slug               :string           not null
@@ -33,9 +33,11 @@ class CommandSerializer < ApplicationSerializer
   attributes(
     :title,
     :description,
-    :message,
+    :address,
     :payload_type,
     :payload,
     :server_id,
   )
+
+  has_many :values, serializer: CommandValueSerializer
 end

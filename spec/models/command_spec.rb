@@ -3,8 +3,8 @@
 # Table name: commands
 #
 #  id                 :bigint           not null, primary key
+#  address            :string
 #  description        :text
-#  message            :string
 #  payload            :string
 #  payload_type       :integer
 #  slug               :string           not null

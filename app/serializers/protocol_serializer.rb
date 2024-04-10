@@ -23,5 +23,5 @@ class ProtocolSerializer < ApplicationSerializer
     :description,
   )
 
-  has_many :commands, serializer: Commands::EditSerializer
+  has_many :commands, serializer: Commands::ProtocolSerializer
 end

@@ -13,7 +13,7 @@ RSpec.describe OscService do
       allow(mock_socket).to receive(:connect)
       allow(mock_socket).to receive(:recv)
 
-      message = OscService::Message.new(command.message)
+      message = OscService::Message.new(command.address)
 
       expect(mock_socket).to receive(:send).with(message.encode, 2) # rubocop:disable RSpec/MessageSpies
 

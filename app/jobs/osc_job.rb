@@ -6,7 +6,7 @@ class OscJob < ApplicationJob
     client ||= udp_client_from_server(command.server)
 
     message = OscService::Message.new(
-      command.message,
+      command.address,
       cast_to_type(command.value, command.payload_type),
     )
     client.send(message)

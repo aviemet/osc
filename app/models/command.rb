@@ -3,8 +3,8 @@
 # Table name: commands
 #
 #  id                 :bigint           not null, primary key
+#  address            :string
 #  description        :text
-#  message            :string
 #  payload            :string
 #  payload_type       :integer
 #  slug               :string           not null
@@ -31,7 +31,10 @@ class Command < ApplicationRecord
 
   pg_search_scope(
     :search,
-    against: [:title, :message, :payload],
+    against: [:title, :address, :payload, :description],
+    assoicated_against: {
+      protocols: [:title, :description]
+    },
     using: {
       tsearch: { prefix: true },
       trigram: {}
@@ -47,9 +50,12 @@ class Command < ApplicationRecord
 
   has_many :protocols_commands, dependent: :destroy
   has_many :protocols, through: :protocols_commands
+  has_many :values, class_name: "CommandValue", dependent: :destroy
 
   belongs_to :server
   belongs_to :control_payload, class_name: "Control", optional: true
 
-  scope :includes_associated, -> { includes([]) }
+  scope :includes_associated, -> { includes([:values]) }
+
+  accepts_nested_attributes_for :values
 end

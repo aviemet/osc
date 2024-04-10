@@ -3,8 +3,8 @@
 # Table name: commands
 #
 #  id                 :bigint           not null, primary key
+#  address            :string
 #  description        :text
-#  message            :string
 #  payload            :string
 #  payload_type       :integer
 #  slug               :string           not null
@@ -28,7 +28,7 @@
 FactoryBot.define do
   factory :command do
     title { "OSC Message" }
-    message { "/test/message" }
+    address { "/test/endpoint" }
     payload_type { 0 }
 
     server
