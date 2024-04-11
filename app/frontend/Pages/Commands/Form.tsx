@@ -24,7 +24,7 @@ const emptyCommand: Partial<Schema.CommandsFormData> = {
 	description: '',
 	payload_type: undefined,
 	payload: '',
-	values: [],
+	command_values: [],
 }
 
 const CommandForm = ({ method = 'post', command, ...props }: ICommandFormProps) => {
@@ -75,7 +75,7 @@ const CommandForm = ({ method = 'post', command, ...props }: ICommandFormProps) 
 				</Grid.Col>
 
 				<Grid.Col>
-					<DynamicInputs model="values" emptyData={ {
+					<DynamicInputs model="command_values" emptyData={ {
 						label: '',
 						value: '',
 					} }>

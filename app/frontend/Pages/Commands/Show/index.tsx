@@ -9,7 +9,7 @@ interface IShowCommandProps {
 
 const ShowCommand = ({ command }: IShowCommandProps) => {
 	const title = command.title ?? 'Command'
-
+	console.log({ command })
 	return (
 		<Page title={ title }>
 			<Section>
@@ -33,8 +33,12 @@ const ShowCommand = ({ command }: IShowCommandProps) => {
 
 			<DangerousHtml>{ command.description }</DangerousHtml>
 
-			<Box>Test:</Box>
-			<ButtonControl command={ command } />
+			{ command?.command_values && <>
+				<Box>Test:</Box>
+				{ command.command_values?.map(value => (
+					<ButtonControl key={ value.id } command={ command } />
+				)) }
+			</> }
 		</Page>
 	)
 }

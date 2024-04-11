@@ -39,5 +39,5 @@ class CommandSerializer < ApplicationSerializer
     :server_id,
   )
 
-  has_many :values, serializer: CommandValueSerializer
+  has_many :command_values, serializer: CommandValueSerializer
 end

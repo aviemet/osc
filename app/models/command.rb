@@ -50,12 +50,12 @@ class Command < ApplicationRecord
 
   has_many :protocols_commands, dependent: :destroy
   has_many :protocols, through: :protocols_commands
-  has_many :values, class_name: "CommandValue", dependent: :destroy
+  has_many :command_values, dependent: :destroy
 
   belongs_to :server
   belongs_to :control_payload, class_name: "Control", optional: true
 
-  scope :includes_associated, -> { includes([:values]) }
+  scope :includes_associated, -> { includes([:command_values]) }
 
-  accepts_nested_attributes_for :values
+  accepts_nested_attributes_for :command_values
 end
