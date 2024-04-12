@@ -8,7 +8,7 @@ interface IShowProtocolProps {
 
 const ShowProtocol = ({ protocol }: IShowProtocolProps) => {
 	const title = protocol.title || 'Protocol'
-	console.log({ protocol })
+
 	return (
 		<Page title={ title }>
 			<Section>
@@ -32,9 +32,8 @@ const ShowProtocol = ({ protocol }: IShowProtocolProps) => {
 							<Table.Row key={ command.id }>
 								<Table.Cell>{ command.title }</Table.Cell>
 								<Table.Cell><Code>{ command.server.title }:{ command.address }</Code></Table.Cell>
-								<Table.Cell>{ command.payload }</Table.Cell>
+								<Table.Cell>The payload value should go here</Table.Cell>
 							</Table.Row>
-
 						)) }
 					</Table.Body>
 				</Table>

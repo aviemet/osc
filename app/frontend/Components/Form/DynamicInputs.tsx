@@ -1,7 +1,10 @@
 import React from 'react'
-import { Box, Button, Flex, Paper } from '@/Components'
+import { Box, Button, Flex, Label, Paper } from '@/Components'
 import { PlusCircleIcon, MinusCircleIcon } from '@/Components/Icons'
 import { NestedFields, useDynamicInputs } from 'use-inertia-form'
+import cx from 'clsx'
+
+import * as classes from './Form.css'
 
 interface IDynamicInputsProps {
 	children: React.ReactNode | React.ReactElement[]
@@ -15,16 +18,11 @@ const DynamicInputs = ({ children, model, label, emptyData }: IDynamicInputsProp
 
 	return (
 		<>
-			<Flex>
-				<Box style={ { flex: 1 } }>{ label }</Box>
-				<Button onClick={ addInput } size='xs' mb="xs" mr="xs">
-					<PlusCircleIcon />
-				</Button>
-			</Flex>
+			<Label style={ { flex: 1 } }>{ label }</Label>
 
 			{ paths.map((path, i) => (
 				<NestedFields key={ i } model={ path }>
-					<Paper p="xs" shadow="xs" mb="xs">
+					<Paper className={ cx(classes.dynamicInput) }>
 						<Flex key={ i } align="center">
 							<Box style={ { flex: 1 } }>
 								{ children }
@@ -36,6 +34,12 @@ const DynamicInputs = ({ children, model, label, emptyData }: IDynamicInputsProp
 					</Paper>
 				</NestedFields>
 			)) }
+
+			<Box style={ { textAlign: 'right' } }>
+				<Button onClick={ addInput } size='xs' mb="xs" mr="xs">
+					<PlusCircleIcon />
+				</Button>
+			</Box>
 		</>
 	)
 }

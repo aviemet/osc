@@ -7,3 +7,11 @@ export const form = css`
 		/* margin-bottom: ${vars.spacing.md} */
 	}
 `
+
+export const dynamicInput = css`
+	background-color: ${vars.colors.gray[8]};
+	box-shadow: ${vars.shadows.xs};
+	margin-bottom: ${vars.spacing.xs};
+	padding: ${vars.spacing.xs};
+	border-radius: ${vars.radius.sm}
+`

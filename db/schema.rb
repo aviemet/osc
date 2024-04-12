@@ -49,7 +49,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_185520) do
     t.string "address"
     t.bigint "server_id", null: false
     t.integer "payload_type"
-    t.string "payload"
+    t.boolean "allow_custom_value", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "control_payload_id"

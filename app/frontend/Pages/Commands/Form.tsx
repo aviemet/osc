@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box, Grid, Label } from '@/Components'
-import { Form, TextInput, Submit, RichText, FormConsumer, DynamicInputs } from '@/Components/Form'
+import { Box, Grid, Label, Text } from '@/Components'
+import { Form, TextInput, Submit, RichText, FormConsumer, DynamicInputs, Checkbox } from '@/Components/Form'
 import { type UseFormProps } from 'use-inertia-form'
 import { CommandPayloadTypesDropdown, ServerDropdown } from '@/Components/Dropdowns'
 import { RadioButtons } from '@/Components/Inputs'
@@ -23,7 +23,7 @@ const emptyCommand: Partial<Schema.CommandsFormData> = {
 	address: '',
 	description: '',
 	payload_type: undefined,
-	payload: '',
+	allow_custom_value: '',
 	command_values: [],
 }
 
@@ -49,36 +49,30 @@ const CommandForm = ({ method = 'post', command, ...props }: ICommandFormProps) 
 				</Grid.Col>
 
 				<Grid.Col>
-					<ServerDropdown />
+					<TextInput name="address" label="Address String" placeholder='e.g. /path/notation/with/values/1' />
 				</Grid.Col>
 
-				<Grid.Col>
-					<TextInput name="address" label="Address String" placeholder='e.g. /path/notation/with/values/1' />
+				<Grid.Col span={ 6 }>
+					<ServerDropdown />
 				</Grid.Col>
 
 				<Grid.Col span={ 6 }>
 					<CommandPayloadTypesDropdown />
 				</Grid.Col>
 
-				<Grid.Col span={ 6 }>
-					<Box>
-						<Label>Allowed Values</Label>
-					</Box>
-					<RadioButtons
-						name="restrict_values"
-						fullWidth
-						options={ [
-							{ label: 'No Restrictions', value: 'false' },
-							{ label: 'From a List of Values', value: 'true' },
-						] }
-					/>
+				<Grid.Col>
+					<Checkbox label="Allow Custom Values" name="allow_custom_input" />
+					<Text>If checked, allows setting custom values for this endpoint when adding it to a Protocol</Text>
 				</Grid.Col>
 
 				<Grid.Col>
-					<DynamicInputs model="command_values" emptyData={ {
-						label: '',
-						value: '',
-					} }>
+					<DynamicInputs
+						label="Allowed Values"
+						model="command_values"
+						emptyData={ {
+							label: '',
+							value: '',
+						} }>
 						<Grid>
 							<Grid.Col span={ 6 }>
 								<TextInput label="Value" name="value" />

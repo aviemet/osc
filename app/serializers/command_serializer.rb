@@ -4,8 +4,8 @@
 #
 #  id                 :bigint           not null, primary key
 #  address            :string
+#  allow_custom_value :boolean          default(FALSE), not null
 #  description        :text
-#  payload            :string
 #  payload_type       :integer
 #  slug               :string           not null
 #  title              :string           not null
@@ -35,7 +35,7 @@ class CommandSerializer < ApplicationSerializer
     :description,
     :address,
     :payload_type,
-    :payload,
+    :allow_custom_value,
     :server_id,
   )
 

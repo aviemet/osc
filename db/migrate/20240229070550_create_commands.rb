@@ -10,7 +10,7 @@ class CreateCommands < ActiveRecord::Migration[7.1]
       t.references :server, null: false, foreign_key: true
 
       t.integer :payload_type
-      t.string :payload # static value
+      t.boolean :allow_custom_value, null: false, default: false
 
       t.timestamps
     end

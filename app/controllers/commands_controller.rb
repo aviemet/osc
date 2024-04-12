@@ -74,10 +74,10 @@ class CommandsController < ApplicationController
   private
 
   def sortable_fields
-    %w(title address payload).freeze
+    %w(title address payload_type).freeze
   end
 
   def command_params
-    params.require(:command).permit(:title, :address, :payload_type, :payload, :description, :server_id, :control_payload_id, values_attributes: [:label, :value])
+    params.require(:command).permit(:title, :address, :payload_type, :allow_custom_value, :description, :server_id, :control_payload_id, values_attributes: [:label, :value])
   end
 end
