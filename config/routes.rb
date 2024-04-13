@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   resources :servers, param: :slug
   get "screens/edit", to: "screens#edit", as: "edit_screens"
   resources :screens, param: :slug, except: [:new]
-  resources :protocols
+  resources :protocols, param: :slug
   resources :commands, param: :slug
   resources :controls, only: [:create, :update, :destroy]
 

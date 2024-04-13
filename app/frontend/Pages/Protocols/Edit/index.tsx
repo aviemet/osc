@@ -17,7 +17,7 @@ const EditProtocol = ({ protocol }: IEditProtocolProps) => {
 
 				<ProtocolsForm
 					method='put'
-					to={ Routes.protocol(protocol.id) }
+					to={ Routes.protocol(protocol.slug) }
 					protocol={ protocol }
 				/>
 			</Section>

@@ -360,13 +360,13 @@ export const editCommand: ((
 
 /**
  * Generates rails route to
- * /protocols/:id/edit(.:format)
- * @param {any} id
+ * /protocols/:slug/edit(.:format)
+ * @param {any} slug
  * @param {object | undefined} options
  * @returns {string} route path
  */
 export const editProtocol: ((
-  id: RequiredRouteParameter,
+  slug: RequiredRouteParameter,
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 
@@ -538,13 +538,13 @@ export const newUserUnlock: ((
 
 /**
  * Generates rails route to
- * /protocols/:id(.:format)
- * @param {any} id
+ * /protocols/:slug(.:format)
+ * @param {any} slug
  * @param {object | undefined} options
  * @returns {string} route path
  */
 export const protocol: ((
-  id: RequiredRouteParameter,
+  slug: RequiredRouteParameter,
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 

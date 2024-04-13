@@ -17,5 +17,6 @@ export interface AsyncMultiSelect<T> extends Omit<FormMultiSelectProps, 'onBlur'
 
 export { default as ProtocolDropdown } from './ProtocolDropdown'
 export { default as ServerDropdown } from './ServerDropdown'
+export { default as CommandDropdown } from './CommandDropdown'
 export { default as CommandPayloadTypesDropdown } from './CommandPayloadTypesDropdown'
 

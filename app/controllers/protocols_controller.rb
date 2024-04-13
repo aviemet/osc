@@ -2,7 +2,7 @@ class ProtocolsController < ApplicationController
   include Searchable
 
   expose :protocols, -> { search(Protocol.includes_associated, sortable_fields) }
-  expose :protocol, find: ->(id, scope) { scope.includes_associated.find(id) }
+  expose :protocol, id: -> { params[:slug] }, scope: -> { Protocol.includes_associated }, find_by: :slug
 
   # @route GET /protocols (protocols)
   def index

@@ -8,7 +8,7 @@ export interface IBodyCellWithContextProps extends Omit<ICellProps, 'hideable'> 
 	model?: string
 }
 
-const BodyCellWithContext = ({ children, nowrap, fitContent, hideable, model, ...props }: IBodyCellWithContextProps) => {
+const BodyCellWithContext = ({ children, fitContent, hideable, model, ...props }: IBodyCellWithContextProps) => {
 	const tdRef = useRef<HTMLTableCellElement>(null)
 
 	return (
@@ -16,7 +16,6 @@ const BodyCellWithContext = ({ children, nowrap, fitContent, hideable, model, ..
 			component="td"
 			ref={ tdRef }
 			className={ cx({ 'table-column-fit': fitContent }) }
-			style={ { whiteSpace: nowrap ? 'nowrap' : 'normal' } }
 			{ ...props }
 		>
 			{ children }

@@ -18,7 +18,7 @@ const ShowProtocol = ({ protocol }: IShowProtocolProps) => {
 					<Menu position="bottom-end">
 						<Menu.Target />
 						<Menu.Dropdown>
-							<Menu.Link href={ Routes.editProtocol(protocol.id) }>
+							<Menu.Link href={ Routes.editProtocol(protocol.slug) }>
 								Edit Protocol
 							</Menu.Link>
 						</Menu.Dropdown>

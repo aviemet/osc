@@ -14,7 +14,6 @@ const HeadCellWithContext = ({
 	children,
 	fitContent = false,
 	sort,
-	nowrap = true,
 	rows,
 	hideable,
 	...props
@@ -56,9 +55,6 @@ const HeadCellWithContext = ({
 				{ 'sortable': showSortLink },
 				{ [direction]: showSortLink && paramsSort === sort },
 			) }
-			style={ {
-				whiteSpace: nowrap ? 'nowrap' : 'normal',
-			} }
 			{ ...props }
 		>
 			{ showSortLink ?

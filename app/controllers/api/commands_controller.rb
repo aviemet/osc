@@ -4,12 +4,16 @@ class Api::CommandsController < ApplicationController
 
   # @route GET /api/commands (api_commands)
   def index
-    render json: {}, staus: :ok
+    authorize commands
+
+    render json: commands.render(view: :options), staus: :ok
   end
 
   # @route GET /api/commands/:slug (api_command)
   def show
-    render json: {}, staus: :ok
+    authorize command
+
+    render json: command.render(view: :show), staus: :ok
   end
 
   # @route PUT /api/command/:id/execute (api_execute_command)

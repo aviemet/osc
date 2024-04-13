@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppShell, Burger, Container, Link, Menu, Title } from '@/Components'
+import { AppShell, Burger, Container, Divider, Link, Menu, Title } from '@/Components'
 import { useAuth } from '@/lib/hooks'
 import { Routes } from '@/lib'
 
@@ -26,8 +26,9 @@ const AppLayout = ({ children }: { children: any }) => {
 						{ isLoggedIn ?
 							<>
 								<Menu.Link href={ Routes.editScreens() }>Edit Screens</Menu.Link>
-								<Menu.Link href={ Routes.protocols() }>Edit Protocols</Menu.Link>
-								<Menu.Link href={ Routes.commands() }>Edit Commands</Menu.Link>
+								<Divider />
+								<Menu.Link href={ Routes.protocols() }>Protocols</Menu.Link>
+								<Menu.Link href={ Routes.commands() }>Commands</Menu.Link>
 							</>
 							:
 							<Menu.Label>Sign In</Menu.Label>

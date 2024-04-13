@@ -18,19 +18,24 @@ const CommandTable = (props: ITableProps) => {
 			<Table.Body>
 				<Table.RowIterator render={ (command: Schema.CommandsIndex) => (
 					<Table.Row key={ command.slug }>
+
 						<Table.Cell>
 							<Link href={ Routes.command(command.slug) }>{ command.title }</Link>
 						</Table.Cell>
+
 						<Table.Cell>
 							<Link href={ Routes.command(command.slug) }>{ command.address }</Link>
 						</Table.Cell>
+
 						<Table.Cell>
 							<Link href={ Routes.command(command.slug) }>{ command.payload_type }</Link>
 						</Table.Cell>
-						<Table.Cell>
+
+						<Table.Cell fitContent>
 							<DeleteButton href={ Routes.command(command.slug) } mr="xs" />
 							<EditButton href={ Routes.editCommand(command.slug) } />
 						</Table.Cell>
+
 					</Table.Row>
 				) } />
 			</Table.Body>
