@@ -78,6 +78,6 @@ class CommandsController < ApplicationController
   end
 
   def command_params
-    params.require(:command).permit(:title, :address, :payload_type, :allow_custom_value, :description, :server_id, :control_payload_id, values_attributes: [:label, :value])
+    params.require(:command).permit(:title, :address, :payload_type, :allow_custom_value, :description, :server_id, :control_payload_id, command_values_attributes: [:id, :label, :value])
   end
 end

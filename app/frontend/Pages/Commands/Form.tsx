@@ -23,7 +23,7 @@ const emptyCommand: Partial<Schema.CommandsFormData> = {
 	address: '',
 	description: '',
 	payload_type: undefined,
-	allow_custom_value: '',
+	allow_custom_value: false,
 	command_values: [],
 }
 
@@ -61,7 +61,7 @@ const CommandForm = ({ method = 'post', command, ...props }: ICommandFormProps) 
 				</Grid.Col>
 
 				<Grid.Col>
-					<Checkbox label="Allow Custom Values" name="allow_custom_input" />
+					<Checkbox label="Allow Custom Values" name="allow_custom_value" />
 					<Text>If checked, allows setting custom values for this endpoint when adding it to a Protocol</Text>
 				</Grid.Col>
 

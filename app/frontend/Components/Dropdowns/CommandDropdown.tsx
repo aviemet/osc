@@ -12,7 +12,7 @@ const CommandDropdown = forwardRef<HTMLInputElement, CommandDropdownProps>((
 	ref,
 ) => {
 	const { data } = commandsQuery()
-
+	console.log({ data })
 	return (
 		<Select
 			ref={ ref }
@@ -20,7 +20,7 @@ const CommandDropdown = forwardRef<HTMLInputElement, CommandDropdownProps>((
 			name={ name }
 			options={ !data ? [] : data.map(command => ({
 				label: command.title,
-				value: command.id,
+				value: String(command.id),
 				description: 'hi',
 			})) }
 			{ ...props }

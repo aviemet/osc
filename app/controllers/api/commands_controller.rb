@@ -1,5 +1,5 @@
 class Api::CommandsController < ApplicationController
-  expose :commands
+  expose :commands, -> { Command.all }
   expose :command, id: -> { params[:slug] }, scope: -> { Command.includes_associated }, find_by: :slug
 
   # @route GET /api/commands (api_commands)
