@@ -55,7 +55,6 @@ class CommandsController < ApplicationController
   # @route PATCH /commands/:slug (command)
   # @route PUT /commands/:slug (command)
   def update
-    ap({ params:, command_params: })
     authorize command
     if command.update(command_params)
       redirect_to command, notice: "Command was successfully updated."
@@ -78,6 +77,6 @@ class CommandsController < ApplicationController
   end
 
   def command_params
-    params.require(:command).permit(:title, :address, :payload_type, :allow_custom_value, :description, :server_id, :control_payload_id, command_values_attributes: [:id, :label, :value])
+    params.require(:command).permit(:title, :address, :payload_type, :allow_custom_value, :description, :server_id, command_values_attributes: [:id, :label, :value, :_destroy])
   end
 end

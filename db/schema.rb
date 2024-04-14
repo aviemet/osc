@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_10_185520) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_31_175622) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,8 +52,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_185520) do
     t.boolean "allow_custom_value", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "control_payload_id"
-    t.index ["control_payload_id"], name: "index_commands_on_control_payload_id"
     t.index ["server_id"], name: "index_commands_on_server_id"
     t.index ["slug"], name: "index_commands_on_slug", unique: true
   end
@@ -85,11 +83,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_185520) do
   create_table "protocols_commands", force: :cascade do |t|
     t.bigint "protocol_id", null: false
     t.bigint "command_id", null: false
+    t.bigint "command_value_id"
     t.string "value"
     t.integer "delay"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["command_id"], name: "index_protocols_commands_on_command_id"
+    t.index ["command_value_id"], name: "index_protocols_commands_on_command_value_id"
     t.index ["protocol_id"], name: "index_protocols_commands_on_protocol_id"
   end
 
@@ -174,10 +174,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_185520) do
   end
 
   add_foreign_key "command_values", "commands"
-  add_foreign_key "commands", "controls", column: "control_payload_id"
   add_foreign_key "commands", "servers"
   add_foreign_key "controls", "protocols"
   add_foreign_key "controls", "screens"
+  add_foreign_key "protocols_commands", "command_values"
   add_foreign_key "protocols_commands", "commands"
   add_foreign_key "protocols_commands", "protocols"
 end

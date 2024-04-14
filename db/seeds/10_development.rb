@@ -64,8 +64,12 @@ if Rails.env.development?
       Command.create({
         title: key,
         address: value,
+        server: server,
         payload_type: 0,
-        server: server
+        command_values: [
+          CommandValue.new(value: 0),
+          CommandValue.new(value: 1),
+        ],
       })
     end
 

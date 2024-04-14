@@ -12,7 +12,7 @@ const CommandDropdown = forwardRef<HTMLInputElement, CommandDropdownProps>((
 	ref,
 ) => {
 	const { data } = commandsQuery()
-	console.log({ data })
+
 	return (
 		<Select
 			ref={ ref }

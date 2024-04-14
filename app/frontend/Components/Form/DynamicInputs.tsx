@@ -1,20 +1,32 @@
 import React from 'react'
 import { Box, Button, Flex, Label, Paper } from '@/Components'
 import { PlusCircleIcon, MinusCircleIcon } from '@/Components/Icons'
-import { NestedFields, useDynamicInputs } from 'use-inertia-form'
+import { NestedFields, NestedObject, useDynamicInputs } from 'use-inertia-form'
 import cx from 'clsx'
 
 import * as classes from './Form.css'
 
-interface IDynamicInputsProps {
+interface DynamicInputsProps<T = NestedObject> {
 	children: React.ReactNode | React.ReactElement[]
 	model?: string
 	label?: string | React.ReactNode
-	emptyData: Record<string, unknown>
+	emptyData: T
+	onAddInput?: () => void
+	onRemoveInput?: (record: T) => void
 }
 
-const DynamicInputs = ({ children, model, label, emptyData }: IDynamicInputsProps) => {
-	const { addInput, removeInput, paths } = useDynamicInputs({ model, emptyData })
+const DynamicInputs = <T extends Record<string, any>>({ children, model, label, emptyData, onAddInput, onRemoveInput }: DynamicInputsProps<T>) => {
+	const { addInput, removeInput, paths } = useDynamicInputs<T>({ model, emptyData })
+
+	const handleRemoveInput = (i: number) => {
+		const record = removeInput(i)
+		onRemoveInput?.(record as T)
+	}
+
+	const handleAddInput = () => {
+		onAddInput?.()
+		addInput()
+	}
 
 	return (
 		<>
@@ -27,7 +39,7 @@ const DynamicInputs = ({ children, model, label, emptyData }: IDynamicInputsProp
 							<Box style={ { flex: 1 } }>
 								{ children }
 							</Box>
-							<Button onClick={ () => removeInput(i) } size='xs' ml="xs">
+							<Button onClick={ () => handleRemoveInput(i) } size='xs' ml="xs">
 								<MinusCircleIcon />
 							</Button>
 						</Flex>
@@ -36,7 +48,7 @@ const DynamicInputs = ({ children, model, label, emptyData }: IDynamicInputsProp
 			)) }
 
 			<Box style={ { textAlign: 'right' } }>
-				<Button onClick={ addInput } size='xs' mb="xs" mr="xs">
+				<Button onClick={ handleAddInput } size='xs' mb="xs" mr="xs">
 					<PlusCircleIcon />
 				</Button>
 			</Box>

@@ -23,6 +23,5 @@ class CommandValueSerializer < ApplicationSerializer
   attributes(
     :label,
     :value,
-    :command_id,
   )
 end

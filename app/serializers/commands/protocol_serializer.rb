@@ -7,4 +7,5 @@ class Commands::ProtocolSerializer < CommandSerializer
   )
 
   belongs_to :server, serializer: Servers::ReferenceSerializer
+  has_many :command_values, serializer: CommandValueSerializer
 end

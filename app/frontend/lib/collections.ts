@@ -11,7 +11,7 @@ export const coerceArray = <T extends unknown>(arg: T | T[] | null | undefined) 
 	return [arg]
 }
 
-export const exclude = <T extends any, K extends string>(obj: T, keys: K | K[]): Omit<T, K> | undefined => {
+export const exclude = <T extends any, K extends string>(obj: T, keys: K | K[]): Omit<T, K> => {
 	const clone = cloneDeep(obj)
 	if(clone) {
 		coerceArray(keys).forEach(key => {

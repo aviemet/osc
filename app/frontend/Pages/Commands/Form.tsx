@@ -1,10 +1,10 @@
 import React from 'react'
-import { Box, Grid, Label, Text } from '@/Components'
-import { Form, TextInput, Submit, RichText, FormConsumer, DynamicInputs, Checkbox } from '@/Components/Form'
+import { Grid, Text } from '@/Components'
+import { Form, TextInput, Submit, RichText, DynamicInputs, Checkbox } from '@/Components/Form'
 import { type UseFormProps } from 'use-inertia-form'
 import { CommandPayloadTypesDropdown, ServerDropdown } from '@/Components/Dropdowns'
-import { RadioButtons } from '@/Components/Inputs'
 import { exclude } from '@/lib'
+import { useListState } from '@mantine/hooks'
 
 type TCommandFormData = {
 	command: Schema.CommandsFormData
@@ -28,12 +28,27 @@ const emptyCommand: Partial<Schema.CommandsFormData> = {
 }
 
 const CommandForm = ({ method = 'post', command, ...props }: ICommandFormProps) => {
-	const handleSubmit = (form: UseFormProps<{ command: Schema.CommandsFormData }>) => {
-		console.log({ data: form.data.command })
-		// return false
+	const [deletedValues, deletedValueHandlers] = useListState<{ id: string|number, _destroy: boolean}>()
+
+	const handleRemoveCommandValue = (record: Schema.CommandValue) => {
+		if(!record?.id) return
+
+		deletedValueHandlers.append({ id: record?.id, _destroy: true })
 	}
 
-	const formCommand = exclude(command, ['slug', 'created_at', 'updated_at']) ?? emptyCommand
+	const handleSubmit = (form: UseFormProps<{ command: Schema.CommandsFormData }>) => {
+		if(deletedValues.length > 0) {
+			form.transform((data) => {
+				deletedValues.forEach(value => {
+					// @ts-ignore - The Rails `_destroy` key shouldn't be represented in types anywhere
+					data.command.command_values.push(value)
+				})
+				return data
+			})
+		}
+	}
+
+	const formCommand = exclude(command, ['id', 'slug', 'created_at', 'updated_at']) ?? emptyCommand
 
 	return (
 		<Form
@@ -66,13 +81,15 @@ const CommandForm = ({ method = 'post', command, ...props }: ICommandFormProps) 
 				</Grid.Col>
 
 				<Grid.Col>
-					<DynamicInputs
+					<DynamicInputs<Schema.CommandValue>
 						label="Allowed Values"
 						model="command_values"
 						emptyData={ {
 							label: '',
 							value: '',
-						} }>
+						} }
+						onRemoveInput={ handleRemoveCommandValue }
+					>
 						<Grid>
 							<Grid.Col span={ 6 }>
 								<TextInput label="Value" name="value" />
@@ -88,7 +105,7 @@ const CommandForm = ({ method = 'post', command, ...props }: ICommandFormProps) 
 					<RichText name="description" label="Description" />
 				</Grid.Col>
 
-				<Submit>{ formCommand?.id ? 'Update' : 'Create' } Command</Submit>
+				<Submit>{ formCommand.hasOwnProperty('id') ? 'Update' : 'Create' } Command</Submit>
 			</Grid>
 		</Form>
 	)
