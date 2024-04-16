@@ -1,9 +1,9 @@
 import React from 'react'
-import { Form, TextInput, Submit, RichText, DynamicInputs, FormConsumer, Select } from '@/Components/Form'
+import { Form, TextInput, Submit, RichText, DynamicInputs, FormConsumer } from '@/Components/Form'
 import { type UseFormProps } from 'use-inertia-form'
 import { Grid } from '@/Components'
-import {  } from '@/Components/Button'
-import { CommandDropdown } from '@/Components/Dropdowns'
+import CommandInputs from './CommandInputs'
+import { transformProtocolFormData } from './protocolFormData'
 
 type TProtocolFormData = {
 	protocol: Schema.ProtocolsFormData
@@ -17,15 +17,16 @@ export interface IProtocolFormProps {
 }
 
 const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProps) => {
-
+	const transformed = transformProtocolFormData(protocol)
+	console.log({ protocol, transformed })
 	return (
 		<Form
 			model="protocol"
-			data={ { protocol } }
+			data={ { protocol: transformProtocolFormData(protocol) } }
 			method={ method }
 			{ ...props }
-		><FormConsumer>{ form => {
-				console.log({ data: form.data })
+		><FormConsumer>{ ({ data }) => {
+				console.log({ data })
 				return <></>
 			} }</FormConsumer>
 			<Grid>
@@ -38,26 +39,16 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 				</Grid.Col>
 
 				<Grid.Col>
-					<DynamicInputs
+					<DynamicInputs<Schema.Command>
 						label="Commands"
 						model="commands"
 						emptyData={ {
+							// @ts-ignore
 							id: '',
 							command_value_id: '',
 						} }
 					>
-						<Grid>
-
-							<Grid.Col span={ 6 }>
-								<CommandDropdown name="id" />
-							</Grid.Col>
-
-							<Grid.Col span={ 6 } >
-								<Select name="command_values" />
-							</Grid.Col>
-
-						</Grid>
-
+						<CommandInputs />
 					</DynamicInputs>
 				</Grid.Col>
 

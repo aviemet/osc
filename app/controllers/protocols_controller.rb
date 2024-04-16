@@ -30,7 +30,7 @@ class ProtocolsController < ApplicationController
   def new
     authorize Protocol.new
     render inertia: "Protocols/New", props: {
-      protocol: -> { protocol.render(view: :edit) },
+      protocol: -> { protocol.render(view: :form_data) },
     }
   end
 
@@ -77,6 +77,6 @@ class ProtocolsController < ApplicationController
   end
 
   def protocol_params
-    params.require(:protocol).permit(:title, :description)
+    params.require(:protocol).permit(:title, :description, command_atributes: [:id, :command_value_id, :value, :delay])
   end
 end

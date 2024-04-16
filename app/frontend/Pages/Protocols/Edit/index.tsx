@@ -8,7 +8,7 @@ interface IEditProtocolProps {
 }
 
 const EditProtocol = ({ protocol }: IEditProtocolProps) => {
-	const title = 'Edit Protocol'
+	const title = `Edit Protocol ${protocol?.title ? `: ${protocol.title}` : ''}`
 
 	return (
 		<Page title={ title }>

@@ -22,6 +22,4 @@ class ProtocolSerializer < ApplicationSerializer
     :title,
     :description,
   )
-
-  has_many :commands, serializer: Commands::ProtocolSerializer
 end

@@ -6,4 +6,6 @@ class Protocols::EditSerializer < ProtocolSerializer
     :updated_at,
     :created_at,
   )
+
+  has_many :commands, serializer: Commands::FormDataSerializer
 end
