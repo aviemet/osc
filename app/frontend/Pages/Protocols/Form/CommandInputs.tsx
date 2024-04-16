@@ -16,8 +16,7 @@ const CommandInputs = () => {
 			<Grid.Col span={ 6 } >
 				<Select
 					label="Command Value"
-					model="protocol"
-					name="protocol.protocol_command.command_value_id"
+					name="protocol_command.command_value_id"
 					options={ record.command_values.map(value => ({
 						value: String(value.id),
 						label: `${value.value}${value.label ? ` - ${value.label}` : ''}`,

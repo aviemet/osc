@@ -77,6 +77,6 @@ class ProtocolsController < ApplicationController
   end
 
   def protocol_params
-    params.require(:protocol).permit(:title, :description, command_atributes: [:id, :command_value_id, :value, :delay])
+    params.require(:protocol).permit(:title, :description, commands: [:id, :command_value_id, :value, :delay])
   end
 end

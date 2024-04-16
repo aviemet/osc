@@ -6,10 +6,10 @@ export const transformProtocolFormData = (protocol: Schema.ProtocolsFormData) =>
 		'slug',
 		'created_at',
 		'updated_at',
-		'commands[].id',
 		'commands[].slug',
 		'commands[].address',
 		'commands[].description',
 		'commands[].server_id',
+		// 'commands',
 	])
 }

@@ -55,7 +55,7 @@ const DynamicInputs = <T extends Record<string, any>>({
 	}
 
 	return (
-		<>
+		<Box className={ cx('dynamic_inputs', model, paths) }>
 			<Label style={ { flex: 1 } }>{ label }</Label>
 
 			{ paths.map((path, i) => (
@@ -84,7 +84,7 @@ const DynamicInputs = <T extends Record<string, any>>({
 					<PlusCircleIcon />
 				</Button>
 			</Box>
-		</>
+		</Box>
 	)
 }
 

@@ -17,13 +17,12 @@ export interface IProtocolFormProps {
 }
 
 const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProps) => {
-	const transformed = transformProtocolFormData(protocol)
-	console.log({ protocol, transformed })
 	return (
 		<Form
 			model="protocol"
 			data={ { protocol: transformProtocolFormData(protocol) } }
 			method={ method }
+			railsAttributes={ false }
 			{ ...props }
 		><FormConsumer>{ ({ data }) => {
 				console.log({ data })
@@ -31,11 +30,11 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 			} }</FormConsumer>
 			<Grid>
 				<Grid.Col>
-					<TextInput name="title" label="Title" />
+					<TextInput name="protocol.title" label="Title" />
 				</Grid.Col>
 
 				<Grid.Col>
-					<RichText name="description" label="Description" />
+					<RichText name="protocol.description" label="Description" />
 				</Grid.Col>
 
 				<Grid.Col>
