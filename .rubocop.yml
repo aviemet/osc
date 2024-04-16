@@ -13,6 +13,9 @@ AllCops:
     - ".git/**/*"
   NewCops: enable
 
+Rails/InverseOf:
+  Enabled: true
+
 Style/Documentation:
   Enabled: false
 Style/ExponentialNotation:

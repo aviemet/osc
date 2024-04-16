@@ -1,5 +1,5 @@
 import React from 'react'
-import { RichTextEditor, Link, type RichTextEditorProps as MantineRichTextEditorProps } from '@mantine/tiptap'
+import { type HTMLElement } from '@tiptap/core'
 import { useEditor } from '@tiptap/react'
 import Highlight from '@tiptap/extension-highlight'
 import StarterKit from '@tiptap/starter-kit'
@@ -7,6 +7,11 @@ import Underline from '@tiptap/extension-underline'
 import TextAlign from '@tiptap/extension-text-align'
 import Superscript from '@tiptap/extension-superscript'
 import SubScript from '@tiptap/extension-subscript'
+import {
+	RichTextEditor,
+	Link,
+	type RichTextEditorProps as MantineRichTextEditorProps,
+} from '@mantine/tiptap'
 import { DEFAULT_LABELS } from './tiptapLabels'
 
 export interface RichTextEditorProps extends Omit<MantineRichTextEditorProps, 'children'|'editor'|'onChange'> {
@@ -26,8 +31,10 @@ const RichTextEditorComponent = ({ children, onChange }: RichTextEditorProps) =>
 			TextAlign.configure({ types: ['heading', 'paragraph'] }),
 		],
 		content: children,
-		onUpdate: ({ editor }) => {
-			if(onChange) onChange(editor.getHTML())
+		onUpdate: ({ editor }: HTMLElement) => {
+			if(!editor) return
+
+			onChange?.(editor.getHTML())
 		},
 	})
 

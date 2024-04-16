@@ -20,7 +20,7 @@ const config = defineConfig({
 		FullReload(['config/routes.rb', 'app/views/**/*'], { delay: 200 }),
 		react({
 			babel: {
-				plugins: ['babel-plugin-macros', 'babel-plugin-styled-components'],
+				plugins: ['babel-plugin-macros'],
 			},
 		}),
 		wyw({
