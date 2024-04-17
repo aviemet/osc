@@ -10,7 +10,7 @@ class ProtocolsController < ApplicationController
     paginated_protocols = protocols.page(params[:page] || 1)
 
     render inertia: "Protocols/Index", props: {
-      protocols: paginated_protocols.render,
+      protocols: paginated_protocols.render(view: :index),
       pagination: -> { {
         count: protocols.count,
         **pagination_data(paginated_protocols)
@@ -73,10 +73,10 @@ class ProtocolsController < ApplicationController
   private
 
   def sortable_fields
-    %w(title).freeze
+    %w(title count).freeze
   end
 
   def protocol_params
-    params.require(:protocol).permit(:title, :description, commands: [:id, :command_value_id, :value, :delay])
+    params.require(:protocol).permit(:title, :description, protocols_commands: [:command_id, :command_value_id, :value, :delay])
   end
 end

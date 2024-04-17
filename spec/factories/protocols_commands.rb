@@ -4,6 +4,7 @@
 #
 #  id               :bigint           not null, primary key
 #  delay            :integer
+#  order            :integer          not null
 #  value            :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null

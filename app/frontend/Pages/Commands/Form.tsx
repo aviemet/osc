@@ -105,7 +105,7 @@ const CommandForm = ({ method = 'post', command, ...props }: ICommandFormProps) 
 					<RichText name="description" label="Description" />
 				</Grid.Col>
 
-				<Submit>{ formCommand.hasOwnProperty('id') ? 'Update' : 'Create' } Command</Submit>
+				<Submit>{ command?.id ? 'Update' : 'Create' } Command</Submit>
 			</Grid>
 		</Form>
 	)

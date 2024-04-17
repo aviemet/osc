@@ -4,6 +4,7 @@ import { type UseFormProps } from 'use-inertia-form'
 import { Grid } from '@/Components'
 import CommandInputs from './CommandInputs'
 import { transformProtocolFormData } from './protocolFormData'
+import { CommandDropdown } from '@/Components/Dropdowns'
 
 type TProtocolFormData = {
 	protocol: Schema.ProtocolsFormData
@@ -38,16 +39,27 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 				</Grid.Col>
 
 				<Grid.Col>
+					{ /* <CommandInputs commands={ protocol.commands } /> */ }
+
 					<DynamicInputs<Schema.Command>
 						label="Commands"
-						model="commands"
+						model="protocols_commands"
 						emptyData={ {
 							// @ts-ignore
-							id: '',
+							command_id: '',
 							command_value_id: '',
+							value: '',
+							delay: '',
 						} }
 					>
-						<CommandInputs />
+						<Grid>
+							<Grid.Col span={ 6 }>
+								<CommandDropdown name="command_id" />
+							</Grid.Col>
+							<Grid.Col span={ 6 }>
+								<TextInput name="command_value_id" />
+							</Grid.Col>
+						</Grid>
 					</DynamicInputs>
 				</Grid.Col>
 

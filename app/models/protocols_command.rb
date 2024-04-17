@@ -4,6 +4,7 @@
 #
 #  id               :bigint           not null, primary key
 #  delay            :integer
+#  order            :integer          not null
 #  value            :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -38,6 +39,8 @@ class ProtocolsCommand < ApplicationRecord
     },
   )
 
+  before_validation :set_command_order
+
   resourcify
 
   belongs_to :protocol
@@ -45,4 +48,13 @@ class ProtocolsCommand < ApplicationRecord
   belongs_to :command_value
 
   scope :includes_associated, -> { includes([:protocol, :command]) }
+
+  private
+
+  def set_command_order
+    return unless self.order.nil?
+
+    last_protocol_command = protocol&.protocols_commands&.order(:order)&.last
+    self.order = (last_protocol_command&.order || 0) + 1
+  end
 end

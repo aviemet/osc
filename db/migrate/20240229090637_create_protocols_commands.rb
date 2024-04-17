@@ -6,6 +6,7 @@ class CreateProtocolsCommands < ActiveRecord::Migration[7.1]
       t.references :command_value, null: true, foreign_key: true
       t.string :value
       t.integer :delay
+      t.integer :order, null: false
 
       t.timestamps
     end

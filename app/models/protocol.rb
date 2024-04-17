@@ -34,5 +34,5 @@ class Protocol < ApplicationRecord
   has_many :protocols_commands, dependent: :destroy
   has_many :commands, through: :protocols_commands
 
-  scope :includes_associated, -> { includes([]) }
+  scope :includes_associated, -> { includes([:commands, :protocols_commands]) }
 end

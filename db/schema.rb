@@ -86,6 +86,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_175622) do
     t.bigint "command_value_id"
     t.string "value"
     t.integer "delay"
+    t.integer "order", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["command_id"], name: "index_protocols_commands_on_command_id"
