@@ -1,31 +1,35 @@
 import React from 'react'
-import { Form, TextInput, Submit, RichText, DynamicInputs, FormConsumer } from '@/Components/Form'
+import { Form, TextInput, Submit, RichText, DynamicInputs, FormConsumer, Textarea } from '@/Components/Form'
 import { type UseFormProps } from 'use-inertia-form'
 import { Grid } from '@/Components'
 import CommandInputs from './CommandInputs'
 import { transformProtocolFormData } from './protocolFormData'
 import { CommandDropdown } from '@/Components/Dropdowns'
+import { commandsQuery } from '@/queries'
 
-type TProtocolFormData = {
+type ProtocolFormData = {
 	protocol: Schema.ProtocolsFormData
 }
 
 export interface IProtocolFormProps {
 	to: string
 	method?: HTTPVerb
-	onSubmit?: (object: UseFormProps<TProtocolFormData>) => boolean|void
+	onSubmit?: (object: UseFormProps<ProtocolFormData>) => boolean|void
 	protocol: Schema.ProtocolsFormData
 }
 
 const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProps) => {
+	const { data: commands } = commandsQuery({ initialData: protocol.commands })
+	console.log({ commands })
 	return (
 		<Form
 			model="protocol"
 			data={ { protocol: transformProtocolFormData(protocol) } }
 			method={ method }
 			{ ...props }
-		><FormConsumer>{ ({ data }) => {
-				// console.log({ data })
+		>
+			<FormConsumer>{ ({ data }) => {
+				console.log({ data })
 				return <></>
 			} }</FormConsumer>
 			<Grid>
@@ -34,7 +38,7 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 				</Grid.Col>
 
 				<Grid.Col>
-					<RichText name="protocol.description" label="Description" />
+					<Textarea name="protocol.description" label="Description" />
 				</Grid.Col>
 
 				<Grid.Col>
@@ -49,7 +53,7 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 							delay: '',
 						} }
 					>
-						<CommandInputs commands={ protocol.commands } />
+						<CommandInputs commands={ commands || [] } />
 					</DynamicInputs>
 				</Grid.Col>
 

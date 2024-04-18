@@ -4,6 +4,8 @@ class Commands::OptionsSerializer < ApplicationSerializer
   identifier :slug
 
   attributes(
+    :id,
+    :slug,
     :title,
     :description,
     :address,

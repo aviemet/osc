@@ -12,7 +12,6 @@ const CommandValueDropdown = forwardRef<HTMLInputElement, CommandValueDropdownPr
 	ref,
 ) => {
 	const { data } = commandQuery(commandSlug)
-	// console.log({ commandSlug, data })
 
 	return (
 		<Select

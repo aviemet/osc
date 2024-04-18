@@ -8,5 +8,5 @@ class Protocols::EditSerializer < ProtocolSerializer
   )
 
   has_many :commands, serializer: Commands::FormDataSerializer
-  has_many :protocols_commands, serializer: ProtcolsCommandSerializer
+  has_many :protocols_commands, serializer: ProtocolsCommandSerializer
 end
