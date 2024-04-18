@@ -45,7 +45,7 @@ class ProtocolsCommand < ApplicationRecord
 
   belongs_to :protocol
   belongs_to :command
-  belongs_to :command_value
+  belongs_to :command_value, optional: true
 
   scope :includes_associated, -> { includes([:protocol, :command]) }
 

@@ -3,11 +3,7 @@ import { Select } from '@/Components/Form'
 import { type AsyncDropdown } from '.'
 import { commandsQuery } from '@/queries'
 
-interface CommandDropdownProps extends Omit<AsyncDropdown<Schema.CommandsOptions>, 'onSelect'> {
-	onSelect?: (data: Schema.CommandsOptions) => void
-}
-
-const CommandDropdown = forwardRef<HTMLInputElement, CommandDropdownProps>((
+const CommandDropdown = forwardRef<HTMLInputElement, AsyncDropdown<Schema.CommandsOptions>>((
 	{ label = 'Command', name = 'command_id', initialData = [], value, onSelect, ...props },
 	ref,
 ) => {

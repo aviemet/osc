@@ -35,4 +35,6 @@ class Protocol < ApplicationRecord
   has_many :commands, through: :protocols_commands
 
   scope :includes_associated, -> { includes([:commands, :protocols_commands]) }
+
+  accepts_nested_attributes_for :protocols_commands, allow_destroy: true
 end

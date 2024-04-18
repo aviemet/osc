@@ -1,13 +1,14 @@
 import { type FormSelectProps } from '../Form/Inputs/Select'
 import { type FormMultiSelectProps } from '../Form/Inputs/MultiSelect'
 
-export interface AsyncDropdown<T> extends Omit<FormSelectProps, 'defaultValue'|'onBlur'|'name'> {
+export interface AsyncDropdown<T> extends Omit<FormSelectProps, 'defaultValue'|'onBlur'|'name'|'onSelect'> {
 	name?: string
 	label?: string
 	fetchOnOpen?: string
 	required?: boolean
 	errorKey?: string
 	initialData?: T[]
+	onSelect?: (data: T) => void
 }
 
 export interface AsyncMultiSelect<T> extends Omit<FormMultiSelectProps, 'onBlur'|'name'> {

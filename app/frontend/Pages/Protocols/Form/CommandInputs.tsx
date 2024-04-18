@@ -1,67 +1,51 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Box, Grid, Label } from '@/Components'
-import { Select, useDynamicInputContext } from '@/Components/Form'
+import { Select, TextInput, useDynamicInputContext } from '@/Components/Form'
 import { CommandDropdown } from '@/Components/Dropdowns'
 import { useDynamicInputs } from 'use-inertia-form'
 import cx from 'clsx'
+import CommandValueDropdown from '@/Components/Dropdowns/CommandValueDropdown'
+import { useQueryClient } from '@tanstack/react-query'
+import { commandsQuery } from '@/queries'
 
 interface CommandInputsProps {
 	commands: Schema.Command[]
 }
 
 const CommandInputs = ({ commands }: CommandInputsProps) => {
-	const model = 'protocol_command'
-	const { addInput, removeInput, paths } = useDynamicInputs({ model,  emptyData: {
-		command_id: '',
-		command_value_id: '',
-		value: '',
-		delay: '',
-	} })
+	const { data } = commandsQuery({ initialData: commands })
+	const { record, path, index } = useDynamicInputContext()
+
+	const activeCommand = commands.find(command => command.id === record.command_id)
+
+	const queryClient = useQueryClient()
+
+	const handleChange = (option, options, form) => {
+		queryClient.invalidateQueries(['commands'])
+	}
+
+	useEffect(() => {
+		console.log({ data })
+	}, [data])
 
 	return (
-		<Box className={ cx('dynamic_inputs', model, paths) }>
-			<Label style={ { flex: 1 } }>Commands</Label>
-
-			{ commands.map((command, i) => (
-
-				<Grid key={ command.id }>
-					<Grid.Col span={ 6 }>
-						<CommandDropdown name="id" />
-					</Grid.Col>
-
-					<Grid.Col span={ 6 } >
-						<Select
-							label="Command Value"
-							name="protocol_command.command_value_id"
-							options={ command.command_values.map(value => ({
-								value: String(value.id),
-								label: `${value.value}${value.label ? ` - ${value.label}` : ''}`,
-							})) }
-						/>
-					</Grid.Col>
-				</Grid>
-
-			)) }
-
-			{ /* { paths.map((path, i) => (
-				<Grid key={ i }>
-					<Grid.Col span={ 6 }>
-						<CommandDropdown name="id" />
-					</Grid.Col>
-
-					<Grid.Col span={ 6 } >
-						<Select
-							label="Command Value"
-							name="protocol_command.command_value_id"
-							options={ record.command_values.map(value => ({
-								value: String(value.id),
-								label: `${value.value}${value.label ? ` - ${value.label}` : ''}`,
-							})) }
-						/>
-					</Grid.Col>
-				</Grid>
-			) ) } */ }
-		</Box>
+		<Grid>
+			<Grid.Col span={ 6 }>
+				<CommandDropdown
+					name="command_id"
+					onChange={ handleChange }
+				/>
+			</Grid.Col>
+			<Grid.Col span={ 6 }>
+				{ activeCommand ?
+					<CommandValueDropdown
+						commandSlug={ activeCommand.slug! }
+					/>
+					:
+					<TextInput label="Command Value" name="command_value_id" />
+				}
+			</Grid.Col>
+		</Grid>
 	)
 }
 

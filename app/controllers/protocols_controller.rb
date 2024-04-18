@@ -37,6 +37,7 @@ class ProtocolsController < ApplicationController
   # @route GET /protocols/:id/edit (edit_protocol)
   def edit
     authorize protocol
+
     render inertia: "Protocols/Edit", props: {
       protocol: -> { protocol.render(view: :edit) },
     }
@@ -56,6 +57,14 @@ class ProtocolsController < ApplicationController
   # @route PUT /protocols/:id (protocol)
   def update
     authorize protocol
+
+    # command_associations = protocol_params[:protocols_commands]
+    # models = command_associations.each do |assoc|
+    #   pc = ProtocolsCommand.new(assoc)
+    #   pc.protocol = protocol
+    # end
+    # ap({ models: })
+
     if protocol.update(protocol_params)
       redirect_to protocol, notice: "Protocol was successfully updated."
     else
@@ -77,6 +86,6 @@ class ProtocolsController < ApplicationController
   end
 
   def protocol_params
-    params.require(:protocol).permit(:title, :description, protocols_commands: [:command_id, :command_value_id, :value, :delay])
+    params.require(:protocol).permit(:title, :description, protocols_commands_attributes: [:id, :command_id, :command_value_id, :value, :delay])
   end
 end

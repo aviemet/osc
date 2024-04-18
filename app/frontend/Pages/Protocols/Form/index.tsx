@@ -23,10 +23,9 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 			model="protocol"
 			data={ { protocol: transformProtocolFormData(protocol) } }
 			method={ method }
-			railsAttributes={ false }
 			{ ...props }
 		><FormConsumer>{ ({ data }) => {
-				console.log({ data })
+				// console.log({ data })
 				return <></>
 			} }</FormConsumer>
 			<Grid>
@@ -39,8 +38,6 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 				</Grid.Col>
 
 				<Grid.Col>
-					{ /* <CommandInputs commands={ protocol.commands } /> */ }
-
 					<DynamicInputs<Schema.Command>
 						label="Commands"
 						model="protocols_commands"
@@ -52,14 +49,7 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 							delay: '',
 						} }
 					>
-						<Grid>
-							<Grid.Col span={ 6 }>
-								<CommandDropdown name="command_id" />
-							</Grid.Col>
-							<Grid.Col span={ 6 }>
-								<TextInput name="command_value_id" />
-							</Grid.Col>
-						</Grid>
+						<CommandInputs commands={ protocol.commands } />
 					</DynamicInputs>
 				</Grid.Col>
 

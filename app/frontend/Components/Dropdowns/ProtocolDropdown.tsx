@@ -3,11 +3,7 @@ import { Select } from '@/Components/Form'
 import { type AsyncDropdown } from '.'
 import { protocolsOptionsQuery } from '@/queries'
 
-interface ProtocolDropdownProps extends Omit<AsyncDropdown<Schema.ProtocolsOptions>, 'onSelect'> {
-	onSelect?: (data: Schema.ProtocolsOptions) => void
-}
-
-const ProtocolDropdown = forwardRef<HTMLInputElement, ProtocolDropdownProps>((
+const ProtocolDropdown = forwardRef<HTMLInputElement, AsyncDropdown<Schema.ProtocolsOptions>>((
 	{ label = 'Protocol', name = 'protocol_id', initialData = [], value, onSelect, ...props },
 	ref,
 ) => {

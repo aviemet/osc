@@ -3,11 +3,7 @@ import { Select } from '@/Components/Form'
 import { type AsyncDropdown } from '.'
 import { serversQuery } from '@/queries'
 
-interface ServerDropdownProps extends Omit<AsyncDropdown<Schema.ServersOptions>, 'onSelect'> {
-	onSelect?: (data: Schema.ServersOptions) => void
-}
-
-const ServerDropdown = forwardRef<HTMLInputElement, ServerDropdownProps>((
+const ServerDropdown = forwardRef<HTMLInputElement, AsyncDropdown<Schema.ServersOptions>>((
 	{ label = 'Server', name = 'server_id', initialData = [], value, onSelect, ...props },
 	ref,
 ) => {
