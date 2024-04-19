@@ -47,6 +47,8 @@ class ProtocolsCommand < ApplicationRecord
   belongs_to :command
   belongs_to :command_value, optional: true
 
+  default_scope { order(order: :asc) }
+
   scope :includes_associated, -> { includes([:protocol, :command]) }
 
   private

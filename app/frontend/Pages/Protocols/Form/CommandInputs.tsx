@@ -5,6 +5,8 @@ import { CommandDropdown } from '@/Components/Dropdowns'
 import CommandValueDropdown from '@/Components/Dropdowns/CommandValueDropdown'
 import { useQueryClient } from '@tanstack/react-query'
 import { useForm } from 'use-inertia-form'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
 interface CommandInputsProps {
 	commands: Schema.Command[]
@@ -24,8 +26,21 @@ const CommandInputs = ({ commands }: CommandInputsProps) => {
 		[record.command_id, commands],
 	)
 
+	const {
+		attributes,
+		listeners,
+		setNodeRef,
+		transform,
+		transition,
+	} = useSortable({ id: index })
+
+	const style = {
+		transform: CSS.Transform.toString(transform),
+		transition,
+	}
+
 	return (
-		<Grid>
+		<Grid ref={ setNodeRef } style={ style } { ...attributes } { ...listeners }>
 			<Grid.Col span={ 6 }>
 				<CommandDropdown
 					name="command_id"

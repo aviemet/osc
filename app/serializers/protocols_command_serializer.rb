@@ -35,6 +35,7 @@ class ProtocolsCommandSerializer < ApplicationSerializer
     :protocol_id,
     :command_id,
     :command_value_id,
+    :order,
   )
 
   # belongs_to :protocol, serializer: ProtocolSerializer

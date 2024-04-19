@@ -6,6 +6,7 @@ import CommandInputs from './CommandInputs'
 import { transformProtocolFormData } from './protocolFormData'
 import { CommandDropdown } from '@/Components/Dropdowns'
 import { commandsQuery } from '@/queries'
+import SortableContainer from '@/Components/Sortable'
 
 type ProtocolFormData = {
 	protocol: Schema.ProtocolsFormData
@@ -42,19 +43,21 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 				</Grid.Col>
 
 				<Grid.Col>
-					<DynamicInputs<Schema.Command>
-						label="Commands"
-						model="protocols_commands"
-						emptyData={ {
+					<SortableContainer items={ commands }>
+						<DynamicInputs<Schema.Command>
+							label="Commands"
+							model="protocols_commands"
+							emptyData={ {
 							// @ts-ignore
-							command_id: '',
-							command_value_id: '',
-							value: '',
-							delay: '',
-						} }
-					>
-						<CommandInputs commands={ commands || [] } />
-					</DynamicInputs>
+								command_id: '',
+								command_value_id: '',
+								value: '',
+								delay: '',
+							} }
+						>
+							<CommandInputs commands={ commands || [] } />
+						</DynamicInputs>
+					</SortableContainer>
 				</Grid.Col>
 
 				<Submit>{ protocol.id ? 'Update' : 'Create' } Protocol</Submit>
