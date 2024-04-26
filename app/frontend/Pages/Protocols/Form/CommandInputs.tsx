@@ -7,6 +7,8 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useForm } from 'use-inertia-form'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
+import { SortableList } from '@/Components/Sortable'
+import { useSortableFormContext } from './SortableFormSection'
 
 interface CommandInputsProps {
 	commands: Schema.Command[]
@@ -15,6 +17,7 @@ interface CommandInputsProps {
 const CommandInputs = ({ commands }: CommandInputsProps) => {
 	const { record, path, index } = useDynamicInputContext<Schema.ProtocolsCommand>()
 	const { setData } = useForm()
+	// const sortable = useSortableFormContext()
 
 	const handleChange = () => {
 		setData(`protocol.protocols_commands[${index}].command_value_id`, '')

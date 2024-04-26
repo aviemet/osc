@@ -1,12 +1,13 @@
 import React from 'react'
-import { Form, TextInput, Submit, RichText, DynamicInputs, FormConsumer, Textarea } from '@/Components/Form'
+import { Form, TextInput, Submit, RichText, DynamicInputs, FormConsumer, Textarea, Select } from '@/Components/Form'
 import { type UseFormProps } from 'use-inertia-form'
 import { Grid } from '@/Components'
 import CommandInputs from './CommandInputs'
 import { transformProtocolFormData } from './protocolFormData'
 import { CommandDropdown } from '@/Components/Dropdowns'
 import { commandsQuery } from '@/queries'
-import SortableContainer from '@/Components/Sortable'
+import { SortableList } from '@/Components/Sortable'
+import SortableFormSection from './SortableFormSection'
 
 type ProtocolFormData = {
 	protocol: Schema.ProtocolsFormData
@@ -21,7 +22,7 @@ export interface IProtocolFormProps {
 
 const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProps) => {
 	const { data: commands } = commandsQuery({ initialData: protocol.commands })
-	console.log({ commands })
+
 	return (
 		<Form
 			model="protocol"
@@ -33,17 +34,19 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 				console.log({ data })
 				return <></>
 			} }</FormConsumer>
+
+
 			<Grid>
 				<Grid.Col>
-					<TextInput name="protocol.title" label="Title" />
+					<TextInput name="title" label="Title" />
 				</Grid.Col>
 
 				<Grid.Col>
-					<Textarea name="protocol.description" label="Description" />
+					<Textarea name="description" label="Description" />
 				</Grid.Col>
 
 				<Grid.Col>
-					<SortableContainer items={ commands }>
+					<SortableFormSection model="protocols_commands">
 						<DynamicInputs<Schema.Command>
 							label="Commands"
 							model="protocols_commands"
@@ -57,7 +60,7 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 						>
 							<CommandInputs commands={ commands || [] } />
 						</DynamicInputs>
-					</SortableContainer>
+					</SortableFormSection>
 				</Grid.Col>
 
 				<Submit>{ protocol.id ? 'Update' : 'Create' } Protocol</Submit>

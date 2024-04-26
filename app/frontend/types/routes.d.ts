@@ -348,6 +348,16 @@ export const destroyUserSession: ((
 
 /**
  * Generates rails route to
+ * /dev/test(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const devTest: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /commands/:slug/edit(.:format)
  * @param {any} slug
  * @param {object | undefined} options

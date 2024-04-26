@@ -12,7 +12,6 @@ function append(str: string, value: string) {
 
 export interface SelectProps extends Omit<MantineSelectProps, 'data'> {
 	options?: ComboboxData
-	onOpen?: () => void
 	fetchOnOpen?: string
 }
 
