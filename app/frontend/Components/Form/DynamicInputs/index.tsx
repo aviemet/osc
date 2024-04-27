@@ -2,29 +2,12 @@ import React from 'react'
 import { Box, Button, Flex, Label, Paper } from '@/Components'
 import { PlusCircleIcon, MinusCircleIcon } from '@/Components/Icons'
 import { NestedFields, NestedObject, useDynamicInputs, useForm } from 'use-inertia-form'
+import { DynamicInputContextProvider } from './dynamicInputContext'
 import cx from 'clsx'
 
-import * as classes from './Form.css'
+import * as classes from '../Form.css'
 
-export interface DynamicInputProps<T> {
-	record: T
-	path: string
-	index: number
-}
-
-const DynamicInputContext = React.createContext<DynamicInputProps<any> | null>(null)
-
-export const useDynamicInputContext = <T extends {}>(): DynamicInputProps<T> => {
-	const context = React.useContext(DynamicInputContext)
-
-	if(context === null) {
-		throw new Error('useContext must be inside a Provider with a value')
-	}
-
-	return context as DynamicInputProps<T>
-}
-
-interface DynamicInputsProps<T = NestedObject> {
+export interface DynamicInputsProps<T = NestedObject> {
 	children: React.ReactNode | React.ReactElement[]
 	model?: string
 	label?: string | React.ReactNode
@@ -59,9 +42,11 @@ const DynamicInputs = <T extends Record<string, any>>({
 			<Label style={ { flex: 1 } }>{ label }</Label>
 
 			{ paths.map((path, i) => (
-				<DynamicInputContext.Provider key={ i }  value={ {
+				<DynamicInputContextProvider key={ i } value={ {
 					record: getData(`${formModel}.${path}`),
 					path,
+					addInput,
+					removeInput,
 					index: i,
 				} }>
 					<NestedFields model={ path }>
@@ -76,7 +61,7 @@ const DynamicInputs = <T extends Record<string, any>>({
 							</Flex>
 						</Paper>
 					</NestedFields>
-				</DynamicInputContext.Provider>
+				</DynamicInputContextProvider>
 			)) }
 
 			<Box style={ { textAlign: 'right' } }>

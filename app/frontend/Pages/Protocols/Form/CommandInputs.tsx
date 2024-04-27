@@ -1,14 +1,12 @@
 import React, { useMemo } from 'react'
 import { Grid } from '@/Components'
-import { TextInput, useDynamicInputContext } from '@/Components/Form'
-import { CommandDropdown } from '@/Components/Dropdowns'
-import CommandValueDropdown from '@/Components/Dropdowns/CommandValueDropdown'
-import { useQueryClient } from '@tanstack/react-query'
+import { NumberInput, TextInput, useDynamicInputContext } from '@/Components/Form'
+import { CommandDropdown, CommandValueDropdown } from '@/Components/Dropdowns'
 import { useForm } from 'use-inertia-form'
-import { useSortable } from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
-import { SortableList } from '@/Components/Sortable'
-import { useSortableFormContext } from './SortableFormSection'
+// import { useSortable } from '@dnd-kit/sortable'
+// import { CSS } from '@dnd-kit/utilities'
+// import { SortableList } from '@/Components/Sortable'
+// import { useSortableFormContext } from './SortableFormSection'
 
 interface CommandInputsProps {
 	commands: Schema.Command[]
@@ -25,32 +23,22 @@ const CommandInputs = ({ commands }: CommandInputsProps) => {
 	}
 
 	const activeCommand = useMemo(
-		() => commands.find(command =>  Number(command.id) === Number(record.command_id)),
+		() => commands.find(command => Number(command.id) === Number(record.command_id)),
 		[record.command_id, commands],
 	)
 
-	const {
-		attributes,
-		listeners,
-		setNodeRef,
-		transform,
-		transition,
-	} = useSortable({ id: index })
-
-	const style = {
-		transform: CSS.Transform.toString(transform),
-		transition,
-	}
-
 	return (
-		<Grid ref={ setNodeRef } style={ style } { ...attributes } { ...listeners }>
+		<Grid>
+			<Grid.Col span={ 1 }>
+				{ record.order }
+			</Grid.Col>
 			<Grid.Col span={ 6 }>
 				<CommandDropdown
 					name="command_id"
 					onChange={ handleChange }
 				/>
 			</Grid.Col>
-			<Grid.Col span={ { sm: 6 } }>
+			<Grid.Col span={ 5 }>
 				{ activeCommand ?
 					<CommandValueDropdown
 						name="command_value_id"
@@ -60,6 +48,10 @@ const CommandInputs = ({ commands }: CommandInputsProps) => {
 					<TextInput label="Command Value" name="command_value_id" />
 				}
 			</Grid.Col>
+			{ /* <Grid.Col span={ 6 }>{ record.order }</Grid.Col>
+			<Grid.Col span={ 6 }>
+				<NumberInput label="Delay" name="delay" />
+			</Grid.Col> */ }
 		</Grid>
 	)
 }

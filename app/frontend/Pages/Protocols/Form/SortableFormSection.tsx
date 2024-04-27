@@ -13,6 +13,7 @@ import {
 	SortableContext,
 	arrayMove,
 	sortableKeyboardCoordinates,
+	verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
 
 // import * as classes from './SortableList.css'
@@ -27,7 +28,7 @@ interface BaseItem {
 	id: UniqueIdentifier
 }
 
-interface SortableFormSectionProps<T extends BaseItem> {
+interface SortableFormSectionProps {
 	children: any
 	model: string
 	sortField?: string
@@ -37,7 +38,7 @@ const SortableFormSection = <T extends BaseItem>({
 	children,
 	model,
 	sortField = 'order',
-}: SortableFormSectionProps<T>) => {
+}: SortableFormSectionProps) => {
 	const form = useForm()
 	const [active, setActive] = useState<Active | null>(null)
 
@@ -81,7 +82,7 @@ const SortableFormSection = <T extends BaseItem>({
 			onDragEnd={ handleDragEnd }
 			onDragCancel={ handleDragCancel }
 		>
-			<SortableContext items={ items }>
+			<SortableContext items={ items } strategy={ verticalListSortingStrategy }>
 
 				<SortableFormContextProvider value={ { active } }>
 					{ children }
