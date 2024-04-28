@@ -31,7 +31,11 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 			{ ...props }
 		>
 			<FormConsumer>{ ({ data }) => {
-				console.log({ data })
+				console.log({ data: data.protocol.protocols_commands.map(thing => ({
+					id: thing.id,
+					order: thing.order,
+					key: thing.key,
+				})) })
 				return <></>
 			} }</FormConsumer>
 
@@ -46,7 +50,7 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 				</Grid.Col>
 
 				<Grid.Col>
-					<SortableDynamicInputs<Schema.Command>
+					<SortableDynamicInputs<Schema.ProtocolsCommandsFormData>
 						label="Commands"
 						model="protocols_commands"
 						emptyData={ {
@@ -55,7 +59,8 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 							command_value_id: '',
 							value: '',
 							delay: '',
-							order: 0,
+							order: '',
+							key: '',
 						} }
 					>
 						<CommandInputs commands={ commands || [] } />

@@ -45,7 +45,6 @@ const FormSwitchComponent = forwardRef<HTMLInputElement, FormSwitchProps>((
 					type="checkbox"
 					required={ required }
 					errors={ !!error }
-					grid={ false }
 				>
 					{ children }
 				</Field>

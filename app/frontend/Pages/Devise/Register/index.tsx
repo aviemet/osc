@@ -50,7 +50,6 @@ const Register = () => {
 			to={ Routes.userRegistration() }
 			onChange={ handleFormChange }
 			onSubmit={ handleSubmit }
-			grid={ false }
 		>
 
 			<Box>

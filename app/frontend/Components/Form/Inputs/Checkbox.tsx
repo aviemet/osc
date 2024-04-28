@@ -43,7 +43,6 @@ const FormCheckboxComponent = forwardRef<HTMLInputElement, FormCheckboxProps>((
 					type="checkbox"
 					required={ required }
 					errors={ !!error }
-					grid={ false }
 				>
 					{ children }
 				</Field>

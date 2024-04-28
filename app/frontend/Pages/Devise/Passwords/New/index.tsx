@@ -13,7 +13,7 @@ const PasswordsNew = () => {
 	}
 
 	return (
-		<Form model="user" data={ defaultData } to={ Routes.newUserPassword() } grid={ false }>
+		<Form model="user" data={ defaultData } to={ Routes.newUserPassword() }>
 			<div>
 				<Heading>Reset Password</Heading>
 			</div>

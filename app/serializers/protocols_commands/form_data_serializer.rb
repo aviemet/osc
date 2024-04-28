@@ -1,3 +1,5 @@
 class ProtocolsCommands::FormDataSerializer < ProtocolsCommandSerializer
-  attributes
+  attribute :key do
+    protocols_command.id
+  end
 end

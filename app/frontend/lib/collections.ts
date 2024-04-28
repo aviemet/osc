@@ -50,3 +50,27 @@ const excludeGenericArrayAccess = <T extends any>(obj: T, arrKey: string, attrKe
 	}
 	return obj
 }
+
+
+/**
+ * Return the record from an array of records with the highest value at the given key
+ */
+export const findMax = (records: Record<string, unknown>[], key: string) => {
+	if(records.length === 0) return
+
+	let maxRecord = records[0]
+	let maxRecordValue = Number(get(maxRecord, key))
+
+	records.forEach(record => {
+		const recordValue = Number(get(record, key))
+
+		if(recordValue > maxRecordValue) {
+			maxRecord = record
+			maxRecordValue = recordValue
+		}
+	})
+
+	if(Number.isNaN(maxRecordValue)) return NaN
+
+	return maxRecord
+}

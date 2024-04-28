@@ -63,7 +63,7 @@
     "react-html-props": "^2.0.9",
     "react-icons": "^5.1.0",
     "react-use-url": "^1.0.5",
-    "use-inertia-form": "^3.4.0",
+    "use-inertia-form": "link:/media/avram/Dev/javascript/useInertiaForm",
     "xstate": "^5.12.0",
     "zustand": "^4.5.2"
   },

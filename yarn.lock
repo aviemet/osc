@@ -1184,7 +1184,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@inertiajs/react@npm:^1.0.14, @inertiajs/react@npm:^1.0.16":
+"@inertiajs/react@npm:^1.0.16":
   version: 1.0.16
   resolution: "@inertiajs/react@npm:1.0.16"
   dependencies:
@@ -7628,13 +7628,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.get@npm:^4.4.2":
-  version: 4.4.2
-  resolution: "lodash.get@npm:4.4.2"
-  checksum: e403047ddb03181c9d0e92df9556570e2b67e0f0a930fcbbbd779370972368f5568e914f913e93f3b08f6d492abc71e14d4e9b7a18916c31fa04bd2306efe545
-  languageName: node
-  linkType: hard
-
 "lodash.isequal@npm:^4.5.0":
   version: 4.5.0
   resolution: "lodash.isequal@npm:4.5.0"
@@ -7681,13 +7674,6 @@ __metadata:
   version: 4.6.2
   resolution: "lodash.mergewith@npm:4.6.2"
   checksum: a6db2a9339752411f21b956908c404ec1e088e783a65c8b29e30ae5b3b6384f82517662d6f425cc97c2070b546cc2c7daaa8d33f78db7b6e9be06cd834abdeb8
-  languageName: node
-  linkType: hard
-
-"lodash.set@npm:^4.3.2":
-  version: 4.3.2
-  resolution: "lodash.set@npm:4.3.2"
-  checksum: a9122f49eef9f2d0fc9061a33d87f8e5b8c6b23d46e8b9e9ce1529d3588d79741bd1145a3abdfa3b13082703e65af27ff18d8a07bfc22b9be32f3fc36f763f70
   languageName: node
   linkType: hard
 
@@ -8518,7 +8504,7 @@ __metadata:
     ts-jest: ^29.1.2
     ts-node: ^10.9.2
     typescript: ^5.4.5
-    use-inertia-form: ^3.4.0
+    use-inertia-form: "link:/media/avram/Dev/javascript/useInertiaForm"
     vite: ^5.2.10
     vite-plugin-dynamic-import: ^1.5.0
     vite-plugin-full-reload: ^1.1.0
@@ -9198,18 +9184,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^18.2.0":
-  version: 18.2.0
-  resolution: "react-dom@npm:18.2.0"
-  dependencies:
-    loose-envify: ^1.1.0
-    scheduler: ^0.23.0
-  peerDependencies:
-    react: ^18.2.0
-  checksum: 7d323310bea3a91be2965f9468d552f201b1c27891e45ddc2d6b8f717680c95a75ae0bc1e3f5cf41472446a2589a75aed4483aee8169287909fcd59ad149e8cc
-  languageName: node
-  linkType: hard
-
 "react-dom@npm:^18.3.1":
   version: 18.3.1
   resolution: "react-dom@npm:18.3.1"
@@ -9780,15 +9754,6 @@ __metadata:
   dependencies:
     xmlchars: ^2.2.0
   checksum: d3fa3e2aaf6c65ed52ee993aff1891fc47d5e47d515164b5449cbf5da2cbdc396137e55590472e64c5c436c14ae64a8a03c29b9e7389fc6f14035cf4e982ef3b
-  languageName: node
-  linkType: hard
-
-"scheduler@npm:^0.23.0":
-  version: 0.23.0
-  resolution: "scheduler@npm:0.23.0"
-  dependencies:
-    loose-envify: ^1.1.0
-  checksum: d79192eeaa12abef860c195ea45d37cbf2bbf5f66e3c4dcd16f54a7da53b17788a70d109ee3d3dde1a0fd50e6a8fc171f4300356c5aee4fc0171de526bf35f8a
   languageName: node
   linkType: hard
 
@@ -10889,21 +10854,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-inertia-form@npm:^3.4.0":
-  version: 3.4.0
-  resolution: "use-inertia-form@npm:3.4.0"
-  dependencies:
-    "@inertiajs/react": ^1.0.14
-    lodash.get: ^4.4.2
-    lodash.set: ^4.3.2
-    react-dom: ^18.2.0
-  peerDependencies:
-    "@inertiajs/react": ^1.0.0
-    lodash.isequal: ^4.5.0
-    react: ^16.9.0 || ^17.0.0 || ^18.0.0
-  checksum: 18a9a03c93910d462ada23741491097d924ca238ee90a9b30a70c5536ab24a4b33aca179f62ef3599524187bdf25fef954af42add2964f3909ca5ca5f6fb17d2
+"use-inertia-form@link:/media/avram/Dev/javascript/useInertiaForm::locator=osc%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "use-inertia-form@link:/media/avram/Dev/javascript/useInertiaForm::locator=osc%40workspace%3A."
   languageName: node
-  linkType: hard
+  linkType: soft
 
 "use-isomorphic-layout-effect@npm:^1.1.1, use-isomorphic-layout-effect@npm:^1.1.2":
   version: 1.1.2

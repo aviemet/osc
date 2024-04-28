@@ -13,7 +13,6 @@ const ConfirmationsNew = ({ user }: IConfirmationsNew) => {
 			model="user"
 			data={ { user } }
 			to={ Routes.userConfirmation() }
-			grid={ false }
 		>
 			<div>
 				<Heading order={ 3 }>Please check your email</Heading>
