@@ -27,6 +27,7 @@ const AppLayout = ({ children }: { children: any }) => {
 							<>
 								<Menu.Link href={ Routes.editScreens() }>Edit Screens</Menu.Link>
 								<Divider />
+								<Menu.Link href={ Routes.servers() }>Servers</Menu.Link>
 								<Menu.Link href={ Routes.protocols() }>Protocols</Menu.Link>
 								<Menu.Link href={ Routes.commands() }>Commands</Menu.Link>
 							</>

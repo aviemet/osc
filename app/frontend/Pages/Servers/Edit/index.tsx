@@ -14,10 +14,10 @@ const EditServer = ({ server }: IEditServerProps) => {
 		<Page title={ title }>
 			<Section>
 				<Heading>{ title }</Heading>
-				
+
 				<ServersForm
 					method='put'
-					to={ Routes.server() }
+					to={ Routes.server(server.slug) }
 					server={ server }
 				/>
 			</Section>

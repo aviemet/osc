@@ -20,19 +20,19 @@ const ServerTable = (props: ITableProps) => {
 				<Table.RowIterator render={ (server: Schema.ServersIndex) => (
 					<Table.Row key={ server.id }>
 						<Table.Cell>
-							<Link href={ Routes.server(server.id) }>{ server.title }</Link>
+							<Link href={ Routes.server(server.slug) }>{ server.title }</Link>
 						</Table.Cell>
 						<Table.Cell>
-							<Link href={ Routes.server(server.id) }>{ server.hostname }</Link>
+							<Link href={ Routes.server(server.slug) }>{ server.hostname }</Link>
 						</Table.Cell>
 						<Table.Cell>
-							<Link href={ Routes.server(server.id) }>{ server.port }</Link>
+							<Link href={ Routes.server(server.slug) }>{ server.port }</Link>
 						</Table.Cell>
 						<Table.Cell>
-							<Link href={ Routes.server(server.id) }>{ server.description }</Link>
+							<Link href={ Routes.server(server.slug) }>{ server.description }</Link>
 						</Table.Cell>
 						<Table.Cell>
-							<EditButton href={ Routes.editServer(server.id) } />
+							<EditButton href={ Routes.editServer(server.slug) } />
 						</Table.Cell>
 					</Table.Row>
 				) } />
