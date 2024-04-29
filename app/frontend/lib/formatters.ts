@@ -16,3 +16,17 @@ export const date = {
 	},
 	english: (date: string|Date) => dayjs(new Date(date)).format('MM/DD/YYYY'),
 }
+
+const durationKeys = ['year', 'month', 'day', 'hour', 'minute', 'second', 'millisecond'] as const
+export const humanizeDuration = (duration: plugin.Duration) => {
+	let humanDuration = ''
+
+	durationKeys.forEach((unit) => {
+		const value = duration.get(unit)
+		if(value > 0) {
+			humanDuration += `${humanDuration === '' ? '' : ', '}${value} ${unit}${value > 1 ? 's' : ''}`
+		}
+	})
+
+	return humanDuration
+}

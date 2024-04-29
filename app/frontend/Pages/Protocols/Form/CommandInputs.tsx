@@ -3,6 +3,8 @@ import { Grid } from '@/Components'
 import { NumberInput, TextInput, useDynamicInputContext } from '@/Components/Form'
 import { CommandDropdown, CommandValueDropdown } from '@/Components/Dropdowns'
 import { useForm } from 'use-inertia-form'
+import dayjs from 'dayjs'
+import { humanizeDuration } from '@/lib/formatters'
 
 interface CommandInputsProps {
 	commands: Schema.CommandsOptions[]
@@ -23,16 +25,13 @@ const CommandInputs = ({ commands }: CommandInputsProps) => {
 
 	return (
 		<Grid>
-			<Grid.Col span={ 1 }>
-				{ record.order }
-			</Grid.Col>
 			<Grid.Col span={ 6 }>
 				<CommandDropdown
 					name="command_id"
 					onChange={ handleChange }
 				/>
 			</Grid.Col>
-			<Grid.Col span={ 5 }>
+			<Grid.Col span={ 6 }>
 				{ activeCommand ?
 					<CommandValueDropdown
 						name="command_value_id"
@@ -43,7 +42,10 @@ const CommandInputs = ({ commands }: CommandInputsProps) => {
 				}
 			</Grid.Col>
 			<Grid.Col span={ 6 }>
-				<NumberInput label="Delay" name="delay" />
+				<NumberInput label="Delay (in milliseconds)" name="delay" />
+			</Grid.Col>
+			<Grid.Col span={ 6 }>
+				{  humanizeDuration(dayjs.duration(record?.delay || 0, 'millisecond')) }
 			</Grid.Col>
 		</Grid>
 	)

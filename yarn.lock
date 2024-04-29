@@ -6197,6 +6197,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"humanize-duration@npm:^3.32.0":
+  version: 3.32.0
+  resolution: "humanize-duration@npm:3.32.0"
+  checksum: fd12af03045278c24542d2222d46831f74d21a2132bba053d4847ff8c8f6799840db6ff8a14ce24cc920f69633970fbde4f83d7cbcfed26806ed21804e72a03a
+  languageName: node
+  linkType: hard
+
 "husky@npm:^9.0.11":
   version: 9.0.11
   resolution: "husky@npm:9.0.11"
@@ -8516,6 +8523,7 @@ __metadata:
     eslint-plugin-storybook: ^0.8.0
     git-cz: ^4.9.0
     google-libphonenumber: ^3.2.34
+    humanize-duration: ^3.32.0
     husky: ^9.0.11
     jest: ^29.7.0
     jsdom: ^24.0.0
