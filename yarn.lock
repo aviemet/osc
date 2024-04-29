@@ -1184,7 +1184,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@inertiajs/react@npm:^1.0.16":
+"@inertiajs/react@npm:^1.0.14, @inertiajs/react@npm:^1.0.16":
   version: 1.0.16
   resolution: "@inertiajs/react@npm:1.0.16"
   dependencies:
@@ -1968,6 +1968,22 @@ __metadata:
     lz-string: ^1.5.0
     pretty-format: ^27.0.2
   checksum: 682cc22cb3414ffbcf5d9bac777907167c5523f2dcbe5d96cd2e99386009acd879640c7fe5b1c66b199c2d2679f97057410557b3848b871f59c547b1dc8fc28a
+  languageName: node
+  linkType: hard
+
+"@testing-library/dom@npm:^10.1.0":
+  version: 10.1.0
+  resolution: "@testing-library/dom@npm:10.1.0"
+  dependencies:
+    "@babel/code-frame": ^7.10.4
+    "@babel/runtime": ^7.12.5
+    "@types/aria-query": ^5.0.1
+    aria-query: 5.3.0
+    chalk: ^4.1.0
+    dom-accessibility-api: ^0.5.9
+    lz-string: ^1.5.0
+    pretty-format: ^27.0.2
+  checksum: 275f53e57914e13361aa01a9fe155a3919ec911b61abddc44a7cd077e49d24672cdd43c76d840f7cdacea2f42c4aae92321066e6ddaff039f413745797d1b390
   languageName: node
   linkType: hard
 
@@ -4491,10 +4507,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:^1.11.10":
-  version: 1.11.10
-  resolution: "dayjs@npm:1.11.10"
-  checksum: a6b5a3813b8884f5cd557e2e6b7fa569f4c5d0c97aca9558e38534af4f2d60daafd3ff8c2000fed3435cfcec9e805bcebd99f90130c6d1c5ef524084ced588c4
+"dayjs@npm:^1.11.11":
+  version: 1.11.11
+  resolution: "dayjs@npm:1.11.11"
+  checksum: 84788275aad8a87fee4f1ce4be08861df29687aae6b7b43dd65350118a37dda56772a3902f802cb2dc651dfed447a5a8df62d88f0fb900dba8333e411190a5d5
   languageName: node
   linkType: hard
 
@@ -7628,6 +7644,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.get@npm:^4.4.2":
+  version: 4.4.2
+  resolution: "lodash.get@npm:4.4.2"
+  checksum: e403047ddb03181c9d0e92df9556570e2b67e0f0a930fcbbbd779370972368f5568e914f913e93f3b08f6d492abc71e14d4e9b7a18916c31fa04bd2306efe545
+  languageName: node
+  linkType: hard
+
 "lodash.isequal@npm:^4.5.0":
   version: 4.5.0
   resolution: "lodash.isequal@npm:4.5.0"
@@ -7674,6 +7697,13 @@ __metadata:
   version: 4.6.2
   resolution: "lodash.mergewith@npm:4.6.2"
   checksum: a6db2a9339752411f21b956908c404ec1e088e783a65c8b29e30ae5b3b6384f82517662d6f425cc97c2070b546cc2c7daaa8d33f78db7b6e9be06cd834abdeb8
+  languageName: node
+  linkType: hard
+
+"lodash.set@npm:^4.3.2":
+  version: 4.3.2
+  resolution: "lodash.set@npm:4.3.2"
+  checksum: a9122f49eef9f2d0fc9061a33d87f8e5b8c6b23d46e8b9e9ce1529d3588d79741bd1145a3abdfa3b13082703e65af27ff18d8a07bfc22b9be32f3fc36f763f70
   languageName: node
   linkType: hard
 
@@ -8441,7 +8471,7 @@ __metadata:
     "@tanstack/eslint-plugin-query": ^5.28.11
     "@tanstack/react-query": ^5.32.0
     "@tanstack/react-query-devtools": ^5.32.0
-    "@testing-library/dom": ^10.0.0
+    "@testing-library/dom": ^10.1.0
     "@testing-library/jest-dom": ^6.4.2
     "@testing-library/react": ^15.0.5
     "@testing-library/user-event": ^14.5.2
@@ -8475,7 +8505,7 @@ __metadata:
     babel-plugin-macros: ^3.1.0
     classnames: ^2.5.1
     commitizen: ^4.3.0
-    dayjs: ^1.11.10
+    dayjs: ^1.11.11
     dinero.js: ^1.9.1
     eslint: ^8.57.0
     eslint-import-resolver-typescript: ^3.6.1
@@ -8504,7 +8534,7 @@ __metadata:
     ts-jest: ^29.1.2
     ts-node: ^10.9.2
     typescript: ^5.4.5
-    use-inertia-form: "link:/media/avram/Dev/javascript/useInertiaForm"
+    use-inertia-form: ^3.5.0
     vite: ^5.2.10
     vite-plugin-dynamic-import: ^1.5.0
     vite-plugin-full-reload: ^1.1.0
@@ -9184,7 +9214,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^18.3.1":
+"react-dom@npm:^18.2.0, react-dom@npm:^18.3.1":
   version: 18.3.1
   resolution: "react-dom@npm:18.3.1"
   dependencies:
@@ -10854,11 +10884,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-inertia-form@link:/media/avram/Dev/javascript/useInertiaForm::locator=osc%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "use-inertia-form@link:/media/avram/Dev/javascript/useInertiaForm::locator=osc%40workspace%3A."
+"use-inertia-form@npm:^3.5.0":
+  version: 3.5.0
+  resolution: "use-inertia-form@npm:3.5.0"
+  dependencies:
+    "@inertiajs/react": ^1.0.14
+    lodash.get: ^4.4.2
+    lodash.set: ^4.3.2
+    react-dom: ^18.2.0
+  peerDependencies:
+    "@inertiajs/react": ^1.0.0
+    lodash.isequal: ^4.5.0
+    react: ^16.9.0 || ^17.0.0 || ^18.0.0
+  checksum: 2e325665dfe11054ebf7b55d8106366b7cccc19570e918709b38ea27481a696d2081b0fb47ada7ff9b0f5f014ffa0c1887740e7f7c1176ee46fb8e4054a884d8
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "use-isomorphic-layout-effect@npm:^1.1.1, use-isomorphic-layout-effect@npm:^1.1.2":
   version: 1.1.2

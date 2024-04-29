@@ -31,12 +31,12 @@ import { findMax } from '@/lib'
 const [useSortableFormContext, SortableFormContextProvider] = createContext()
 export { useSortableFormContext }
 
-interface SortableDynamicInputsProps<T = NestedObject> extends DynamicInputsProps<T> {
+interface SortableDynamicInputsProps<T = Record<string, unknown>> extends DynamicInputsProps<T> {
 	model: string
 	sortField?: string
 }
 
-const SortableDynamicInputs = <T extends NestedObject>({
+const SortableDynamicInputs = <T extends Record<string, unknown>>({
 	children,
 	model,
 	label,
@@ -44,7 +44,7 @@ const SortableDynamicInputs = <T extends NestedObject>({
 	onAddInput,
 	onRemoveInput,
 	sortField = 'order',
-}: SortableDynamicInputsProps) => {
+}: SortableDynamicInputsProps<T>) => {
 	/* Dynamic form stuff */
 	const { addInput, removeInput, paths } = useDynamicInputs<T>({ model, emptyData })
 	const { data, getData, setData, model: formModel } = useForm()

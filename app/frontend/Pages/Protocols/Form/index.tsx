@@ -50,7 +50,7 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 				</Grid.Col>
 
 				<Grid.Col>
-					<SortableDynamicInputs<Schema.ProtocolsCommandsFormData>
+					<SortableDynamicInputs
 						label="Commands"
 						model="protocols_commands"
 						emptyData={ {

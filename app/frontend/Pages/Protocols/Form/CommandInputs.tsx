@@ -3,23 +3,17 @@ import { Grid } from '@/Components'
 import { NumberInput, TextInput, useDynamicInputContext } from '@/Components/Form'
 import { CommandDropdown, CommandValueDropdown } from '@/Components/Dropdowns'
 import { useForm } from 'use-inertia-form'
-// import { useSortable } from '@dnd-kit/sortable'
-// import { CSS } from '@dnd-kit/utilities'
-// import { SortableList } from '@/Components/Sortable'
-// import { useSortableFormContext } from './SortableFormSection'
 
 interface CommandInputsProps {
-	commands: Schema.Command[]
+	commands: Schema.CommandsOptions[]
 }
 
 const CommandInputs = ({ commands }: CommandInputsProps) => {
-	const { record, path, index } = useDynamicInputContext<Schema.ProtocolsCommand>()
+	const { record, index } = useDynamicInputContext<Schema.ProtocolsCommand>()
 	const { setData } = useForm()
-	// const sortable = useSortableFormContext()
 
 	const handleChange = () => {
 		setData(`protocol.protocols_commands[${index}].command_value_id`, '')
-		// console.log({ record, path, index })
 	}
 
 	const activeCommand = useMemo(
@@ -48,10 +42,9 @@ const CommandInputs = ({ commands }: CommandInputsProps) => {
 					<TextInput label="Command Value" name="command_value_id" />
 				}
 			</Grid.Col>
-			{ /* <Grid.Col span={ 6 }>{ record.order }</Grid.Col>
 			<Grid.Col span={ 6 }>
 				<NumberInput label="Delay" name="delay" />
-			</Grid.Col> */ }
+			</Grid.Col>
 		</Grid>
 	)
 }
