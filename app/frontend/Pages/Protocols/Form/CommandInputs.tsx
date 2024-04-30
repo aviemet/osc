@@ -44,9 +44,12 @@ const CommandInputs = ({ commands }: CommandInputsProps) => {
 			<Grid.Col span={ 6 }>
 				<NumberInput label="Delay (in milliseconds)" name="delay" />
 			</Grid.Col>
-			<Grid.Col span={ 6 }>
-				{  humanizeDuration(dayjs.duration(record?.delay || 0, 'millisecond')) }
-			</Grid.Col>
+			<Grid.Col span={ 6 }>{
+				(record?.delay || 0) === 0 ?
+					'No Delay'
+					:
+					humanizeDuration(dayjs.duration(record?.delay || 0, 'millisecond'))
+			}</Grid.Col>
 		</Grid>
 	)
 }

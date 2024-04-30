@@ -10,6 +10,8 @@ class OscJob < ApplicationJob
       cast_to_type(command.value, command.payload_type),
     )
     client.send(message)
+
+    ap({ command:, client:, message: })
   rescue Errno::ECONNREFUSED => e
     log_connection_error(command.server, e)
   rescue StandardError => e
