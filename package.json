@@ -54,6 +54,7 @@
     "dayjs": "^1.11.11",
     "dinero.js": "^1.9.1",
     "google-libphonenumber": "^3.2.34",
+    "humanize-duration": "^3.32.0",
     "lodash": "^4.17.21",
     "normalize-url": "^8.0.1",
     "postcss": "^8.4.38",

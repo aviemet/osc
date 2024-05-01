@@ -1,5 +1,6 @@
 import React from 'react'
-import { Form, TextInput, Submit } from '@/Components/Form'
+import { Grid } from '@/Components'
+import { Form, TextInput, Submit, Textarea, NumberInput } from '@/Components/Form'
 import { type UseFormProps } from 'use-inertia-form'
 
 type TServerFormData = {
@@ -21,11 +22,29 @@ const ServerForm = ({ method = 'post', server, ...props }: IServerFormProps) => 
 			method={ method }
 			{ ...props }
 		>
-			<TextInput name="title" label="Title" />
-			<TextInput name="hostname" label="Hostname" />
-			<TextInput name="port" label="Port" />
-			<TextInput name="description" label="Description" />
-			<Submit>{ server.id ? 'Update' : 'Create' } Server</Submit>
+			<Grid>
+
+				<Grid.Col>
+					<TextInput name="title" label="Title" />
+				</Grid.Col>
+
+				<Grid.Col>
+					<TextInput name="hostname" label="Hostname (or IP Address)" />
+				</Grid.Col>
+
+				<Grid.Col>
+					<NumberInput name="port" label="Port" />
+				</Grid.Col>
+
+				<Grid.Col>
+					<Textarea name="description" label="Description" />
+				</Grid.Col>
+
+				<Grid.Col>
+					<Submit>{ server.id ? 'Update' : 'Create' } Server</Submit>
+				</Grid.Col>
+
+			</Grid>
 		</Form>
 	)
 }

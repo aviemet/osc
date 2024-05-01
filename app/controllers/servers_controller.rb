@@ -27,7 +27,7 @@ class ServersController < ApplicationController
   def new
     authorize Server.new
     render inertia: "Servers/New", props: {
-      server: Server.new.render(view: :new)
+      server: Server.new.render(view: :form_data)
     }
   end
 
