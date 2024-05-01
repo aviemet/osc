@@ -10,9 +10,9 @@ interface NewScreenModalProps {
 
 const NewScreenModal = ({ trigger }: NewScreenModalProps) => {
 	return (
-		<Modal trigger={ trigger } title="Create A NewScreen">{ close =>(
+		<Modal trigger={ trigger } title="Create A NewScreen">
 			<ScreenForm to={ Routes.screens() } onSubmit={ close } />
-		) }</Modal>
+		</Modal>
 	)
 }
 

@@ -4,13 +4,13 @@ import { Routes } from '@/lib'
 import axios from 'axios'
 import EditButton from '../EditButton'
 import { type ButtonProps } from '@mantine/core'
-import { type CommonControlProps } from '..'
+import { type ControlProps } from '..'
 
-interface ButtonControlProtocolProps extends ButtonProps, CommonControlProps {
+interface ButtonControlProtocolProps extends ButtonProps, ControlProps {
 	protocol: Schema.Protocol
 }
 
-interface ButtonControlCommandProps extends ButtonProps, CommonControlProps {
+interface ButtonControlCommandProps extends ButtonProps, ControlProps {
 	command: Schema.Command
 }
 
@@ -18,6 +18,7 @@ type ButtonControlProps = ButtonControlProtocolProps|ButtonControlCommandProps
 
 const ButtonControl = (props: ButtonControlProps) => {
 	const { edit, control } = props
+
 	let protocol: Schema.Protocol
 	let command: Schema.Command
 

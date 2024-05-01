@@ -1,5 +1,5 @@
 import React from 'react'
-import Control, { ControlProps } from './index'
+import Control, { type ControlProps } from '.'
 import * as classes from './Control.css'
 
 const EditControl = ({ control }: ControlProps) => {
