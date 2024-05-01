@@ -8,9 +8,12 @@ class CreateControls < ActiveRecord::Migration[7.1]
       t.decimal :max_value
       t.decimal :value
       t.references :screen, null: false, foreign_key: true
-      t.references :protocol, null: false, foreign_key: true
+      t.references :protocol, null: true, foreign_key: true
+      t.references :command, null: true, foreign_key: true
 
       t.timestamps
+
+      t.index [:order, :screen_id], name: :idx_order_screen, unique: true
     end
   end
 end

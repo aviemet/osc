@@ -6,4 +6,5 @@ class Controls::ShowSerializer < ControlSerializer
   )
 
   belongs_to :protocol, serializer: Protocols::ShowSerializer
+  belongs_to :command, serializer: Commands::ShowSerializer
 end

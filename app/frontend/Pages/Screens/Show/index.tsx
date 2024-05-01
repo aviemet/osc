@@ -1,7 +1,6 @@
 import React from 'react'
-import { Page, Tabs } from '@/Components'
+import { Box, Control, Page, Tabs } from '@/Components'
 import { Routes } from '@/lib'
-import ScreenControlLayout from './ScreenControlLayout'
 import { useLocation } from '@/lib/hooks'
 import { router } from '@inertiajs/react'
 
@@ -27,12 +26,17 @@ const ShowScreen = ({ screen, screens }: IShowScreenProps) => {
 					{ screens.map(iScreen => (
 						<Tabs.Tab key={ iScreen.id } value={ iScreen.slug }>{ iScreen.title }</Tabs.Tab>
 					)) }
-					{ /* <Tabs.Link href={ Routes.editScreen(screen.slug) } position='right'><SettingsIcon /></Tabs.Link> */ }
 				</Tabs.List>
 
 				{ screens.map(iScreen => (
 					<Tabs.Panel key={ iScreen.id } value={ iScreen.slug }>
-						<>{ iScreen.id === screen.id && <ScreenControlLayout screen={ screen } /> }</>
+						{ iScreen.id === screen.id &&
+							<Box>
+								{ screen?.controls?.map(control => (
+									<Control key={ control.id } control={ control } />
+								)) }
+							</Box>
+						}
 					</Tabs.Panel>
 				)) }
 

@@ -1,6 +1,6 @@
 export { default as Button } from './Button'
 export { default as ConditionalWrapper } from './ConditionalWrapper'
-export { default as Control, EditControl } from '../Features/Control'
+export { default as Control } from '../Features/Control'
 export { default as DangerousHtml } from './DangerousHtml'
 export { default as Heading } from './Heading'
 export { default as Link, NavLink } from './Link'

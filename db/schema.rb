@@ -64,9 +64,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_175622) do
     t.decimal "max_value"
     t.decimal "value"
     t.bigint "screen_id", null: false
-    t.bigint "protocol_id", null: false
+    t.bigint "protocol_id"
+    t.bigint "command_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["command_id"], name: "index_controls_on_command_id"
+    t.index ["order", "screen_id"], name: "idx_order_screen", unique: true
     t.index ["protocol_id"], name: "index_controls_on_protocol_id"
     t.index ["screen_id"], name: "index_controls_on_screen_id"
   end
@@ -176,6 +179,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_175622) do
 
   add_foreign_key "command_values", "commands"
   add_foreign_key "commands", "servers"
+  add_foreign_key "controls", "commands"
   add_foreign_key "controls", "protocols"
   add_foreign_key "controls", "screens"
   add_foreign_key "protocols_commands", "command_values"

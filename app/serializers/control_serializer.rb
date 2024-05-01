@@ -11,16 +11,20 @@
 #  value        :decimal(, )
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  protocol_id  :bigint           not null
+#  command_id   :bigint
+#  protocol_id  :bigint
 #  screen_id    :bigint           not null
 #
 # Indexes
 #
+#  idx_order_screen               (order,screen_id) UNIQUE
+#  index_controls_on_command_id   (command_id)
 #  index_controls_on_protocol_id  (protocol_id)
 #  index_controls_on_screen_id    (screen_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (command_id => commands.id)
 #  fk_rails_...  (protocol_id => protocols.id)
 #  fk_rails_...  (screen_id => screens.id)
 #
@@ -35,8 +39,10 @@ class ControlSerializer < ApplicationSerializer
     :value,
     :screen_id,
     :protocol_id,
+    :command_id,
     control_type: { type: :string },
   )
 
   belongs_to :protocol, serializer: ProtocolSerializer
+  belongs_to :command, serializer: CommandSerializer
 end

@@ -8,10 +8,12 @@ interface QueryProviderProps {
 
 const queryClient = new QueryClient()
 
+const isDev = process.env.NODE_ENV && process?.env?.NODE_ENV === 'development'
+
 const QueryProvider = ({ children }: QueryProviderProps) => {
 	return (
 		<QueryClientProvider client={ queryClient }>
-			{ process.env.NODE_ENV && process.env.NODE_ENV === 'development' && <ReactQueryDevtools /> }
+			{ isDev && <ReactQueryDevtools buttonPosition='bottom-left' /> }
 			{ children }
 		</QueryClientProvider>
 	)

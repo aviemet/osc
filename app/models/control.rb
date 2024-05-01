@@ -11,16 +11,20 @@
 #  value        :decimal(, )
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  protocol_id  :bigint           not null
+#  command_id   :bigint
+#  protocol_id  :bigint
 #  screen_id    :bigint           not null
 #
 # Indexes
 #
+#  idx_order_screen               (order,screen_id) UNIQUE
+#  index_controls_on_command_id   (command_id)
 #  index_controls_on_protocol_id  (protocol_id)
 #  index_controls_on_screen_id    (screen_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (command_id => commands.id)
 #  fk_rails_...  (protocol_id => protocols.id)
 #  fk_rails_...  (screen_id => screens.id)
 #
@@ -46,9 +50,13 @@ class Control < ApplicationRecord
   enum :control_type, { button: 0, slider: 1, spacer: 2 }
 
   belongs_to :screen
-  belongs_to :protocol
+  belongs_to :protocol, optional: true
+  belongs_to :command, optional: true
 
   scope :includes_associated, -> { includes([:screen, :protocol]) }
+
+  validate :protocol_xor_command
+  validates :order, presence: true, uniqueness: { scope: :screen_id }
 
   private
 
@@ -57,7 +65,15 @@ class Control < ApplicationRecord
   end
 
   def next_order_number
+    return nil unless screen
+
     max_order = screen.controls.maximum(:order)
     max_order ? max_order + 1 : 1
+  end
+
+  def protocol_xor_command
+    return if protocol.blank? ^ command.blank?
+
+    errors.add(:protocol_xor_command, 'A control must reference either a protocol or a command')
   end
 end
