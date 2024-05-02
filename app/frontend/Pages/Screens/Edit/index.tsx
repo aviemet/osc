@@ -30,10 +30,10 @@ import { AddControlsInterface } from '@/Features'
 import ControlForm from '@/Pages/Controls/Form'
 import ScreenForm from '../Form'
 import NewScreenModal from './NewScreenModal'
-import DraggableControl from './DraggableControl'
 
 import cx from 'clsx'
 import * as classes from './ScreenControl.css'
+import DraggableControl from './DraggableControl'
 
 interface IEditScreenProps {
 	screen: Schema.ScreensEdit
