@@ -31,12 +31,17 @@ import { findMax } from '@/lib'
 const [useSortableFormContext, SortableFormContextProvider] = createContext()
 export { useSortableFormContext }
 
-interface SortableDynamicInputsProps<T = Record<string, unknown>> extends DynamicInputsProps<T> {
+type OrderedObject = {
+	order: number
+	key: number
+} & Record<string, unknown>
+
+interface SortableDynamicInputsProps<T = OrderedObject> extends DynamicInputsProps<T> {
 	model: string
 	sortField?: string
 }
 
-const SortableDynamicInputs = <T extends Record<string, unknown>>({
+const SortableDynamicInputs = <T extends OrderedObject>({
 	children,
 	model,
 	label,
@@ -110,8 +115,8 @@ const SortableDynamicInputs = <T extends Record<string, unknown>>({
 
 	const sortedPaths = useMemo(() => {
 		return paths.sort((pathA, pathB) => {
-			const datumA = getData(`${formModel}.${pathA}`)
-			const datumB = getData(`${formModel}.${pathB}`)
+			const datumA = getData(`${formModel}.${pathA}`) as OrderedObject
+			const datumB = getData(`${formModel}.${pathB}`) as OrderedObject
 
 			return datumA.order > datumB.order ? 1 : -1
 		})
@@ -127,10 +132,10 @@ const SortableDynamicInputs = <T extends Record<string, unknown>>({
 				onDragEnd={ handleDragEnd }
 				onDragCancel={ handleDragCancel }
 			>
-				<SortableContext items={ useCallback(() => items?.map(item => item.order ), [items])() } strategy={ verticalListSortingStrategy }>
+				<SortableContext items={ useMemo(() => items?.map(item => item.order ), [items]) } strategy={ verticalListSortingStrategy }>
 
 					{ sortedPaths.map((path, i) => {
-						const record = getData(`${formModel}.${path}`)
+						const record = getData(`${formModel}.${path}`) as OrderedObject
 						return (
 							<DynamicInputContextProvider key={ record.key }  value={ {
 								record,

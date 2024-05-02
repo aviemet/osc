@@ -1,19 +1,39 @@
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { Button, Control, Menu, Modal, Page, Tabs } from '@/Components'
-import { DndContext, DragOverlay, type DragMoveEvent, type DragEndEvent, type DragStartEvent, useDroppable } from '@dnd-kit/core'
-import { useDisclosure } from '@mantine/hooks'
-import { Routes } from '@/lib'
 import { CrossIcon } from '@/Components/Icons'
-import ScreenForm from '../Form'
+import { Routes } from '@/lib'
 import { useLocation } from '@/lib/hooks'
 import { router } from '@inertiajs/react'
+import { useDisclosure } from '@mantine/hooks'
+import { Affix, Box } from '@mantine/core'
+import {
+	DndContext,
+	DragOverlay,
+	type DragMoveEvent,
+	type DragEndEvent,
+	type DragStartEvent,
+	useDroppable,
+	useSensors,
+	PointerSensor,
+	KeyboardSensor,
+	useSensor,
+	closestCenter,
+} from '@dnd-kit/core'
+import {
+	arrayMove,
+	rectSwappingStrategy,
+	SortableContext,
+	sortableKeyboardCoordinates,
+	verticalListSortingStrategy,
+} from '@dnd-kit/sortable'
 import { AddControlsInterface } from '@/Features'
 import ControlForm from '@/Pages/Controls/Form'
-import { Affix, Box } from '@mantine/core'
+import ScreenForm from '../Form'
+import NewScreenModal from './NewScreenModal'
+import DraggableControl from './DraggableControl'
+
 import cx from 'clsx'
 import * as classes from './ScreenControl.css'
-import NewScreenModal from './NewScreenModal'
-import DraggableControl from './draggableControl'
 
 interface IEditScreenProps {
 	screen: Schema.ScreensEdit
@@ -24,6 +44,13 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 	const { paths } = useLocation()
 
 	const title = 'Edit Screen'
+
+	const sensors = useSensors(
+		useSensor(PointerSensor),
+		useSensor(KeyboardSensor, {
+			coordinateGetter: sortableKeyboardCoordinates,
+		}),
+	)
 
 	const droppable = useDroppable({
 		id: 'screen_droppable',
@@ -40,7 +67,11 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 	}
 
 	return (
-		<DndContext onDragEnd={ handleDragEnd }>
+		<DndContext
+			sensors={ sensors }
+			collisionDetection={ closestCenter }
+			onDragEnd={ handleDragEnd }
+		>
 			<Page title={ title }>
 
 				{ /* <AddControlsInterface /> */ }
@@ -60,9 +91,13 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 					{ screens.map(iScreen => (
 						<Tabs.Panel key={ iScreen.id } value={ iScreen.slug } className={ classes.tabsPanel } ref={ droppable.setNodeRef }>
 							{ iScreen.id === screen.id && (
-								<>
+
+								<SortableContext
+									items={ useMemo(() => screen.controls.map(control => control.id), [screen.controls]) }
+									strategy={ rectSwappingStrategy }
+								>
 									{ screen?.controls?.map(control => <DraggableControl key={ control.id } control={ control } />) }
-								</>
+								</SortableContext>
 							) }
 						</Tabs.Panel>
 					)) }
