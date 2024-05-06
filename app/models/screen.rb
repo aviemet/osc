@@ -31,7 +31,7 @@ class Screen < ApplicationRecord
 
   slug :title
 
-  has_many :controls, dependent: :nullify
+  has_many :controls, -> { order(order: :asc) }, dependent: :nullify, inverse_of: :screen
 
   scope :includes_associated, -> { includes([]) }
 

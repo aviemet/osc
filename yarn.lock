@@ -2111,9 +2111,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/jest-dom@npm:^6.4.2":
-  version: 6.4.2
-  resolution: "@testing-library/jest-dom@npm:6.4.2"
+"@testing-library/jest-dom@npm:^6.4.5":
+  version: 6.4.5
+  resolution: "@testing-library/jest-dom@npm:6.4.5"
   dependencies:
     "@adobe/css-tools": ^4.3.2
     "@babel/runtime": ^7.9.2
@@ -2121,7 +2121,7 @@ __metadata:
     chalk: ^3.0.0
     css.escape: ^1.5.1
     dom-accessibility-api: ^0.6.3
-    lodash: ^4.17.15
+    lodash: ^4.17.21
     redent: ^3.0.0
   peerDependencies:
     "@jest/globals": ">= 28"
@@ -2140,7 +2140,7 @@ __metadata:
       optional: true
     vitest:
       optional: true
-  checksum: 631aeadbf4e738080ae095242cf1a29a0b4ee2f09c8bdd0d3f00a923707da64c1617e088ba9a961d098481afabdc1d19149fb7ef98edf15132348eb222f345ae
+  checksum: 95bd94f1f4ba2110eaaa15174207f74d46481f0f168a4d58c30f92a9285f797f9949c166aa8401bcb46e16edbf14a097013204d65801e9d1361892757e525bd6
   languageName: node
   linkType: hard
 
@@ -3044,57 +3044,57 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/expect@npm:1.5.3":
-  version: 1.5.3
-  resolution: "@vitest/expect@npm:1.5.3"
+"@vitest/expect@npm:1.6.0":
+  version: 1.6.0
+  resolution: "@vitest/expect@npm:1.6.0"
   dependencies:
-    "@vitest/spy": 1.5.3
-    "@vitest/utils": 1.5.3
+    "@vitest/spy": 1.6.0
+    "@vitest/utils": 1.6.0
     chai: ^4.3.10
-  checksum: b273ffc229ddbfa91fef6e48e170e0f192f7989a6c59db182819b2b5885268d910578899b242818a18142bc261074a60536212f1aaa9f20b6f91f9e4b81e1443
+  checksum: f3a9959ea387622297efed9e3689fd405044a813df5d5923302eaaea831e250d8d6a0ccd44fb387a95c19963242695ed803afc7c46ae06c48a8e06f194951984
   languageName: node
   linkType: hard
 
-"@vitest/runner@npm:1.5.3":
-  version: 1.5.3
-  resolution: "@vitest/runner@npm:1.5.3"
+"@vitest/runner@npm:1.6.0":
+  version: 1.6.0
+  resolution: "@vitest/runner@npm:1.6.0"
   dependencies:
-    "@vitest/utils": 1.5.3
+    "@vitest/utils": 1.6.0
     p-limit: ^5.0.0
     pathe: ^1.1.1
-  checksum: b7e5193e3ea967cd9edb96b7db3cc0addea46e3c1a47908ca4ff0ccd31f69f021beda69bcbf3fff42ad59504aa49b946b1b05529994fba5112e3b023a5d61bd6
+  checksum: 2dcd953477d5effc051376e35a7f2c2b28abbe07c54e61157c9a6d6f01c880e079592c959397b3a55471423256ab91709c150881a33632558b81b1e251a0bf9c
   languageName: node
   linkType: hard
 
-"@vitest/snapshot@npm:1.5.3":
-  version: 1.5.3
-  resolution: "@vitest/snapshot@npm:1.5.3"
+"@vitest/snapshot@npm:1.6.0":
+  version: 1.6.0
+  resolution: "@vitest/snapshot@npm:1.6.0"
   dependencies:
     magic-string: ^0.30.5
     pathe: ^1.1.1
     pretty-format: ^29.7.0
-  checksum: 34ff60f412dd41fff56a4001ceb7b37865d89914fba47e12eb661c776eb3f37345459de3f451a8e94decae7c122fc7d59e879bd8b956bdbfaead1f581a3ef259
+  checksum: c4249fbf3ce310de86a19529a0a5c10b1bde4d8d8a678029c632335969b86cbdbf51cedc20d5e9c9328afee834d13cec1b8de5d0fd58139bf8e2dd8dcd0797f4
   languageName: node
   linkType: hard
 
-"@vitest/spy@npm:1.5.3":
-  version: 1.5.3
-  resolution: "@vitest/spy@npm:1.5.3"
+"@vitest/spy@npm:1.6.0":
+  version: 1.6.0
+  resolution: "@vitest/spy@npm:1.6.0"
   dependencies:
     tinyspy: ^2.2.0
-  checksum: 2219d248f3bb1679ab592e7432cabd91588041eb5ab8f978fda57fc371cb763fed8760bd5b09d26bb9fae680ae61592a45a72ce49f77b94668c822bfed97f4a6
+  checksum: 0201975232255e1197f70fc6b23a1ff5e606138a5b96598fff06077d5b747705391013ee98f951affcfd8f54322e4ae1416200393248bb6a9c794f4ef663a066
   languageName: node
   linkType: hard
 
-"@vitest/utils@npm:1.5.3":
-  version: 1.5.3
-  resolution: "@vitest/utils@npm:1.5.3"
+"@vitest/utils@npm:1.6.0":
+  version: 1.6.0
+  resolution: "@vitest/utils@npm:1.6.0"
   dependencies:
     diff-sequences: ^29.6.3
     estree-walker: ^3.0.3
     loupe: ^2.3.7
     pretty-format: ^29.7.0
-  checksum: 17152b8e6f6d2ec61970637df9b545f4b96a0acae1d4e1bc1e7c6b3e3c6f59f61b9f898e243ed44a1b9429433a7a8cd3add7a14bcd63e2bfabf00447e8a5d751
+  checksum: a4749533a48e7e4bbc8eafee0fee0e9a0d4eaa4910fbdb490d34e16f8ebcce59a2b38529b9e6b4578e3b4510ea67b29384c93165712b0a19f2e71946922d2c56
   languageName: node
   linkType: hard
 
@@ -7788,13 +7788,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.get@npm:^4.4.2":
-  version: 4.4.2
-  resolution: "lodash.get@npm:4.4.2"
-  checksum: e403047ddb03181c9d0e92df9556570e2b67e0f0a930fcbbbd779370972368f5568e914f913e93f3b08f6d492abc71e14d4e9b7a18916c31fa04bd2306efe545
-  languageName: node
-  linkType: hard
-
 "lodash.isequal@npm:^4.5.0":
   version: 4.5.0
   resolution: "lodash.isequal@npm:4.5.0"
@@ -7841,13 +7834,6 @@ __metadata:
   version: 4.6.2
   resolution: "lodash.mergewith@npm:4.6.2"
   checksum: a6db2a9339752411f21b956908c404ec1e088e783a65c8b29e30ae5b3b6384f82517662d6f425cc97c2070b546cc2c7daaa8d33f78db7b6e9be06cd834abdeb8
-  languageName: node
-  linkType: hard
-
-"lodash.set@npm:^4.3.2":
-  version: 4.3.2
-  resolution: "lodash.set@npm:4.3.2"
-  checksum: a9122f49eef9f2d0fc9061a33d87f8e5b8c6b23d46e8b9e9ce1529d3588d79741bd1145a3abdfa3b13082703e65af27ff18d8a07bfc22b9be32f3fc36f763f70
   languageName: node
   linkType: hard
 
@@ -8616,7 +8602,7 @@ __metadata:
     "@tanstack/react-query": ^5.32.1
     "@tanstack/react-query-devtools": ^5.32.1
     "@testing-library/dom": ^10.1.0
-    "@testing-library/jest-dom": ^6.4.2
+    "@testing-library/jest-dom": ^6.4.5
     "@testing-library/react": ^15.0.6
     "@testing-library/user-event": ^14.5.2
     "@tiptap/core": ^2.3.1
@@ -8679,13 +8665,13 @@ __metadata:
     ts-jest: ^29.1.2
     ts-node: ^10.9.2
     typescript: ^5.4.5
-    use-inertia-form: ^3.6.0
+    use-inertia-form: ^3.7.0
     vite: ^5.2.11
     vite-plugin-dynamic-import: ^1.5.0
     vite-plugin-full-reload: ^1.1.0
     vite-plugin-ruby: ^5.0.0
     vite-tsconfig-paths: ^4.3.2
-    vitest: ^1.5.3
+    vitest: ^1.6.0
     webpack: ^5.91.0
     xstate: ^5.12.0
     zustand: ^4.5.2
@@ -11029,20 +11015,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-inertia-form@npm:^3.6.0":
-  version: 3.6.0
-  resolution: "use-inertia-form@npm:3.6.0"
+"use-inertia-form@npm:^3.7.0":
+  version: 3.7.0
+  resolution: "use-inertia-form@npm:3.7.0"
   dependencies:
     "@inertiajs/react": ^1.0.16
     axios: ^1.6.8
-    lodash.get: ^4.4.2
-    lodash.set: ^4.3.2
+    lodash: ^4.17.21
     react-dom: ^18.3.1
   peerDependencies:
     "@inertiajs/react": ^1.0.0
-    lodash.isequal: ^4.5.0
     react: ^16.9.0 || ^17.0.0 || ^18.0.0
-  checksum: e0e7db228bf4ed0d06088617fc77f1c2ea784bb33f9ea53180d0deab85e7cd4afa4c1b40a5356155bf4f6801cd86ee001429e6a85655b3da299c571af8e9fc2a
+  checksum: 3a421b32bdb104b19bae2559b5ade4a1a77a7efb626c16987fd865db515b73bdc4207836c21d8e67d2b57723c92923f860322cc82e9009a036dfe206e621aaec
   languageName: node
   linkType: hard
 
@@ -11131,9 +11115,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-node@npm:1.5.3":
-  version: 1.5.3
-  resolution: "vite-node@npm:1.5.3"
+"vite-node@npm:1.6.0":
+  version: 1.6.0
+  resolution: "vite-node@npm:1.6.0"
   dependencies:
     cac: ^6.7.14
     debug: ^4.3.4
@@ -11142,7 +11126,7 @@ __metadata:
     vite: ^5.0.0
   bin:
     vite-node: vite-node.mjs
-  checksum: 6f3a851f5490ed8b7fa9ca2a2e6b2b0f6f74569dbd606b6437458792c3f0423deae1c9f5127a3d35c6d47b3f32dce459c406dd59f5cb9f59b52f86287b73e153
+  checksum: ce111c5c7a4cf65b722baa15cbc065b7bfdbf1b65576dd6372995f6a72b2b93773ec5df59f6c5f08cfe1284806597b44b832efcea50d5971102428159ff4379f
   languageName: node
   linkType: hard
 
@@ -11276,15 +11260,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vitest@npm:^1.5.3":
-  version: 1.5.3
-  resolution: "vitest@npm:1.5.3"
+"vitest@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "vitest@npm:1.6.0"
   dependencies:
-    "@vitest/expect": 1.5.3
-    "@vitest/runner": 1.5.3
-    "@vitest/snapshot": 1.5.3
-    "@vitest/spy": 1.5.3
-    "@vitest/utils": 1.5.3
+    "@vitest/expect": 1.6.0
+    "@vitest/runner": 1.6.0
+    "@vitest/snapshot": 1.6.0
+    "@vitest/spy": 1.6.0
+    "@vitest/utils": 1.6.0
     acorn-walk: ^8.3.2
     chai: ^4.3.10
     debug: ^4.3.4
@@ -11298,13 +11282,13 @@ __metadata:
     tinybench: ^2.5.1
     tinypool: ^0.8.3
     vite: ^5.0.0
-    vite-node: 1.5.3
+    vite-node: 1.6.0
     why-is-node-running: ^2.2.2
   peerDependencies:
     "@edge-runtime/vm": "*"
     "@types/node": ^18.0.0 || >=20.0.0
-    "@vitest/browser": 1.5.3
-    "@vitest/ui": 1.5.3
+    "@vitest/browser": 1.6.0
+    "@vitest/ui": 1.6.0
     happy-dom: "*"
     jsdom: "*"
   peerDependenciesMeta:
@@ -11322,7 +11306,7 @@ __metadata:
       optional: true
   bin:
     vitest: vitest.mjs
-  checksum: 1cd965e34dcd9a3f4dead3b455470d1fc4c7aa09ca7a3e0b2493c85cf2d5e9913aace1ee41cb17caaada4e4ba3effa552a2ae5f3cc689b6899a5ef85e856e8c6
+  checksum: a9b9b97e5685d630e5d8d221e6d6cd2e1e9b5b2dd61e82042839ef11549c8d2d780cf696307de406dce804bf41c1219398cb20b4df570b3b47ad1e53af6bfe51
   languageName: node
   linkType: hard
 

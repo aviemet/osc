@@ -1,8 +1,8 @@
+import React from 'react'
 import { Control } from '@/Components'
 import { ControlProps } from '@/Features/Control'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-import React from 'react'
 
 const DraggableControl = ({ control }: ControlProps) => {
 	const {

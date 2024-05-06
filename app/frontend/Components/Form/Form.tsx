@@ -5,12 +5,11 @@ import { Form as InertiaForm, type FormProps as FormProps, type NestedObject } f
 import * as classes from './Form.css'
 
 const Form = <TForm extends NestedObject>(
-	{ children, data, className, railsAttributes = true, ...props }: FormProps<TForm>,
+	{ children, className, railsAttributes = true, ...props }: FormProps<TForm>,
 ) => {
 	return (
 		<Box className={ cx('form') }>
 			<InertiaForm
-				data={ data }
 				className={ cx(classes.form, className) }
 				railsAttributes={ railsAttributes }
 				remember={ false }

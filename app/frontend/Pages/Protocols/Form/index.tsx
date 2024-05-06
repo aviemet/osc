@@ -1,12 +1,9 @@
 import React from 'react'
-import { Form, TextInput, Submit, RichText, DynamicInputs, FormConsumer, Textarea, Select } from '@/Components/Form'
+import { Form, TextInput, Submit, Textarea } from '@/Components/Form'
 import { type UseFormProps } from 'use-inertia-form'
 import { Grid } from '@/Components'
 import CommandInputs from './CommandInputs'
-import { transformProtocolFormData } from './protocolFormData'
-import { CommandDropdown } from '@/Components/Dropdowns'
 import { commandsQuery } from '@/queries'
-import { SortableList } from '@/Components/Sortable'
 import SortableDynamicInputs from '@/Components/Form/DynamicInputs/SortableDynamicInputs'
 
 type ProtocolFormData = {
@@ -26,20 +23,16 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 	return (
 		<Form
 			model="protocol"
-			data={ { protocol: transformProtocolFormData(protocol) } }
+			data={ { protocol } }
 			method={ method }
+			filter={ [
+				'id',
+				'slug',
+				'created_at',
+				'updated_at',
+			] }
 			{ ...props }
 		>
-			<FormConsumer>{ ({ data }) => {
-				console.log({ data: data.protocol.protocols_commands.map(thing => ({
-					id: thing.id,
-					order: thing.order,
-					key: thing.key,
-				})) })
-				return <></>
-			} }</FormConsumer>
-
-
 			<Grid>
 				<Grid.Col>
 					<TextInput name="title" label="Title" />
