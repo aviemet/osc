@@ -6,5 +6,5 @@ export * from './servers/queries'
 
 interface LimitedQueryOptions<T> extends Omit<UseQueryOptions<T>, 'queryKey'|'queryFn'> {}
 
-export type QueryFunctionSingle<T> = (slug: string, options?: LimitedQueryOptions<T>) => UseQueryResult<T, Error>
 export type QueryFunction<T> = (options?: LimitedQueryOptions<T>) => UseQueryResult<T, Error>
+export type QueryFunctionSingle<T, S = string> = (slug: S, options?: LimitedQueryOptions<T>) => UseQueryResult<T, Error>
