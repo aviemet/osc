@@ -1,13 +1,13 @@
 import React, { forwardRef } from 'react'
 import { Select } from '@/Components/Form'
 import { type AsyncDropdown } from '.'
-import { serversQuery } from '@/queries'
+import { useGetServers } from '@/queries'
 
 const ServerDropdown = forwardRef<HTMLInputElement, AsyncDropdown<Schema.ServersOptions>>((
 	{ label = 'Server', name = 'server_id', initialData = [], value, onSelect, ...props },
 	ref,
 ) => {
-	const { data } = serversQuery()
+	const { data } = useGetServers()
 
 	return (
 		<Select

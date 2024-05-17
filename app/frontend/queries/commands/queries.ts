@@ -4,7 +4,7 @@ import axios from 'axios'
 import { ComboboxData } from '@mantine/core'
 import { type QueryFunction, type QueryFunctionSingle } from '..'
 
-export const commandQuery: QueryFunctionSingle<Schema.CommandsShow> = (slug, options) => {
+export const useGetCommand: QueryFunctionSingle<Schema.CommandsShow> = (slug, options) => {
 	return useQuery({
 		queryKey: [`command/${slug}`],
 		queryFn: () => {
@@ -14,7 +14,7 @@ export const commandQuery: QueryFunctionSingle<Schema.CommandsShow> = (slug, opt
 	})
 }
 
-export const commandsQuery: QueryFunction<Schema.CommandsOptions[]> = (options) => {
+export const useGetCommands: QueryFunction<Schema.CommandsOptions[]> = (options) => {
 	return useQuery({
 		queryKey: ['commands'],
 		queryFn: () => {
@@ -24,7 +24,7 @@ export const commandsQuery: QueryFunction<Schema.CommandsOptions[]> = (options) 
 	})
 }
 
-export const commandPayloadTypesQuery: QueryFunction<ComboboxData> = (options) => {
+export const useGetCommandPayloadTypes: QueryFunction<ComboboxData> = (options) => {
 	return useQuery({
 		queryKey: ['commandPayloadTypes'],
 		queryFn: () => {

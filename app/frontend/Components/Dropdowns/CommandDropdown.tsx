@@ -1,13 +1,13 @@
 import React, { forwardRef } from 'react'
 import { Select } from '@/Components/Form'
 import { type AsyncDropdown } from '.'
-import { commandsQuery } from '@/queries'
+import { useGetCommands } from '@/queries'
 
 const CommandDropdown = forwardRef<HTMLInputElement, AsyncDropdown<Schema.CommandsOptions>>((
 	{ label = 'Command', name = 'command_id', initialData = [], value, onSelect, ...props },
 	ref,
 ) => {
-	const { data } = commandsQuery()
+	const { data } = useGetCommands()
 
 	return (
 		<Select

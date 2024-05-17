@@ -3,7 +3,7 @@ import { Form, TextInput, Submit, Textarea } from '@/Components/Form'
 import { type UseFormProps } from 'use-inertia-form'
 import { Grid } from '@/Components'
 import CommandInputs from './CommandInputs'
-import { commandsQuery } from '@/queries'
+import { useGetCommands } from '@/queries'
 import SortableDynamicInputs from '@/Components/Form/DynamicInputs/SortableDynamicInputs'
 
 type ProtocolFormData = {
@@ -18,7 +18,7 @@ export interface IProtocolFormProps {
 }
 
 const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProps) => {
-	const { data: commands } = commandsQuery({ initialData: protocol.commands })
+	const { data: commands } = useGetCommands({ initialData: protocol.commands })
 
 	return (
 		<Form

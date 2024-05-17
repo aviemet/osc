@@ -2,7 +2,7 @@ import { 	useQuery } from '@tanstack/react-query'
 import { Routes } from '@/lib'
 import axios from 'axios'
 
-export const serversQuery = () => {
+export const useGetServers = () => {
 	return useQuery({
 		queryKey: ['servers'],
 		queryFn: (): Promise<Schema.ServersOptions[]> => {

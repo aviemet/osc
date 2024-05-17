@@ -2,7 +2,7 @@ import { 	useQuery } from '@tanstack/react-query'
 import { Routes } from '@/lib'
 import axios from 'axios'
 
-export const protocolsOptionsQuery = () => {
+export const useGetProtocolOptions = () => {
 	return useQuery({
 		queryKey: ['protocolOptions'],
 		queryFn: (): Promise<Schema.ProtocolsOptions[]> => {
@@ -11,7 +11,7 @@ export const protocolsOptionsQuery = () => {
 	})
 }
 
-export const protocolQuery = (slug: string) => {
+export const useGetProtocol = (slug: string) => {
 	return useQuery({
 		queryKey: [`protocol/${slug}`],
 		queryFn: (): Promise<Schema.ProtocolsShow> => {

@@ -2,7 +2,7 @@ import React from 'react'
 import { Code, Paper, ScrollArea, Text } from '@/Components'
 import { Form, TextInput, Submit } from '@/Components/Form'
 import { ProtocolDropdown } from '@/Components/Dropdowns'
-import { protocolQuery } from '@/queries'
+import { useGetProtocol } from '@/queries'
 import { FormProps } from 'use-inertia-form'
 
 type TControlFormData = {
@@ -41,7 +41,7 @@ const ControlForm = ({ method = 'post', control, ...props }: ControlFormProps) =
 
 			<ProtocolDropdown onChange={ (protocol, form) => {
 				console.log({ protocol, data: form.data })
-				// const thing = protocolQuery(control.slug)
+				// const thing = useGetProtocol(control.slug)
 			} } />
 
 			{ protocol && <Text>{ protocol?.title } commands:</Text> }

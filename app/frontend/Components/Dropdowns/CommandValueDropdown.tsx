@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import { Select } from '@/Components/Form'
 import { type AsyncDropdown } from '.'
-import { commandQuery } from '@/queries'
+import { useGetCommand } from '@/queries'
 
 interface CommandValueDropdownProps extends AsyncDropdown<Schema.CommandValue> {
 	commandSlug: string
@@ -11,7 +11,7 @@ const CommandValueDropdown = forwardRef<HTMLInputElement, CommandValueDropdownPr
 	{ label = 'Command Value', name = 'command_value_id', commandSlug, initialData = [], value, onSelect, ...props },
 	ref,
 ) => {
-	const { data } = commandQuery(commandSlug)
+	const { data } = useGetCommand(commandSlug)
 
 	return (
 		<Select

@@ -7,6 +7,7 @@ module.exports = {
 		'plugin:react/recommended',
 		'plugin:import/typescript',
 		'plugin:@tanstack/eslint-plugin-query/recommended',
+		'plugin:react-hooks/recommended',
 	],
 	'plugins': ['react', '@typescript-eslint', 'import'],
 	'settings': {
@@ -88,5 +89,6 @@ module.exports = {
 			},
 		}],
 		'comma-dangle': ['error', 'always-multiline'],
+		'react-hooks/exhaustive-deps': 0,
 	},
 }
