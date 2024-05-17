@@ -5,8 +5,9 @@ import axios from 'axios'
 export const useGetProtocolOptions = () => {
 	return useQuery({
 		queryKey: ['protocolOptions'],
-		queryFn: (): Promise<Schema.ProtocolsOptions[]> => {
-			return axios.get(Routes.apiProtocolsOptions()).then(res => res.data)
+		queryFn: async (): Promise<Schema.ProtocolsOptions[]> => {
+			const res = await axios.get(Routes.apiProtocolsOptions())
+			return res.data
 		},
 	})
 }
@@ -14,8 +15,9 @@ export const useGetProtocolOptions = () => {
 export const useGetProtocol = (slug: string) => {
 	return useQuery({
 		queryKey: [`protocol/${slug}`],
-		queryFn: (): Promise<Schema.ProtocolsShow> => {
-			return axios.get(Routes.apiProtocol(slug)).then(res => res.data)
+		queryFn: async (): Promise<Schema.ProtocolsShow> => {
+			const res = await axios.get(Routes.apiProtocol(slug))
+			return res.data
 		},
 	})
 }

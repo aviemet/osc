@@ -5,8 +5,9 @@ import axios from 'axios'
 export const useGetServers = () => {
 	return useQuery({
 		queryKey: ['servers'],
-		queryFn: (): Promise<Schema.ServersOptions[]> => {
-			return axios.get(Routes.apiServers()).then(res => res.data)
+		queryFn: async (): Promise<Schema.ServersOptions[]> => {
+			const res = await axios.get(Routes.apiServers())
+			return res.data
 		},
 	})
 }

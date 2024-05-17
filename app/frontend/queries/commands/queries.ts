@@ -7,8 +7,9 @@ import { type QueryFunction, type QueryFunctionSingle } from '..'
 export const useGetCommand: QueryFunctionSingle<Schema.CommandsShow> = (slug, options) => {
 	return useQuery({
 		queryKey: [`command/${slug}`],
-		queryFn: () => {
-			return axios.get(Routes.apiCommand(slug)).then(res => res.data)
+		queryFn: async () => {
+			const res = await axios.get(Routes.apiCommand(slug))
+			return res.data
 		},
 		...options,
 	})
@@ -17,8 +18,9 @@ export const useGetCommand: QueryFunctionSingle<Schema.CommandsShow> = (slug, op
 export const useGetCommands: QueryFunction<Schema.CommandsOptions[]> = (options) => {
 	return useQuery({
 		queryKey: ['commands'],
-		queryFn: () => {
-			return axios.get(Routes.apiCommands()).then(res => res.data)
+		queryFn: async () => {
+			const res = await axios.get(Routes.apiCommands())
+			return res.data
 		},
 		...options,
 	})
@@ -27,8 +29,9 @@ export const useGetCommands: QueryFunction<Schema.CommandsOptions[]> = (options)
 export const useGetCommandPayloadTypes: QueryFunction<ComboboxData> = (options) => {
 	return useQuery({
 		queryKey: ['commandPayloadTypes'],
-		queryFn: () => {
-			return axios.get(Routes.apiCommandsPayloadTypes()).then(res => res.data)
+		queryFn: async () => {
+			const res = await axios.get(Routes.apiCommandsPayloadTypes())
+			return res.data
 		},
 		...options,
 	})
