@@ -1,5 +1,5 @@
 import React from 'react'
-import { Group, Heading, Menu, Page, Section } from '@/Components'
+import { Group, Heading, Menu, Page, Section, Text } from '@/Components'
 import { Routes } from '@/lib'
 
 interface IShowServerProps {
@@ -18,13 +18,16 @@ const ShowServer = ({ server }: IShowServerProps) => {
 					<Menu position="bottom-end">
 						<Menu.Target />
 						<Menu.Dropdown>
-							<Menu.Link href={ Routes.editServer(server.id) }>
+							<Menu.Link href={ Routes.editServer(server.slug) }>
 								Edit Server
 							</Menu.Link>
 						</Menu.Dropdown>
 					</Menu>
 				</Group>
 
+				<Text>{ `${server.hostname}${server?.port ? `:${server.port}` : ''}` }</Text>
+
+				<Text>{ server?.description }</Text>
 			</Section>
 		</Page>
 	)

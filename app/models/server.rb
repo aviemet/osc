@@ -35,7 +35,7 @@ class Server < ApplicationRecord
 
   has_many :commands, dependent: :nullify
 
-  scope :includes_associated, -> { includes([]) }
+  scope :includes_associated, -> { includes([:commands]) }
 
   attribute :port, :integer, default: 8080
 end

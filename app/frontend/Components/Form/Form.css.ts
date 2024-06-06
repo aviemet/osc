@@ -9,7 +9,14 @@ export const form = css`
 `
 
 export const dynamicInput = css`
-	background-color: ${vars.colors.gray[8]};
+	${vars.lightSelector} {
+		background-color: ${vars.colors.gray[0]};
+	}
+
+	${vars.darkSelector} {
+		background-color: ${vars.colors.gray[8]};
+	}
+
 	box-shadow: ${vars.shadows.xs};
 	margin-bottom: ${vars.spacing.xs};
 	padding: ${vars.spacing.xs};

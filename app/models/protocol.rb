@@ -33,7 +33,7 @@ class Protocol < ApplicationRecord
 
   has_many :protocols_commands, -> { order(order: :asc) }, dependent: :destroy, inverse_of: :protocol
   has_many :commands, -> {
-    joins(:protocols_commands).select('commands.*, protocols_commands.*')
+    joins(:protocols_commands).select('commands.*, protocols_commands.*').includes([:server, :command_values])
   }, through: :protocols_commands, dependent: :nullify
 
   scope :includes_associated, -> { includes([:commands, :protocols_commands]) }

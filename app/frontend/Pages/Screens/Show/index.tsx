@@ -1,5 +1,6 @@
 import React from 'react'
-import { Box, Control, Page, Tabs } from '@/Components'
+import { Box, Page, Tabs } from '@/Components'
+import { Control } from '@/Features'
 import { Routes } from '@/lib'
 import { useLocation } from '@/lib/hooks'
 import { router } from '@inertiajs/react'

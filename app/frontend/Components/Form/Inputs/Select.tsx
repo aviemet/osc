@@ -4,7 +4,6 @@ import Field from '../Components/Field'
 import { type ComboboxData, type ComboboxItem, type ComboboxItemGroup } from '@mantine/core'
 import { exclude } from '@/lib'
 import { ConditionalWrapper, Group } from '@/Components'
-import { ModalFormButton } from '@/Components/Button'
 import SelectInput, { type SelectInputProps } from '@/Components/Inputs/Select'
 import { type BaseFormInputProps } from '.'
 
@@ -85,10 +84,6 @@ const Select = <TForm extends NestedObject = NestedObject>(
 		onDropdownClose?.(options || [], form)
 	}
 
-	const handleNewFormSuccess = (data: { id: string|number }) => {
-		setValue(String(data.id))
-	}
-
 	const handleClear = () => {
 		onClear?.(options || [], form)
 	}
@@ -141,11 +136,6 @@ const Select = <TForm extends NestedObject = NestedObject>(
 						{ ...exclude(props, 'value') }
 					/>
 				</ConditionalWrapper>
-				{ newForm && <ModalFormButton
-					title={ `Create New ${label}` }
-					form={ newForm }
-					onSuccess={ handleNewFormSuccess }
-				/> }
 			</>
 		</ConditionalWrapper>
 	)

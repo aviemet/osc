@@ -8,7 +8,7 @@ import cx from 'clsx'
 import * as classes from './Control.css'
 
 export interface ControlProps extends BoxProps {
-	control: Schema.Control
+	control: Schema.ControlsFormData | Schema.ControlsShow
 	edit?: boolean
 }
 

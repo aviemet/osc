@@ -7,7 +7,7 @@ import { type ControlProps } from '..'
 import { controlRoute, controlTitle } from '../lib'
 import { EditIcon } from '@/Components/Icons'
 import { modals } from '@mantine/modals'
-import ControlForm from '@/Pages/Controls/Form'
+import ControlForm from '../Form'
 
 import * as classes from '../Control.css'
 
@@ -31,7 +31,6 @@ const ButtonControl = forwardRef<HTMLButtonElement, ButtonControlProps>((
 			onClick={ handleButtonClick }
 			{ ...props }
 		>
-			{ /* If editing show the edit button */ }
 			{ edit && control?.id && <EditIcon
 				size={ 11 }
 				className={ classes.editButtonIcon }

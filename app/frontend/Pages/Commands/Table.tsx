@@ -1,10 +1,9 @@
 import React from 'react'
 import { Routes } from '@/lib'
-import { Table, Link } from '@/Components'
+import { Table, Link, type TableProps } from '@/Components'
 import { DeleteButton, EditButton } from '@/Components/Button'
-import { type ITableProps } from '@/Components/Table/Table'
 
-const CommandTable = (props: ITableProps) => {
+const CommandTable = (props: TableProps) => {
 	return (
 		<Table { ...props }>
 			<Table.Head>

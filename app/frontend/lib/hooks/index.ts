@@ -1,5 +1,4 @@
 export { default as createContext } from './createContext'
-export { default as useClickAwayListener } from './useClickAwayListener'
 export { default as useBooleanToggle } from './useBooleanToggle'
 export { default as useCheckboxState } from './useCheckboxState'
 export { default as useLocation } from './useLocation'

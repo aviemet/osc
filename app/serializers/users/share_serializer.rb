@@ -1,4 +1,4 @@
-class Users::ShareSerializer < ApplicationSerializer
+class Users::ShareSerializer < UserSerializer
   attributes(
     :id,
     :created_at,

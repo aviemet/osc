@@ -1,8 +1,8 @@
 import React from 'react'
 import { Box } from '@/Components'
-import { type CommonControlProps } from '..'
+import { type ControlProps } from '..'
 
-const SpacerControl = ({ edit = false, ...props }: CommonControlProps) => {
+const SpacerControl = ({ edit = false, ...props }: ControlProps) => {
 	return (
 		<Box { ...props }></Box>
 	)

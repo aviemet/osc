@@ -28,7 +28,7 @@ import { createContext } from '@/lib/hooks'
 import { FormPointerSensor, FormTouchSensor } from '@/Components/Sortable'
 import { type DynamicInputsProps } from '.'
 
-import * as classes from '../Form.css'
+import * as classes from '../../Form.css'
 import { useDynamicInputContext } from './dynamicInputContext'
 
 interface NestedFieldProps<T = NestedObject> {

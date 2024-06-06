@@ -15,6 +15,6 @@ export const authLayout = css`
 	}
 
 	#auth-layout-right {
-		background-color: ${vars.colors.primary.filled};
+		background-color: ${vars.colors.primaryColors.filled};
 	}
 `

@@ -51,7 +51,7 @@ class Command < ApplicationRecord
 
   belongs_to :server
 
-  scope :includes_associated, -> { includes([:command_values]) }
+  scope :includes_associated, -> { includes([:protocols_commands, :protocols, :command_values]) }
 
   accepts_nested_attributes_for :command_values, allow_destroy: true
 end

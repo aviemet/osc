@@ -21,7 +21,7 @@ interface ModalProps {
 	children: React.ReactNode
 }
 
-const ReusableModal: React.FC<ModalProps> = ({ trigger, title, children }) => {
+const ReusableModal = ({ trigger, title, children }: ModalProps) => {
 	const [opened, { open, close, toggle }] = useDisclosure(false)
 
 	return (

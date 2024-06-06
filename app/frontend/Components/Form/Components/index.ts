@@ -5,4 +5,4 @@ export { default as Field } from './Field'
 export { default as FieldsFor } from './FieldsFor'
 export { default as Submit } from './Submit'
 
-export * from './DynamicInputs'
+export { default as DynamicInputs, useDynamicInputContext } from './DynamicInputs'

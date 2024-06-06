@@ -22,11 +22,8 @@ const defaultData = {
 }
 
 const Login = () => {
-	const emailInputRef = useRef<HTMLInputElement>(null)
-
 	const handleSubmit = ({ data }: UseFormProps<LoginFormData>) => {
 		if(data.user.email === '' || data.user.password === '') {
-			emailInputRef.current!.focus()
 			return false
 		}
 	}
@@ -51,7 +48,6 @@ const Login = () => {
 					autoFocus
 					autoComplete="Email"
 					required
-					ref={ emailInputRef }
 					pattern=".+@.+\..+"
 				/>
 			</Field>

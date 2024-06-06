@@ -33,7 +33,7 @@ class Screen < ApplicationRecord
 
   has_many :controls, -> { order(order: :asc) }, dependent: :nullify, inverse_of: :screen
 
-  scope :includes_associated, -> { includes([]) }
+  scope :includes_associated, -> { includes([:controls]) }
 
   private
 
