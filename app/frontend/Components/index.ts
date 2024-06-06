@@ -9,7 +9,7 @@ export { default as Modal } from './Modal'
 export { default as Page, type PageProps } from './Page'
 export { default as RichTextEditor } from './RichTextEditor'
 export { default as Section } from './Section'
-export { default as Table } from './Table'
+export { default as Table, type TableProps } from './Table'
 export { default as Label } from './Label'
 export { default as Tabs } from './Tabs'
 

@@ -57,7 +57,10 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 								to={ Routes.screen(screen.slug) }
 								method="patch"
 							>
-								<EditControls />
+								<EditControls
+									screen={ screen }
+									screens={ screens }
+								/>
 							</Form>
 						) }
 					</Tabs.Panel>

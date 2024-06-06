@@ -26,6 +26,7 @@ export {
 	MdViewColumn as ColumnsIcon,
 	MdAdd as NewIcon,
 	MdOutlineDelete as TrashIcon,
+	MdCalendarMonth as CalendarIcon,
 } from 'react-icons/md'
 
 

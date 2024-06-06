@@ -1,16 +1,19 @@
 import React from 'react'
 import { NestedObject, UseFormProps, useInertiaInput } from 'use-inertia-form'
 import { ConditionalWrapper } from '@/Components'
-import Field from '../Field'
-import MultiSelect, { type MultiSelectProps } from '@/Components/Inputs/MultiSelect'
+import Field from '../Components/Field'
+import MultiSelect, { type MultiSelectInputProps } from '@/Components/Inputs/MultiSelect'
 import { type ComboboxData } from '@mantine/core'
-import { type BaseFormInputProps } from '.'
+import { type InputConflicts, type BaseFormInputProps } from '.'
+import { exclude, isUnset } from '@/lib'
+import { coerceArray } from '../../../lib/collections'
 
-type OmittedOverwrittenTypes = 'onFocus'|'onBlur'|'onChange'|'onClear'|'onDropdownOpen'|'onDropdownClose'|'onOptionSubmit'
+type OmittedDropdownTypes = InputConflicts|'onDropdownOpen'|'onDropdownClose'|'onOptionSubmit'|'onClear'
 export interface FormMultiSelectProps<TForm extends NestedObject = NestedObject>
-	extends Omit<MultiSelectProps, OmittedOverwrittenTypes|'name'>,
-	Omit<BaseFormInputProps, OmittedOverwrittenTypes> {
+	extends Omit<MultiSelectInputProps, OmittedDropdownTypes>,
+	Omit<BaseFormInputProps<string[], TForm>, 'onChange'|'onBlur'|'onFocus'> {
 
+	value?: string[]
 	onChange?: (values: string[], options: ComboboxData, form: UseFormProps<TForm>) => void
 	onBlur?: (values: string[], options: ComboboxData, form: UseFormProps<TForm>) => void
 	onFocus?: (values: string[], options: ComboboxData, form: UseFormProps<TForm>) => void
@@ -22,26 +25,34 @@ export interface FormMultiSelectProps<TForm extends NestedObject = NestedObject>
 
 const MultiSelectComponent = <TForm extends NestedObject = NestedObject>(
 	{
-		name,
 		options = [],
 		label,
 		required,
 		id,
-		errorKey,
+		name,
 		model,
 		field = true,
 		onBlur,
 		onChange,
+		onFocus,
+		onClear,
 		onDropdownOpen,
 		onDropdownClose,
+		onOptionSubmit,
+		wrapperProps,
+		errorKey,
+		defaultValue,
+		clearErrorsOnChange,
 		...props
 	}: FormMultiSelectProps<TForm>,
 ) => {
-	const { form, inputName, inputId, value, setValue, error } = useInertiaInput<string[], TForm>({ name, model, errorKey })
-
-	const handleBlur = () => {
-		onBlur?.(value, options || [],  form)
-	}
+	const { form, inputName, inputId, value, setValue, error } = useInertiaInput<string[], TForm>({
+		name,
+		model,
+		errorKey,
+		defaultValue,
+		clearErrorsOnChange,
+	})
 
 	const handleChange = (values: string[]) => {
 		setValue(values)
@@ -49,22 +60,39 @@ const MultiSelectComponent = <TForm extends NestedObject = NestedObject>(
 		onChange?.(values, options || [], form)
 	}
 
+	const handleBlur = () => {
+		onBlur?.(value, options || [], form)
+	}
+
+	const handleFocus = () => {
+		onFocus?.(value, options || [], form)
+	}
+
+	const handleClear = () => {
+		onClear?.(value, form)
+	}
+
 	const handleDropdownOpen = () => {
-		onDropdownOpen?.(options || [],form)
+		onDropdownOpen?.(options || [], form)
 	}
 
 	const handleDropdownClose = () => {
-		onDropdownClose?.(options || [],form)
+		onDropdownClose?.(options || [], form)
+	}
+
+	const handleOptionSubmit = () => {
+		onOptionSubmit?.(value, options || [], form)
 	}
 
 	return (
 		<ConditionalWrapper
-			condition={ props.hidden !== true && field }
+			condition={ field }
 			wrapper={ children => (
 				<Field
 					type="select"
 					required={ required }
 					errors={ !!error }
+					{ ...wrapperProps }
 				>
 					{ children }
 				</Field>
@@ -76,17 +104,21 @@ const MultiSelectComponent = <TForm extends NestedObject = NestedObject>(
 				autoComplete="off"
 				name={ inputName }
 				label={ label }
-				value={ value }
+				value={ isUnset(value) ? [] : coerceArray(value) }
 				error={ error }
 				options={ options }
-				onBlur={ handleBlur }
 				onChange={ handleChange }
-				onDropdownClose={ handleDropdownClose }
+				onBlur={ handleBlur }
+				onFocus={ handleFocus }
+				onClear={ handleClear }
 				onDropdownOpen={ handleDropdownOpen }
-				{ ...props }
+				onDropdownClose={ handleDropdownClose }
+				onOptionSubmit={ handleOptionSubmit }
+				wrapper={ false }
+				{ ...exclude(props, 'value') }
 			/>
 		</ConditionalWrapper>
 	)
 }
 
-export default React.memo(MultiSelectComponent)
+export default MultiSelectComponent

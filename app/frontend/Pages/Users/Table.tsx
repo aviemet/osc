@@ -1,10 +1,9 @@
 import React from 'react'
 import { Routes } from '@/lib'
-import { Link, Table } from '@/Components'
+import { Link, Table, type TableProps } from '@/Components'
 import { EditButton } from '@/Components/Button'
-import { type ITableProps } from '@/Components/Table/Table'
 
-const UsersTable = (props: ITableProps) => {
+const UsersTable = (props: TableProps) => {
 	return (
 		<Table { ...props }>
 			<Table.Head>
@@ -23,7 +22,7 @@ const UsersTable = (props: ITableProps) => {
 						</Table.Cell>
 
 						<Table.Cell fitContent>
-							<EditButton href={ Routes.editUser(user.id) } label={ user.person?.name || user.email } />
+							<EditButton href={ Routes.editUser(user.id) } label={ user.email } />
 						</Table.Cell>
 
 					</Table.Row>

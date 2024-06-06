@@ -1,40 +1,41 @@
 import React from 'react'
 import { useTableContext } from '../TableContext'
 import RowInContext from './RowInContext'
-import { Box, type BoxProps } from '@mantine/core'
-import { ElementProps } from '@mantine/core'
+import { Table, type TableTrProps } from '@mantine/core'
 
-export interface ITableRow extends BoxProps, ElementProps<'tr'> {
-	children?: JSX.Element[]
+export interface TableRow extends TableTrProps {
+	children?:  JSX.Element | JSX.Element[]
 }
 
-interface IRowProps extends Omit<ITableRow, 'ref'> {
+interface TableRowProps extends Omit<TableRow, 'ref'> {
 	render?: any
 	name?: string
 }
 
-const Row = ({ children, render, name, ...props }: IRowProps) => {
-	try {
-		const { tableState: { rows, selectable, selected } } = useTableContext()
+const Row = ({ children, render, name, ...props }: TableRowProps) => {
+	const tableState = useTableContext(false)
 
+	if(tableState === null) {
 		return (
-			<RowInContext
-				name={ name }
-				rows={ rows }
-				selectable={ selectable }
-				selected={ selected }
-				{ ...props }
-			>
+			<Table.Tr { ...props }>
 				{ children }
-			</RowInContext>
-		)
-	} catch(e) {
-		return (
-			<Box component="tr" { ...props }>
-				{ children }
-			</Box>
+			</Table.Tr>
 		)
 	}
+
+	const { tableState: { rows, selectable, selected } } = tableState
+
+	return (
+		<RowInContext
+			name={ name }
+			rows={ rows }
+			selectable={ selectable }
+			selected={ selected }
+			{ ...props }
+		>
+			{ children }
+		</RowInContext>
+	)
 }
 
 export default Row

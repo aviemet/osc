@@ -1,13 +1,16 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import NumberInput, { type NumberInputProps } from '@/Components/Inputs/NumberInput'
-import Field from '../Field'
-import { useInertiaInput } from 'use-inertia-form'
+import Field from '../Components/Field'
+import { NestedObject, useInertiaInput } from 'use-inertia-form'
 import ConditionalWrapper from '@/Components/ConditionalWrapper'
-import { type BaseFormInputProps, type InputConflicts } from '.'
+import { type InputConflicts, type BaseFormInputProps } from '.'
 
-interface FormNumberInputProps extends Omit<NumberInputProps, InputConflicts>, BaseFormInputProps<number> {}
+interface FormNumberInputProps<TForm extends NestedObject = NestedObject>
+	extends
+	Omit<NumberInputProps, InputConflicts>,
+	BaseFormInputProps<number, TForm> {}
 
-const FormInput = forwardRef<HTMLInputElement, FormNumberInputProps>((
+const FormInput = <TForm extends NestedObject = NestedObject>(
 	{
 		name,
 		model,
@@ -17,26 +20,37 @@ const FormInput = forwardRef<HTMLInputElement, FormNumberInputProps>((
 		id,
 		required,
 		field = true,
+		wrapperProps,
+		errorKey,
+		defaultValue,
+		clearErrorsOnChange,
 		...props
-	},
-	ref,
+	}: FormNumberInputProps<TForm>,
 ) => {
-	const { form, inputName, inputId, value, setValue, error } = useInertiaInput<number>({ name, model })
+	const { form, inputName, inputId, value, setValue, error } = useInertiaInput<number, TForm>({
+		name,
+		model,
+		errorKey,
+		defaultValue,
+		clearErrorsOnChange,
+	})
 
 	const handleChange = (val: string|number) => {
-		setValue(Number(val))
+		const v = Number(val)
+		setValue(v)
 
-		onChange?.(Number(val), form)
+		onChange?.(v, form)
 	}
 
 	return (
 		<ConditionalWrapper
-			condition={ props.hidden !== true && field }
+			condition={ field }
 			wrapper={ children => (
 				<Field
 					type="number"
 					required={ required }
 					errors={ !!error }
+					{ ...wrapperProps }
 				>
 					{ children }
 				</Field>
@@ -50,11 +64,11 @@ const FormInput = forwardRef<HTMLInputElement, FormNumberInputProps>((
 				onBlur={ () => onBlur?.(value, form) }
 				onFocus={ () => onFocus?.(value, form) }
 				error={ error }
-				ref={ ref }
+				wrapper={ false }
 				{ ...props }
 			/>
 		</ConditionalWrapper>
 	)
-})
+}
 
 export default FormInput

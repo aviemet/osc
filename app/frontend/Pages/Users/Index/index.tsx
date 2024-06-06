@@ -1,12 +1,13 @@
 import React from 'react'
 import { Routes } from '@/lib'
-import { IndexPageTemplate } from '@/Layouts/AppLayout/Components'
+import { IndexPageTemplate } from '@/Features'
 import { NewIcon } from '@/Components/Icons'
 import UsersTable from '../Table'
+import { type Pagination } from '@/types'
 
 interface IUserIndexProps {
 	users: Schema.UsersIndex[]
-	pagination: Schema.Pagination
+	pagination: Pagination
 }
 
 const UserIndex = ({ users, pagination }: IUserIndexProps) => {

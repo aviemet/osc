@@ -9,6 +9,9 @@ import { useTableContext } from '../TableContext'
 import { Button } from '@mantine/core'
 import { usePageProps } from '@/lib/hooks'
 
+import cx from 'clsx'
+import * as classes from '../Table.css'
+
 const ColumnPicker = () => {
 	const { auth: { user } } = usePageProps()
 	const { tableState: { hideable, columns, model } } = useTableContext()
@@ -34,7 +37,9 @@ const ColumnPicker = () => {
 	return (
 		<Menu closeOnItemClick={ false } position="bottom-end">
 			<Menu.Target>
-				<Button size="md" p="xs"><ColumnsIcon size={ 24 } /></Button>
+				<Button size="md" p="xs" className={ cx(classes.columnPickerButton) }>
+					<ColumnsIcon size={ 24 } />
+				</Button>
 			</Menu.Target>
 
 			<Menu.Dropdown>

@@ -1,13 +1,21 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import CurrencyInput, { type CurrencyInputProps } from '@/Components/Inputs/CurrencyInput'
-import Field from '../Field'
-import { useInertiaInput } from 'use-inertia-form'
+import Field from '../Components/Field'
+import { NestedObject, useInertiaInput } from 'use-inertia-form'
 import ConditionalWrapper from '@/Components/ConditionalWrapper'
-import { type BaseFormInputProps, type InputConflicts } from '.'
+import { InputConflicts, type BaseFormInputProps } from '.'
+import { type  Money } from '@/types'
+import { useCurrency } from '@/lib/hooks'
 
-interface INumberInputProps extends Omit<CurrencyInputProps, InputConflicts>, BaseFormInputProps {}
+interface INumberInputProps<TForm extends NestedObject = NestedObject>
+	extends
+	Omit<CurrencyInputProps, InputConflicts>,
+	BaseFormInputProps<number, TForm>
+{
 
-const FormInput = forwardRef<HTMLInputElement, INumberInputProps>((
+}
+
+const FormInput = <TForm extends NestedObject = NestedObject>(
 	{
 		name,
 		model,
@@ -17,34 +25,48 @@ const FormInput = forwardRef<HTMLInputElement, INumberInputProps>((
 		id,
 		required,
 		field = true,
+		wrapperProps,
+		errorKey,
+		defaultValue,
+		clearErrorsOnChange,
 		...props
-	},
-	ref,
+	} : INumberInputProps<TForm>,
 ) => {
-	const { form, inputName, inputId, value, setValue, error } = useInertiaInput({ name, model })
+	const { form, inputName, inputId, value, setValue, error } = useInertiaInput<number|Money, TForm>({
+		name,
+		model,
+		errorKey,
+		defaultValue,
+		clearErrorsOnChange,
+	})
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const value = e.target.value
-		setValue(value)
+	const [amount, formatter] = useCurrency({
+		amount: value,
+	})
 
-		if(onChange) onChange(value, form)
+	const handleChange = (value: string|number) => {
+		const numberValue = Number(value)
+		setValue(numberValue)
+
+		onChange?.(numberValue, form)
 	}
 
 	const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
-		const value = e.target.value
+		const value = Number(e.target.value)
 		setValue(value)
 
-		if(onBlur) onBlur(value, form)
+		onBlur?.(value, form)
 	}
 
 	return (
 		<ConditionalWrapper
-			condition={ props.hidden !== true && field }
+			condition={ field }
 			wrapper={ children => (
 				<Field
 					type="text"
 					required={ required }
 					errors={ !!error }
+					{ ...wrapperProps }
 				>
 					{ children }
 				</Field>
@@ -53,15 +75,15 @@ const FormInput = forwardRef<HTMLInputElement, INumberInputProps>((
 			<CurrencyInput
 				id={ id || inputId }
 				name={ inputName }
-				value={ value }
+				value={ formatter.format(amount) }
 				onChange={ handleChange }
 				onBlur={ handleBlur }
-				onFocus={ e => onFocus?.(e.target.value, form) }
+				onFocus={ e => onFocus?.(Number(e.target.value), form) }
 				error={ error }
-				ref={ ref }
+				wrapper={ false }
 				{ ...props }
 			/></ConditionalWrapper>
 	)
-})
+}
 
 export default FormInput

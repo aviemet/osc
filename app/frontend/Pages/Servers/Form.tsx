@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid } from '@/Components'
 import { Form, TextInput, Submit, Textarea, NumberInput } from '@/Components/Form'
-import { type UseFormProps } from 'use-inertia-form'
+import { type HTTPVerb, type UseFormProps } from 'use-inertia-form'
 
 type TServerFormData = {
 	server: Schema.ServersFormData

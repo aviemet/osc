@@ -5,8 +5,6 @@ Rails.application.routes.draw do
 
   root "screens#index"
 
-  get "dev/test" => "pages#dev"
-
   # DEVISE PATHS #
 
   devise_for(

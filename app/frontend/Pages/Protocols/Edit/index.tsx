@@ -2,7 +2,6 @@ import React from 'react'
 import { Heading, Page, Section } from '@/Components'
 import { Routes } from '@/lib'
 import ProtocolsForm from '../Form'
-import { Select } from '@/Components/Inputs'
 
 interface IEditProtocolProps {
 	protocol: Schema.ProtocolsEdit

@@ -12,7 +12,7 @@ const ShowServer = ({ server }: IShowServerProps) => {
 	return (
 		<Page title={ title }>
 			<Section>
-				<Group position="apart">
+				<Group>
 					<Heading>{ title }</Heading>
 
 					<Menu position="bottom-end">

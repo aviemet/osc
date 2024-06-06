@@ -1,13 +1,16 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import TextInput, { type TextInputProps } from '@/Components/Inputs/TextInput'
-import Field from '../Field'
-import { useInertiaInput } from 'use-inertia-form'
+import Field from '../Components/Field'
+import { useInertiaInput, type NestedObject } from 'use-inertia-form'
 import ConditionalWrapper from '@/Components/ConditionalWrapper'
-import { type BaseFormInputProps, type InputConflicts } from '.'
+import { type InputConflicts, type BaseFormInputProps } from '.'
 
-interface FormTextInputProps extends Omit<TextInputProps, InputConflicts>, BaseFormInputProps {}
+interface FormTextInputProps<TForm extends NestedObject>
+	extends
+	Omit<TextInputProps, InputConflicts>,
+	BaseFormInputProps<string, TForm> {}
 
-const FormInput = forwardRef<HTMLInputElement, FormTextInputProps>((
+const TextFormInput = <TForm extends NestedObject>(
 	{
 		name,
 		model,
@@ -16,14 +19,21 @@ const FormInput = forwardRef<HTMLInputElement, FormTextInputProps>((
 		onFocus,
 		id,
 		required,
-		errorKey,
 		field = true,
 		wrapperProps,
+		errorKey,
+		defaultValue,
+		clearErrorsOnChange,
 		...props
-	},
-	ref,
+	}: FormTextInputProps<TForm>,
 ) => {
-	const { form, inputName, inputId, value, setValue, error } = useInertiaInput<string>({ name, model })
+	const { form, inputName, inputId, value, setValue, error } = useInertiaInput<string, TForm>({
+		name,
+		model,
+		errorKey,
+		defaultValue,
+		clearErrorsOnChange,
+	})
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value
@@ -61,11 +71,11 @@ const FormInput = forwardRef<HTMLInputElement, FormTextInputProps>((
 				onBlur={ handleBlur }
 				onFocus={ e => onFocus?.(e.target.value, form) }
 				error={ errorKey ? form.getError(errorKey) : error }
-				ref={ ref }
+				wrapper={ false }
 				{ ...props }
 			/>
 		</ConditionalWrapper>
 	)
-})
+}
 
-export default FormInput
+export default TextFormInput

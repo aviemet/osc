@@ -738,14 +738,6 @@ export const destroyUserSession = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"
 
 /**
  * Generates rails route to
- * /dev/test(.:format)
- * @param {object | undefined} options
- * @returns {string} route path
- */
-export const devTest = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"dev"],[2,[7,"/"],[2,[6,"test"],[1,[2,[8,"."],[3,"format"]]]]]]]);
-
-/**
- * Generates rails route to
  * /commands/:slug/edit(.:format)
  * @param {any} slug
  * @param {object | undefined} options

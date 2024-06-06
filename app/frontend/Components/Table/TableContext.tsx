@@ -1,23 +1,24 @@
 import React, { useReducer, useEffect } from 'react'
 import { createContext } from '@/lib/hooks'
+import { type Pagination } from '@/types'
 
 /**
  * Table Section Context
  * Used by Cell component to determine which tag to use
  */
-interface ITableSectionContextProvider {
+interface TableSectionContextProvider {
 	section: 'head'|'body'|'footer'
 }
 
-const [useTableSectionContext, TableSectionContextProvider] = createContext<ITableSectionContextProvider>()
+const [useTableSectionContext, TableSectionContextProvider] = createContext<TableSectionContextProvider>()
 export { useTableSectionContext, TableSectionContextProvider }
 
 /**
  * Main Table Context
  */
-interface ITableSettings {
+interface TableState {
 	selectable: boolean
-	pagination?: Schema.Pagination
+	pagination?: Pagination
 	rows?: Record<string,any>[]
 	columns: { hideable: string, label: string }[]
 	selected: Set<string>
@@ -26,32 +27,37 @@ interface ITableSettings {
 	searching: boolean
 }
 
-interface ITableContext {
-	tableState: ITableSettings
+interface TableContextValues {
+	tableState: TableState
 	setTableState: Function
 }
 
-interface ITableContextProviderProps {
+interface TableContextProviderProps {
 	children: React.ReactNode
 	selectable?: boolean
-	pagination?: Schema.Pagination
+	pagination?: Pagination
 	rows?: Record<string,any>[]
 	hideable?: boolean
+
+	/** Name of the ActiveRecord model being tabularized.
+	 * Used to limit Inertia props reload using `only`, needs to match the incoming prop on the Component to be effective.
+	 * Also used as a key for User `table_preferences` to save hidden columns and pagination limit.
+	 **/
 	model?: string
 }
 
-const [useTableContext, TableContextProvider] = createContext<ITableContext>()
+const [useTableContext, TableContextProvider] = createContext<TableContextValues>()
 export { useTableContext }
 
-const TableProvider: React.FC<ITableContextProviderProps> = ({
+const TableProvider = ({
 	children,
 	selectable = false,
 	pagination,
 	rows = [],
 	hideable = true,
 	model,
-}) => {
-	const tableReducer = (tableState: ITableSettings, newTableState: Partial<ITableSettings>) => ({
+}: TableContextProviderProps) => {
+	const tableReducer = (tableState: TableState, newTableState: Partial<TableState>) => ({
 		...tableState,
 		...newTableState,
 	})
@@ -76,10 +82,10 @@ const TableProvider: React.FC<ITableContextProviderProps> = ({
 	)
 }
 
-interface IStatePreservingRowUpdaterProps {
+interface StatePreservingRowUpdaterProps {
 	children: React.ReactElement
 	rows?: Record<string,any>[]
-	pagination?: Schema.Pagination
+	pagination?: Pagination
 }
 
 /**
@@ -87,14 +93,14 @@ interface IStatePreservingRowUpdaterProps {
  * Without this explicitly updating rows with the fresh data response, the table wouldn't update with new rows
  * This allows both sorting and filtering to work properly without losing input focus
  */
-const StatePreservingRowUpdater: React.FC<IStatePreservingRowUpdaterProps> = React.memo(({ children, rows, pagination }) => {
+const StatePreservingRowUpdater = React.memo(({ children, rows, pagination }: StatePreservingRowUpdaterProps) => {
 	const { setTableState } = useTableContext()
 
 	useEffect(() => {
 		if(pagination) {
 			setTableState({ rows, pagination })
 		}
-	}, [rows, pagination])
+	}, [rows, pagination, setTableState])
 
 	return <>{ children }</>
 })
