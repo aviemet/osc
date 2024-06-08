@@ -13,17 +13,15 @@ const DraggableControl = ({ control }: ControlProps) => {
 		transition,
 	} = useSortable({ id: control.id! })
 
-	const style = {
-		transform: CSS.Transform.toString(transform),
-		transition,
-	}
-
 	return (
 		<Control
 			edit
 			control={ control }
 			ref={ setNodeRef }
-			style={ style }
+			style={ {
+				transform: CSS.Transform.toString(transform),
+				transition,
+			} }
 			{ ...listeners }
 			{ ...attributes }
 		/>

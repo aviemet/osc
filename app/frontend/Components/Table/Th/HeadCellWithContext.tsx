@@ -13,10 +13,8 @@ const HeadCellWithContext = ({
 	children,
 	fitContent = false,
 	sort,
-	nowrap = true,
 	rows,
 	hideable,
-	style,
 	...props
 }: HeadCellWithContextProps) => {
 	const thRef = useRef<HTMLTableCellElement>(null)
@@ -55,10 +53,6 @@ const HeadCellWithContext = ({
 				{ 'sortable': showSortLink },
 				{ [direction]: showSortLink && paramsSort === sort },
 			) }
-			style={ {
-				whiteSpace: nowrap ? 'nowrap' : 'normal',
-				...style,
-			} }
 			{ ...props }
 		>
 			<Flex align="center">

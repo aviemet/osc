@@ -1,10 +1,6 @@
 import React, { useMemo, useState } from 'react'
-import type { ReactNode } from 'react'
 import {
 	DndContext,
-	KeyboardSensor,
-	PointerSensor,
-	TouchSensor,
 	useSensor,
 	useSensors,
 } from '@dnd-kit/core'
@@ -12,14 +8,13 @@ import type { Active, DragEndEvent, DragStartEvent, UniqueIdentifier } from '@dn
 import {
 	SortableContext,
 	arrayMove,
-	sortableKeyboardCoordinates,
 	verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
 
 // import * as classes from './SortableList.css'
 import { useForm } from 'use-inertia-form'
 import { createContext } from '@/lib/hooks'
-import { FormPointerSensor, FormTouchSensor } from '@/Components/Sortable'
+import { FormPointerSensor } from '@/Components/Sortable'
 
 const [useSortableFormContext, SortableFormContextProvider] = createContext()
 export { useSortableFormContext }

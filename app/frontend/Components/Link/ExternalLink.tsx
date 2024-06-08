@@ -5,7 +5,7 @@ import { Anchor, type AnchorProps } from '@mantine/core'
 import * as classes from './Link.css'
 import cx from 'clsx'
 
-interface IExternalLinkProps
+interface ExternalLinkProps
 	extends AnchorProps,
 	Omit<React.ComponentPropsWithoutRef<'a'>, keyof AnchorProps> {
 	href: string
@@ -13,7 +13,7 @@ interface IExternalLinkProps
 	disabled?: boolean
 }
 
-const ExternalLink = forwardRef<HTMLAnchorElement, IExternalLinkProps>((
+const ExternalLink = forwardRef<HTMLAnchorElement, ExternalLinkProps>((
 	{ children, href, as, className, disabled = false, ...props },
 	ref,
 ) => {

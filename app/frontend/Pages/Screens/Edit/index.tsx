@@ -8,6 +8,7 @@ import { Affix } from '@mantine/core'
 import { useDroppable } from '@dnd-kit/core'
 import NewScreenModal from './NewScreenModal'
 import EditControls from './EditControls'
+import { AddControlsInterface } from '@/Features'
 
 import cx from 'clsx'
 import * as classes from './ScreenControl.css'
@@ -47,7 +48,7 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 					<Tabs.Panel
 						key={ iScreen.id }
 						value={ iScreen.slug }
-						className={ classes.tabsPanel }
+						className={ cx(classes.tabsPanel) }
 						ref={ droppable.setNodeRef }
 					>
 						{ iScreen.id === screen.id && (
@@ -56,6 +57,7 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 								data={ { screen: screen } }
 								to={ Routes.screen(screen.slug) }
 								method="patch"
+								filter={ ['created_at', 'updated_at', 'screen.controls[].created_at', 'screen.controls[].updated_at'] }
 							>
 								<EditControls
 									screen={ screen }

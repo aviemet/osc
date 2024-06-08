@@ -8,14 +8,20 @@ export interface BodyCellWithContextProps extends Omit<TableCellProps, 'hideable
 	model?: string
 }
 
-const BodyCellWithContext = ({ children, nowrap, fitContent, hideable, model, style, className, ...props }: BodyCellWithContextProps) => {
+const BodyCellWithContext = ({
+	children,
+	fitContent,
+	hideable,
+	model,
+	className,
+	...props
+}: BodyCellWithContextProps) => {
 	const tdRef = useRef<HTMLTableCellElement>(null)
 
 	return (
 		<Table.Td
 			ref={ tdRef }
 			className={ cx({ 'table-column-fit': fitContent }, className) }
-			style={ [{ whiteSpace: nowrap ? 'nowrap' : 'normal' }, style ] }
 			{ ...props }
 		>
 			{ children }

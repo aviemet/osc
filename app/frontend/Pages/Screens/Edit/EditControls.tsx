@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import {
 	DndContext,
 	type DragEndEvent,
@@ -7,8 +7,10 @@ import {
 	KeyboardSensor,
 	useSensor,
 	closestCenter,
+	UniqueIdentifier,
 } from '@dnd-kit/core'
 import {
+	SortableContext,
 	sortableKeyboardCoordinates,
 } from '@dnd-kit/sortable'
 import DraggableControl from './DraggableControl'
@@ -35,13 +37,10 @@ const EditControls = ({ screen }: IEditControlsProps) => {
 			command_id: '',
 		},
 	})
-	const { getData, model } = useForm()
-
+	const { getData, model, data } = useForm()
+	console.log({ controls: data.screen.controls })
 	const sensors = useSensors(
 		useSensor(PointerSensor),
-		useSensor(KeyboardSensor, {
-			coordinateGetter: sortableKeyboardCoordinates,
-		}),
 	)
 
 	const handleDragEnd = (event: DragEndEvent) => {
@@ -60,19 +59,13 @@ const EditControls = ({ screen }: IEditControlsProps) => {
 			collisionDetection={ closestCenter }
 			onDragEnd={ handleDragEnd }
 		>
-			<SortableDynamicInputs
-				model="controls"
-				emptyData={ {
-					// @ts-ignore
-					command_id: NaN,
-					command_value_id: NaN,
-					value: '',
-					delay: '',
-					order: NaN,
-					key: NaN,
-				} }>
-				{ screen?.controls?.map(control => <DraggableControl key={ control.id } control={ control } />) }
-			</SortableDynamicInputs>
+			<SortableContext
+				items={ getData(`${model}.controls`) as UniqueIdentifier[] }
+			>
+				{ screen?.controls?.map(control => {
+					return <DraggableControl key={ control.id } control={ control } />
+				}) }
+			</SortableContext>
 		</DndContext>
 	)
 }
