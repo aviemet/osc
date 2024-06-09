@@ -3,9 +3,10 @@ import { css } from '@linaria/core'
 
 export const editButtonIcon = css`
 	position: absolute;
-	top: 2px;
-	right: 2px;
+	top: 5px;
+	right: 13px;
 	cursor: pointer;
+	z-index: 100;
 `
 
 export const editControl = css`
@@ -14,4 +15,9 @@ export const editControl = css`
 	&:active {
 		transform: none;
 	}
+`
+
+export const editControlWrapper = css`
+	display: inline-block;
+	position: relative;
 `

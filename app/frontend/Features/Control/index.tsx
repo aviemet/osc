@@ -9,7 +9,7 @@ import * as classes from './Control.css'
 
 export interface ControlProps extends BoxProps {
 	children?: React.ReactNode
-	control: Schema.ControlsFormData | Schema.ControlsShow
+	control: Schema.ControlsFormData | Schema.ControlsEdit
 	edit?: boolean
 }
 

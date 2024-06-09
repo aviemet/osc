@@ -19,7 +19,7 @@ const ProtocolDropdown = ({
 			name={ name }
 			options={ !data ? [] : data.map(protocol => ({
 				label: protocol.title,
-				value: protocol.slug,
+				value: String(protocol.id),
 			})) }
 			{ ...props }
 		/>
