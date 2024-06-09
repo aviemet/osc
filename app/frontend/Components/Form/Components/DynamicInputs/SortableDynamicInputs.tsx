@@ -1,32 +1,27 @@
-import React, { useCallback, useMemo, useState } from 'react'
-import { Box, Button, Flex, Label, Paper } from '@/Components'
-import { PlusCircleIcon, MinusCircleIcon } from '@/Components/Icons'
-import { NestedFields, NestedObject, useDynamicInputs, useForm } from 'use-inertia-form'
+import React, { useMemo, useState } from 'react'
+import { Box, Button, Label } from '@/Components'
+import { PlusCircleIcon } from '@/Components/Icons'
+import { useDynamicInputs, useForm } from 'use-inertia-form'
 import { DynamicInputContextProvider } from './dynamicInputContext'
 import cx from 'clsx'
 import {
 	DndContext,
-	KeyboardSensor,
-	PointerSensor,
-	TouchSensor,
 	useSensor,
 	useSensors,
 } from '@dnd-kit/core'
-import type { Active, DragEndEvent, DragStartEvent, UniqueIdentifier } from '@dnd-kit/core'
+import type { Active, DragEndEvent, DragStartEvent } from '@dnd-kit/core'
 import {
 	SortableContext,
 	arrayMove,
-	sortableKeyboardCoordinates,
-	useSortable,
 	verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
 import { createContext } from '@/lib/hooks'
-import { FormPointerSensor, FormTouchSensor } from '@/Components/Sortable'
+import { FormPointerSensor } from '@/Components/Sortable'
 import { type DynamicInputsProps } from '.'
-
-import * as classes from '../Form.css'
 import NestedField from './NestedField'
 import { findMax } from '@/lib'
+
+// import * as classes from '../Form.css'
 
 const [useSortableFormContext, SortableFormContextProvider] = createContext()
 export { useSortableFormContext }

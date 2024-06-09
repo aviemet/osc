@@ -3,6 +3,7 @@
 # Table name: controls
 #
 #  id           :bigint           not null, primary key
+#  color        :string
 #  control_type :integer          not null
 #  max_value    :decimal(, )
 #  min_value    :decimal(, )

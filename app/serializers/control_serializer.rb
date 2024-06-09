@@ -3,6 +3,7 @@
 # Table name: controls
 #
 #  id           :bigint           not null, primary key
+#  color        :string
 #  control_type :integer          not null
 #  max_value    :decimal(, )
 #  min_value    :decimal(, )
@@ -37,6 +38,7 @@ class ControlSerializer < ApplicationSerializer
     :min_value,
     :max_value,
     :value,
+    :color,
     :screen_id,
     :protocol_id,
     :command_id,

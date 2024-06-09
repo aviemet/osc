@@ -4,17 +4,15 @@ import {
 	type DragEndEvent,
 	useSensors,
 	PointerSensor,
-	KeyboardSensor,
 	useSensor,
 	closestCenter,
 	UniqueIdentifier,
 } from '@dnd-kit/core'
 import {
+	arrayMove,
 	SortableContext,
-	sortableKeyboardCoordinates,
 } from '@dnd-kit/sortable'
 import DraggableControl from './DraggableControl'
-import SortableDynamicInputs from '@/Components/Form/Components/DynamicInputs/SortableDynamicInputs'
 import { useDynamicInputs, useForm } from 'use-inertia-form'
 
 interface IEditControlsProps {
@@ -23,7 +21,7 @@ interface IEditControlsProps {
 }
 
 const EditControls = ({ screen }: IEditControlsProps) => {
-	const { paths } = useDynamicInputs({
+	const { addInput, removeInput, paths } = useDynamicInputs({
 		model: 'controls',
 		emptyData: {
 			title: '',
@@ -35,22 +33,32 @@ const EditControls = ({ screen }: IEditControlsProps) => {
 			screen_id: screen.id,
 			protocol_id: '',
 			command_id: '',
+			color: '',
 		},
 	})
-	const { getData, model, data } = useForm()
-	console.log({ controls: data.screen.controls })
+	const { getData, setData, model: formModel } = useForm<{screen: Schema.ScreensEdit}>()
 	const sensors = useSensors(
 		useSensor(PointerSensor),
 	)
 
-	const handleDragEnd = (event: DragEndEvent) => {
-		// newControlModalOpen()
+	const controlsPath = `${formModel}.controls`
 
-		// router.post(Routes.controls(), {
-		// 	control: {
-		// 		type: event.active.id,
-		// 	},
-		// })
+	const handleDragEnd = ({ active, over }: DragEndEvent) => {
+		if(!over || active.id === over.id) return
+
+		const controls = getData(controlsPath) as Schema.ControlsEdit[]
+
+		const activeIndex = controls.findIndex(el => el.id === active.id)
+		const overIndex = controls.findIndex(el => el.id === over.id)
+
+		setData(controlsPath, arrayMove(
+			getData(controlsPath) as Schema.ControlsEdit[],
+			activeIndex,
+			overIndex,
+		).map((control, i) => {
+			control.order = i + 1
+			return control
+		}))
 	}
 
 	return (
@@ -60,10 +68,18 @@ const EditControls = ({ screen }: IEditControlsProps) => {
 			onDragEnd={ handleDragEnd }
 		>
 			<SortableContext
-				items={ getData(`${model}.controls`) as UniqueIdentifier[] }
+				items={ getData(`${formModel}.controls`) as UniqueIdentifier[] }
 			>
-				{ screen?.controls?.map(control => {
-					return <DraggableControl key={ control.id } control={ control } />
+				{ paths.map((path, i) => {
+					const record = getData(`${formModel}.${path}`) as Schema.ControlsEdit
+					return (
+						<DraggableControl
+							key={ record.id }
+							control={ record }
+						>
+							{ `${record.id} (${record.order}) - ${record.title}` }
+						</DraggableControl>
+					)
 				}) }
 			</SortableContext>
 		</DndContext>

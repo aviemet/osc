@@ -46,7 +46,7 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 
 				{ screens.map(iScreen => (
 					<Tabs.Panel
-						key={ iScreen.id }
+						key={ `${iScreen.id}-${iScreen.slug}` }
 						value={ iScreen.slug }
 						className={ cx(classes.tabsPanel) }
 						ref={ droppable.setNodeRef }
@@ -58,6 +58,7 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 								to={ Routes.screen(screen.slug) }
 								method="patch"
 								filter={ ['created_at', 'updated_at', 'screen.controls[].created_at', 'screen.controls[].updated_at'] }
+								remember={ false }
 							>
 								<EditControls
 									screen={ screen }

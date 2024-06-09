@@ -3,11 +3,12 @@ import ButtonControl from './Button'
 import SliderControl from './Slider'
 import SpacerControl from './Spacer'
 import { type BoxProps } from '@mantine/core'
-import cx from 'clsx'
 
+import cx from 'clsx'
 import * as classes from './Control.css'
 
 export interface ControlProps extends BoxProps {
+	children?: React.ReactNode
 	control: Schema.ControlsFormData | Schema.ControlsShow
 	edit?: boolean
 }
@@ -29,9 +30,7 @@ const Control = forwardRef<HTMLButtonElement,ControlProps >((
 					m="xs"
 					{ ...sharedProps }
 					{ ...props }
-				>
-					{ control.title }
-				</ButtonControl>
+				/>
 			)
 
 		case 'slider':
@@ -41,9 +40,7 @@ const Control = forwardRef<HTMLButtonElement,ControlProps >((
 					m="xs"
 					{ ...sharedProps }
 					{ ...props }
-				>
-					{ control.title }
-				</SliderControl>
+				/>
 			)
 
 		case 'spacer':

@@ -4,7 +4,9 @@ import { ControlProps } from '@/Features/Control'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
-const DraggableControl = ({ control }: ControlProps) => {
+interface DraggableControlProps extends ControlProps {}
+
+const DraggableControl = ({ control, ...props }: DraggableControlProps) => {
 	const {
 		attributes,
 		listeners,
@@ -22,8 +24,10 @@ const DraggableControl = ({ control }: ControlProps) => {
 				transform: CSS.Transform.toString(transform),
 				transition,
 			} }
+
 			{ ...listeners }
 			{ ...attributes }
+			{ ...props }
 		/>
 	)
 }
