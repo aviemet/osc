@@ -16,7 +16,7 @@ const CommandValueDropdown = ({
 	onSelect,
 	...props
 }: CommandValueDropdownProps) => {
-	const { data } = useGetCommand(commandSlug)
+	const { data } = useGetCommand({ slug: commandSlug })
 
 	return (
 		<Select

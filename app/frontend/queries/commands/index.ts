@@ -2,9 +2,9 @@ import { useQuery } from '@tanstack/react-query'
 import { Routes } from '@/lib'
 import axios from 'axios'
 import { ComboboxData } from '@mantine/core'
-import { type QueryFunction, type QueryFunctionSingle } from '..'
+import { type ReactQueryFunction } from '..'
 
-export const useGetCommand: QueryFunctionSingle<Schema.CommandsShow> = (slug, options) => {
+export const useGetCommand: ReactQueryFunction<Schema.CommandsShow, {slug:string}> = ({ slug }, options) => {
 	return useQuery({
 		queryKey: [`command/${slug}`],
 		queryFn: async () => {
@@ -15,7 +15,7 @@ export const useGetCommand: QueryFunctionSingle<Schema.CommandsShow> = (slug, op
 	})
 }
 
-export const useGetCommands: QueryFunction<Schema.CommandsOptions[]> = (options) => {
+export const useGetCommands: ReactQueryFunction<Schema.CommandsOptions[]> = (options) => {
 	return useQuery({
 		queryKey: ['commands'],
 		queryFn: async () => {
@@ -26,7 +26,7 @@ export const useGetCommands: QueryFunction<Schema.CommandsOptions[]> = (options)
 	})
 }
 
-export const useGetCommandPayloadTypes: QueryFunction<ComboboxData> = (options) => {
+export const useGetCommandPayloadTypes: ReactQueryFunction<ComboboxData> = (options) => {
 	return useQuery({
 		queryKey: ['commandPayloadTypes'],
 		queryFn: async () => {

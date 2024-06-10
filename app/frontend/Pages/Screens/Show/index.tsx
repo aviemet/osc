@@ -14,7 +14,7 @@ const ShowScreen = ({ screen, screens }: IShowScreenProps) => {
 	const { paths } = useLocation()
 
 	const title =  'Screen'
-	console.log({ controls: screen.controls })
+
 	return (
 		<Page title={ title }>
 			<Tabs

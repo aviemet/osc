@@ -1,10 +1,12 @@
 import React from 'react'
 import { Control } from '@/Features'
-import { ControlProps } from '@/Features/Control'
+import { ControlProps } from '@/Pages/Screens/Components/Control'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
-interface DraggableControlProps extends ControlProps {}
+interface DraggableControlProps extends Omit<ControlProps, 'control'|'edit'> {
+	control: Schema.ControlsFormData
+}
 
 const DraggableControl = ({ control, ...props }: DraggableControlProps) => {
 	const {
@@ -17,7 +19,6 @@ const DraggableControl = ({ control, ...props }: DraggableControlProps) => {
 
 	return (
 		<Control
-			edit
 			control={ control }
 			ref={ setNodeRef }
 			style={ {

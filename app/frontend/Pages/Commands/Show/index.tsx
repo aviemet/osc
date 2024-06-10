@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Code, DangerousHtml, Group, Heading, Link, Menu, Page, Section } from '@/Components'
 import { Routes } from '@/lib'
-import ButtonControl from '@/Features/Control/Button'
+import ButtonControl from '@/Pages/Screens/Components/Control/Button'
 
 interface ShowCommandProps {
 	command: Schema.CommandsShow

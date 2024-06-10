@@ -7,11 +7,21 @@ import { type BoxProps } from '@mantine/core'
 import cx from 'clsx'
 import * as classes from './Control.css'
 
-export interface ControlProps extends BoxProps {
+interface BaseControlProps extends BoxProps {
 	children?: React.ReactNode
-	control: Schema.ControlsFormData | Schema.ControlsEdit
-	edit?: boolean
 }
+
+type ShowControlProps = {
+	edit?: false | undefined
+	control: Schema.ControlsShow
+}
+
+type EditControlProps = {
+	edit?: true
+	control: Schema.ControlsFormData
+}
+
+export type ControlProps = BaseControlProps & (ShowControlProps | EditControlProps);
 
 const Control = forwardRef<HTMLButtonElement,ControlProps >((
 	{ control, className, ...props },

@@ -61,7 +61,7 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 								remember={ false }
 							>
 								<FormConsumer>{ ({ data }) => {
-									console.log({ data })
+									console.log({ formData: data })
 									return <></>
 								} }</FormConsumer>
 								<EditControls
