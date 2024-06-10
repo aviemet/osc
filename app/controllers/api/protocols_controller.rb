@@ -1,6 +1,11 @@
 class Api::ProtocolsController < ApplicationController
-  expose :protocol
   expose :protocols, -> { Protocol.all }
+  expose :protocol
+
+  def show
+    authorize protocols
+    render json: protocols.render(view: :show), status: :ok
+  end
 
   # @route GET /api/options/protocols (api_protocols_options)
   def options

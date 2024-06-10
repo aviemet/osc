@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button, Menu, Page, Tabs } from '@/Components'
-import { Form } from '@/Components/Form'
+import { Form, FormConsumer, Submit } from '@/Components/Form'
 import { Routes } from '@/lib'
 import { useLocation } from '@/lib/hooks'
 import { router } from '@inertiajs/react'
-import { Affix } from '@mantine/core'
+import { Affix, Divider } from '@mantine/core'
 import { useDroppable } from '@dnd-kit/core'
 import NewScreenModal from './NewScreenModal'
 import EditControls from './EditControls'
@@ -57,13 +57,19 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 								data={ { screen: screen } }
 								to={ Routes.screen(screen.slug) }
 								method="patch"
-								filter={ ['created_at', 'updated_at', 'screen.controls[].created_at', 'screen.controls[].updated_at'] }
+								filter={ ['screen.id', 'screen.slug', 'screen.created_at', 'screen.updated_at'] }
 								remember={ false }
 							>
+								<FormConsumer>{ ({ data }) => {
+									console.log({ data })
+									return <></>
+								} }</FormConsumer>
 								<EditControls
 									screen={ screen }
 									screens={ screens }
 								/>
+								<Divider my="md" />
+								<Submit>Save Screen Layout</Submit>
 							</Form>
 						) }
 					</Tabs.Panel>

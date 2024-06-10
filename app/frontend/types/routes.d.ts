@@ -118,13 +118,13 @@ export const apiCommandsPayloadTypes: ((
 
 /**
  * Generates rails route to
- * /api/controls/:slug(.:format)
- * @param {any} slug
+ * /api/controls/:id(.:format)
+ * @param {any} id
  * @param {object | undefined} options
  * @returns {string} route path
  */
 export const apiControl: ((
-  slug: RequiredRouteParameter,
+  id: RequiredRouteParameter,
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 

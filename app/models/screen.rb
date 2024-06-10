@@ -35,6 +35,8 @@ class Screen < ApplicationRecord
 
   scope :includes_associated, -> { includes([:controls]) }
 
+  accepts_nested_attributes_for :controls, reject_if: ->(attributes) { attributes['title'].blank? }, allow_destroy: true
+
   private
 
   def set_screen_order

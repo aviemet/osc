@@ -1,12 +1,13 @@
 class ProtocolsController < ApplicationController
   include Searchable
 
-  expose :protocols, -> { search(Protocol.includes_associated, sortable_fields) }
+  expose :protocols, -> { search(Protocol, sortable_fields) }
   expose :protocol, id: -> { params[:slug] }, scope: -> { Protocol.includes_associated }, find_by: :slug
 
   # @route GET /protocols (protocols)
   def index
     authorize protocols
+
     paginated_protocols = protocols.page(params[:page] || 1)
 
     render inertia: "Protocols/Index", props: {

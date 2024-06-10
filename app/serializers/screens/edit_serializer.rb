@@ -6,5 +6,5 @@ class Screens::EditSerializer < ScreenSerializer
     :created_at,
   )
 
-  has_many :controls, serializer: Controls::EditSerializer
+  has_many :controls, serializer: Controls::OptionsSerializer
 end

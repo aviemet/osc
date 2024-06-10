@@ -18,7 +18,6 @@
 #
 # Indexes
 #
-#  idx_order_screen               (order,screen_id) UNIQUE
 #  index_controls_on_command_id   (command_id)
 #  index_controls_on_protocol_id  (protocol_id)
 #  index_controls_on_screen_id    (screen_id)
@@ -57,7 +56,7 @@ class Control < ApplicationRecord
   scope :includes_associated, -> { includes([]) }
 
   validate :protocol_xor_command
-  validates :order, presence: true, uniqueness: { scope: :screen_id }
+  validates :order, presence: true
 
   private
 

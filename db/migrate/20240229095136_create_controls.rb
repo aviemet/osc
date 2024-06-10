@@ -13,8 +13,6 @@ class CreateControls < ActiveRecord::Migration[7.1]
       t.references :command, null: true, foreign_key: true
 
       t.timestamps
-
-      t.index [:order, :screen_id], name: :idx_order_screen, unique: true
     end
   end
 end

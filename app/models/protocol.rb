@@ -37,7 +37,7 @@ class Protocol < ApplicationRecord
       .includes([:server, :command_values])
   }, through: :protocols_commands, dependent: :nullify
 
-  scope :includes_associated, -> { includes([:commands, :protocols_commands]) }
+  scope :includes_associated, -> { includes([:protocols_commands]) }
 
   accepts_nested_attributes_for :protocols_commands, allow_destroy: true
 end
