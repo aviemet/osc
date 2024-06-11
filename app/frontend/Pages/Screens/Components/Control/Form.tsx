@@ -22,16 +22,12 @@ const ControlForm = ({ control, ...props }: ControlFormProps) => {
 	})
 
 	return (
-		<Form
+		<Form<ControlFormData>
 			model="control"
 			data={ control ? { control } : undefined }
 			remember={ false }
 			{ ...props }
 		>
-			<FormConsumer>{ ({ data }) => {
-				console.log({ data })
-				return <></>
-			} }</FormConsumer>
 			<Grid>
 				<Grid.Col>
 					<TextInput name="title" label="Title" />
@@ -41,15 +37,17 @@ const ControlForm = ({ control, ...props }: ControlFormProps) => {
 					</> }
 				</Grid.Col>
 
-				<Grid.Col>
-					<ProtocolDropdown
-						onChange={ (protocol, options, form) => {
-							const option = options.find(option => option.value === protocol)
-							if(option) {
-								setShowingProtocolSlug(option.slug)
-							}
-						} } />
-				</Grid.Col>
+				<FormConsumer<ControlFormData>>{ ({ data }) => <>
+					{ data.control.control_type !== 'spacer' && <Grid.Col>
+						<ProtocolDropdown
+							onChange={ (protocol, options, form) => {
+								const option = options.find(option => option.value === protocol)
+								if(option) {
+									setShowingProtocolSlug(option.slug)
+								}
+							} } />
+					</Grid.Col> }
+				</> }</FormConsumer>
 
 				<Grid.Col>
 					{ data && <>
@@ -67,9 +65,12 @@ const ControlForm = ({ control, ...props }: ControlFormProps) => {
 					</> }
 				</Grid.Col>
 
-				<Grid.Col>
-					<SwatchInput label="Button Color" name="color" />
-				</Grid.Col>
+				<FormConsumer<ControlFormData>>{ ({ data }) => <>
+					{ data.control.control_type !== 'spacer' &&
+						<Grid.Col>
+							<SwatchInput label="Button Color" name="color" />
+						</Grid.Col> }
+				</> }</FormConsumer>
 
 				<Grid.Col>
 					<Submit>{ control?.id ? 'Update' : 'Create' } Control</Submit>

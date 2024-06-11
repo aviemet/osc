@@ -4,36 +4,50 @@ import ControlForm from '../../Components/Control/Form'
 import { modals } from '@mantine/modals'
 import { Routes } from '@/lib'
 
+const controlFormFilter = ['control.id', 'control.command', 'control.updated_at', 'control.created_at', 'control.command_id', 'control.protocol']
+
 type ControlType = 'button'|'spacer'|'slider'
 
 interface NewControlMenuProps {
-	menuId?: number
+	menuId: number
 }
 
 const NewControlMenu = ({ menuId }: NewControlMenuProps) => {
-	const emptyData = (type: ControlType) => ({
-		control: {
-			screen_id: menuId,
-			control_type: type,
-		},
+	const emptyData = (type: ControlType): Schema.ControlsFormData => ({
+		screen_id: menuId,
+		control_type: type,
+		order: NaN,
+		title: '',
 	})
-	const handleNewButtonClick = (type: ControlType) => {
+
+	const handleNewButtonClick = () => {
 		modals.open({
 			title: 'Add New Control Button',
 			children: (
 				<ControlForm
-					data={ emptyData(type) }
+					control={ emptyData('button') }
 					remember={ false }
 					to={ Routes.controls() }
 					onSubmit={ () => modals.closeAll() }
-					filter={ ['control.id', 'control.command', 'control.updated_at', 'control.created_at', 'control.command_id', 'control.protocol'] }
+					filter={ controlFormFilter }
 				/>
 			),
 		})
 	}
 
 	const handleNewSpacerClick = () => {
-
+		modals.open({
+			title: 'Add New Control Button',
+			children: (
+				<ControlForm
+					control={ emptyData('spacer') }
+					remember={ false }
+					to={ Routes.controls() }
+					onSubmit={ () => modals.closeAll() }
+					filter={ controlFormFilter }
+				/>
+			),
+		})
 	}
 
 	return (
@@ -44,13 +58,13 @@ const NewControlMenu = ({ menuId }: NewControlMenuProps) => {
 				</Menu.Target>
 				<Menu.Dropdown>
 					<Menu.Label
-						onClick={ () => handleNewButtonClick('button') }
+						onClick={ handleNewButtonClick }
 					>
 						Button
 					</Menu.Label>
 					{ /* <Menu.Label>Slider</Menu.Label> */ }
 					<Menu.Label
-						onClick={ () => handleNewButtonClick('spacer') }
+						onClick={ handleNewSpacerClick }
 					>
 						Spacer
 					</Menu.Label>
