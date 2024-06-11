@@ -49,7 +49,7 @@ class ProtocolsCommand < ApplicationRecord
 
   default_scope { order(order: :asc) }
 
-  scope :includes_associated, -> { includes([:protocol, :command]) }
+  scope :includes_associated, -> { includes([:protocol, :command, :command_value]) }
 
   private
 

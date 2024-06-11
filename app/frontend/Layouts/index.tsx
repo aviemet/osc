@@ -24,14 +24,14 @@ interface InertiaPageProps extends PageProps {
 	props: LayoutWrapperProps
 }
 
-const LayoutWrapper = React.memo(({ children }: LayoutWrapperProps) => {
+const LayoutWrapper = ({ children }: LayoutWrapperProps) => {
 	return (
 		<Providers>
 			<Flash />
 			{ children }
 		</Providers>
 	)
-})
+}
 
 const AppLayoutLayout = (page: InertiaPageProps) => {
 	return (

@@ -1,6 +1,6 @@
 class Api::ProtocolsController < ApplicationController
   expose :protocols, -> { Protocol.includes_associated.all }
-  expose :protocol, id: -> { params[:slug] }, scope: -> { Protocol.includes_associated }, find_by: :slug
+  expose :protocol
 
   # @route GET /api/protocols/:slug (api_protocol)
   def show

@@ -2,6 +2,11 @@ import React from 'react'
 import Control, { ControlProps } from '@/Pages/Screens/Components/Control'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
+import { Box } from '@mantine/core'
+import EditControlButton from './EditControlButton'
+
+import cx from 'clsx'
+import * as classes from './Control.css'
 
 interface DraggableControlProps extends ControlProps<{edit: true}> {}
 
@@ -15,19 +20,26 @@ const DraggableControl = ({ control, ...props }: DraggableControlProps) => {
 	} = useSortable({ id: control.id! })
 
 	return (
-		<Control
-			edit={ true }
-			control={ control }
+		<Box
+			className={ cx(classes.editControlWrapper) }
 			ref={ setNodeRef }
 			style={ {
 				transform: CSS.Transform.toString(transform),
 				transition,
 			} }
-
 			{ ...listeners }
 			{ ...attributes }
-			{ ...props }
-		/>
+		>
+			<EditControlButton
+				control={ control }
+			/>
+			<Control
+				edit={ true }
+				control={ control }
+				{ ...props }
+			/>
+		</Box>
+
 	)
 }
 

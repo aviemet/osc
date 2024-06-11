@@ -5,7 +5,6 @@ import { Paper, useMantineTheme } from '@mantine/core'
 import { useViewportSize, useLocation } from '@/lib/hooks'
 import { px } from '@/lib'
 
-
 export type TTab = {
 	name: string
 	label: string
@@ -76,4 +75,4 @@ const VerticalNavLayout = ({ children, tabs, title, routePrefix }: IVerticalNavL
 	)
 }
 
-export default React.memo(VerticalNavLayout)
+export default VerticalNavLayout

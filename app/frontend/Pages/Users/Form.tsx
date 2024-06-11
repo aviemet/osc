@@ -40,4 +40,4 @@ const UserForm = ({ to, method = 'post', onSubmit, user }: IUserFormProps) => {
 	)
 }
 
-export default React.memo(UserForm)
+export default UserForm

@@ -17,7 +17,6 @@ import { useDynamicInputs, useForm } from 'use-inertia-form'
 
 interface IEditControlsProps {
 	screen: Schema.ScreensEdit
-	screens: Schema.ScreensOptions[]
 }
 
 const EditControls = ({ screen }: IEditControlsProps) => {
@@ -72,6 +71,7 @@ const EditControls = ({ screen }: IEditControlsProps) => {
 			>
 				{ paths.map((path, i) => {
 					const record = getData(`${formModel}.${path}`) as Schema.ControlsEdit
+
 					return (
 						<DraggableControl
 							key={ record.id }

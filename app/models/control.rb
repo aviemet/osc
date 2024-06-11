@@ -53,7 +53,7 @@ class Control < ApplicationRecord
   belongs_to :protocol, optional: true
   belongs_to :command, optional: true
 
-  scope :includes_associated, -> { includes([]) }
+  scope :includes_associated, -> { includes([:protocol, :command]) }
 
   validate :protocol_xor_command
   validates :order, presence: true

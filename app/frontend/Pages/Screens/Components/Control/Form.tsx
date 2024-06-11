@@ -4,9 +4,6 @@ import { Form, TextInput, Submit, SwatchInput, FormConsumer } from '@/Components
 import { ProtocolDropdown } from '@/Components/Dropdowns'
 import { useGetProtocol } from '@/queries'
 import { FormProps } from 'use-inertia-form'
-import { Routes } from '@/lib'
-import { router } from '@inertiajs/react'
-import { useLocation } from '@/lib/hooks'
 
 type ControlFormData = {
 	control: Schema.ControlsFormData
@@ -31,6 +28,10 @@ const ControlForm = ({ control, ...props }: ControlFormProps) => {
 			remember={ false }
 			{ ...props }
 		>
+			<FormConsumer>{ ({ data }) => {
+				console.log({ data })
+				return <></>
+			} }</FormConsumer>
 			<Grid>
 				<Grid.Col>
 					<TextInput name="title" label="Title" />

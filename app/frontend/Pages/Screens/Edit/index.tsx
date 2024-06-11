@@ -1,18 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Divider, Page, Tabs } from '@/Components'
-import { Form, FormConsumer, Submit } from '@/Components/Form'
+import { Form, Submit } from '@/Components/Form'
 import { Routes } from '@/lib'
 import { useLocation } from '@/lib/hooks'
 import { router } from '@inertiajs/react'
 import { useDroppable } from '@dnd-kit/core'
 import EditControls from './EditControls'
-// import { AddControlsInterface } from '@/Features'
-
-import cx from 'clsx'
-import * as classes from './ScreenControl.css'
 import { modals } from '@mantine/modals'
 import ScreenForm from '../Form'
 import NewControlMenu from './NewControlMenu'
+
+import cx from 'clsx'
+import * as classes from './ScreenControl.css'
 
 interface IEditScreenProps {
 	screen: Schema.ScreensEdit
@@ -20,7 +19,18 @@ interface IEditScreenProps {
 }
 
 const EditScreen = ({ screen, screens }: IEditScreenProps) => {
+	const getScreenId = (slug: string): number | false => {
+		const currentScreen = screens.find(s => s.slug === slug)
+		if(currentScreen?.id) {
+			return currentScreen.id
+		}
+
+		return false
+	}
+
 	const { paths } = useLocation()
+
+	const [currentTabId, setCurrentTabId] = useState(getScreenId(paths[1]))
 
 	const title = 'Edit Screen'
 
@@ -40,20 +50,35 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 		})
 	}
 
+	const handleTabChange = (value: string | null) => {
+		if(value === null) return
+
+		const currentScreenId = getScreenId(value)
+
+		if(currentScreenId) {
+			setCurrentTabId(currentScreenId)
+		}
+
+		value && router.get(Routes.editScreen(value))
+	}
+
 	return (
 		<>
 			<Page title={ title }>
 
-				{ /* <AddControlsInterface /> */ }
-
 				<Tabs
 					variant="outline"
 					value={ paths[1] }
-					onChange={ value => value && router.get(Routes.editScreen(value)) }
+					onChange={ handleTabChange }
 				>
 					<Tabs.List>
 						{ screens.map(iScreen => (
-							<Tabs.Tab key={ iScreen.id } value={ iScreen.slug }>{ iScreen.title }</Tabs.Tab>
+							<Tabs.Tab
+								key={ iScreen.id }
+								value={ iScreen.slug }
+							>
+								{ iScreen.title }
+							</Tabs.Tab>
 						)) }
 						<Button
 							p="xs"
@@ -81,7 +106,6 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 								>
 									<EditControls
 										screen={ screen }
-										screens={ screens }
 									/>
 									<Divider my="md" />
 									<Submit>Save Screen Layout</Submit>
@@ -91,7 +115,7 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 					)) }
 				</Tabs>
 
-				<NewControlMenu />
+				<NewControlMenu menuId={ currentTabId || undefined } />
 
 			</Page>
 			<div id="control-form-portal" />

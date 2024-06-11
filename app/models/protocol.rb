@@ -26,7 +26,6 @@ class Protocol < ApplicationRecord
     },
   )
 
-  tracked owner: proc { |controller| controller&.current_user }
   resourcify
 
   slug :title

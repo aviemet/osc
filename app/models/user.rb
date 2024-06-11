@@ -49,7 +49,6 @@
 class User < ApplicationRecord
   include PublicActivity::Model
 
-  tracked owner: proc { |controller| controller&.current_user }
   resourcify
   rolify
 

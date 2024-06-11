@@ -12,7 +12,7 @@ interface IProviderProps {
 	children?: React.ReactNode
 }
 
-const Providers = React.memo(({ children }: IProviderProps) => {
+const Providers = ({ children }: IProviderProps) => {
 	return (
 		<QueryProvider>
 			<UiFrameworkProvider>
@@ -22,6 +22,6 @@ const Providers = React.memo(({ children }: IProviderProps) => {
 			</UiFrameworkProvider>
 		</QueryProvider>
 	)
-})
+}
 
 export default Providers
