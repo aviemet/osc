@@ -63,11 +63,11 @@ const NewControlMenu = ({ menuId }: NewControlMenuProps) => {
 						Button
 					</Menu.Label>
 					{ /* <Menu.Label>Slider</Menu.Label> */ }
-					<Menu.Label
+					{ /* <Menu.Label
 						onClick={ handleNewSpacerClick }
 					>
 						Spacer
-					</Menu.Label>
+					</Menu.Label> */ }
 				</Menu.Dropdown>
 			</Menu>
 		</Affix>

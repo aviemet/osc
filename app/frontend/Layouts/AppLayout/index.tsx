@@ -5,6 +5,7 @@ import { Routes } from '@/lib'
 
 import * as classes from './AppLayout.css'
 import { HomeIcon } from '@/Components/Icons'
+import { ToggleColorSchemeButton } from '@/Components/Button'
 
 const AppLayout = ({ children }: { children: any }) => {
 	const { isLoggedIn } = useAuth()
@@ -13,10 +14,15 @@ const AppLayout = ({ children }: { children: any }) => {
 		<AppShell
 			header={ { height: 45 } }
 		>
-
 			<AppShell.Header className={ classes.layout } p="xs">
-				<Link href={ Routes.home() } mr="md"><HomeIcon size={ 28 } color="white" /></Link>
-				<Title size="h3">OSC Commands Interface</Title>
+				<Link href={ Routes.home() } mr="md">
+					<HomeIcon size={ 28 } />
+				</Link>
+
+				<Title size="h3" style={ { flex: 1 } }>OSC Commands Interface</Title>
+
+				<ToggleColorSchemeButton mr="sm" />
+
 				<Menu shadow="sm">
 					<Menu.Target>
 						<Burger size="sm" className={ classes.menu }></Burger>
@@ -36,6 +42,7 @@ const AppLayout = ({ children }: { children: any }) => {
 						}
 					</Menu.Dropdown>
 				</Menu>
+
 			</AppShell.Header>
 
 			<AppShell.Main>

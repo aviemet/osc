@@ -1,8 +1,10 @@
 import React from 'react'
-import { ActionIcon, useComputedColorScheme, useMantineColorScheme } from '@mantine/core'
+import { ActionIcon, type ActionIconProps, useComputedColorScheme, useMantineColorScheme } from '@mantine/core'
 import { SunIcon, MoonIcon } from '@/Components/Icons'
 
-const ToggleColorSchemeButton = () => {
+interface ToggleColorSchemeButtonProps extends ActionIconProps {}
+
+const ToggleColorSchemeButton = (props: ToggleColorSchemeButtonProps) => {
 	const { colorScheme, setColorScheme } = useMantineColorScheme()
 	const computedColorScheme = useComputedColorScheme('dark')
 
@@ -17,6 +19,7 @@ const ToggleColorSchemeButton = () => {
 			title="Toggle color scheme"
 			style={ { display: 'inline-flex' } }
 			aria-label={ `Toggle color scheme to ${colorScheme === 'dark' ? 'light' : 'dark'} mode` }
+			{ ...props }
 		>
 			{ colorScheme === 'dark' ? <SunIcon size={ 18 } /> : <MoonIcon size={ 18 } /> }
 		</ActionIcon>
