@@ -23,6 +23,7 @@ const NumberInputComponent = forwardRef<HTMLInputElement, CurrencyInputProps>((
 		symbol = '$',
 		wrapper,
 		wrapperProps,
+		onClick,
 		...props
 	},
 	ref,
@@ -42,6 +43,10 @@ const NumberInputComponent = forwardRef<HTMLInputElement, CurrencyInputProps>((
 				name={ name }
 				leftSection={ symbol }
 				hideControls
+				onClick={ e => {
+					e.stopPropagation()
+					onClick?.(e)
+				} }
 				{ ...props }
 			/>
 		</InputWrapper>

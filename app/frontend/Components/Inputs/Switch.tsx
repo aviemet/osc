@@ -6,7 +6,7 @@ import InputWrapper from './InputWrapper'
 export interface SwitchProps extends MantineSwitchProps, BaseInputProps {}
 
 const SwitchComponent = forwardRef<HTMLInputElement, SwitchProps>((
-	{ id, name, style, wrapper, wrapperProps, ...props },
+	{ id, name, style, wrapper, wrapperProps, onClick, ...props },
 	ref,
 ) => {
 	const inputId = id ?? name
@@ -19,6 +19,10 @@ const SwitchComponent = forwardRef<HTMLInputElement, SwitchProps>((
 				name={ name }
 				required={ props.required }
 				style={ [{ padding: '14px 10px' }, style] }
+				onClick={ e => {
+					e.stopPropagation()
+					onClick?.(e)
+				} }
 				{ ...props }
 			/>
 		</InputWrapper>

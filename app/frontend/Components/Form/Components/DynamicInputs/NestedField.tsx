@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
-import { Box, Button, Flex, Label, Paper } from '@/Components'
-import { PlusCircleIcon, MinusCircleIcon } from '@/Components/Icons'
+import { Box, Button, Flex, Group, Label, Paper } from '@/Components'
+import { PlusCircleIcon, MinusCircleIcon, DraggableIcon } from '@/Components/Icons'
 import { NestedFields, NestedObject, useDynamicInputs, useForm } from 'use-inertia-form'
 import cx from 'clsx'
 import {
@@ -63,14 +63,17 @@ const NestedField = <T extends Record<string, any>>({
 	}
 
 	return (
-		<Box ref={ setNodeRef } style={ style } { ...attributes } { ...listeners }>
+		<Box ref={ setNodeRef } style={ style }  { ...attributes }>
 			<NestedFields model={ model }>
 				<Flex align="center">
-					<Paper className={ cx(classes.dynamicInput) } style={ { flex: 1 } }>
+					<Group component={ Paper } className={ cx(classes.dynamicInput) } style={ { flex: 1 } }>
+						<Paper shadow="xs" py="xs" px="md" radius="md" className={ cx('draggable') } { ...listeners }>
+							<DraggableIcon />
+						</Paper>
 						<Box style={ { flex: 1 } }>
 							{ children }
 						</Box>
-					</Paper>
+					</Group>
 					<Button onClick={ () => handleRemoveInput(index) } size='xs' ml="xs">
 						<MinusCircleIcon />
 					</Button>

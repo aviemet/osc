@@ -22,6 +22,7 @@ const SelectComponent = forwardRef<HTMLInputElement, SelectInputProps>((
 		maxDropdownHeight = 400,
 		fetchOnOpen,
 		onDropdownOpen,
+		onClick,
 		wrapper,
 		wrapperProps,
 		...props
@@ -55,6 +56,10 @@ const SelectComponent = forwardRef<HTMLInputElement, SelectInputProps>((
 				maxDropdownHeight={ maxDropdownHeight }
 				onDropdownOpen={ handleDropdownOpen }
 				nothingFoundMessage="No Results"
+				onClick={ e => {
+					e.stopPropagation()
+					onClick?.(e)
+				} }
 				{ ...props }
 			/>
 		</InputWrapper>

@@ -12,7 +12,7 @@ type CheckboxComponentType = React.ForwardRefExoticComponent<
 };
 
 const CheckboxComponent: CheckboxComponentType = forwardRef<HTMLInputElement, CheckboxProps>((
-	{ id, name, wrapper, wrapperProps, ...props },
+	{ id, name, wrapper, wrapperProps, onClick, ...props },
 	ref,
 ) => {
 	const inputId = id ?? name
@@ -23,6 +23,10 @@ const CheckboxComponent: CheckboxComponentType = forwardRef<HTMLInputElement, Ch
 				ref={ ref }
 				id={ inputId }
 				name={ name }
+				onClick={ e => {
+					e.stopPropagation()
+					onClick?.(e)
+				} }
 				{ ...props }
 			/>
 		</InputWrapper>

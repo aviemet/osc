@@ -27,6 +27,7 @@ export {
 	MdAdd as NewIcon,
 	MdOutlineDelete as TrashIcon,
 	MdCalendarMonth as CalendarIcon,
+	// MdDragHandle as DraggableIcon,
 } from 'react-icons/md'
 
 
@@ -52,6 +53,7 @@ export {
 } from 'react-icons/fa'
 
 export {
+	RiDraggable as DraggableIcon,
 } from 'react-icons/ri'
 
 export {

@@ -7,7 +7,7 @@ import InputWrapper from './InputWrapper'
 export interface NumberInputProps extends MantineNumberInputProps, BaseInputProps {}
 
 const NumberInputComponent = forwardRef<HTMLInputElement, NumberInputProps>((
-	{ label, name, required = false, value, id, size = 'md', wrapper, wrapperProps, ...props },
+	{ label, name, required = false, value, id, size = 'md', wrapper, wrapperProps, onClick, ...props },
 	ref,
 ) => {
 	const inputId = id || name
@@ -23,6 +23,10 @@ const NumberInputComponent = forwardRef<HTMLInputElement, NumberInputProps>((
 				required={ required }
 				ref={ ref }
 				size={ size }
+				onClick={ e => {
+					e.stopPropagation()
+					onClick?.(e)
+				} }
 				{ ...props }
 			/>
 		</InputWrapper>

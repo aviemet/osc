@@ -32,6 +32,7 @@ const DateInputComponent = forwardRef<HTMLButtonElement, DateInputProps>((
 		wrapperProps,
 		value,
 		onChange,
+		onClick,
 		...props
 	},
 	ref,
@@ -80,6 +81,10 @@ const DateInputComponent = forwardRef<HTMLButtonElement, DateInputProps>((
 				value={ isUnset(localValue) ? undefined : localValue }
 				type={ datePickerType }
 				onChange={ handleChange }
+				onClick={ e => {
+					e.stopPropagation()
+					onClick?.(e)
+				} }
 				radius={ radius }
 				size={ size }
 				valueFormat={ valueFormat }

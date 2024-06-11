@@ -24,6 +24,7 @@ const MultiSelectComponent = forwardRef<HTMLInputElement, MultiSelectInputProps>
 		wrapperProps,
 		fetchOnOpen,
 		onDropdownOpen,
+		onClick,
 		...props
 	},
 	ref,
@@ -55,6 +56,10 @@ const MultiSelectComponent = forwardRef<HTMLInputElement, MultiSelectInputProps>
 				maxDropdownHeight={ maxDropdownHeight }
 				onDropdownOpen={ handleDropdownOpen }
 				nothingFoundMessage="No Results"
+				onClick={ e => {
+					e.stopPropagation()
+					onClick?.(e)
+				} }
 				{ ...props }
 			/>
 		</InputWrapper>

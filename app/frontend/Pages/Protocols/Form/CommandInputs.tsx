@@ -26,12 +26,14 @@ const CommandInputs = ({ commands }: CommandInputsProps) => {
 
 	return (
 		<Grid>
+
 			<Grid.Col span={ 6 }>
 				<CommandDropdown
 					name="command_id"
 					onChange={ handleChange }
 				/>
 			</Grid.Col>
+
 			<Grid.Col span={ 6 }>
 				{ activeCommand ?
 					<CommandValueDropdown
@@ -42,9 +44,11 @@ const CommandInputs = ({ commands }: CommandInputsProps) => {
 					<TextInput label="Command Value" name="command_value_id" />
 				}
 			</Grid.Col>
+
 			<Grid.Col span={ 6 }>
 				<NumberInput label="Delay (in milliseconds)" name="delay" />
 			</Grid.Col>
+
 			<Grid.Col span={ 6 }>
 				<Label>Human Readable Duration</Label>
 				<TextInputComponent readOnly variant="outline" value={
@@ -54,6 +58,7 @@ const CommandInputs = ({ commands }: CommandInputsProps) => {
 						humanizeDuration(dayjs.duration(record?.delay || 0, 'millisecond'))
 				} />
 			</Grid.Col>
+
 		</Grid>
 	)
 }

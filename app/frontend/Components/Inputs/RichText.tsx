@@ -20,6 +20,7 @@ const RichText = forwardRef<HTMLDivElement, RichTextInputProps>((
 		id,
 		value,
 		wrapper,
+		onClick,
 		...props
 	},
 	ref,
@@ -31,7 +32,15 @@ const RichText = forwardRef<HTMLDivElement, RichTextInputProps>((
 			{ label && <Label required={ required } htmlFor={ inputId }>
 				{ label }
 			</Label> }
-			<RichTextEditor ref={ ref } id={ inputId } { ...props }>
+			<RichTextEditor
+				ref={ ref }
+				id={ inputId }
+				onClick={ e => {
+					e.stopPropagation()
+					onClick?.(e)
+				} }
+				{ ...props }
+			>
 				{ value }
 			</RichTextEditor>
 		</InputWrapper>

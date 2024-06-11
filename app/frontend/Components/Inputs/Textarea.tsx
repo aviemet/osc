@@ -14,6 +14,7 @@ const TextareaComponent = forwardRef<HTMLTextAreaElement, TextareaProps>((
 		id,
 		wrapper,
 		wrapperProps,
+		onClick,
 		...props
 	},
 	ref,
@@ -30,6 +31,10 @@ const TextareaComponent = forwardRef<HTMLTextAreaElement, TextareaProps>((
 				id={ inputId }
 				name={ name }
 				required={ required }
+				onClick={ e => {
+					e.stopPropagation()
+					onClick?.(e)
+				} }
 				{ ...props }
 			>
 			</Textarea>

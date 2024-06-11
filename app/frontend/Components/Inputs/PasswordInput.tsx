@@ -7,7 +7,7 @@ import InputWrapper from './InputWrapper'
 export interface PasswordInputProps extends MantinePasswordInputProps, BaseInputProps {}
 
 const PasswordInputComponent = forwardRef<HTMLInputElement, PasswordInputProps>((
-	{ label, name, required = false, id, size = 'md', wrapper, wrapperProps, ...props },
+	{ label, name, required = false, id, size = 'md', wrapper, wrapperProps, onClick, ...props },
 	ref,
 ) => {
 	const inputId = id || name
@@ -22,6 +22,10 @@ const PasswordInputComponent = forwardRef<HTMLInputElement, PasswordInputProps>(
 				required={ required }
 				ref={ ref }
 				size={ size }
+				onClick={ e => {
+					e.stopPropagation()
+					onClick?.(e)
+				} }
 				{ ...props }
 			/>
 		</InputWrapper>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, TextInput, Submit, Textarea } from '@/Components/Form'
+import { Form, TextInput, Submit, RichText } from '@/Components/Form'
 import { type HTTPVerb, type UseFormProps } from 'use-inertia-form'
 import { Grid } from '@/Components'
 import CommandInputs from './CommandInputs'
@@ -41,7 +41,7 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 				</Grid.Col>
 
 				<Grid.Col>
-					<Textarea name="description" label="Description" />
+					<RichText name="description" label="Description" />
 				</Grid.Col>
 
 				<Grid.Col>

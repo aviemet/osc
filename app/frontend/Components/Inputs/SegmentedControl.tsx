@@ -28,6 +28,7 @@ const SegmentedControlComponent = forwardRef<HTMLDivElement, SegmentedControlPro
 		value,
 		required,
 		onChange,
+		onClick,
 		wrapper,
 		...props
 	},
@@ -45,6 +46,10 @@ const SegmentedControlComponent = forwardRef<HTMLDivElement, SegmentedControlPro
 				value={ value }
 				onChange={ (choice: string) => {
 					onChange?.(choice)
+				} }
+				onClick={ e => {
+					e.stopPropagation()
+					onClick?.(e)
 				} }
 				data={ options }
 				color={ theme.primaryColor }

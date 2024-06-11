@@ -1,13 +1,15 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 const useInit = (cb: Function) => {
+	const hasRunRef = useRef(false)
 	useEffect(() => {
-		cb()
-		// Really quite stupid that I have to do something hacky like this. I get the arguments,
-		//   but I think I know when I need something to run just once on load and not re-run when
-		//   a "dependent" value changes. If this is the direction we're going with useEffect, there
-		//   should be a prescribed way to run something just once on component render. Not everything
-		//   that goes in a useEffect body is about data fetching.
+		let cleanup
+		if(hasRunRef.current === false) {
+			cleanup = cb()
+			hasRunRef.current = true
+		}
+
+		return cleanup
 		// eslint-disable-next-line
 	}, [])
 }

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Box, Button, Label } from '@/Components'
 import { PlusCircleIcon } from '@/Components/Icons'
 import { useDynamicInputs, useForm } from 'use-inertia-form'
@@ -9,13 +9,17 @@ import {
 	useSensor,
 	useSensors,
 } from '@dnd-kit/core'
+import {
+	restrictToVerticalAxis,
+	restrictToWindowEdges,
+} from '@dnd-kit/modifiers'
 import type { Active, DragEndEvent, DragStartEvent } from '@dnd-kit/core'
 import {
 	SortableContext,
 	arrayMove,
 	verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
-import { createContext } from '@/lib/hooks'
+import { createContext, useInit } from '@/lib/hooks'
 import { FormPointerSensor } from '@/Components/Sortable'
 import { type DynamicInputsProps } from '.'
 import NestedField from './NestedField'
@@ -66,6 +70,32 @@ const SortableDynamicInputs = <T extends OrderedObject>({
 			}
 		})
 	}
+
+	// Disable click drag events on specific child elements
+	useInit(() => {
+		const handlePortalClick = (event: MouseEvent) => {
+			if(!event?.target) return
+
+			const target = event.target as HTMLElement
+			console.log({ current: event.currentTarget })
+			console.log({ portal: target.closest('[data-portal]') })
+			if(target.closest('[data-portal]')) {
+				event.stopPropagation()
+			}
+		}
+
+		const portals = document.querySelectorAll('[data-portal]')
+		console.log({ portals })
+		portals.forEach(portal => {
+			portal.addEventListener('mousedown', handlePortalClick, { capture: true })
+		})
+
+		return () => {
+			portals.forEach(portal => {
+				portal.removeEventListener('mousedown', handlePortalClick, { capture: true })
+			})
+		}
+	})
 
 	/* DnD stuff */
 	const [activeDnd, setActiveDnd] = useState<Active | null>(null)
@@ -126,6 +156,7 @@ const SortableDynamicInputs = <T extends OrderedObject>({
 				onDragStart={ handleDragStart }
 				onDragEnd={ handleDragEnd }
 				onDragCancel={ handleDragCancel }
+				modifiers={ [restrictToVerticalAxis] }
 			>
 				<SortableContext items={ useMemo(() => items?.map(item => item.order ), [items]) } strategy={ verticalListSortingStrategy }>
 

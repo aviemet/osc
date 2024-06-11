@@ -20,5 +20,9 @@ export const dynamicInput = css`
 	box-shadow: ${vars.shadows.xs};
 	margin-bottom: ${vars.spacing.xs};
 	padding: ${vars.spacing.xs};
-	border-radius: ${vars.radius.sm}
+	border-radius: ${vars.radius.sm};
+
+	.draggable {
+		cursor: move;
+	}
 `

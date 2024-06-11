@@ -26,6 +26,7 @@ const DateTime = forwardRef<HTMLButtonElement, DateTimeProps>((
 		valueFormat = 'L LT',
 		wrapper,
 		wrapperProps,
+		onClick,
 		...props
 	},
 	ref,
@@ -47,6 +48,10 @@ const DateTime = forwardRef<HTMLButtonElement, DateTimeProps>((
 				valueFormat={ valueFormat }
 				leftSection={ <CalendarIcon /> }
 				leftSectionPointerEvents="none"
+				onClick={ e => {
+					e.stopPropagation()
+					onClick?.(e)
+				} }
 				{ ...props }
 			/>
 		</InputWrapper>
