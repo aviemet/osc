@@ -1,11 +1,11 @@
 import React from 'react'
 import { router } from '@inertiajs/react'
 import { Select, type SelectProps } from '@mantine/core'
-import axios from 'axios'
-import { Routes } from '@/lib'
 import { useLocation, usePageProps } from '@/lib/hooks'
 import useLayoutStore from '@/lib/store/LayoutStore'
 import { type Pagination } from '@/types'
+import axios from 'axios'
+import { Routes } from '@/lib'
 
 import cx from 'clsx'
 import * as classes from '../Table.css'
@@ -24,6 +24,27 @@ const LimitSelect = ({ pagination, model }: LimitSelectProps) => {
 		if(!model) return
 
 		limit ||= String(defaultLimit)
+
+		// userTableLimitMutation.mutate({
+		// 	id: user.id,
+		// 	preferences: {
+		// 		[model]: { limit },
+		// 	},
+		// }, {
+		// 	onSuccess: () => {
+		// 		// Redirect to first page if new limit puts page out of bounds of records
+		// 		if(parseInt(limit) * (pagination.current_page - 1) > pagination.count) {
+		// 			location.params.delete('page')
+		// 			router.get(
+		// 				location.path,
+		// 				{ ...location.paramsAsJson },
+		// 				{ preserveScroll: true },
+		// 			)
+		// 		} else {
+		// 			router.reload()
+		// 		}
+		// 	},
+		// })
 
 		// TODO: Use react-query
 		axios.patch( Routes.apiUpdateTablePreferences(user.id!), {

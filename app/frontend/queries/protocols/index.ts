@@ -3,7 +3,7 @@ import { Routes } from '@/lib'
 import axios from 'axios'
 import { type ReactQueryFunction } from '..'
 
-export const useGetProtocol: ReactQueryFunction<Schema.ProtocolsShow, { slug: string}> = ({ slug }, options) => {
+export const useGetProtocol: ReactQueryFunction<Schema.ProtocolsShow, { slug: string }> = ({ slug }, options) => {
 	return useQuery({
 		queryKey: [`protocol/${slug}`],
 		queryFn: async () => {

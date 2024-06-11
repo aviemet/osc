@@ -31,7 +31,7 @@ class ScreensController < ApplicationController
     authorize screen
 
     render inertia: "Screens/Edit", props: {
-      screen: -> { screen.render(view: :edit) },
+      screen: screen.render(view: :edit),
       screens: -> { Screen.all.render(view: :options) },
     }
   end

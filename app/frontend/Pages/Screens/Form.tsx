@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, TextInput, Submit } from '@/Components/Form'
+import { Grid } from '@/Components'
 import { type HTTPVerb, type UseFormProps } from 'use-inertia-form'
 
 type TScreenFormData = {
@@ -21,8 +22,15 @@ const ScreenForm = ({ method = 'post', screen, ...props }: ScreenFormProps) => {
 			method={ method }
 			{ ...props }
 		>
-			<TextInput name="title" label="Title" />
-			<Submit>{ screen?.id ? 'Update' : 'Create' } Screen</Submit>
+			<Grid>
+				<Grid.Col>
+					<TextInput name="title" label="Title" />
+				</Grid.Col>
+
+				<Grid.Col>
+					<Submit>{ screen?.id ? 'Update' : 'Create' } Screen</Submit>
+				</Grid.Col>
+			</Grid>
 		</Form>
 	)
 }

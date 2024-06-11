@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { Code, Grid, Paper, ScrollArea, Text } from '@/Components'
-import { Form, TextInput, Submit } from '@/Components/Form'
+import { Form, TextInput, Submit, SwatchInput, FormConsumer } from '@/Components/Form'
 import { ProtocolDropdown } from '@/Components/Dropdowns'
 import { useGetProtocol } from '@/queries'
 import { FormProps } from 'use-inertia-form'
+import { Routes } from '@/lib'
+import { router } from '@inertiajs/react'
+import { useLocation } from '@/lib/hooks'
 
 type ControlFormData = {
 	control: Schema.ControlsFormData
@@ -14,13 +17,12 @@ export interface ControlFormProps extends Omit<FormProps<ControlFormData>, 'data
 }
 
 const ControlForm = ({ control, ...props }: ControlFormProps) => {
-	console.log({ control })
 	const [showingProtocolSlug, setShowingProtocolSlug] = useState(control?.protocol?.slug)
 
-	const { data, isLoading, error } = useGetProtocol({ slug: showingProtocolSlug }, {
+	const { data } = useGetProtocol({ slug: showingProtocolSlug }, {
+		initialData: control?.protocol,
 		enabled: !!showingProtocolSlug,
 	})
-	console.log({ data })
 
 	return (
 		<Form
@@ -41,16 +43,19 @@ const ControlForm = ({ control, ...props }: ControlFormProps) => {
 				<Grid.Col>
 					<ProtocolDropdown
 						onChange={ (protocol, options, form) => {
-							console.log({ protocol, data: form.data })
-							// const thing = useGetProtocol(control.slug)
+							const option = options.find(option => option.value === protocol)
+							if(option) {
+								setShowingProtocolSlug(option.slug)
+							}
 						} } />
 				</Grid.Col>
+
 				<Grid.Col>
-					{ control?.protocol && <>
-						<Text>{ control.protocol.title } commands:</Text>
+					{ data && <>
+						<Text>{ data.title } commands:</Text>
 						<ScrollArea>
 							<Paper bg="dark" radius="md" p="md" className="field">
-								{ control.protocol?.commands?.map(command => (
+								{ data.commands?.map(command => (
 									<Code style={ { display: 'block' } } mb="xs" key={ command.id }>
 										{ command.address }
 									</Code>
@@ -59,6 +64,10 @@ const ControlForm = ({ control, ...props }: ControlFormProps) => {
 							</Paper>
 						</ScrollArea>
 					</> }
+				</Grid.Col>
+
+				<Grid.Col>
+					<SwatchInput label="Button Color" name="color" />
 				</Grid.Col>
 
 				<Grid.Col>

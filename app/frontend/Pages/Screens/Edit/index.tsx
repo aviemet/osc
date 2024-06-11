@@ -1,17 +1,18 @@
 import React from 'react'
-import { Button, Menu, Page, Tabs } from '@/Components'
+import { Button, Divider, Page, Tabs } from '@/Components'
 import { Form, FormConsumer, Submit } from '@/Components/Form'
 import { Routes } from '@/lib'
 import { useLocation } from '@/lib/hooks'
 import { router } from '@inertiajs/react'
-import { Affix, Divider } from '@mantine/core'
 import { useDroppable } from '@dnd-kit/core'
-import NewScreenModal from './NewScreenModal'
 import EditControls from './EditControls'
-import { AddControlsInterface } from '@/Features'
+// import { AddControlsInterface } from '@/Features'
 
 import cx from 'clsx'
 import * as classes from './ScreenControl.css'
+import { modals } from '@mantine/modals'
+import ScreenForm from '../Form'
+import NewControlMenu from './NewControlMenu'
 
 interface IEditScreenProps {
 	screen: Schema.ScreensEdit
@@ -27,69 +28,74 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 		id: 'screen_droppable',
 	})
 
+	const handleNewScreenModalTrigger = () => {
+		modals.open({
+			title: 'Create a New Screen',
+			children: (
+				<ScreenForm
+					to={ Routes.screens() }
+					onSubmit={ () => modals.closeAll() }
+				/>
+			),
+		})
+	}
+
 	return (
-		<Page title={ title }>
+		<>
+			<Page title={ title }>
 
-			{ /* <AddControlsInterface /> */ }
+				{ /* <AddControlsInterface /> */ }
 
-			<Tabs
-				variant="outline"
-				value={ paths[1] }
-				onChange={ value => value && router.get(Routes.editScreen(value)) }
-			>
-				<Tabs.List>
+				<Tabs
+					variant="outline"
+					value={ paths[1] }
+					onChange={ value => value && router.get(Routes.editScreen(value)) }
+				>
+					<Tabs.List>
+						{ screens.map(iScreen => (
+							<Tabs.Tab key={ iScreen.id } value={ iScreen.slug }>{ iScreen.title }</Tabs.Tab>
+						)) }
+						<Button
+							p="xs"
+							variant="subtle"
+							onClick={ handleNewScreenModalTrigger }
+						>+</Button>
+
+					</Tabs.List>
+
 					{ screens.map(iScreen => (
-						<Tabs.Tab key={ iScreen.id } value={ iScreen.slug }>{ iScreen.title }</Tabs.Tab>
+						<Tabs.Panel
+							key={ `${iScreen.id}-${iScreen.slug}` }
+							value={ iScreen.slug }
+							className={ cx(classes.tabsPanel) }
+							ref={ droppable.setNodeRef }
+						>
+							{ iScreen.id === screen.id && (
+								<Form
+									model="screen"
+									data={ { screen: screen } }
+									to={ Routes.screen(screen.slug) }
+									method="patch"
+									filter={ ['screen.id', 'screen.slug', 'screen.created_at', 'screen.updated_at'] }
+									remember={ false }
+								>
+									<EditControls
+										screen={ screen }
+										screens={ screens }
+									/>
+									<Divider my="md" />
+									<Submit>Save Screen Layout</Submit>
+								</Form>
+							) }
+						</Tabs.Panel>
 					)) }
-					<NewScreenModal trigger={ <Button p="xs" variant="subtle">+</Button> } />
-				</Tabs.List>
+				</Tabs>
 
-				{ screens.map(iScreen => (
-					<Tabs.Panel
-						key={ `${iScreen.id}-${iScreen.slug}` }
-						value={ iScreen.slug }
-						className={ cx(classes.tabsPanel) }
-						ref={ droppable.setNodeRef }
-					>
-						{ iScreen.id === screen.id && (
-							<Form
-								model="screen"
-								data={ { screen: screen } }
-								to={ Routes.screen(screen.slug) }
-								method="patch"
-								filter={ ['screen.id', 'screen.slug', 'screen.created_at', 'screen.updated_at'] }
-								remember={ false }
-							>
-								<FormConsumer>{ ({ data }) => {
-									console.log({ formData: data })
-									return <></>
-								} }</FormConsumer>
-								<EditControls
-									screen={ screen }
-									screens={ screens }
-								/>
-								<Divider my="md" />
-								<Submit>Save Screen Layout</Submit>
-							</Form>
-						) }
-					</Tabs.Panel>
-				)) }
+				<NewControlMenu />
 
-			</Tabs>
-
-			<Affix>
-				<Menu position="top-end">
-					<Menu.Target>
-						<Button radius="xl" p="sm" m="lg">+</Button>
-					</Menu.Target>
-					<Menu.Dropdown>
-						<Menu.Label>Button</Menu.Label>
-						{ /* <Menu.Label>Slider</Menu.Label> */ }
-						{ /* <Menu.Label>Spacer</Menu.Label> */ }
-					</Menu.Dropdown>
-				</Menu>
-			</Affix>
-		</Page>
+			</Page>
+			<div id="control-form-portal" />
+		</>
 	)
 }
 

@@ -118,7 +118,7 @@ const Select = <TForm extends NestedObject = NestedObject>(
 				>
 					<SelectInput
 						// Add "search" suffix to prevent password managers trying to autofill dropdowns
-						id={ `${id || inputId}-search` }
+						id={ inputId }
 						autoComplete="off"
 						name={ inputName }
 						label={ label }

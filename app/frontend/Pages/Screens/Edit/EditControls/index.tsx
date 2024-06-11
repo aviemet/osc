@@ -76,9 +76,7 @@ const EditControls = ({ screen }: IEditControlsProps) => {
 						<DraggableControl
 							key={ record.id }
 							control={ record }
-						>
-							{ `${record.id} (${record.order}) - ${record.title}` }
-						</DraggableControl>
+						/>
 					)
 				}) }
 			</SortableContext>

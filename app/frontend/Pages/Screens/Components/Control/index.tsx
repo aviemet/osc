@@ -6,29 +6,33 @@ import { type BoxProps } from '@mantine/core'
 
 import cx from 'clsx'
 import * as classes from './Control.css'
+// import { ConditionalWrapper } from '@/Components'
 
 interface BaseControlProps extends BoxProps {
 	children?: React.ReactNode
 }
 
-type ShowControlProps = {
+type ShowControlProps = BaseControlProps & {
 	edit?: false | undefined
 	control: Schema.ControlsShow
 }
 
-type EditControlProps = {
+type EditControlProps = BaseControlProps & {
 	edit?: true
 	control: Schema.ControlsFormData
 }
 
-export type ControlProps = BaseControlProps & (ShowControlProps | EditControlProps);
+export type ControlProps<T = { edit: undefined }> =
+	T extends { edit: true }
+		? EditControlProps
+		: ShowControlProps
 
-const Control = forwardRef<HTMLButtonElement,ControlProps >((
-	{ control, className, ...props },
+const Control = forwardRef<HTMLButtonElement,ControlProps>((
+	{ control, edit, className, ...props },
 	ref,
 ) => {
 	const sharedProps = {
-		className: cx(className, { [classes.editControl]: props.edit }),
+		className: cx(className, { [classes.editControl]: edit }),
 		ref,
 	}
 
@@ -36,6 +40,7 @@ const Control = forwardRef<HTMLButtonElement,ControlProps >((
 		case 'button':
 			return (
 				<ButtonControl
+					edit={ edit }
 					control={ control }
 					m="xs"
 					{ ...sharedProps }
@@ -70,3 +75,14 @@ const Control = forwardRef<HTMLButtonElement,ControlProps >((
 })
 
 export default Control
+
+// const WrappedControl = ({ edit, ...props }) => {
+// 	<ConditionalWrapper
+// 		condition={ edit }
+// 		wrapper={ children => (
+
+// 		)}
+// 	>
+
+// 	</ConditionalWrapper>
+// }

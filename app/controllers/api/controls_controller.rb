@@ -27,8 +27,8 @@ class Api::ControlsController < ApplicationController
     end
   end
 
-  # @route PATCH /api/controls/:slug (api_control)
-  # @route PUT /api/controls/:slug (api_control)
+  # @route PATCH /api/controls/:id (api_control)
+  # @route PUT /api/controls/:id (api_control)
   def update
     if control.save
       render json: control.render, status: :created

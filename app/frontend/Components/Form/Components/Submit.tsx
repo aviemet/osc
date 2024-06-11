@@ -1,6 +1,6 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import { Button, Link } from '@/Components'
-import { Submit as SubmitButton } from 'use-inertia-form'
+import { Submit as SubmitButton, useForm } from 'use-inertia-form'
 import { Flex, type ButtonProps } from '@mantine/core'
 
 interface SubmitButtonProps extends ButtonProps {
@@ -8,16 +8,16 @@ interface SubmitButtonProps extends ButtonProps {
 	requiredFields?: string[]
 }
 
-const Submit = forwardRef<HTMLButtonElement, SubmitButtonProps>((
-	{ children, cancelRoute, style, ...props },
-	ref,
+const Submit = (
+	{ children, cancelRoute, style, ...props }: SubmitButtonProps,
 ) => {
+	const { data } = useForm()
+
 	return (
 		<Flex gap="md" className="submit">
 			<Button
 				component={ SubmitButton }
 				style={ [{ flex: 1 }, style] }
-				ref={ ref }
 				{ ...props }
 			>
 				{ children }
@@ -27,6 +27,6 @@ const Submit = forwardRef<HTMLButtonElement, SubmitButtonProps>((
 			) }
 		</Flex>
 	)
-})
+}
 
 export default Submit

@@ -26,10 +26,9 @@ const SwatchPicker = ({ value, onChange }: SwatchPickerProps) => {
 				className={ cx(classes.colorSwatch) }
 				style={ {
 					color: colorScheme === 'dark' ? theme.colors[color][2] : theme.white,
-
 				} }
 			>
-				{ value === color && <CheckIcon width={ rem(12) } height={ rem(12) } /> }
+				{ value === color && <CheckIcon /> }
 			</ColorSwatch>
 		))
 	}, [value, colorScheme])

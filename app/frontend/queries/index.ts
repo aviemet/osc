@@ -25,10 +25,14 @@ interface LimitedMutationOptions<T, P> extends Omit<UseMutationOptions<T, unknow
 	onSuccess?: (data: T, variables: P) => void
 }
 
-export type ReactMutationFunction<T, P extends Record<string, unknown>> = (
+export type ReactMutationFunction<
+	T,
+	P extends Record<string, unknown>,
+	M extends Record<string, unknown>
+> = (
 	params: P,
-	options?: LimitedMutationOptions<T, P>
-) => UseMutationResult<T, unknown, P, unknown>;
+	options?: LimitedMutationOptions<T, M>
+) => UseMutationResult<T, unknown, M, unknown>;
 
 /**
  * Folder exports

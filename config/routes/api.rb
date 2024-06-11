@@ -9,7 +9,7 @@ namespace :api do
   resources :servers, except: [:edit, :new]
 
   put "protocol/:id/execute", to: "protocols#execute", as: :execute_protocol
-  resources :protocols, except: [:edit, :new, :show], param: :slug
+  resources :protocols, except: [:edit, :new], param: :slug
 
   resources :controls, except: [:edit, :new]
 

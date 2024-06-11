@@ -4,10 +4,10 @@ import axios from 'axios'
 import { Box, type ButtonProps } from '@mantine/core'
 import { type ControlProps } from '..'
 import { controlRoute, controlTitle } from '../lib'
+import EditControlButton from '../EditControlButton'
 
 import cx from 'clsx'
 import * as classes from '../Control.css'
-import EditControlButton from './EditControlButton'
 
 interface ButtonControlProps extends ButtonProps, ControlProps {}
 
@@ -16,9 +16,11 @@ const ButtonControl = forwardRef<HTMLButtonElement, ButtonControlProps>((
 	ref,
 ) => {
 	const handleButtonClick = () => {
+		if(edit || !control?.id) return
+
 		const route = controlRoute(control)
 
-		if(edit || route === false) return
+		if(!route) return
 
 		axios.put(route)
 	}
