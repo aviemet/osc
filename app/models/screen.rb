@@ -33,7 +33,9 @@ class Screen < ApplicationRecord
 
   has_many :controls, -> { order(order: :asc) }, dependent: :nullify, inverse_of: :screen
 
-  scope :includes_associated, -> { includes([]) }
+  scope :includes_associated, -> { includes([:controls]) }
+
+  accepts_nested_attributes_for :controls, reject_if: ->(attributes) { attributes['title'].blank? }, allow_destroy: true
 
   private
 

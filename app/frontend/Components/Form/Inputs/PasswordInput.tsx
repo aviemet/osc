@@ -1,13 +1,16 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import PasswordInput, { type PasswordInputProps } from '@/Components/Inputs/PasswordInput'
-import Field from '../Field'
-import { useInertiaInput } from 'use-inertia-form'
+import Field from '../Components/Field'
+import { NestedObject, useInertiaInput } from 'use-inertia-form'
 import ConditionalWrapper from '@/Components/ConditionalWrapper'
-import { type BaseFormInputProps, type InputConflicts } from '.'
+import { type InputConflicts, type BaseFormInputProps } from '.'
 
-interface FormPasswordInputProps extends Omit<PasswordInputProps, InputConflicts>, BaseFormInputProps {}
+interface FormPasswordInputProps<TForm extends NestedObject>
+	extends
+	Omit<PasswordInputProps, InputConflicts>,
+	BaseFormInputProps<string, TForm> {}
 
-const FormInput = forwardRef<HTMLInputElement, FormPasswordInputProps>((
+const FormInput = <TForm extends NestedObject>(
 	{
 		name,
 		model,
@@ -17,17 +20,26 @@ const FormInput = forwardRef<HTMLInputElement, FormPasswordInputProps>((
 		id,
 		required,
 		field = true,
+		wrapperProps,
+		errorKey,
+		defaultValue,
+		clearErrorsOnChange,
 		...props
-	},
-	ref,
+	}: FormPasswordInputProps<TForm>,
 ) => {
-	const { form, inputName, inputId, value, setValue, error } = useInertiaInput<string>({ name, model })
+	const { form, inputName, inputId, value, setValue, error } = useInertiaInput<string, TForm>({
+		name,
+		model,
+		errorKey,
+		defaultValue,
+		clearErrorsOnChange,
+	})
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value
 		setValue(value)
 
-		if(onChange) onChange(value, form)
+		onChange?.(value, form)
 	}
 
 	const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
@@ -39,12 +51,13 @@ const FormInput = forwardRef<HTMLInputElement, FormPasswordInputProps>((
 
 	return (
 		<ConditionalWrapper
-			condition={ props.hidden !== true && field }
+			condition={ field }
 			wrapper={ children => (
 				<Field
 					type="password"
 					required={ required }
 					errors={ !!error }
+					{ ...wrapperProps }
 				>
 					{ children }
 				</Field>
@@ -58,10 +71,10 @@ const FormInput = forwardRef<HTMLInputElement, FormPasswordInputProps>((
 				onBlur={ handleBlur }
 				onFocus={ e => onFocus?.(e.target.value, form) }
 				error={ error }
-				ref={ ref }
+				wrapper={ false }
 				{ ...props }
 			/></ConditionalWrapper>
 	)
-})
+}
 
 export default FormInput

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { showNotification } from '@mantine/notifications'
 import { usePageProps } from '@/lib/hooks'
+import { type FlashMessage } from '@/types'
 
 const Flash = () => {
 	const { flash } = usePageProps()

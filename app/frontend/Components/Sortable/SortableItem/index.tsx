@@ -36,8 +36,6 @@ export function SortableItem({ children, id }: PropsWithChildren<Props>) {
 		transition,
 	} = useSortable({ id })
 
-	console.log({ attributes, isDragging, listeners, transform, transition })
-
 	const context = useMemo(
 		() => ({
 			attributes,

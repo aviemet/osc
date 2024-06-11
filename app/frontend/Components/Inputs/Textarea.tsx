@@ -1,17 +1,28 @@
 import React, { forwardRef } from 'react'
 import { Textarea, type TextareaProps as MantineTextareaProps } from '@mantine/core'
-import Label from '../Label'
+import { type BaseInputProps } from '.'
+import Label from './Label'
+import InputWrapper from './InputWrapper'
 
-export interface TextareaProps extends MantineTextareaProps { }
+export interface TextareaProps extends MantineTextareaProps, BaseInputProps {}
 
 const TextareaComponent = forwardRef<HTMLTextAreaElement, TextareaProps>((
-	{ label, name, required = false, value, id, radius = 'xs', ...props },
+	{
+		label,
+		name,
+		required = false,
+		id,
+		wrapper,
+		wrapperProps,
+		onClick,
+		...props
+	},
 	ref,
 ) => {
 	const inputId = id || name
 
 	return (
-		<>
+		<InputWrapper wrapper={ wrapper } wrapperProps={ wrapperProps }>
 			{ label && <Label required={ required } htmlFor={ inputId }>
 				{ label }
 			</Label> }
@@ -19,13 +30,15 @@ const TextareaComponent = forwardRef<HTMLTextAreaElement, TextareaProps>((
 				ref={ ref }
 				id={ inputId }
 				name={ name }
-				value={ value ? String(value) : '' }
 				required={ required }
-				radius={ radius }
+				onClick={ e => {
+					e.stopPropagation()
+					onClick?.(e)
+				} }
 				{ ...props }
 			>
 			</Textarea>
-		</>
+		</InputWrapper>
 	)
 })
 

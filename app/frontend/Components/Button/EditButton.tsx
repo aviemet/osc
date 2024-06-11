@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from '@/Components'
 import { EditIcon } from '@/Components/Icons'
-import { ILinkProps } from '../Link'
+import { LinkProps } from '../Link'
 
-interface IEditButtonProps extends Omit<ILinkProps, 'children'> {
+interface IEditButtonProps extends Omit<LinkProps, 'children'> {
 	label?: string
 }
 

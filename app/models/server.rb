@@ -28,14 +28,13 @@ class Server < ApplicationRecord
     },
   )
 
-  tracked owner: proc { |controller| controller&.current_user }
   resourcify
 
   slug :title
 
   has_many :commands, dependent: :nullify
 
-  scope :includes_associated, -> { includes([]) }
+  scope :includes_associated, -> { includes([:commands]) }
 
   attribute :port, :integer, default: 8080
 end

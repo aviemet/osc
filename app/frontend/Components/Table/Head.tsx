@@ -1,15 +1,21 @@
 import React, { forwardRef } from 'react'
 import { TableSectionContextProvider } from './TableContext'
-import { Box, ElementProps, type BoxProps } from '@mantine/core'
+import { Table, type TableTheadProps } from '@mantine/core'
 
-interface ITableHead extends BoxProps, ElementProps<'thead'> {}
+interface TableHead extends TableTheadProps {}
 
-const Head = forwardRef<HTMLTableSectionElement, ITableHead>(({ children, ...props }, ref) => {
+const Head = forwardRef<HTMLTableSectionElement, TableHead>((
+	{ children, ...props },
+	ref,
+) => {
 	return (
 		<TableSectionContextProvider value={ { section: 'head' } }>
-			<Box component="thead" { ...props } ref={ ref }>
+			<Table.Thead
+				ref={ ref }
+				{ ...props }
+			>
 				{ children }
-			</Box>
+			</Table.Thead>
 		</TableSectionContextProvider>
 	)
 })

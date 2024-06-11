@@ -1,14 +1,13 @@
 import React from 'react'
 import { Page, Table } from '@/Components'
 import TableTitleSection, { IIndexTableTitleSectionProps } from './TableTitleSection'
-import { type TBreadcrumb } from '@/Components/Breadcrumbs'
+import { type Pagination } from '@/types'
 
 interface IIndexPageTemplateProps extends IIndexTableTitleSectionProps {
 	model: string
 	rows: Record<string, any>[]
-	pagination: Schema.Pagination
+	pagination: Pagination
 	search?: boolean
-	breadcrumbs?: TBreadcrumb[]
 	advancedSearch?: React.ReactNode
 }
 
@@ -19,15 +18,12 @@ const IndexPageTemplate = ({
 	rows,
 	pagination,
 	search = true,
-	breadcrumbs,
 	menuOptions,
 	advancedSearch,
 	deleteRoute,
 }: IIndexPageTemplateProps) => {
 	return (
-		<Page title={ title } breadcrumbs={ breadcrumbs ?? [
-			{ title, href: window.location.href },
-		] }>
+		<Page title={ title }>
 			<Table.Section>
 				<Table.TableProvider
 					selectable

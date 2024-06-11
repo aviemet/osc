@@ -3,10 +3,11 @@ import { Routes } from '@/lib'
 import { IndexPageTemplate } from '@/Features'
 import { NewIcon } from '@/Components/Icons'
 import ProtocolsTable from '../Table'
+import { type Pagination } from '@/types'
 
 interface IProtocolIndexProps {
 	protocols: Schema.ProtocolsIndex[]
-	pagination: Schema.Pagination
+	pagination: Pagination
 }
 
 const ProtocolsIndex = ({ protocols, pagination }: IProtocolIndexProps) => {

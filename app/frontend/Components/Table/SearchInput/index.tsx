@@ -8,10 +8,11 @@ import { SearchIcon, CrossIcon } from '@/Components/Icons'
 import { ActionIcon, Box } from '@mantine/core'
 import { useSessionStorage } from '@mantine/hooks'
 import ColumnPicker from './ColumnPicker'
+import AdvancedSearch from './AdvancedSearch'
 import { useInit, useLocation } from '@/lib/hooks'
 import * as classes from '../Table.css'
 
-interface ISearchInputProps {
+interface SearchInputProps {
 	columnPicker?: boolean
 	advancedSearch?: React.ReactNode
 }
@@ -20,7 +21,7 @@ interface ISearchInputProps {
  * Performs an Inertia request to the current url (window.location), using the search params
  * as query string with the key of 'search'
  */
-const SearchInput = ({ columnPicker = true, advancedSearch }: ISearchInputProps) => {
+const SearchInput = ({ columnPicker = true, advancedSearch }: SearchInputProps) => {
 	const { tableState: { model }, setTableState } = useTableContext()
 
 	const location = useLocation()
@@ -73,10 +74,10 @@ const SearchInput = ({ columnPicker = true, advancedSearch }: ISearchInputProps)
 			(url.searchParams.get('search') === null && searchValue === '')
 		) return
 
-		if(!searchValue || searchValue === '') {
+		if(searchValue === '') {
 			url.searchParams.delete('search')
 		} else {
-			url.searchParams.set('search', searchValue)
+			url.searchParams.set('search', searchValue ?? '')
 			url.searchParams.delete('page')
 		}
 
@@ -85,17 +86,20 @@ const SearchInput = ({ columnPicker = true, advancedSearch }: ISearchInputProps)
 
 	return (
 		<Box className={ classes.searchWrapper }>
+			{ advancedSearch && <AdvancedSearch>{ advancedSearch }</AdvancedSearch> }
 			<TextInput
 				name="search"
 				id="search"
 				value={ searchValue }
 				onChange={ e => setSearchValue(e.target.value) }
-				rightSection={ searchValue !== '' && <ActionIcon onClick={ () => setSearchValue('') }>
+				rightSection={ searchValue !== '' && <ActionIcon variant="transparent" onClick={ () => setSearchValue('') }>
 					<CrossIcon color="grey" />
 				</ActionIcon> }
-				icon={ <SearchIcon size={ 24 } /> }
+				leftSection={ <SearchIcon size={ 24 } /> }
+				leftSectionPointerEvents="none"
 				className={ classes.searchInput }
 				aria-label="Search"
+				wrapper={ false }
 			/>
 			{ columnPicker && <ColumnPicker /> }
 		</Box>

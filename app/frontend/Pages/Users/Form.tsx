@@ -4,7 +4,7 @@ import {
 	TextInput,
 	Submit,
 } from '@/Components/Form'
-import { type UseFormProps } from 'use-inertia-form'
+import { type HTTPVerb, type UseFormProps } from 'use-inertia-form'
 
 type TUserFormData = {
 	user: Schema.UsersFormData
@@ -17,7 +17,7 @@ export interface IUserFormProps {
 	user: Schema.UsersFormData
 }
 
-const UserForm = ({ to, method = 'post', onSubmit, user, departments, people, locations }: IUserFormProps) => {
+const UserForm = ({ to, method = 'post', onSubmit, user }: IUserFormProps) => {
 
 	return (
 		<Form
@@ -40,4 +40,4 @@ const UserForm = ({ to, method = 'post', onSubmit, user, departments, people, lo
 	)
 }
 
-export default React.memo(UserForm)
+export default UserForm

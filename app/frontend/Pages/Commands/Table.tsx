@@ -1,20 +1,20 @@
 import React from 'react'
 import { Routes } from '@/lib'
-import { Table, Link } from '@/Components'
+import { Table, Link, type TableProps } from '@/Components'
 import { DeleteButton, EditButton } from '@/Components/Button'
-import { type ITableProps } from '@/Components/Table/Table'
 
-const CommandTable = (props: ITableProps) => {
+const CommandTable = (props: TableProps) => {
 	return (
 		<Table { ...props }>
 			<Table.Head>
 				<Table.Row>
-					<Table.Cell sort="title">Title</Table.Cell>
-					<Table.Cell sort="address">Address</Table.Cell>
-					<Table.Cell sort="payload_type">Payload</Table.Cell>
-					<Table.Cell className="actions">Actions</Table.Cell>
+					<Table.HeadCell sort="title">Title</Table.HeadCell>
+					<Table.HeadCell sort="address">Address</Table.HeadCell>
+					<Table.HeadCell sort="payload_type">Payload</Table.HeadCell>
+					<Table.HeadCell className="actions">Actions</Table.HeadCell>
 				</Table.Row>
 			</Table.Head>
+
 			<Table.Body>
 				<Table.RowIterator render={ (command: Schema.CommandsIndex) => (
 					<Table.Row key={ command.slug }>

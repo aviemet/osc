@@ -1,14 +1,16 @@
 import React from 'react'
-import Cell from '../Cell'
-import { Checkbox } from '@mantine/core'
+import Td from '../Td'
+import { Checkbox } from '@/Components/Inputs'
+import { CheckboxProps } from '@/Components/Inputs/Checkbox'
 import { useTableContext } from '../TableContext'
+import cx from 'clsx'
 
-interface IRowCheckBox {
+interface RowCheckBox extends CheckboxProps {
 	name: string
 	selected: Set<string>
 }
 
-const RowCheckbox = ({ name, selected }: IRowCheckBox) => {
+const RowCheckbox = ({ name, selected, ...props }: RowCheckBox) => {
 	const { setTableState } = useTableContext()
 
 	const handleClick = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,9 +25,9 @@ const RowCheckbox = ({ name, selected }: IRowCheckBox) => {
 	}
 
 	return (
-		<Cell fitContent>
-			<Checkbox checked={ selected?.has(name) } onChange={ handleClick } />
-		</Cell>
+		<Td fitContent className={ cx('table-row-select-checkbox') }>
+			<Checkbox checked={ selected?.has(name) } onChange={ handleClick } { ...props } />
+		</Td>
 	)
 }
 

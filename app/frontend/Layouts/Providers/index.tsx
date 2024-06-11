@@ -5,6 +5,7 @@ import UiFrameworkProvider from './UiFrameworkProvider'
 import './reset.css'
 import '@mantine/core/styles.css'
 import '@mantine/tiptap/styles.css'
+import '@mantine/notifications/styles.css'
 import './global.css'
 import QueryProvider from './QueryProvider'
 
@@ -12,7 +13,7 @@ interface IProviderProps {
 	children?: React.ReactNode
 }
 
-const Providers = React.memo(({ children }: IProviderProps) => {
+const Providers = ({ children }: IProviderProps) => {
 	return (
 		<QueryProvider>
 			<UiFrameworkProvider>
@@ -22,6 +23,6 @@ const Providers = React.memo(({ children }: IProviderProps) => {
 			</UiFrameworkProvider>
 		</QueryProvider>
 	)
-})
+}
 
 export default Providers

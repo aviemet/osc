@@ -3,10 +3,11 @@ import { Routes } from '@/lib'
 import { IndexPageTemplate } from '@/Features'
 import { NewIcon } from '@/Components/Icons'
 import CommandsTable from '../Table'
+import { type Pagination } from '@/types'
 
 interface ICommandIndexProps {
 	commands: Schema.CommandsIndex[]
-	pagination: Schema.Pagination
+	pagination: Pagination
 }
 
 const CommandsIndex = ({ commands, pagination }: ICommandIndexProps) => {
@@ -21,7 +22,7 @@ const CommandsIndex = ({ commands, pagination }: ICommandIndexProps) => {
 				{ label: 'New Command', href: Routes.newCommand(), icon: NewIcon },
 			] }
 		>
-			<CommandsTable striped />
+			<CommandsTable />
 		</IndexPageTemplate>
 	)
 }

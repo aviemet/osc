@@ -560,12 +560,12 @@ export const apiCommandsPayloadTypes = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[
 
 /**
  * Generates rails route to
- * /api/controls/:slug(.:format)
- * @param {any} slug
+ * /api/controls/:id(.:format)
+ * @param {any} id
  * @param {object | undefined} options
  * @returns {string} route path
  */
-export const apiControl = /*#__PURE__*/ __jsr.r({"slug":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"api"],[2,[7,"/"],[2,[6,"controls"],[2,[7,"/"],[2,[3,"slug"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
+export const apiControl = /*#__PURE__*/ __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"api"],[2,[7,"/"],[2,[6,"controls"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
 
 /**
  * Generates rails route to
@@ -735,14 +735,6 @@ export const controls = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"c
  * @returns {string} route path
  */
 export const destroyUserSession = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"logout"],[1,[2,[8,"."],[3,"format"]]]]]);
-
-/**
- * Generates rails route to
- * /dev/test(.:format)
- * @param {object | undefined} options
- * @returns {string} route path
- */
-export const devTest = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"dev"],[2,[7,"/"],[2,[6,"test"],[1,[2,[8,"."],[3,"format"]]]]]]]);
 
 /**
  * Generates rails route to

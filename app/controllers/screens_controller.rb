@@ -31,7 +31,7 @@ class ScreensController < ApplicationController
     authorize screen
 
     render inertia: "Screens/Edit", props: {
-      screen: -> { screen.render(view: :edit) },
+      screen: screen.render(view: :edit),
       screens: -> { Screen.all.render(view: :options) },
     }
   end
@@ -49,10 +49,12 @@ class ScreensController < ApplicationController
   # @route PATCH /screens/:slug (screen)
   # @route PUT /screens/:slug (screen)
   def update
+    ap({ params:, screen_params: })
     authorize screen
     if screen.update(screen_params)
       redirect_to screen, notice: "Screen was successfully updated."
     else
+      ap({ errors: screen.errors })
       redirect_to edit_screen_path, inertia: { errors: screen.errors }
     end
   end
@@ -71,6 +73,8 @@ class ScreensController < ApplicationController
   end
 
   def screen_params
-    params.require(:screen).permit(:title, :order)
+    params.require(:screen).permit(:title, :order, controls_attributes: [
+      :id, :title, :order
+    ],)
   end
 end

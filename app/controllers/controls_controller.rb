@@ -7,8 +7,9 @@ class ControlsController < ApplicationController
   # @route POST /controls (controls)
   def create
     authorize Control.new
+    ap({ control: })
     if control.save
-      redirect_to control, notice: "Control was successfully created."
+      redirect_to edit_screen_path(control.screen), notice: "Control was successfully created."
     else
       redirect_to new_control_path, inertia: { errors: control.errors }
     end
@@ -18,8 +19,9 @@ class ControlsController < ApplicationController
   # @route PUT /controls/:id (control)
   def update
     authorize control
+
     if control.update(control_params)
-      redirect_to control, notice: "Control was successfully updated."
+      redirect_to edit_screen_path(control.screen), inertia: { method: :get }, notice: "Control was successfully updated."
     else
       redirect_to edit_control_path, inertia: { errors: control.errors }
     end
@@ -35,10 +37,10 @@ class ControlsController < ApplicationController
   private
 
   def sortable_fields
-    %w(title type screen_id position min_value max_value value protocol_id).freeze
+    %w(title type screen_id min_value max_value value protocol_id).freeze
   end
 
   def control_params
-    params.require(:control).permit(:title, :type, :screen_id, :position, :min_value, :max_value, :value, :protocol_id)
+    params.require(:control).permit(:title, :control_type, :order, :color, :screen_id, :min_value, :max_value, :value, :protocol_id)
   end
 end

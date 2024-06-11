@@ -1,7 +1,7 @@
 class Screens::EditSerializer < ScreenSerializer
   attributes(
-    :slug,
     :id,
+    :slug,
     :updated_at,
     :created_at,
   )

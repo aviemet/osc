@@ -1,4 +1,3 @@
-import { isEmpty } from 'lodash'
 import { useForm } from 'use-inertia-form'
 
 /**
@@ -6,16 +5,22 @@ import { useForm } from 'use-inertia-form'
  * @param v Variable to test whether is an "unset" value
  * @returns boolean
  */
-export const isUnset = <T extends any>(v: T) => {
-	if(typeof v === 'number') {
-		return v === 0 ? false : !Boolean(v)
+export const isUnset = <T extends any>(v: T): v is T extends (null | undefined | '') ? T : never => {
+	if(
+		v === null ||
+		v === undefined ||
+		(typeof v === 'string' && v === '') ||
+		Number.isNaN(v) ||
+		JSON.stringify(v) === '{}'
+	) {
+		return true
 	}
 
-	if(v instanceof Date) return false
+	if(Array.isArray(v)) {
+		return !v.some(el => el !== '' && el !== undefined)
+	}
 
-	if(Array.isArray(v)) return !v.some(el => el !== '' && el !== undefined)
-
-	return isEmpty(v)
+	return false
 }
 
 export function getInputOnChange<Value>(

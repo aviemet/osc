@@ -1,15 +1,17 @@
 import React, { forwardRef } from 'react'
-import { MultiSelect, type ComboboxData, type MultiSelectProps as MantineMultiSelectProps } from '@mantine/core'
-import Label from '../Label'
+import { MultiSelect, type ComboboxData, type MultiSelectProps as MantineMultiSelectInputProps } from '@mantine/core'
+import Label from './Label'
+import { type BaseInputProps } from '.'
+import InputWrapper from './InputWrapper'
 import { router } from '@inertiajs/react'
 import { coerceArray } from '@/lib'
 
-export interface MultiSelectProps extends Omit<MantineMultiSelectProps, 'data'> {
+export interface MultiSelectInputProps extends Omit<MantineMultiSelectInputProps, 'data'>, BaseInputProps {
 	options?: ComboboxData
 	fetchOnOpen?: string
 }
 
-const MultiSelectComponent = forwardRef<HTMLInputElement, MultiSelectProps>((
+const MultiSelectComponent = forwardRef<HTMLInputElement, MultiSelectInputProps>((
 	{
 		options = [],
 		label,
@@ -17,9 +19,12 @@ const MultiSelectComponent = forwardRef<HTMLInputElement, MultiSelectProps>((
 		id,
 		name,
 		size = 'md',
+		maxDropdownHeight = 400,
+		wrapper,
 		wrapperProps,
 		fetchOnOpen,
 		onDropdownOpen,
+		onClick,
 		...props
 	},
 	ref,
@@ -31,11 +36,11 @@ const MultiSelectComponent = forwardRef<HTMLInputElement, MultiSelectProps>((
 			router.reload({ only: coerceArray(fetchOnOpen) })
 		}
 
-		if(onDropdownOpen) onDropdownOpen()
+		onDropdownOpen?.()
 	}
 
 	return (
-		<>
+		<InputWrapper wrapper={ wrapper } wrapperProps={ wrapperProps }>
 			{ label && <Label required={ required } htmlFor={ inputId }>
 				{ label }
 			</Label> }
@@ -48,12 +53,17 @@ const MultiSelectComponent = forwardRef<HTMLInputElement, MultiSelectProps>((
 				size={ size }
 				data={ options }
 				required={ required }
+				maxDropdownHeight={ maxDropdownHeight }
 				onDropdownOpen={ handleDropdownOpen }
 				nothingFoundMessage="No Results"
+				onClick={ e => {
+					e.stopPropagation()
+					onClick?.(e)
+				} }
 				{ ...props }
 			/>
-		</>
+		</InputWrapper>
 	)
 })
 
-export default React.memo(MultiSelectComponent)
+export default MultiSelectComponent

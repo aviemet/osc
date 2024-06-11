@@ -26,15 +26,17 @@ class Protocol < ApplicationRecord
     },
   )
 
-  tracked owner: proc { |controller| controller&.current_user }
   resourcify
 
   slug :title
 
   has_many :protocols_commands, -> { order(order: :asc) }, dependent: :destroy, inverse_of: :protocol
-  has_many :commands, through: :protocols_commands, dependent: :nullify
+  has_many :commands, -> {
+    select('commands.*, protocols_commands.*')
+      .includes([:server, :command_values])
+  }, through: :protocols_commands, dependent: :nullify
 
-  scope :includes_associated, -> { includes([:commands, :protocols_commands]) }
+  scope :includes_associated, -> { includes([:protocols_commands]) }
 
   accepts_nested_attributes_for :protocols_commands, allow_destroy: true
 end

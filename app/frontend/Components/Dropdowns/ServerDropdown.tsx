@@ -1,17 +1,20 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import { Select } from '@/Components/Form'
 import { type AsyncDropdown } from '.'
 import { useGetServers } from '@/queries'
 
-const ServerDropdown = forwardRef<HTMLInputElement, AsyncDropdown<Schema.ServersOptions>>((
-	{ label = 'Server', name = 'server_id', initialData = [], value, onSelect, ...props },
-	ref,
-) => {
+const ServerDropdown = ({
+	label = 'Server',
+	name = 'server_id',
+	initialData = [],
+	value,
+	onSelect,
+	...props
+}: AsyncDropdown<Schema.ServersOptions>) => {
 	const { data } = useGetServers()
 
 	return (
 		<Select
-			ref={ ref }
 			label={ label }
 			name={ name }
 			options={ !data ? [] : data.map(server => ({
@@ -21,6 +24,6 @@ const ServerDropdown = forwardRef<HTMLInputElement, AsyncDropdown<Schema.Servers
 			{ ...props }
 		/>
 	)
-})
+}
 
 export default ServerDropdown

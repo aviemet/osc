@@ -1,29 +1,29 @@
 import React, { forwardRef } from 'react'
-import { Select, type ComboboxData, type SelectProps as MantineSelectProps } from '@mantine/core'
+import { Select, type ComboboxData, type SelectProps } from '@mantine/core'
 import { router } from '@inertiajs/react'
 import { coerceArray } from '@/lib'
-import Label from '../Label'
+import { type BaseInputProps } from '.'
+import Label from './Label'
+import InputWrapper from './InputWrapper'
 
-function append(str: string, value: string) {
-	if(str.endsWith(value)) return str
-
-	return `${str}${value}`
-}
-
-export interface SelectProps extends Omit<MantineSelectProps, 'data'> {
+export interface SelectInputProps extends Omit<SelectProps, 'data'>, BaseInputProps {
 	options?: ComboboxData
 	fetchOnOpen?: string
 }
 
-const SelectComponent = forwardRef<HTMLInputElement, SelectProps>((
+const SelectComponent = forwardRef<HTMLInputElement, SelectInputProps>((
 	{
 		options = [],
 		label,
 		required,
 		id,
 		name,
+		size = 'md',
+		maxDropdownHeight = 400,
 		fetchOnOpen,
 		onDropdownOpen,
+		onClick,
+		wrapper,
 		wrapperProps,
 		...props
 	},
@@ -40,26 +40,30 @@ const SelectComponent = forwardRef<HTMLInputElement, SelectProps>((
 	}
 
 	return (
-		<>
+		<InputWrapper wrapper={ wrapper } wrapperProps={ wrapperProps }>
 			{ label && <Label required={ required } htmlFor={ inputId }>
 				{ label }
 			</Label> }
 			<Select
 				ref={ ref }
 				// Add "search" suffix to prevent password managers trying to autofill dropdowns
-				id={ inputId ? append(inputId, '-search') : undefined }
+				id={ `${inputId}-search` }
 				autoComplete="off"
 				name={ name }
-				size="md"
+				size={ size }
 				data={ options }
 				required={ required }
-				maxDropdownHeight={ 400 }
-				nothingFoundMessage="No Results"
+				maxDropdownHeight={ maxDropdownHeight }
 				onDropdownOpen={ handleDropdownOpen }
+				nothingFoundMessage="No Results"
+				onClick={ e => {
+					e.stopPropagation()
+					onClick?.(e)
+				} }
 				{ ...props }
 			/>
-		</>
+		</InputWrapper>
 	)
 })
 
-export default React.memo(SelectComponent)
+export default SelectComponent

@@ -1,32 +1,56 @@
 import React, { forwardRef } from 'react'
-import { TextInput, type TextInputProps } from '@mantine/core'
-import Label from '../Label'
+import { NumberInput, type NumberInputProps } from '@mantine/core'
+import Label from './Label'
+import InputWrapper from './InputWrapper'
+import { type BaseInputProps } from '.'
 
-export interface CurrencyInputProps extends TextInputProps {}
+export interface CurrencyInputProps
+	extends
+	NumberInputProps,
+	BaseInputProps
+{
+	symbol?: string|React.ReactNode
+}
 
-const TextInputComponent = forwardRef<HTMLInputElement, CurrencyInputProps>((
-	{ label, name, value, required = false, id, pattern, size = 'md', ...props },
+const NumberInputComponent = forwardRef<HTMLInputElement, CurrencyInputProps>((
+	{
+		label,
+		name,
+		required = false,
+		id,
+		pattern,
+		size = 'md',
+		symbol = '$',
+		wrapper,
+		wrapperProps,
+		onClick,
+		...props
+	},
 	ref,
 ) => {
 	const inputId = id || name
 
 	return (
-		<>
+		<InputWrapper wrapper={ wrapper } wrapperProps={ wrapperProps }>
 			{ label && <Label required={ required } htmlFor={ inputId }>
 				{ label }
 			</Label> }
-			<TextInput
+			<NumberInput
 				id={ inputId }
 				required={ required }
 				ref={ ref }
 				size={ size }
 				name={ name }
-				value={ value }
-				icon='$'
+				leftSection={ symbol }
+				hideControls
+				onClick={ e => {
+					e.stopPropagation()
+					onClick?.(e)
+				} }
 				{ ...props }
 			/>
-		</>
+		</InputWrapper>
 	)
 })
 
-export default TextInputComponent
+export default NumberInputComponent

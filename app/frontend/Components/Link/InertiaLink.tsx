@@ -4,9 +4,9 @@ import { Method, Visit } from '@inertiajs/core'
 import { type ButtonProps } from '@mantine/core'
 import { Button } from '@/Components'
 import { exclude } from '@/lib/collections'
-import AnchorLink, { type IAnchorLinkProps } from '@/Components/Link/AnchorLink'
+import AnchorLink, { type AnchorLinkProps } from '@/Components/Link/AnchorLink'
 
-interface ILinkProps extends IAnchorLinkProps {
+interface LinkProps extends AnchorLinkProps {
 	children?: React.ReactNode
 	href: string
 	as: 'a'|'button'
@@ -16,7 +16,7 @@ interface ILinkProps extends IAnchorLinkProps {
 	disabled?: boolean
 }
 
-const InertiaLinkComponent = forwardRef<HTMLAnchorElement, ILinkProps>((
+const InertiaLinkComponent = forwardRef<HTMLAnchorElement, LinkProps>((
 	{ children, href, as = 'a', method, visit, buttonProps, style, disabled, ...props },
 	ref,
 ) => {
@@ -29,11 +29,7 @@ const InertiaLinkComponent = forwardRef<HTMLAnchorElement, ILinkProps>((
 		})
 	}
 
-	const mergedButtonProps = Object.assign(
-		{ disabled },
-		buttonProps,
-		exclude(props, ['classNames', 'style', 'vars']),
-	)
+	const mergedButtonProps = Object.assign({ disabled }, buttonProps, exclude(props, ['classNames', 'styles', 'vars']))
 
 	const processedHref = disabled ? '#' : href
 

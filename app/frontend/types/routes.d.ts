@@ -118,13 +118,13 @@ export const apiCommandsPayloadTypes: ((
 
 /**
  * Generates rails route to
- * /api/controls/:slug(.:format)
- * @param {any} slug
+ * /api/controls/:id(.:format)
+ * @param {any} id
  * @param {object | undefined} options
  * @returns {string} route path
  */
 export const apiControl: ((
-  slug: RequiredRouteParameter,
+  id: RequiredRouteParameter,
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 
@@ -343,16 +343,6 @@ export const controls: ((
  * @returns {string} route path
  */
 export const destroyUserSession: ((
-  options?: {format?: OptionalRouteParameter} & RouteOptions
-) => string) & RouteHelperExtras;
-
-/**
- * Generates rails route to
- * /dev/test(.:format)
- * @param {object | undefined} options
- * @returns {string} route path
- */
-export const devTest: ((
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 

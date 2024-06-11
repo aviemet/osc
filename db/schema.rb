@@ -63,13 +63,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_175622) do
     t.decimal "min_value"
     t.decimal "max_value"
     t.decimal "value"
+    t.string "color"
     t.bigint "screen_id", null: false
     t.bigint "protocol_id"
     t.bigint "command_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["command_id"], name: "index_controls_on_command_id"
-    t.index ["order", "screen_id"], name: "idx_order_screen", unique: true
     t.index ["protocol_id"], name: "index_controls_on_protocol_id"
     t.index ["screen_id"], name: "index_controls_on_screen_id"
   end

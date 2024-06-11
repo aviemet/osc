@@ -1,10 +1,4 @@
-export { default as Form } from './Form'
-export { default as Submit } from './Submit'
-export { default as FormGroup } from './FormGroup'
-export { default as Field } from './Field'
-export { default as FieldsFor } from './FieldsFor'
-export { default as DynamicInputs } from './DynamicInputs'
-export { useDynamicInputContext } from './DynamicInputs/dynamicInputContext'
-export { default as FormConsumer } from './Components/FormConsumer'
+export { default as Form, type FormProps } from './Form'
 
+export * from './Components'
 export * from './Inputs'

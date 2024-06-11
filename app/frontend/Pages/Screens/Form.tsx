@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, TextInput, Submit } from '@/Components/Form'
-import { type UseFormProps } from 'use-inertia-form'
+import { Grid } from '@/Components'
+import { type HTTPVerb, type UseFormProps } from 'use-inertia-form'
 
 type TScreenFormData = {
 	screen: Schema.ScreensFormData
@@ -10,23 +11,26 @@ export interface ScreenFormProps {
 	to: string
 	method?: HTTPVerb
 	onSubmit?: (object: UseFormProps<TScreenFormData>) => boolean|void
-	screen?: Partial<Schema.ScreensFormData>
-}
-
-const emptyScreen: Partial<Schema.ScreensFormData> = {
-	title: '',
+	screen?: Schema.ScreensFormData
 }
 
 const ScreenForm = ({ method = 'post', screen, ...props }: ScreenFormProps) => {
 	return (
-		<Form<Partial<Schema.ScreensFormData>>
+		<Form
 			model="screen"
-			data={ screen ? { screen } : { screen: emptyScreen } }
+			data={ screen ? { screen } : undefined }
 			method={ method }
 			{ ...props }
 		>
-			<TextInput name="title" label="Title" />
-			<Submit>{ screen?.id ? 'Update' : 'Create' } Screen</Submit>
+			<Grid>
+				<Grid.Col>
+					<TextInput name="title" label="Title" />
+				</Grid.Col>
+
+				<Grid.Col>
+					<Submit>{ screen?.id ? 'Update' : 'Create' } Screen</Submit>
+				</Grid.Col>
+			</Grid>
 		</Form>
 	)
 }

@@ -6,5 +6,5 @@ class Protocols::ShowSerializer < ProtocolSerializer
     :created_at,
   )
 
-  has_many :commands, serializer: Commands::ProtocolSerializer
+  has_many :commands, serializer: Protocols::CommandsSerializer
 end

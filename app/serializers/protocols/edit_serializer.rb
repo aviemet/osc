@@ -1,12 +1,8 @@
-class Protocols::EditSerializer < ProtocolSerializer
-
+class Protocols::EditSerializer < Protocols::FormDataSerializer
   attributes(
     :id,
     :slug,
-    :updated_at,
-    :created_at,
   )
 
-  has_many :commands, serializer: Commands::FormDataSerializer
-  has_many :protocols_commands, serializer: ProtocolsCommands::FormDataSerializer
+  has_many :commands, serializer: Protocols::CommandsSerializer
 end

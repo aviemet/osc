@@ -1,10 +1,12 @@
 import React from 'react'
 import { useTableContext } from '@/Components/Table/TableContext'
-import { Box, Title, Group, Divider } from '@mantine/core'
+import { Title, Group, Divider } from '@mantine/core'
 import { Menu } from '@/Components'
 import { TrashIcon } from '@/Components/Icons'
 import { router } from '@inertiajs/react'
-import * as classes from './IndexPage.css'
+import { IconType } from 'react-icons'
+
+// import * as classes from './IndexPage.css'
 
 // TODO: Figure out correct type for icon
 export interface IIndexTableTitleSectionProps {
@@ -14,7 +16,7 @@ export interface IIndexTableTitleSectionProps {
 	menuOptions?: {
 		label: string
 		href: string
-		icon?: any
+		icon?: IconType
 	}[]
 }
 
@@ -29,11 +31,10 @@ const IndexTableTitleSection = ({ children, title, deleteRoute, menuOptions }: I
 	}
 
 	return (
-		<Group justify="space-between" align="start" style={ { marginBottom: 12 } } gap="sm">
-			<Group justify="space-between" className={ classes.title }>
-				<Title>
-					{ title }
-				</Title>
+		<Group grow mb="sm">
+			<Group justify="space-between">
+				<Title>{ title }</Title>
+
 				<Menu position="bottom-end">
 					<Menu.Target />
 
@@ -41,7 +42,7 @@ const IndexTableTitleSection = ({ children, title, deleteRoute, menuOptions }: I
 						{ menuOptions && menuOptions.map(({ label, href, icon }, index) => {
 							const Icon = icon
 							return (
-								<Menu.Link key={ index } href={ href } leftSection={ icon && <Icon size={ 14 } /> }>
+								<Menu.Link key={ index } href={ href } leftSection={ Icon !== undefined && <Icon size={ 14 } /> }>
 									{ label }
 								</Menu.Link>
 							)
@@ -58,9 +59,8 @@ const IndexTableTitleSection = ({ children, title, deleteRoute, menuOptions }: I
 					</Menu.Dropdown>
 				</Menu>
 			</Group>
-			{ !!children && <Box className={ classes.content }>
-				{ children }
-			</Box> }
+
+			{ !!children && children }
 		</Group>
 	)
 }

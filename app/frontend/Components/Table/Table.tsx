@@ -1,29 +1,28 @@
 import React from 'react'
-import { Table, type TableProps } from '@mantine/core'
-import cx from 'clsx'
-import * as classes from './Table.css'
+import { Table, type TableProps as MantineTableProps } from '@mantine/core'
 
 import Head from './Head'
 import Body from './Body'
 import RowIterator from './RowIterator'
 import Row from './Row'
-import Cell from './Cell'
-import HeadCell from './Cell/HeadCell'
+import Cell from './Td'
+import HeadCell from './Th'
 import Footer from './Footer'
 import Pagination from './Pagination'
-import TableProvider from './TableContext'
+import TableProvider, { useTableContext } from './TableContext'
 import TableSection from './Section'
 import SearchInput from './SearchInput'
-import ColumnPicker from './ColumnPicker'
 import ConditionalWrapper from '../ConditionalWrapper'
 
-export interface ITableProps extends TableProps {
+import cx from 'clsx'
+import * as classes from './Table.css'
+
+export interface TableProps extends MantineTableProps {
 	fixed?: boolean
 	wrapper?: boolean
-	rowSpacing?: boolean
 }
 
-type TableComponent = (({ children, className, fixed, wrapper, ...props }: ITableProps) => JSX.Element)
+type TableComponent = ((props: TableProps) => JSX.Element)
 
 type TableObjects = {
 	Head: typeof Head
@@ -37,61 +36,55 @@ type TableObjects = {
 	TableProvider: typeof TableProvider
 	Section: typeof TableSection
 	SearchInput: typeof SearchInput
-	ColumnPicker: typeof ColumnPicker
 }
 
 export type TableObject = TableComponent & TableObjects
 
-const TableComponent: TableComponent & TableObjects = ({
+const TableComponent: TableObject = ({
 	children,
 	className,
 	wrapper = true,
 	fixed = false,
-	rowSpacing = false,
 	striped = true,
 	highlightOnHover = true,
+	style,
 	...props
 }) => {
-
-	// const stylesArray = useMemo(() => {
-	// 	const arr: (Sx | undefined)[] = []
-	// 	if(wrapper) {
-	// 		arr.push({ thead: { top: -10 } })
-	// 	}
-	// 	if(sx) {
-	// 		arr.push(...packSx(sx))
-	// 	}
-	// 	return arr
-	// }, [wrapper, sx])
+	const tableState = useTableContext(false)
 
 	return (
 		<ConditionalWrapper
 			condition={ wrapper }
 			wrapper={ children => <div className={ classes.wrapper }>{ children }</div> }
 		>
-			<Table
-				striped={ striped }
-				highlightOnHover={ highlightOnHover }
-				className={ cx(className, classes.table, { [classes.rowSpacing]: rowSpacing, 'layout-fixed': fixed, 'layout-auto': !fixed }) }
-				{ ...props }
+			<ConditionalWrapper
+				condition={ tableState === null }
+				wrapper={ children => <TableProvider>{ children }</TableProvider> }
 			>
-				{ children }
-			</Table>
+				<Table
+					striped={ striped }
+					highlightOnHover={ highlightOnHover }
+					className={ cx(className, classes.table) }
+					style={ [wrapper ? { thead: { top: -10 } } : undefined, style] }
+					{ ...props }
+				>
+					{ children }
+				</Table>
+			</ConditionalWrapper>
 		</ConditionalWrapper>
 	)
 }
 
-TableComponent.Head = Head
-TableComponent.Body = Body
-TableComponent.RowIterator = RowIterator
-TableComponent.Row = Row
-TableComponent.Cell = Cell
-TableComponent.HeadCell = HeadCell
-TableComponent.Footer = Footer
-TableComponent.Pagination = Pagination
 TableComponent.TableProvider = TableProvider
 TableComponent.Section = TableSection
 TableComponent.SearchInput = SearchInput
-TableComponent.ColumnPicker = ColumnPicker
+TableComponent.Head = Head
+TableComponent.HeadCell = HeadCell
+TableComponent.Body = Body
+TableComponent.Cell = Cell
+TableComponent.Row = Row
+TableComponent.RowIterator = RowIterator
+TableComponent.Footer = Footer
+TableComponent.Pagination = Pagination
 
 export default TableComponent

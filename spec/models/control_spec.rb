@@ -3,6 +3,7 @@
 # Table name: controls
 #
 #  id           :bigint           not null, primary key
+#  color        :string
 #  control_type :integer          not null
 #  max_value    :decimal(, )
 #  min_value    :decimal(, )
@@ -17,7 +18,6 @@
 #
 # Indexes
 #
-#  idx_order_screen               (order,screen_id) UNIQUE
 #  index_controls_on_command_id   (command_id)
 #  index_controls_on_protocol_id  (protocol_id)
 #  index_controls_on_screen_id    (screen_id)

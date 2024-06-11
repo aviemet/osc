@@ -3,11 +3,11 @@ import { type ButtonProps } from '@mantine/core'
 import React from 'react'
 import { useForm } from 'use-inertia-form'
 
-interface IResetButton extends ButtonProps {
+interface ResetButton extends ButtonProps {
 	fields?: string|string[]
 }
 
-const ResetButton = ({ fields, children, ...props }: IResetButton) => {
+const ResetButton = ({ fields, children, ...props }: ResetButton) => {
 	const { reset } = useForm()
 
 	const handleReset = () => {

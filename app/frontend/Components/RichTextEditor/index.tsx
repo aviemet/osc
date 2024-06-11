@@ -1,17 +1,12 @@
-import React from 'react'
-import { type HTMLElement } from '@tiptap/core'
-import { useEditor } from '@tiptap/react'
+import React, { forwardRef } from 'react'
+import { RichTextEditor, Link, type RichTextEditorProps as MantineRichTextEditorProps } from '@mantine/tiptap'
+import { useEditor, BubbleMenu, FloatingMenu } from '@tiptap/react'
 import Highlight from '@tiptap/extension-highlight'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import TextAlign from '@tiptap/extension-text-align'
 import Superscript from '@tiptap/extension-superscript'
 import SubScript from '@tiptap/extension-subscript'
-import {
-	RichTextEditor,
-	Link,
-	type RichTextEditorProps as MantineRichTextEditorProps,
-} from '@mantine/tiptap'
 import { DEFAULT_LABELS } from './tiptapLabels'
 
 export interface RichTextEditorProps extends Omit<MantineRichTextEditorProps, 'children'|'editor'|'onChange'> {
@@ -19,7 +14,10 @@ export interface RichTextEditorProps extends Omit<MantineRichTextEditorProps, 'c
 	onChange?: (value: string) => void
 }
 
-const RichTextEditorComponent = ({ children, onChange }: RichTextEditorProps) => {
+const RichTextEditorComponent = forwardRef<HTMLDivElement, RichTextEditorProps>((
+	{ children, onChange },
+	ref,
+) => {
 	const editor = useEditor({
 		extensions: [
 			StarterKit,
@@ -31,15 +29,14 @@ const RichTextEditorComponent = ({ children, onChange }: RichTextEditorProps) =>
 			TextAlign.configure({ types: ['heading', 'paragraph'] }),
 		],
 		content: children,
-		onUpdate: ({ editor }: HTMLElement) => {
-			if(!editor) return
-
+		onUpdate: ({ editor }) => {
 			onChange?.(editor.getHTML())
 		},
 	})
 
 	return (
 		<RichTextEditor
+			ref={ ref }
 			editor={ editor }
 			labels={ DEFAULT_LABELS }
 		>
@@ -83,9 +80,28 @@ const RichTextEditorComponent = ({ children, onChange }: RichTextEditorProps) =>
 				</RichTextEditor.ControlsGroup>
 			</RichTextEditor.Toolbar>
 
+			{ editor && (
+				<BubbleMenu editor={ editor }>
+					<RichTextEditor.ControlsGroup>
+						<RichTextEditor.Bold />
+						<RichTextEditor.Italic />
+						<RichTextEditor.Link />
+					</RichTextEditor.ControlsGroup>
+				</BubbleMenu>
+			) }
+
+			{ editor && (
+				<FloatingMenu editor={ editor }>
+					<RichTextEditor.ControlsGroup>
+						<RichTextEditor.H1 />
+						<RichTextEditor.H2 />
+						<RichTextEditor.BulletList />
+					</RichTextEditor.ControlsGroup>
+				</FloatingMenu>
+			) }
 			<RichTextEditor.Content />
 		</RichTextEditor>
 	)
-}
+})
 
 export default RichTextEditorComponent

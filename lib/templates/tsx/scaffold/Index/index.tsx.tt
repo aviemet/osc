@@ -6,7 +6,7 @@ import <%= plural_table_name.camelize %>Table from '../Table'
 
 interface I<%= singular_table_name.camelize %>IndexProps {
 	<%= plural_table_name %>: Schema.<%= plural_table_name.camelize %>Index[]
-	pagination: Schema.Pagination
+	pagination: Pagination
 }
 
 const <%= plural_table_name.camelize %>Index = ({ <%= plural_table_name %>, pagination }: I<%= singular_table_name.camelize %>IndexProps) => {

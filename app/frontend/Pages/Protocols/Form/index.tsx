@@ -1,10 +1,10 @@
 import React from 'react'
-import { Form, TextInput, Submit, Textarea } from '@/Components/Form'
-import { type UseFormProps } from 'use-inertia-form'
+import { Form, TextInput, Submit, RichText } from '@/Components/Form'
+import { type HTTPVerb, type UseFormProps } from 'use-inertia-form'
 import { Grid } from '@/Components'
 import CommandInputs from './CommandInputs'
 import { useGetCommands } from '@/queries'
-import SortableDynamicInputs from '@/Components/Form/DynamicInputs/SortableDynamicInputs'
+import SortableDynamicInputs from '@/Components/Form/Components/DynamicInputs/SortableDynamicInputs'
 
 type ProtocolFormData = {
 	protocol: Schema.ProtocolsFormData
@@ -18,7 +18,9 @@ export interface IProtocolFormProps {
 }
 
 const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProps) => {
-	const { data: commands } = useGetCommands({ initialData: protocol.commands })
+	const { data: commands } = useGetCommands({
+		initialData: protocol.commands as Schema.CommandsEdit[],
+	})
 
 	return (
 		<Form
@@ -39,7 +41,7 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 				</Grid.Col>
 
 				<Grid.Col>
-					<Textarea name="description" label="Description" />
+					<RichText name="description" label="Description" />
 				</Grid.Col>
 
 				<Grid.Col>
@@ -47,13 +49,12 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 						label="Commands"
 						model="protocols_commands"
 						emptyData={ {
-							// @ts-ignore
-							command_id: '',
-							command_value_id: '',
+							command_id: NaN,
+							command_value_id: NaN,
 							value: '',
 							delay: '',
-							order: '',
-							key: '',
+							order: NaN,
+							key: NaN,
 						} }
 					>
 						<CommandInputs commands={ commands || [] } />

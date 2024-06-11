@@ -14,7 +14,6 @@ type TRegisterFormData = {
 
 const Register = () => {
 	const handleFormChange = ({ data }: UseFormProps<TRegisterFormData>) => {
-		// console.log({ data })
 	}
 
 	const handlePasswordChange = (value: string|number, { data, getError, clearErrors }: UseFormProps<TRegisterFormData>) => {
@@ -34,7 +33,6 @@ const Register = () => {
 	}
 
 	const handleEmailBlur = (value: string|number, form: UseFormProps<TRegisterFormData>) => {
-		// console.log({ value, form })
 	}
 
 	return (

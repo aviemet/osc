@@ -38,7 +38,6 @@ class Command < ApplicationRecord
     },
   )
 
-  tracked owner: proc { |controller| controller&.current_user }
   resourcify
 
   enum :payload_type, { integer: 0, float: 1, string: 2, blob: 3, time: 4, symbol: 5, character: 6, boolean: 7 }
@@ -51,7 +50,7 @@ class Command < ApplicationRecord
 
   belongs_to :server
 
-  scope :includes_associated, -> { includes([:command_values]) }
+  scope :includes_associated, -> { includes([:protocols_commands, :protocols, :command_values]) }
 
   accepts_nested_attributes_for :command_values, allow_destroy: true
 end

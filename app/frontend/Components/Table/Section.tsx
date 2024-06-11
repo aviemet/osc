@@ -4,7 +4,7 @@ import * as classes from './Table.css'
 
 const TableSection = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<Section fullHeight={ true } className={ classes.section }>
+		<Section fullHeight className={ classes.section }>
 			{ children }
 		</Section>
 	)
