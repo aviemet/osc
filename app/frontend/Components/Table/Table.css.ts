@@ -129,6 +129,7 @@ export const section = css`
 export const searchWrapper = css`
 	display: flex;
 	flex: 1;
+	width: 100%;
 `
 
 export const searchInput = css`

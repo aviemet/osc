@@ -99,6 +99,7 @@ const SearchInput = ({ columnPicker = true, advancedSearch }: SearchInputProps) 
 				leftSectionPointerEvents="none"
 				className={ classes.searchInput }
 				aria-label="Search"
+				wrapper={ false }
 			/>
 			{ columnPicker && <ColumnPicker /> }
 		</Box>
