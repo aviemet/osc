@@ -13,12 +13,20 @@ jobs:
 
     steps:
       - name: Check out
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
+      
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: 'yarn'
           
       - name: Version Bump
         run: |
+          npm i -g npm
+          npm i -g yarn
           npm install -g commitlint semantic-release semantic-release-github-actions-tags @semantic-release/changelog @semantic-release/git
           npx semantic-release --ci
         env:
