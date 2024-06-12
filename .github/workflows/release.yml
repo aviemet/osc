@@ -18,7 +18,7 @@ jobs:
           persist-credentials: false
       
       - name: Set up Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
           cache: 'yarn'
@@ -45,7 +45,7 @@ jobs:
       - name: Push Docker Image to GitHub Packages
         run: |
           NEW_VERSION=$(node -p "require('./package.json').version")
-          docker tag osc ghcr.io/${{ github.repository_owner }}/osc:${NEW_VERSION}
-          docker push ghcr.io/${{ github.repository_owner }}/osc:${NEW_VERSION}
+          docker tag osc ghcr.io/${{ github.repository_owner }}/osc_controller:${NEW_VERSION}
+          docker push ghcr.io/${{ github.repository_owner }}/osc_controller:${NEW_VERSION}
         env:
           GHCR_PAT: ${{ secrets.GH_AUTH_TOKEN }}
