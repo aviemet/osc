@@ -6,7 +6,7 @@
   "description": "Build a custom interface for controlling OSC devices on a local network",
   "author": "Avram Walden <aviemet@gmail.com>",
   "license": "MIT",
-  "packageManager": "yarn@3.5.0",
+  "packageManager": "yarn@4.3.0",
   "type": "module",
   "private": true,
   "scripts": {
