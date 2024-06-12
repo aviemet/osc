@@ -47,6 +47,6 @@ jobs:
         run: |
           NEW_VERSION=$(node -p "require('./package.json').version")
           docker tag osc_controller ghcr.io/${{ github.repository_owner }}/osc_controller:${NEW_VERSION}
-          docker-compose push ghcr.io/${{ github.repository_owner }}/osc_controller:${NEW_VERSION}
+          docker-compose push ghcr.io/${{ github.repository_owner }}/web:${NEW_VERSION}
         env:
           GHCR_PAT: ${{ secrets.GH_AUTH_TOKEN }}
