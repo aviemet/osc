@@ -831,6 +831,14 @@ export const newProtocol = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6
 
 /**
  * Generates rails route to
+ * /screens/new(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const newScreen = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"screens"],[2,[7,"/"],[2,[6,"new"],[1,[2,[8,"."],[3,"format"]]]]]]]);
+
+/**
+ * Generates rails route to
  * /servers/new(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
@@ -844,14 +852,6 @@ export const newServer = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"
  * @returns {string} route path
  */
 export const newUser = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"users"],[2,[7,"/"],[2,[6,"new"],[1,[2,[8,"."],[3,"format"]]]]]]]);
-
-/**
- * Generates rails route to
- * /users/confirmation/new(.:format)
- * @param {object | undefined} options
- * @returns {string} route path
- */
-export const newUserConfirmation = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"users"],[2,[7,"/"],[2,[6,"confirmation"],[2,[7,"/"],[2,[6,"new"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
 
 /**
  * Generates rails route to
@@ -961,14 +961,6 @@ export const updateRailsDiskService = /*#__PURE__*/ __jsr.r({"encoded_token":{"r
  * @returns {string} route path
  */
 export const user = /*#__PURE__*/ __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"users"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]);
-
-/**
- * Generates rails route to
- * /users/confirmation(.:format)
- * @param {object | undefined} options
- * @returns {string} route path
- */
-export const userConfirmation = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"users"],[2,[7,"/"],[2,[6,"confirmation"],[1,[2,[8,"."],[3,"format"]]]]]]]);
 
 /**
  * Generates rails route to

@@ -32,7 +32,7 @@ const Control = forwardRef<HTMLButtonElement,ControlProps>((
 	ref,
 ) => {
 	const sharedProps = {
-		className: cx(className, { [classes.editControl]: edit }),
+		className: cx(className),
 		ref,
 	}
 

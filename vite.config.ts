@@ -42,6 +42,7 @@ const config = defineConfig({
 			strict: false,
 		},
 	},
+	mode: process.env.NODE_ENV || 'development',
 })
 
 export default config

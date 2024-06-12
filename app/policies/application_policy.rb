@@ -52,6 +52,8 @@ class ApplicationPolicy
   private
 
   def standard_auth(_action)
-    user.has_role?(:super_admin)
+    return true if user&.has_role?(:super_admin)
+
+    !user.nil?
   end
 end

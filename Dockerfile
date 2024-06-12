@@ -27,9 +27,10 @@ WORKDIR /osc
 # Set production environment
 ENV RAILS_LOG_TO_STDOUT="1"
 ENV RAILS_SERVE_STATIC_FILES true
-ENV RAILS_ENV production
+ENV RAILS_ENV=production
+ENV RACK_ENV=production
+ENV NODE_ENV=production
 # ENV BUNDLE_WITHOUT development
-ENV NODE_ENV production
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
@@ -49,7 +50,7 @@ RUN ./docker_copy_files.sh
 RUN bundle exec bootsnap precompile --gemfile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE=DUMMY bundle exec rails assets:precompile
+RUN RACK_ENV=production RAILS_ENV=production NODE_ENV=production SECRET_KEY_BASE=DUMMY bundle exec rails assets:precompile
 
 # Entrypoint prepares the database
 ENTRYPOINT ["/osc/bin/docker-entrypoint"]

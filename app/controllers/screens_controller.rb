@@ -5,18 +5,27 @@ class ScreensController < ApplicationController
   expose :screen, id: -> { params[:slug] }, scope: -> { Screen.includes_associated }, find_by: :slug
   expose :main_screen, -> { Screen.order(:order).first }
 
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   # @route GET / (root)
   # @route GET /screens (screens)
   def index
-    redirect_to main_screen
+    redirect_to main_screen || new_screen_path
   end
 
   # @route GET /screens/:slug (screen)
   def show
-    authorize screen
     render inertia: "Screens/Show", props: {
       screen: -> { screen.render(view: :show) },
       screens: -> { Screen.all.render(view: :options) },
+    }
+  end
+
+  # @route GET /screens/new (new_screen)
+  def new
+    authorize Screen.new
+    render inertia: "Screens/New", props: {
+      screen: Screen.new.render(view: :form_data)
     }
   end
 

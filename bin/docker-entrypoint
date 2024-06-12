@@ -1,8 +1,17 @@
 #!/bin/bash -e
 
-# If running the rails server then create or migrate existing database
-if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
-  ./bin/rails db:prepare
+# Check if master.key exists
+if [ ! -f /osc/config/secrets/master.key ]; then
+  echo "Generating master.key..."
+  # Run the rails credentials:edit command in non-interactive mode
+  EDITOR="echo" rails credentials:edit
 fi
+
+rm -f tmp/pids/server.pid
+
+/osc/bin/rails db:prepare
+/osc/bin/rails db:seed
+
+RACK_ENV="production" RAILS_ENV="production" NODE_ENV="production" /osc/bin/rails server
 
 exec "${@}"

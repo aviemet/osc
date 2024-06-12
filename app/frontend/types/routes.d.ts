@@ -468,6 +468,16 @@ export const newProtocol: ((
 
 /**
  * Generates rails route to
+ * /screens/new(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const newScreen: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /servers/new(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
@@ -483,16 +493,6 @@ export const newServer: ((
  * @returns {string} route path
  */
 export const newUser: ((
-  options?: {format?: OptionalRouteParameter} & RouteOptions
-) => string) & RouteHelperExtras;
-
-/**
- * Generates rails route to
- * /users/confirmation/new(.:format)
- * @param {object | undefined} options
- * @returns {string} route path
- */
-export const newUserConfirmation: ((
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 
@@ -633,16 +633,6 @@ export const updateRailsDiskService: ((
  */
 export const user: ((
   id: RequiredRouteParameter,
-  options?: {format?: OptionalRouteParameter} & RouteOptions
-) => string) & RouteHelperExtras;
-
-/**
- * Generates rails route to
- * /users/confirmation(.:format)
- * @param {object | undefined} options
- * @returns {string} route path
- */
-export const userConfirmation: ((
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 
