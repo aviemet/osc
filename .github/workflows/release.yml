@@ -38,7 +38,7 @@ jobs:
           POSTGRES_USER: ${{ env.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
         run: |
-          docker-compose -f docker-compose.yml build
+          docker compose -f docker-compose.yml build
         
       - name: Authenticate to GitHub Container Registry
         run: echo ${{ secrets.GH_AUTH_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
@@ -47,6 +47,6 @@ jobs:
         run: |
           NEW_VERSION=$(node -p "require('./package.json').version")
           docker tag osc_controller ghcr.io/${{ github.repository_owner }}/osc_controller:${NEW_VERSION}
-          docker compose push ghcr.io/${{ github.repository_owner }}/osc_controller:${NEW_VERSION}
+          docker compose -f docker-compose.yml push ghcr.io/${{ github.repository_owner }}/osc_controller:${NEW_VERSION}
         env:
           GHCR_PAT: ${{ secrets.GH_AUTH_TOKEN }}
