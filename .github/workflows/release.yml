@@ -40,9 +40,16 @@ jobs:
         run: |
           docker compose -f docker-compose.yml build
         
-      - name: Authenticate to GitHub Container Registry
-        run: echo ${{ secrets.GH_AUTH_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+      # - name: Authenticate to GitHub Container Registry
+      #   run: echo ${{ secrets.GH_AUTH_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
       
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GH_AUTH_TOKEN }}
+
       - name: Push Docker Image to GitHub Packages
         run: |
           NEW_VERSION=$(node -p "require('./package.json').version")
