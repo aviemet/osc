@@ -13,6 +13,7 @@ const config = defineConfig({
 				'./app/frontend/Images/*',
 			],
 		},
+		outDir: 'public/vite-production',
 	},
 	plugins: [
 		tsconfigPaths(),
