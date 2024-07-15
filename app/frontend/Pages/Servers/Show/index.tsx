@@ -1,5 +1,5 @@
 import React from 'react'
-import { Group, Heading, Menu, Page, Section, Text } from '@/Components'
+import { Group, Title, Menu, Page, Section, Text } from '@/Components'
 import { Routes } from '@/lib'
 
 interface IShowServerProps {
@@ -13,7 +13,7 @@ const ShowServer = ({ server }: IShowServerProps) => {
 		<Page title={ title }>
 			<Section>
 				<Group>
-					<Heading>{ title }</Heading>
+					<Title>{ title }</Title>
 
 					<Menu position="bottom-end">
 						<Menu.Target />

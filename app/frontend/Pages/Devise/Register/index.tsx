@@ -1,10 +1,10 @@
 import React from 'react'
 import { Form, TextInput, PasswordInput, Submit, Field } from '@/Components/Form'
 import { Routes } from '@/lib'
-import { Box, Heading, Link } from '@/Components'
+import { Box, Title, Link, Grid, Text } from '@/Components'
 import { type UseFormProps } from 'use-inertia-form'
 
-type TRegisterFormData = {
+type RegisterFormData = {
 	user: {
 		email: string
 		password: string
@@ -12,11 +12,16 @@ type TRegisterFormData = {
 	}
 }
 
-const Register = () => {
-	const handleFormChange = ({ data }: UseFormProps<TRegisterFormData>) => {
+interface RegisterProps {
+	user: Schema.UsersFormData
+	first_run: boolean
+}
+
+const Register = ({ user, first_run }: RegisterProps) => {
+	const handleFormChange = ({ data }: UseFormProps<RegisterFormData>) => {
 	}
 
-	const handlePasswordChange = (value: string|number, { data, getError, clearErrors }: UseFormProps<TRegisterFormData>) => {
+	const handlePasswordChange = (value: string|number, { data, getError, clearErrors }: UseFormProps<RegisterFormData>) => {
 		if(getError('user.password') || getError('user.password_confirmation')) {
 			if(data.user.password === data.user.password_confirmation) {
 				clearErrors('user.password')
@@ -25,16 +30,16 @@ const Register = () => {
 		}
 	}
 
-	const handleSubmit = ({ data, setError, errors, transform }: UseFormProps<TRegisterFormData>) => {
+	const handleSubmit = ({ data, setError, errors, transform }: UseFormProps<RegisterFormData>) => {
 		if(data.user.password !== data.user.password_confirmation) {
 			setError('user.password_confirmation', 'Passwords must match')
 			return false
 		}
 	}
 
-	const handleEmailBlur = (value: string|number, form: UseFormProps<TRegisterFormData>) => {
+	const handleEmailBlur = (value: string|number, form: UseFormProps<RegisterFormData>) => {
 	}
-
+	console.log({ route: Routes.userRegistration() })
 	return (
 		<Form
 			data={ {
@@ -51,46 +56,59 @@ const Register = () => {
 		>
 
 			<Box>
-				<Heading>Sign Up</Heading>
+				<Title mb="sm">Sign Up</Title>
+
+				{ first_run &&
+					<Text>There is currently no admin user, please create one below</Text>
+				}
+
 			</Box>
+			<Grid>
+				<Grid.Col>
+					<Field>
+						<TextInput
+							name="email"
+							placeholder="Email"
+							autoFocus
+							autoComplete="Email"
+							required
+							onBlur={ handleEmailBlur }
+						/>
+					</Field>
+				</Grid.Col>
 
-			<Field>
-				<TextInput
-					name="email"
-					placeholder="Email"
-					autoFocus
-					autoComplete="Email"
-					required
-					onBlur={ handleEmailBlur }
-				/>
-			</Field>
+				<Grid.Col>
+					<Field>
+						<PasswordInput
+							name="password"
+							placeholder="Password"
+							autoComplete="new-password"
+							required
+							onChange={ handlePasswordChange }
+						/>
+					</Field>
 
-			<Field>
-				<PasswordInput
-					name="password"
-					placeholder="Password"
-					autoComplete="new-password"
-					required
-					onChange={ handlePasswordChange }
-				/>
-			</Field>
+				</Grid.Col>
+				<Grid.Col>
+					<Field>
+						<PasswordInput
+							name="password_confirmation"
+							placeholder="Confirm Password"
+							autoComplete="new-password"
+							required
+							onChange={ handlePasswordChange }
+						/>
+					</Field>
 
-			<Field>
-				<PasswordInput
-					name="password_confirmation"
-					placeholder="Confirm Password"
-					autoComplete="new-password"
-					required
-					onChange={ handlePasswordChange }
-				/>
-			</Field>
+				</Grid.Col>
+				<Grid.Col>
+					<Field mb={ 16 }>
+						<Submit className="large">Sign Up</Submit>
+					</Field>
 
-			<Field mb={ 16 }>
-				<Submit className="large">Sign Up</Submit>
-			</Field>
-
-			<Link href={ Routes.newUserSession() }>Log In Instead</Link>
-
+				</Grid.Col>
+			</Grid>
+			{ !first_run && <Link href={ Routes.newUserSession() }>Log In Instead</Link> }
 		</Form>
 	)
 }

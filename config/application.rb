@@ -1,6 +1,7 @@
 require_relative "boot"
 
 require "rails/all"
+require_relative '../lib/middleware/check_admin_user'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -39,6 +40,9 @@ module Osc
 
     config.credentials.key_path = Rails.root.join("config/secrets/master.key")
     config.credentials.content_path = Rails.root.join("config/secrets/credentials.yml.enc")
+
+    # Check for existence of admin user
+    config.middleware.use CheckAdminUser
 
     # Establish db connection upon entering rails console
     console do

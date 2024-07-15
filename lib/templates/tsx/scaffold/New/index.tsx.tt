@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Page, Section } from '@/Components'
+import { Title, Page, Section } from '@/Components'
 import { Routes } from '@/lib'
 import <%= singular_table_name.camelize %>Form from '../Form'
 
@@ -14,7 +14,7 @@ const New<%= singular_table_name.camelize %> = ({ ...data }: INew<%= singular_ta
 		<Page title={ title }>
 
 			<Section>
-				<Heading>{ title }</Heading>
+				<Title>{ title }</Title>
 
 				<<%= singular_table_name.camelize %>Form
 					to={ Routes.<%= plural_table_name.camelize(:lower) %>() }

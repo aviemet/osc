@@ -13,7 +13,7 @@ const isDev = process.env.NODE_ENV && process?.env?.NODE_ENV === 'development'
 const QueryProvider = ({ children }: QueryProviderProps) => {
 	return (
 		<QueryClientProvider client={ queryClient }>
-			{ isDev && <ReactQueryDevtools buttonPosition='bottom-left' /> }
+			{ isDev && <ReactQueryDevtools buttonPosition='bottom-right' /> }
 			{ children }
 		</QueryClientProvider>
 	)

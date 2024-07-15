@@ -6,7 +6,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # @route GET /users/register (new_user_registration)
   def new
-    render inertia: 'Auth/Devise/Register'
+    first_run = false
+    if User.count == 0
+      flash.clear
+      flash[:notice] = t('devise.registrations.first_run_create_admin')
+      first_run = true
+    end
+
+    render inertia: 'Auth/Devise/Register', props: {
+      user: User.new,
+      first_run:,
+    }
+  end
+
+  # @route GET /users/edit (edit_user_registration)
+  def edit
+    super
   end
 
   # @route POST /users (user_registration)
@@ -14,40 +29,41 @@ class Users::RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
 
     resource.save
+
     yield resource if block_given?
+
     if resource.persisted?
-      # ap "PERSISTED"
+      if User.count == 1
+        resource.add_role :admin
+      end
+
       if resource.active_for_authentication?
-        # ap "ACTIVE FOR AUTHENTICATION"
-        # set_flash_message! :notice, :signed_up
+        set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
         respond_with resource, location: after_sign_up_path_for(resource)
       else
-        # ap "Not ACTIVE FOR AUTHENTICATION"
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
         expire_data_after_sign_in!
         redirect_to after_inactive_sign_up_path_for(resource)
       end
     else
-      # ap "Not PERSISTED"
       clean_up_passwords resource
       set_minimum_password_length
       redirect_to new_user_registration_path, inertia: { errors: resource.errors }
     end
   end
 
-  # def edit
-  #   super
-  # end
-
   # PUT /resource
-  # def update
-  #   super
-  # end
+  # @route PATCH /users (user_registration)
+  # @route PUT /users (user_registration)
+  def update
+    super
+  end
 
-  # def destroy
-  #   super
-  # end
+  # @route DELETE /users (user_registration)
+  def destroy
+    super
+  end
 
   # Forces the session data which is usually expired after sign
   # in to be expired now. This is useful if the user wants to
