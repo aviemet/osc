@@ -1,11 +1,11 @@
 import React from 'react'
 import SettingsLayout from '../../SettingsLayout'
-import { Heading } from '@/Components'
+import { Title } from '@/Components'
 
 const Appearance = () => {
 	return (
 		<SettingsLayout>
-			<Heading mb={ 24 }>Notifications Settings</Heading>
+			<Title mb={ 24 }>Notifications Settings</Title>
 		</SettingsLayout>
 	)
 }

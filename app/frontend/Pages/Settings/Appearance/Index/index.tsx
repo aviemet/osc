@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Box, Heading } from '@/Components'
+import { Box, Title } from '@/Components'
 import SettingsLayout from '../../SettingsLayout'
 import useLayoutStore from '@/lib/store/LayoutStore'
 
@@ -21,9 +21,9 @@ const AppearanceSettings = ({ settings }: IAppearanceSettingsProps) => {
 
 	return (
 		<SettingsLayout>
-			<Heading mb={ 24 }>Appearance Settings</Heading>
+			<Title mb={ 24 }>Appearance Settings</Title>
 			<Box>
-				<Heading order={ 2 }>Company Theme</Heading>
+				<Title order={ 2 }>Company Theme</Title>
 
 			</Box>
 		</SettingsLayout>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Page, Section } from '@/Components'
+import { Title, Page, Section } from '@/Components'
 import { Routes } from '@/lib'
 import CommandForm from '../Form'
 
@@ -14,7 +14,7 @@ const NewCommand = ({ ...data }: INewCommandProps) => {
 		<Page title={ title }>
 
 			<Section>
-				<Heading>{ title }</Heading>
+				<Title>{ title }</Title>
 
 				<CommandForm
 					to={ Routes.commands() }

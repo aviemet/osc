@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Form, Field, TextInput, PasswordInput, Checkbox, Submit } from '@/Components/Form'
 import { Routes } from '@/lib'
-import { Heading, Link } from '@/Components'
+import { Title, Link } from '@/Components'
 import { type UseFormProps } from 'use-inertia-form'
 import * as classes from './Login.css'
 
@@ -38,7 +38,7 @@ const Login = () => {
 		>
 
 			<div>
-				<Heading>OSC</Heading>
+				<Title>OSC</Title>
 			</div>
 
 			<Field>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, Form, TextInput, Submit } from '@/Components/Form'
 import { Routes } from '@/lib'
-import { Heading, Link } from '@/Components'
+import { Title, Link } from '@/Components'
 
 type TPasswordsNewFormData = {
 	email: string
@@ -15,7 +15,7 @@ const PasswordsNew = () => {
 	return (
 		<Form model="user" data={ defaultData } to={ Routes.newUserPassword() }>
 			<div>
-				<Heading>Reset Password</Heading>
+				<Title>Reset Password</Title>
 			</div>
 
 			<Field>

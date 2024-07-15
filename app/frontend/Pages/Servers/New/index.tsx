@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Page, Section } from '@/Components'
+import { Title, Page, Section } from '@/Components'
 import { Routes } from '@/lib'
 import ServerForm from '../Form'
 
@@ -14,7 +14,7 @@ const NewServer = ({ ...data }: INewServerProps) => {
 		<Page title={ title }>
 
 			<Section>
-				<Heading>{ title }</Heading>
+				<Title>{ title }</Title>
 
 				<ServerForm
 					to={ Routes.servers() }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Group, Heading, Menu, Page, Section } from '@/Components'
+import { Group, Title, Menu, Page, Section } from '@/Components'
 import { Routes } from '@/lib'
 
 interface IShow<%= singular_table_name.camelize %>Props {
@@ -13,7 +13,7 @@ const Show<%= singular_table_name.camelize %> = ({ <%= singular_table_name %> }:
 		<Page title={ title }>
 			<Section>
 				<Group position="apart">
-					<Heading>{ title }</Heading>
+					<Title>{ title }</Title>
 
 					<Menu position="bottom-end">
 						<Menu.Target />

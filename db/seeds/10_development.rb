@@ -9,7 +9,7 @@ if Rails.env.development?
       confirmed_at: Date.new,
     })
 
-    user.add_role :super_admin
+    user.add_role :admin
 
     ap "Created User"
   end
