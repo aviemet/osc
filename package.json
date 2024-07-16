@@ -12,6 +12,7 @@
   "scripts": {
     "start": "RACK_ENV=production RAILS_ENV=production PORT=80 NODE_ENV=production foreman start -f Procfile",
     "dev": "RAILS_ENV=development PORT=3000 NODE_ENV=development foreman start -f Procfile.dev",
+    "build": "NODE_ENV=production yarn vite build",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },

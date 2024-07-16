@@ -58,7 +58,7 @@ const UiFrameworkProvider = ({ children }: { children: React.ReactNode }) => {
 			defaultColorScheme="dark"
 			cssVariablesResolver={ cssVariablesResolver }
 		>
-			<Notifications position="bottom-left" autoClose={ 1000 } />
+			<Notifications position="bottom-left" autoClose={ 5000 } />
 			<ModalsProvider labels={ { confirm: 'Submit', cancel: 'Cancel' } }>
 				{ children }
 			</ModalsProvider>
