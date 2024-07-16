@@ -77,7 +77,7 @@ class ProtocolsController < ApplicationController
   private
 
   def sortable_fields
-    %w(title count).freeze
+    %w(title).freeze
   end
 
   def protocol_params

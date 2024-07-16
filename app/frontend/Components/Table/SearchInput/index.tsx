@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { router } from '@inertiajs/react'
 import { type VisitOptions } from '@inertiajs/core'
 import { debounce } from 'lodash'
@@ -25,7 +25,7 @@ const SearchInput = ({ columnPicker = true, advancedSearch }: SearchInputProps) 
 	const { tableState: { model }, setTableState } = useTableContext()
 
 	const location = useLocation()
-	const [searchValue, setSearchValue] = useSessionStorage({
+	const [searchValue, setSearchValue, clearSearchValue] = useSessionStorage({
 		key: `${model ?? 'standard'}-query`,
 		defaultValue: location.params.get('search') || '',
 		getInitialValueInEffect: false,
@@ -49,7 +49,7 @@ const SearchInput = ({ columnPicker = true, advancedSearch }: SearchInputProps) 
 		}
 	})
 
-	const debouncedSearch = useMemo(() => debounce((path) => {
+	const debouncedSearch = useCallback(debounce((path) => {
 		const options: VisitOptions = {
 			replace: true,
 			preserveScroll: true,
@@ -92,7 +92,7 @@ const SearchInput = ({ columnPicker = true, advancedSearch }: SearchInputProps) 
 				id="search"
 				value={ searchValue }
 				onChange={ e => setSearchValue(e.target.value) }
-				rightSection={ searchValue !== '' && <ActionIcon variant="transparent" onClick={ () => setSearchValue('') }>
+				rightSection={ searchValue !== '' && <ActionIcon variant="transparent" onClick={ clearSearchValue }>
 					<CrossIcon color="grey" />
 				</ActionIcon> }
 				leftSection={ <SearchIcon size={ 24 } /> }

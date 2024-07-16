@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SendOscCommandJob do
+RSpec.describe SendOscCommandJob, type: :job do
   let(:command) { build_stubbed(:command) }
 
   describe 'perform' do

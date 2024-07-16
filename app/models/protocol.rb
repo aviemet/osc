@@ -17,6 +17,10 @@ class Protocol < ApplicationRecord
   include PgSearch::Model
   include PublicActivity::Model
 
+  multisearchable(
+    against: [:title, :slug],
+  )
+
   pg_search_scope(
     :search,
     against: [:title],

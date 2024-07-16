@@ -10,9 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_31_175622) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_16_170737) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
+  enable_extension "unaccent"
 
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
@@ -72,6 +74,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_175622) do
     t.index ["command_id"], name: "index_controls_on_command_id"
     t.index ["protocol_id"], name: "index_controls_on_protocol_id"
     t.index ["screen_id"], name: "index_controls_on_screen_id"
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"
   end
 
   create_table "protocols", force: :cascade do |t|
