@@ -11,7 +11,9 @@ const ButtonControl = forwardRef<HTMLButtonElement, ButtonControlProps>((
 	{ children, edit, control, ...props },
 	ref,
 ) => {
-	const handleButtonClick = () => {
+	const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		e.preventDefault()
+
 		if(edit || !control?.id) return
 
 		const route = controlRoute(control)

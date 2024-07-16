@@ -7,7 +7,7 @@ class ControlsController < ApplicationController
   # @route POST /controls (controls)
   def create
     authorize Control.new
-    ap({ control: })
+
     if control.save
       redirect_to edit_screen_path(control.screen), notice: "Control was successfully created."
     else

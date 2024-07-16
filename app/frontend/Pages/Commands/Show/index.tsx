@@ -10,7 +10,7 @@ interface ShowCommandProps {
 
 const ShowCommand = ({ command }: ShowCommandProps) => {
 	const title = command.title ?? 'Command'
-	console.log({ command })
+
 	return (
 		<Page title={ title }>
 			<Section>

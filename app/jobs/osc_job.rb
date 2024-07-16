@@ -10,7 +10,7 @@ class OscJob < ApplicationJob
       command[:address],
       cast_to_type(command[:value], command[:payload_type]),
     )
-    ap({ message: })
+
     client.send(message)
   rescue Errno::ECONNREFUSED => e
     server = command[:server] || Server.find(command[:server_id])

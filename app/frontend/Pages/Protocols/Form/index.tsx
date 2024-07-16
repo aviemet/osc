@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, TextInput, Submit, RichText, FormConsumer, FormDataLogger } from '@/Components/Form'
+import { Form, TextInput, Submit, RichText } from '@/Components/Form'
 import { UseInertiaFormProps, type HTTPVerb, type UseFormProps } from 'use-inertia-form'
 import { Grid } from '@/Components'
 import CommandInputs from './CommandInputs'
@@ -44,7 +44,7 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 	return (
 		<Form
 			model="protocol"
-			data={ { protocol } }
+			data={ { protocol: exclude(protocol, ['id', 'slug']) } }
 			method={ method }
 			filter={ [
 				'id',
@@ -55,7 +55,6 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 			onSubmit={ handleFormSubmit }
 			{ ...props }
 		>
-			<FormDataLogger />
 			<Grid>
 				<Grid.Col>
 					<TextInput name="title" label="Title" />
