@@ -3,23 +3,26 @@ class OscJob < ApplicationJob
   private
 
   def send_osc_command(command, client = nil)
-    client ||= udp_client_from_server(command.server)
+    client ||= udp_client_from_server(command[:server])
 
+    # pry command
     message = OscService::Message.new(
-      command.address,
-      cast_to_type(command.value, command.payload_type),
+      command[:address],
+      cast_to_type(command[:value], command[:payload_type]),
     )
+
     client.send(message)
   rescue Errno::ECONNREFUSED => e
-    log_connection_error(command.server, e)
+    server = command[:server] || Server.find(command[:server_id])
+    log_connection_error(server, e)
   rescue StandardError => e
     Rails.logger.error({ error: e })
   end
 
   def udp_client_from_server(server)
     OscService::Client.new(
-      host: server.hostname,
-      port: server.port,
+      host: server[:hostname],
+      port: server[:port],
     )
   end
 
@@ -43,6 +46,6 @@ class OscJob < ApplicationJob
   end
 
   def log_connection_error(server, error)
-    server.create_activity key: "connection.error", params: { error: error.to_s }
+    server&.create_activity key: "connection.error", params: { error: error.to_s }
   end
 end

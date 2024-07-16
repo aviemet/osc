@@ -39,7 +39,7 @@ const Register = ({ user, first_run }: RegisterProps) => {
 
 	const handleEmailBlur = (value: string|number, form: UseFormProps<RegisterFormData>) => {
 	}
-	console.log({ route: Routes.userRegistration() })
+
 	return (
 		<Form
 			data={ {

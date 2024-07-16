@@ -30,6 +30,7 @@ const Form = <TForm extends NestedObject>({
 	railsAttributes = true,
 	...props
 }: FormProps<TForm>) => {
+
 	return (
 		<FormFormatProvider value={ { disableFormatting } }>
 			<Box className={ cx(classes.form) }>

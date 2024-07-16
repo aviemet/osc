@@ -32,7 +32,12 @@ class Protocol < ApplicationRecord
 
   has_many :protocols_commands, -> { order(order: :asc) }, dependent: :destroy, inverse_of: :protocol
   has_many :commands, -> {
-    select('commands.*, protocols_commands.*')
+    select('
+      commands.*,
+      protocols_commands.*,
+      COALESCE(protocols_commands.value, command_values.value) AS value
+    ')
+      .joins('LEFT JOIN command_values ON command_values.id = protocols_commands.command_value_id')
       .includes([:server, :command_values])
   }, through: :protocols_commands, dependent: :nullify
 

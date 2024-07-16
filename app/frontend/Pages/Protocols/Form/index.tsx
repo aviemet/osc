@@ -1,10 +1,11 @@
 import React from 'react'
-import { Form, TextInput, Submit, RichText } from '@/Components/Form'
-import { type HTTPVerb, type UseFormProps } from 'use-inertia-form'
+import { Form, TextInput, Submit, RichText, FormConsumer, FormDataLogger } from '@/Components/Form'
+import { UseInertiaFormProps, type HTTPVerb, type UseFormProps } from 'use-inertia-form'
 import { Grid } from '@/Components'
 import CommandInputs from './CommandInputs'
 import { useGetCommands } from '@/queries'
 import SortableDynamicInputs from '@/Components/Form/Components/DynamicInputs/SortableDynamicInputs'
+import { exclude } from '@/lib'
 
 type ProtocolFormData = {
 	protocol: Schema.ProtocolsFormData
@@ -22,6 +23,24 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 		initialData: protocol.commands as Schema.CommandsEdit[],
 	})
 
+	const handleFormSubmit = ({ transform }: UseInertiaFormProps<ProtocolFormData>) => {
+		transform(data => {
+			data.protocol.protocols_commands = data.protocol.protocols_commands.map(cmd => {
+				const excludeKeys = [];
+
+				(['value', 'delay'] as const).forEach(check => {
+					if(cmd[check] === '') {
+						excludeKeys.push(check)
+					}
+				})
+
+				return exclude(cmd, 'value')
+			})
+
+			return data
+		})
+	}
+
 	return (
 		<Form
 			model="protocol"
@@ -33,8 +52,10 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 				'created_at',
 				'updated_at',
 			] }
+			onSubmit={ handleFormSubmit }
 			{ ...props }
 		>
+			<FormDataLogger />
 			<Grid>
 				<Grid.Col>
 					<TextInput name="title" label="Title" />

@@ -3,6 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
+  after_action :set_new_csrf_token, only: [:create]
 
   # @route GET /users/register (new_user_registration)
   def new
@@ -93,5 +94,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(resource)
     new_confirmation_path(resource, { email: resource.email })
+  end
+
+  # Set a session variable with the new csrf token
+  # This will be destroyed on the next render in application_controller
+  def set_new_csrf_token
+    new_csrf_token = masked_authenticity_token
+    session[:new_csrf_token] = new_csrf_token
   end
 end

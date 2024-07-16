@@ -59,13 +59,6 @@ class ProtocolsController < ApplicationController
   def update
     authorize protocol
 
-    # command_associations = protocol_params[:protocols_commands]
-    # models = command_associations.each do |assoc|
-    #   pc = ProtocolsCommand.new(assoc)
-    #   pc.protocol = protocol
-    # end
-    # ap({ models: })
-
     if protocol.update(protocol_params)
       redirect_to protocol, notice: "Protocol was successfully updated."
     else

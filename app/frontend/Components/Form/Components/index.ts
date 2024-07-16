@@ -6,3 +6,5 @@ export { default as FieldsFor } from './FieldsFor'
 export { default as Submit } from './Submit'
 
 export { default as DynamicInputs, useDynamicInputContext } from './DynamicInputs'
+
+export { default as FormDataLogger } from './FormDataLogger'

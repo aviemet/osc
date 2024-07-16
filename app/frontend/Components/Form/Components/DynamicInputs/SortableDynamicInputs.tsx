@@ -77,15 +77,14 @@ const SortableDynamicInputs = <T extends OrderedObject>({
 			if(!event?.target) return
 
 			const target = event.target as HTMLElement
-			console.log({ current: event.currentTarget })
-			console.log({ portal: target.closest('[data-portal]') })
+
 			if(target.closest('[data-portal]')) {
 				event.stopPropagation()
 			}
 		}
 
 		const portals = document.querySelectorAll('[data-portal]')
-		console.log({ portals })
+
 		portals.forEach(portal => {
 			portal.addEventListener('mousedown', handlePortalClick, { capture: true })
 		})

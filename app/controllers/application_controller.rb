@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :remove_empty_query_parameters
   before_action :authenticate_user!
+  before_action :set_new_csrf_token
 
   add_flash_types :success, :error, :warning
 
@@ -61,6 +62,14 @@ class ApplicationController < ActionController::Base
   def set_locale
     locale = params[:locale].to_s.strip.to_sym
     I18n.locale = I18n.available_locales.include?(locale) ? locale : I18n.default_locale
+  end
+
+  # If csrf token session variable is set, pass it as a header and destroy it
+  def set_new_csrf_token
+    return unless session[:new_csrf_token]
+
+    response.set_header('X-CSRF-Token', session[:new_csrf_token])
+    session.delete(:new_csrf_token)
   end
 
   def remove_empty_query_parameters
