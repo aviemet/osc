@@ -46,7 +46,7 @@ class CommandsController < ApplicationController
   def create
     authorize Command.new
     if command.save
-      redirect_to command, notice: "Command was successfully created."
+      redirect_to commands_path, notice: "Command was successfully created."
     else
       redirect_to new_command_path, inertia: { errors: command.errors }
     end
@@ -57,7 +57,7 @@ class CommandsController < ApplicationController
   def update
     authorize command
     if command.update(command_params)
-      redirect_to command, notice: "Command was successfully updated."
+      redirect_to commands_path, notice: "Command was successfully updated."
     else
       redirect_to edit_command_path, inertia: { errors: command.errors }
     end

@@ -4,5 +4,6 @@ class Protocols::EditSerializer < Protocols::FormDataSerializer
     :slug,
   )
 
-  has_many :commands, serializer: Protocols::CommandsSerializer
+  has_many :commands, serializer: Commands::FormDataSerializer
+  # has_many :commands, serializer: Protocols::CommandsSerializer
 end

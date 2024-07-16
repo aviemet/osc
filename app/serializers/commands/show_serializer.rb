@@ -7,4 +7,5 @@ class Commands::ShowSerializer < CommandSerializer
   )
 
   belongs_to :server, serializer: Servers::ReferenceSerializer
+  has_many :protocols, serializer: Protocols::OptionsSerializer
 end

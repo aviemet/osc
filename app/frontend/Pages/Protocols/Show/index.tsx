@@ -1,6 +1,7 @@
 import React from 'react'
-import { Box, Code, DangerousHtml, Group, Title, Menu, Page, Section, Table } from '@/Components'
+import { Box, Code, DangerousHtml, Group, Title, Menu, Page, Section, Table, Link } from '@/Components'
 import { Routes } from '@/lib'
+import { EditButton } from '@/Components/Button'
 
 interface IShowProtocolProps {
 	protocol: Schema.ProtocolsShow
@@ -12,26 +13,29 @@ const ShowProtocol = ({ protocol }: IShowProtocolProps) => {
 	return (
 		<Page title={ title }>
 			<Section>
-				<Group>
+				<Group justify="space-between">
 					<Title>{ title }</Title>
-
-					<Menu position="bottom-end">
-						<Menu.Target />
-						<Menu.Dropdown>
-							<Menu.Link href={ Routes.editProtocol(protocol.slug) }>
-								Edit Protocol
-							</Menu.Link>
-						</Menu.Dropdown>
-					</Menu>
+					<EditButton href={ Routes.editProtocol(protocol.slug) } />
 				</Group>
 
 				<Box>Commands:</Box>
 				<Table>
+					<Table.Head>
+						<Table.Row>
+							<Table.HeadCell>Title</Table.HeadCell>
+							<Table.HeadCell>Endpoint</Table.HeadCell>
+							<Table.HeadCell>Value</Table.HeadCell>
+						</Table.Row>
+					</Table.Head>
 					<Table.Body>
 						{ protocol.commands.map(command => (
 							<Table.Row key={ command.id }>
 								<Table.Cell>{ command.title }</Table.Cell>
-								<Table.Cell><Code>{ command.server.title }:{ command.address }</Code></Table.Cell>
+								<Table.Cell>
+									<Link href={ Routes.command(command.slug) }>
+										<Code>{ command.server.title }:{ command.address }</Code>
+									</Link>
+								</Table.Cell>
 								<Table.Cell>{ command.value }</Table.Cell>
 							</Table.Row>
 						)) }
