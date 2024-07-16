@@ -2,6 +2,8 @@ class Api::ProtocolsController < ApplicationController
   expose :protocols, -> { Protocol.includes_associated.all }
   expose :protocol
 
+  skip_before_action :authenticate_user!, only: [:execute]
+
   # @route GET /api/protocols/:slug (api_protocol)
   def show
     authorize protocol

@@ -1,5 +1,5 @@
 import React from 'react'
-import Control, { ControlProps } from '@/Pages/Screens/Components/Control'
+import Control, { ControlProps } from '@/Features/Control'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { Box } from '@mantine/core'

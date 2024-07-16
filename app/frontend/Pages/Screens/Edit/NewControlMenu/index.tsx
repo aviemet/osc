@@ -1,6 +1,6 @@
 import React from 'react'
 import { Affix, Button, Menu } from '@/Components'
-import ControlForm from '../../Components/Control/Form'
+import ControlForm from '../../../../Features/Control/Form'
 import { modals } from '@mantine/modals'
 import { Routes } from '@/lib'
 

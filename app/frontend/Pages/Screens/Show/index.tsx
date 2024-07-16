@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Page, Tabs } from '@/Components'
-import Control from '../Components/Control'
+import Control from '../../../Features/Control'
 import { Routes } from '@/lib'
 import { useLocation } from '@/lib/hooks'
 import { router } from '@inertiajs/react'

@@ -2,6 +2,8 @@ class Api::CommandsController < ApplicationController
   expose :commands, -> { Command.all }
   expose :command, id: -> { params[:slug] }, scope: -> { Command.includes_associated }, find_by: :slug
 
+  skip_before_action :authenticate_user!, only: [:execute]
+
   # @route GET /api/commands (api_commands)
   def index
     authorize commands
