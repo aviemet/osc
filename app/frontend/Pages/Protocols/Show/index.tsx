@@ -32,7 +32,7 @@ const ShowProtocol = ({ protocol }: IShowProtocolProps) => {
 							<Table.Row key={ command.id }>
 								<Table.Cell>{ command.title }</Table.Cell>
 								<Table.Cell><Code>{ command.server.title }:{ command.address }</Code></Table.Cell>
-								<Table.Cell>The payload value should go here</Table.Cell>
+								<Table.Cell>{ command.value }</Table.Cell>
 							</Table.Row>
 						)) }
 					</Table.Body>

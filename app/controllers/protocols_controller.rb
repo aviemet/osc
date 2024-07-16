@@ -22,6 +22,7 @@ class ProtocolsController < ApplicationController
   # @route GET /protocols/:slug (protocol)
   def show
     authorize protocol
+
     render inertia: "Protocols/Show", props: {
       protocol: -> { protocol.render(view: :show) },
     }
