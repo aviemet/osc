@@ -4,7 +4,7 @@ const useAuth = () => {
 	const { auth } = usePageProps()
 
 	return {
-		isLoggedIn: auth?.user !== null || auth?.user !== undefined,
+		isLoggedIn: Boolean(auth?.user),
 		currentUser: auth?.user,
 	}
 }

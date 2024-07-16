@@ -40,7 +40,7 @@ const AppLayout = ({ children }: { children: any }) => {
 								<Menu.Link href={ Routes.destroyUserSession() }>Sign Out</Menu.Link>
 							</>
 							:
-							<Menu.Label>Sign In</Menu.Label>
+							<Menu.Link href={ Routes.newUserSession() }>Sign In</Menu.Link>
 						}
 					</Menu.Dropdown>
 				</Menu>
