@@ -4,13 +4,21 @@ import axios from 'axios'
 import { type ButtonProps } from '@mantine/core'
 import { type ControlProps } from '..'
 import { controlRoute, controlTitle } from '../lib'
+import { useLocalStorage } from '@mantine/hooks'
+
+import cx from 'clsx'
+import * as classes from '../Control.css'
 
 interface ButtonControlProps extends ButtonProps, ControlProps {}
 
 const ButtonControl = forwardRef<HTMLButtonElement, ButtonControlProps>((
-	{ children, edit, control, ...props },
+	{ children, edit, control, className, ...props },
 	ref,
 ) => {
+	const [lastButtonClicked, setLastButtonClicked] = useLocalStorage<number>({
+		key: 'last-button-clicked',
+		defaultValue: undefined,
+	})
 	const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.preventDefault()
 
@@ -21,6 +29,8 @@ const ButtonControl = forwardRef<HTMLButtonElement, ButtonControlProps>((
 		if(!route) return
 
 		axios.put(route)
+
+		setLastButtonClicked(control.id)
 	}
 
 	return (
@@ -28,6 +38,7 @@ const ButtonControl = forwardRef<HTMLButtonElement, ButtonControlProps>((
 			ref={ ref }
 			onClick={ handleButtonClick }
 			color={ control?.color ?? undefined }
+			className={ cx([className, { [classes.lastButtonClicked]: lastButtonClicked === control.id }]) }
 			{ ...props }
 		>
 			{ children || controlTitle(control) }
