@@ -17,7 +17,18 @@ interface LinkProps extends AnchorLinkProps {
 }
 
 const InertiaLinkComponent = forwardRef<HTMLAnchorElement, LinkProps>((
-	{ children, href, as = 'a', method, visit, buttonProps, style, disabled, ...props },
+	{
+		children,
+		href,
+		as = 'a',
+		method,
+		visit,
+		buttonProps,
+		style,
+		disabled,
+		onClick,
+		...props
+	},
 	ref,
 ) => {
 	const handleHTTP = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -27,9 +38,15 @@ const InertiaLinkComponent = forwardRef<HTMLAnchorElement, LinkProps>((
 			method,
 			...visit,
 		})
+
+		onClick?.(e)
 	}
 
-	const mergedButtonProps = Object.assign({ disabled }, buttonProps, exclude(props, ['classNames', 'styles', 'vars']))
+	const mergedButtonProps = Object.assign(
+		{ disabled },
+		exclude(buttonProps, 'onClick'),
+		exclude(props, ['classNames', 'styles', 'vars', 'onClick']),
+	)
 
 	const processedHref = disabled ? '#' : href
 

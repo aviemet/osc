@@ -15,7 +15,7 @@ class Users::SessionsController < Devise::SessionsController
     self.resource = warden.authenticate!(auth_options)
     sign_in(resource_name, resource)
     yield resource if block_given?
-    respond_with resource, location: after_sign_in_path_for(resource)
+    respond_with resource, location: session[:user_return_to] || after_sign_in_path_for(resource)
   end
 
   # @route GET /logout (destroy_user_session)

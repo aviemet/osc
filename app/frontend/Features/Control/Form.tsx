@@ -14,10 +14,10 @@ export interface ControlFormProps extends Omit<FormProps<ControlFormData>, 'data
 }
 
 const ControlForm = ({ control, ...props }: ControlFormProps) => {
-	const [showingProtocolSlug, setShowingProtocolSlug] = useState(control?.protocol?.slug)
+	const [showingProtocolSlug, setShowingProtocolSlug] = useState(control?.protocol?.slug || '')
 
 	const { data } = useGetProtocol({ slug: showingProtocolSlug }, {
-		initialData: control?.protocol,
+		initialData: control?.protocol || {},
 		enabled: !!showingProtocolSlug,
 	})
 

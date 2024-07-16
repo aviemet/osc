@@ -12,6 +12,7 @@ export { default as Tabs } from './Tabs'
 
 // Export UI library components as a proxy to allow easy refactoring
 export {
+	Accordion,
 	ActionIcon,
 	Affix,
 	AppShell,

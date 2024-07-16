@@ -12,6 +12,18 @@ export const dragOverlay = css`
 	border: 1px solid #333;
 `
 
+export const tabsParent = css`
+
+`
+
+export const tabsTab = css`
+	.mantine-Tabs-tabLabel {
+		display: flex;
+		gap: 8px;
+		justify-content: space-between;
+	}
+`
+
 export const tabsPanel = css`
 	padding: ${ vars.spacing.sm };
 	border-left: 1px solid var(--tab-border-color);

@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { Button, Divider, Page, Tabs } from '@/Components'
+import { Divider, Page, Tabs } from '@/Components'
 import { Form, Submit } from '@/Components/Form'
 import { Routes } from '@/lib'
 import { useLocation } from '@/lib/hooks'
 import { router } from '@inertiajs/react'
 import { useDroppable } from '@dnd-kit/core'
 import EditControls from './EditControls'
-import { modals } from '@mantine/modals'
-import ScreenForm from '../Form'
 import NewControlMenu from './NewControlMenu'
+import NewScreenTabButton from './ScreenTabControls/NewScreenTabButton'
+import EditScreenTabButton from './ScreenTabControls/EditScreenTabButton'
 
 import cx from 'clsx'
 import * as classes from './ScreenControl.css'
@@ -38,18 +38,6 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 		id: 'screen_droppable',
 	})
 
-	const handleNewScreenModalTrigger = () => {
-		modals.open({
-			title: 'Create a New Screen',
-			children: (
-				<ScreenForm
-					to={ Routes.screens() }
-					onSubmit={ () => modals.closeAll() }
-				/>
-			),
-		})
-	}
-
 	const handleTabChange = (value: string | null) => {
 		if(value === null) return
 
@@ -70,21 +58,20 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 					variant="outline"
 					value={ paths[1] }
 					onChange={ handleTabChange }
+					className={ cx(classes.tabsParent) }
 				>
 					<Tabs.List>
 						{ screens.map(iScreen => (
 							<Tabs.Tab
 								key={ iScreen.id }
 								value={ iScreen.slug }
+								className={ cx(classes.tabsTab) }
 							>
 								{ iScreen.title }
+								<EditScreenTabButton screen={ iScreen } />
 							</Tabs.Tab>
 						)) }
-						<Button
-							p="xs"
-							variant="subtle"
-							onClick={ handleNewScreenModalTrigger }
-						>+</Button>
+						<NewScreenTabButton />
 
 					</Tabs.List>
 

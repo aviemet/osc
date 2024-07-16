@@ -7,6 +7,7 @@ import EditControlButton from './EditControlButton'
 
 import cx from 'clsx'
 import * as classes from './Control.css'
+import { router } from '@inertiajs/react'
 
 interface DraggableControlProps extends ControlProps<{edit: true}> {}
 
@@ -32,6 +33,7 @@ const DraggableControl = ({ control, ...props }: DraggableControlProps) => {
 		>
 			<EditControlButton
 				control={ control }
+				onSuccess={ () => router.reload() }
 			/>
 			<Control
 				edit={ true }

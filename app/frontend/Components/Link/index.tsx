@@ -49,7 +49,6 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>((
 			onClick?.(e)
 			return false
 		}
-
 		return onClick?.(e)
 	}
 

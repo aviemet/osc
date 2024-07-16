@@ -1,6 +1,6 @@
 class Api::ProtocolsController < ApplicationController
   expose :protocols, -> { Protocol.includes_associated.all }
-  expose :protocol
+  expose :protocol, id: -> { params[:slug] }, find_by: :slug
 
   skip_before_action :authenticate_user!, only: [:execute]
 

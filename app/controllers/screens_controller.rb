@@ -60,7 +60,7 @@ class ScreensController < ApplicationController
   def update
     authorize screen
     if screen.update(screen_params)
-      redirect_to screen, notice: "Screen was successfully updated."
+      redirect_to edit_screen_path(screen.slug), notice: "Screen was successfully updated."
     else
       redirect_to edit_screen_path, inertia: { errors: screen.errors }
     end
@@ -70,7 +70,7 @@ class ScreensController < ApplicationController
   def destroy
     authorize screen
     screen.destroy!
-    redirect_to screens_url, notice: "Screen was successfully destroyed."
+    redirect_to edit_screens_path, notice: "Screen was successfully destroyed."
   end
 
   private

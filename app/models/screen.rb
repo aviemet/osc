@@ -24,6 +24,7 @@ class Screen < ApplicationRecord
       trigram: {}
     },
   )
+  self.implicit_order_column = "order"
 
   before_validation :set_screen_order
 
@@ -33,6 +34,7 @@ class Screen < ApplicationRecord
 
   has_many :controls, -> { order(order: :asc) }, dependent: :nullify, inverse_of: :screen
 
+  default_scope { order(:order) }
   scope :includes_associated, -> { includes([:controls]) }
 
   validates :title, format: { without: /new/ }

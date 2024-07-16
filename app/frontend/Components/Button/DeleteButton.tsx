@@ -4,10 +4,15 @@ import { type LinkProps } from '../Link'
 import { TrashIcon } from '@/Components/Icons'
 
 interface IDeleteButtonProps extends Omit<LinkProps, 'children'> {
+	children?: string
 	label?: string
 }
 
-const DeleteButton = ({ href, label, ...props }: IDeleteButtonProps) => {
+const DeleteButton = ({ children, href, label, onClick, ...props }: IDeleteButtonProps) => {
+	const handleClick = (e: React.SyntheticEvent<HTMLAnchorElement, Event>) => {
+		onClick?.(e)
+	}
+
 	return (
 		<Link
 			as="button"
@@ -15,9 +20,10 @@ const DeleteButton = ({ href, label, ...props }: IDeleteButtonProps) => {
 			method="delete"
 			href={ href }
 			aria-label={ `Delete ${label}` }
+			onClick={ handleClick }
 			{ ...props }
 		>
-			<TrashIcon />
+			<TrashIcon />{ children }
 		</Link>
 	)
 }
