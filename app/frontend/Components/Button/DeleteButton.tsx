@@ -11,6 +11,7 @@ const DeleteButton = ({ href, label, ...props }: IDeleteButtonProps) => {
 	return (
 		<Link
 			as="button"
+			color="red"
 			method="delete"
 			href={ href }
 			aria-label={ `Delete ${label}` }

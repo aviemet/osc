@@ -13,7 +13,7 @@ class SendOscProtocolJob < OscJob
       delay = 0
       commands_grouped_by_delay = []
 
-      commands.map(&:attributes).map(&:with_indifferent_access).each do |command|
+      serialize_commands(commands).each do |command|
         if command[:delay].nil? || command[:delay] == 0
           commands_grouped_by_delay.push(command)
           next
