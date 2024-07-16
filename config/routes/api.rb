@@ -8,13 +8,13 @@ namespace :api do
 
   resources :servers, except: [:edit, :new]
 
-  put "protocol/:id/execute", to: "protocols#execute", as: :execute_protocol
+  put "protocol/:slug/execute", to: "protocols#execute", as: :execute_protocol
   resources :protocols, except: [:edit, :new], param: :slug
 
   resources :controls, except: [:edit, :new]
 
   get "commands/payload_types", to: "commands#payload_types", as: :commands_payload_types
-  put "command/:id/execute", to: "commands#execute", as: :execute_command
+  put "command/:slug/execute", to: "commands#execute", as: :execute_command
   resources :commands, except: [:edit, :new], param: :slug
 
   scope :options do

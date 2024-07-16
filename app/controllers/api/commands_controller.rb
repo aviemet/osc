@@ -18,7 +18,7 @@ class Api::CommandsController < ApplicationController
     render json: command.render(view: :show), staus: :ok
   end
 
-  # @route PUT /api/command/:id/execute (api_execute_command)
+  # @route PUT /api/command/:slug/execute (api_execute_command)
   def execute
     authorize command
 

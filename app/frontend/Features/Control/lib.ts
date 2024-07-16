@@ -1,8 +1,8 @@
 import { Routes } from '@/lib'
 
 export const controlRoute = (control: Partial<Schema.Control>) => {
-	if(control.protocol_id) {
-		return Routes.apiExecuteProtocol(control.protocol_id)
+	if(control?.protocol?.slug) {
+		return Routes.apiExecuteProtocol(control.protocol.slug)
 	} else if(control.command_id) {
 		return Routes.apiExecuteCommand(control.command_id)
 	} else {

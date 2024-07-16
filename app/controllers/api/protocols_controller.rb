@@ -16,7 +16,7 @@ class Api::ProtocolsController < ApplicationController
     render json: protocols.render(view: :options), status: :ok
   end
 
-  # @route PUT /api/protocol/:id/execute (api_execute_protocol)
+  # @route PUT /api/protocol/:slug/execute (api_execute_protocol)
   def execute
     authorize protocol
 
