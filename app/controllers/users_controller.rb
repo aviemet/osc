@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  include Searchable
-
   expose :users, -> { search(User.all.includes_associated, sortable_fields) }
   expose :user, id: -> { params[:slug] }, scope: -> { Circle.includes_associated }, find_by: :slug
 

@@ -1,6 +1,4 @@
 class ScreensController < ApplicationController
-  include Searchable
-
   expose :screens, -> { Screen.includes_associated }
   expose :screen, id: -> { params[:slug] }, scope: -> { Screen.includes_associated }, find_by: :slug
   expose :main_screen, -> { Screen.order(:order).first }
