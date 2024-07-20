@@ -5,5 +5,5 @@ JsRoutes.setup do |config|
   config.exclude = [/^rails/, /^new_rails/]
   config.compact = true
   config.camel_case = true
-  config.file = Rails.root.join("app/frontend/lib/routes/index.ts")
+  config.file = Rails.root.join("app/frontend/lib/routes/routes.ts")
 end
