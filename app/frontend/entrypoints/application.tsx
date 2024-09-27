@@ -1,7 +1,6 @@
 import React from 'react'
 import { createInertiaApp } from '@inertiajs/react'
 import { createRoot } from 'react-dom/client'
-import axios from 'axios'
 import { PublicLayout, AppLayout, AuthLayout } from '../Layouts'
 
 type PagesObject = { default: React.ComponentType<any> & {
@@ -11,9 +10,6 @@ type PagesObject = { default: React.ComponentType<any> & {
 const pages = import.meta.glob<PagesObject>('../Pages/**/index.tsx')
 
 document.addEventListener('DOMContentLoaded', () => {
-	const csrfToken = (document.querySelector('meta[name=csrf-token]') as HTMLMetaElement).content
-	axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
-
 	createInertiaApp({
 		title: title => `OSC - ${title}`,
 

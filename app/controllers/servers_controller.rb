@@ -1,6 +1,4 @@
 class ServersController < ApplicationController
-  include Searchable
-
   expose :servers, -> { search(Server.includes_associated, sortable_fields) }
   expose :server, id: -> { params[:slug] }, scope: -> { Server.includes_associated }, find_by: :slug
 

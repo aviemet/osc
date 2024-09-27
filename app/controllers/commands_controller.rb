@@ -1,6 +1,4 @@
 class CommandsController < ApplicationController
-  include Searchable
-
   expose :commands, -> { search(Command.includes_associated, sortable_fields) }
   expose :command, id: -> { params[:slug] }, scope: -> { Command.includes_associated }, find_by: :slug
 

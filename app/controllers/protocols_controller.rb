@@ -1,6 +1,4 @@
 class ProtocolsController < ApplicationController
-  include Searchable
-
   expose :protocols, -> { search(Protocol, sortable_fields) }
   expose :protocol, id: -> { params[:slug] }, scope: -> { Protocol.includes_associated }, find_by: :slug
 

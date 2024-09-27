@@ -1,6 +1,4 @@
 class ControlsController < ApplicationController
-  include Searchable
-
   expose :controls, -> { search(Control.includes_associated, sortable_fields) }
   expose :control, find: ->(id, scope) { scope.includes_associated.find(id) }
 
