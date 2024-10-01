@@ -8,7 +8,7 @@ class CheckAdminUser
     if User.with_role(:admin).empty?
       request = Rack::Request.new(env)
 
-      # If the request path is not the setup path, redirect to the setup page
+      # If the request path is not the new user path, redirect to the setup page
       unless request.path == '/users/register' || (request.path == '/users' && request.post?)
         return [302, { 'Location' => '/users/register', 'Content-Type' => 'text/html' }, []]
       end
