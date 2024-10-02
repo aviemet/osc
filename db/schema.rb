@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_16_170737) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_01_213054) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -108,6 +108,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_170737) do
     t.index ["protocol_id"], name: "index_protocols_commands_on_protocol_id"
   end
 
+  create_table "remote_apis", force: :cascade do |t|
+    t.string "title"
+    t.string "root_url"
+    t.text "description"
+    t.string "auth_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "remote_endpoints", force: :cascade do |t|
+    t.string "title"
+    t.bigint "remote_api_id", null: false
+    t.string "endpoint"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["remote_api_id"], name: "index_remote_endpoints_on_remote_api_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -196,4 +214,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_170737) do
   add_foreign_key "protocols_commands", "command_values"
   add_foreign_key "protocols_commands", "commands"
   add_foreign_key "protocols_commands", "protocols"
+  add_foreign_key "remote_endpoints", "remote_apis"
 end
