@@ -3,6 +3,8 @@ module Admin
     expose :smtps, -> { @active_company.smtps }
     expose :smtp
 
+    strong_params :smtp, permit: [:name, :host, :domain, :port, :security, :username, :password, :address, :notes]
+
     # GET /settings/mail
     def index
       render inertia: "Settings/Mail/Index", props: {
@@ -52,12 +54,6 @@ module Admin
 
     # DELETE /settings/mail/:id
     def destroy
-    end
-
-    private
-
-    def smtp_params
-      params.require(:smtp).permit(:name, :host, :domain, :port, :security, :username, :password, :address, :notes)
     end
 
   end

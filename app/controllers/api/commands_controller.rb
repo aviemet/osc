@@ -1,8 +1,10 @@
 class Api::CommandsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:execute]
+
   expose :commands, -> { Command.all }
   expose :command, id: -> { params[:slug] }, scope: -> { Command.includes_associated }, find_by: :slug
 
-  skip_before_action :authenticate_user!, only: [:execute]
+  strong_params :command, permit: [:title, :address, :payload_type, :allow_custom_value, :description, :server_id, command_values_attributes: [:id, :label, :value, :_destroy]]
 
   # @route GET /api/commands (api_commands)
   def index

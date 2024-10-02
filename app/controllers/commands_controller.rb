@@ -2,10 +2,15 @@ class CommandsController < ApplicationController
   expose :commands, -> { search(Command.includes_associated, sortable_fields) }
   expose :command, id: -> { params[:slug] }, scope: -> { Command.includes_associated }, find_by: :slug
 
+  sortable_fields %w(title address payload_type)
+
+  strong_params :command, permit: [:title, :address, :payload_type, :allow_custom_value, :description, :server_id, command_values_attributes: [:id, :label, :value, :_destroy]]
+
   # @route GET /commands (commands)
   def index
     authorize commands
-    paginated_commands = commands.page(params[:page] || 1)
+
+    paginated_commands = paginate(commands, :commands)
 
     render inertia: "Commands/Index", props: {
       commands: paginated_commands.render,
@@ -68,13 +73,4 @@ class CommandsController < ApplicationController
     redirect_to commands_url, notice: "Command was successfully destroyed."
   end
 
-  private
-
-  def sortable_fields
-    %w(title address payload_type).freeze
-  end
-
-  def command_params
-    params.require(:command).permit(:title, :address, :payload_type, :allow_custom_value, :description, :server_id, command_values_attributes: [:id, :label, :value, :_destroy])
-  end
 end

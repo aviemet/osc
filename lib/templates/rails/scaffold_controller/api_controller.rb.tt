@@ -3,7 +3,7 @@ class Api::<%= controller_class_name %>Controller < ApiController
   expose :<%= plural_table_name %>
   expose :<%= singular_table_name %>
 
-  strong_params :<%= singular_table_name %>, <%= permitted_params %>
+  strong_params :<%= singular_table_name %>, permit: <%= permitted_params %>
   
   def index
     render json: <%= plural_table_name %>.render(view: :index)
@@ -32,8 +32,6 @@ class Api::<%= controller_class_name %>Controller < ApiController
   def destroy
     render json: <%= orm_instance.destroy %>
   end
-
-  private
 
 end
 <% end -%>

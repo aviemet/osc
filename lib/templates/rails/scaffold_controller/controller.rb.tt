@@ -9,7 +9,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   expose :<%= singular_table_name %>, find: ->(id, scope){ scope.includes_associated.find(id) }
   <% end -%>
 
-  strong_params :<%= singular_table_name %>, <%= permitted_params %>
+  strong_params :<%= singular_table_name %>, permit: <%= permitted_params %>
 
   def index
     authorize <%= plural_table_name %>

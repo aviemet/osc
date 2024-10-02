@@ -1,5 +1,5 @@
 class CommandPolicy < ApplicationPolicy
-  class Scope < Scope
+  class Scope < ApplicationPolicy::Scope
   end
 
   def execute?

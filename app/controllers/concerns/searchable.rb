@@ -20,7 +20,11 @@ module Searchable
       sort(search_by_params(model), model, sortable_fields)
     end
 
+    ##
     # Apply defaults to the paginate method
+    # resource: ActiveRecord object to call `page` on
+    # key: Per user defined key stored in User model for persisted pagination limits
+    ##
     def paginate(resource, key)
       resource.page(params[:page] || 1).per(key ? current_user.limit(key) : nil)
     end
