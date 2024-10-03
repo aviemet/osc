@@ -1,16 +1,19 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, queryOptions } from '@tanstack/react-query'
 import { Routes } from '@/lib'
 import axios from 'axios'
 import { ComboboxData } from '@mantine/core'
 import { type ReactQueryFunction } from '..'
+import queryKeys from '../queryKeys'
 
 export const useGetCommand: ReactQueryFunction<Schema.CommandsShow, {slug:string}> = ({ slug }, options) => {
 	return useQuery({
-		queryKey: [`command/${slug}`],
-		queryFn: async () => {
-			const res = await axios.get(Routes.apiCommand(slug))
-			return res.data
-		},
+		...queryOptions({
+			queryKey: queryKeys.commands.detail(slug),
+			queryFn: async () => {
+				const res = await axios.get(Routes.apiCommand(slug))
+				return res.data
+			},
+		}),
 		...options,
 	})
 }
