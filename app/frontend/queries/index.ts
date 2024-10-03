@@ -9,15 +9,19 @@ import {
  * Query types
  */
 
-interface LimitedQueryOptions<TData> extends Omit<UseQueryOptions<TData>, 'queryKey'|'queryFn'> {}
+interface LimitedQueryOptions<TData> extends Omit<UseQueryOptions<TData>, 'queryKey' | 'queryFn'> {}
 
 type ReactQueryFunctionBasic<TData> = (options?: LimitedQueryOptions<TData>) => UseQueryResult<TData, Error>
-type ReactQueryFunctionWithParams<TData, TParams extends Record<string, string|number|string[]>> = (params: TParams, options?: LimitedQueryOptions<TData>) => UseQueryResult<TData, Error>
+
+type ReactQueryFunctionWithParams<TData, TParams extends Record<string, string | number | string[]>> = (
+	params: TParams,
+	options?: LimitedQueryOptions<TData>
+) => UseQueryResult<TData, Error>
 
 export type ReactQueryFunction<TData, TParams = undefined> =
 	TParams extends undefined
 		? ReactQueryFunctionBasic<TData>
-		: TParams extends Record<string, string|number|string[]>
+		: TParams extends Record<string, string | number | string[]>
 			? ReactQueryFunctionWithParams<TData, TParams>
 			: never;
 
@@ -25,9 +29,19 @@ export type ReactQueryFunction<TData, TParams = undefined> =
  * Mutation types
  */
 
-interface LimitedMutationOptions<TReturnData, TVariables, TError = unknown> extends Omit<UseMutationOptions<TReturnData, TError, TVariables, unknown>, 'mutationKey'|'onSuccess'> {
+interface LimitedMutationOptions<TReturnData, TVariables, TError = unknown> extends
+	Omit<UseMutationOptions<TReturnData, TError, TVariables, unknown>, 'mutationKey' | 'onSuccess'> {
 	onSuccess?: (data: TReturnData, variables: TVariables) => void
 }
+
+type ReactMutationFunctionBasic<TReturnData, TVariables, TError = unknown> = (
+	options?: LimitedMutationOptions<TReturnData, TVariables, TError>
+) => UseMutationResult<TReturnData, TError, TVariables, unknown>
+
+type ReactMutationFunctionWithParams<TReturnData, TVariables, TParams extends Record<string, string | number | string[]>, TError = unknown> = (
+	params: TParams,
+	options?: LimitedMutationOptions<TReturnData, TVariables, TError>
+) => UseMutationResult<TReturnData, TError, TVariables, unknown>
 
 export type ReactMutationFunction<
 	TMutationVariables,
@@ -35,18 +49,10 @@ export type ReactMutationFunction<
 	TParams = undefined,
 	TError = unknown
 > = TParams extends undefined
-	? ({
-		options
-	}: {
-		options: LimitedMutationOptions<TReturnData, TMutationVariables, TError>
-	}) => UseMutationResult<TReturnData, TError, TMutationVariables, unknown>
-		: ({
-			params,
-			options,
-		}: {
-			params: TParams,
-			options?: LimitedMutationOptions<TReturnData, TMutationVariables, TError>
-		}) => UseMutationResult<TReturnData, TError, TMutationVariables, unknown>
+	? ReactMutationFunctionBasic<TReturnData, TMutationVariables, TError>
+	: TParams extends Record<string, string | number | string[]>
+		? ReactMutationFunctionWithParams<TReturnData, TMutationVariables, TParams, TError>
+		: never
 
 /**
  * Folder exports
