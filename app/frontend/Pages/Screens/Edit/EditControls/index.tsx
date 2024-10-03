@@ -1,12 +1,12 @@
 import React from 'react'
 import {
 	DndContext,
-	type DragEndEvent,
 	useSensors,
 	PointerSensor,
 	useSensor,
 	closestCenter,
 	UniqueIdentifier,
+	type DragEndEvent,
 } from '@dnd-kit/core'
 import {
 	arrayMove,

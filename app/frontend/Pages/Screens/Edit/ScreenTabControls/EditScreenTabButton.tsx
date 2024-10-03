@@ -7,7 +7,7 @@ import ScreenForm from '../../Form'
 import { DeleteButton } from '@/Components/Button'
 
 interface EditScreenTabButtonProps {
-	screen: Schema.ScreensEdit
+	screen: Schema.ScreensOptions
 	onSuccess?: () => void
 }
 

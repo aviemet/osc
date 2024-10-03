@@ -105,6 +105,7 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 				<NewControlMenu menuId={ currentTabId || undefined } />
 
 			</Page>
+			
 			<div id="control-form-portal" />
 		</>
 	)

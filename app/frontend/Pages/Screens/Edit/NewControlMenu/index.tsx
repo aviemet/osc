@@ -1,6 +1,6 @@
 import React from 'react'
 import { Affix, Button, Menu } from '@/Components'
-import ControlForm from '../../../../Features/Control/Form'
+import ControlForm from '@/Features/Control/Form'
 import { modals } from '@mantine/modals'
 import { Routes } from '@/lib'
 
@@ -9,10 +9,12 @@ const controlFormFilter = ['control.id', 'control.command', 'control.updated_at'
 type ControlType = 'button'|'spacer'|'slider'
 
 interface NewControlMenuProps {
-	menuId: number
+	menuId?: number
 }
 
 const NewControlMenu = ({ menuId }: NewControlMenuProps) => {
+	if(!menuId) return <></>
+
 	const emptyData = (type: ControlType): Schema.ControlsFormData => ({
 		screen_id: menuId,
 		control_type: type,
@@ -36,18 +38,7 @@ const NewControlMenu = ({ menuId }: NewControlMenuProps) => {
 	}
 
 	const handleNewSpacerClick = () => {
-		modals.open({
-			title: 'Add New Control Button',
-			children: (
-				<ControlForm
-					control={ emptyData('spacer') }
-					remember={ false }
-					to={ Routes.controls() }
-					onSubmit={ () => modals.closeAll() }
-					filter={ controlFormFilter }
-				/>
-			),
-		})
+
 	}
 
 	return (
@@ -57,17 +48,17 @@ const NewControlMenu = ({ menuId }: NewControlMenuProps) => {
 					<Button radius="xl" p="sm" m="lg">+</Button>
 				</Menu.Target>
 				<Menu.Dropdown>
-					<Menu.Label
+					<Menu.Item
 						onClick={ handleNewButtonClick }
 					>
 						Button
-					</Menu.Label>
-					{ /* <Menu.Label>Slider</Menu.Label> */ }
-					{ /* <Menu.Label
+					</Menu.Item>
+					{/* <Menu.Item>Slider</Menu.Item> */}
+					<Menu.Item
 						onClick={ handleNewSpacerClick }
 					>
 						Spacer
-					</Menu.Label> */ }
+					</Menu.Item>
 				</Menu.Dropdown>
 			</Menu>
 		</Affix>

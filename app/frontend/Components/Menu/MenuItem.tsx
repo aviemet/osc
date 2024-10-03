@@ -19,8 +19,6 @@ const MenuItem = forwardRef<HTMLButtonElement, IMenuItemProps>((
 			ref={ ref }
 			disabled={ disabled }
 			className={ cx(classes.menuItem, className, { disabled }) }
-			// component={ href !== undefined ? Link : 'button' }
-			// href={ href }
 			{ ...props }
 		>
 			<Flex align="center" wrap="nowrap" gap="xs">
