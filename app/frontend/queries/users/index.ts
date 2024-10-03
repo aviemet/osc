@@ -40,14 +40,16 @@ type UserTablePreferencesParams = {
 }
 
 export const useUpdateUserTablePreferences: ReactMutationFunction<
+	UserTablePreferencesParams,
 	Schema.User,
-	{ id: string|number },
-	UserTablePreferencesParams
-> = (
+	{ id: string|number }
+> = ({
 	params,
 	options,
-) => {
+}) => {
 	const queryClient = useQueryClient()
+
+	const queryKey = ['user', params.id, 'table_preferences']
 
 	return useMutation({
 		mutationFn: async ({ id, preferences }) => {
@@ -59,11 +61,12 @@ export const useUpdateUserTablePreferences: ReactMutationFunction<
 			}
 			return res.data
 		},
-		mutationKey: ['user', params.id, 'table_preferences'],
+		mutationKey: queryKey,
 		...options,
 		onSuccess: (data, variables) => {
-			queryClient.invalidateQueries({ queryKey: ['user', params.id, 'table_preferences'] })
+			queryClient.invalidateQueries({ queryKey })
 			options?.onSuccess?.(data, variables)
 		},
 	})
 }
+
