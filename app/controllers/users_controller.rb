@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   expose :users, -> { search(User.all.includes_associated, sortable_fields) }
   expose :user, id: -> { params[:slug] }, scope: -> { Circle.includes_associated }, find_by: :slug
 
+  sortable_fields %w(email active first_name last_name number)
+
+  strong_params :user, permit: [:email, :password, :active, :first_name, :last_name, :number]
+
   # @route GET /users (users)
   def index
     authorize users
@@ -77,13 +81,4 @@ class UsersController < ApplicationController
     end
   end
 
-  private
-
-  def sortable_fields
-    %w(email active first_name last_name number).freeze
-  end
-
-  def user_params
-    params.require(:user).permit(:email, :password, :active, :first_name, :last_name, :number)
-  end
 end

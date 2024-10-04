@@ -1,6 +1,8 @@
 class Api::UsersController < Api::ApiController
   expose :user
 
+  strong_params :user, permit: [:email, :password, :active, :first_name, :last_name, :number, :table_preferences, :user_preferences]
+
   # @route PATCH /api/users/:id (api_user)
   # @route PUT /api/users/:id (api_user)
   def update
@@ -16,7 +18,7 @@ class Api::UsersController < Api::ApiController
   def update_table_preferences
     authorize user
     if user.update(
-      table_preferences: current_user.table_preferences.deep_merge(request.params[:user][:table_preferences]),
+      table_preferences: current_user.table_preferences.deep_merge(user_params[:table_preferences]),
     )
       head :ok, content_type: "text/html"
     end
@@ -30,12 +32,6 @@ class Api::UsersController < Api::ApiController
     )
       head :ok, content_type: "text/html"
     end
-  end
-
-  private
-
-  def user_params
-    params.require(:user).permit(:email, :password, :active_company_id, :active, person: [:first_name, :last_name], company: [:name], user_preferences: [:colorScheme])
   end
 
 end

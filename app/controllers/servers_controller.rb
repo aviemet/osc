@@ -2,6 +2,10 @@ class ServersController < ApplicationController
   expose :servers, -> { search(Server.includes_associated, sortable_fields) }
   expose :server, id: -> { params[:slug] }, scope: -> { Server.includes_associated }, find_by: :slug
 
+  sortable_fields %w(title hostname port description)
+
+  strong_params :server, permit: [:title, :hostname, :port, :description]
+
   # @route GET /servers (servers)
   def index
     authorize servers
@@ -63,15 +67,5 @@ class ServersController < ApplicationController
     authorize server
     server.destroy!
     redirect_to servers_url, notice: "Server was successfully destroyed."
-  end
-
-  private
-
-  def sortable_fields
-    %w(title hostname port description).freeze
-  end
-
-  def server_params
-    params.require(:server).permit(:title, :hostname, :port, :description)
   end
 end
