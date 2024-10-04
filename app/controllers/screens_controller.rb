@@ -1,9 +1,15 @@
 class ScreensController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   expose :screens, -> { Screen.includes_associated }
   expose :screen, id: -> { params[:slug] }, scope: -> { Screen.includes_associated }, find_by: :slug
   expose :main_screen, -> { Screen.order(:order).first }
 
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  sortable_fields %w(title order)
+
+  strong_params :screen, permit: [:title, :order, controls_attributes: [
+    :id, :title, :order
+  ]]
 
   # @route GET / (root)
   # @route GET /screens (screens)
@@ -69,17 +75,5 @@ class ScreensController < ApplicationController
     authorize screen
     screen.destroy!
     redirect_to edit_screens_path, notice: "Screen was successfully destroyed."
-  end
-
-  private
-
-  def sortable_fields
-    %w(title order).freeze
-  end
-
-  def screen_params
-    params.require(:screen).permit(:title, :order, controls_attributes: [
-      :id, :title, :order
-    ],)
   end
 end

@@ -7,4 +7,5 @@ class ApplicationController < ActionController::Base
   include InertiaShare::Flash
   include InertiaShare::Auth
   include Searchable
+  include StrongParams
 end

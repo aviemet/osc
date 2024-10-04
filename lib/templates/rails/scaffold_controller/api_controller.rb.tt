@@ -3,17 +3,16 @@ class Api::<%= controller_class_name %>Controller < ApiController
   expose :<%= plural_table_name %>
   expose :<%= singular_table_name %>
 
-  # GET <%= route_url %>
+  strong_params :<%= singular_table_name %>, permit: <%= permitted_params %>
+  
   def index
     render json: <%= plural_table_name %>.render(view: :index)
   end
 
-  # GET <%= route_url %>/:id
   def show
     render json: <%= singular_table_name %>.render(view: :show)
   end
 
-  # POST <%= route_url %>
   def create
     if <%= orm_instance.save %>
       render json: <%= singular_table_name %>, staus: :created, location: <%= singular_table_name %>
@@ -22,7 +21,6 @@ class Api::<%= controller_class_name %>Controller < ApiController
     end
   end
 
-  # PATCH/PUT <%= route_url %>/:id
   def update
     if <%= orm_instance.update("#{singular_table_name}_params") %>
       render json: <%= singular_table_name %>, status: 201
@@ -31,20 +29,9 @@ class Api::<%= controller_class_name %>Controller < ApiController
     end
   end
 
-  # DELETE <%= route_url %>/:id
   def destroy
     render json: <%= orm_instance.destroy %>
   end
 
-  private
-
-  # Only allow a list of trusted parameters through.
-  def <%= "#{singular_table_name}_params" %>
-    <%- if attributes_names.empty? -%>
-    params.fetch(:<%= singular_table_name %>, {})
-    <%- else -%>
-    params.require(:<%= singular_table_name %>).permit(<%= permitted_params %>)
-    <%- end -%>
-  end
 end
 <% end -%>

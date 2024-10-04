@@ -9,18 +9,22 @@ class <%= controller_class_name %>Controller < ApplicationController
   expose :<%= singular_table_name %>, find: ->(id, scope){ scope.includes_associated.find(id) }
   <% end -%>
 
-  # GET <%= route_url %>
+  strong_params :<%= singular_table_name %>, permit: <%= permitted_params %>
+
   def index
     authorize <%= plural_table_name %>
 
-    paginated_<%= plural_table_name %> = <%= plural_table_name %>.page(params[:page] || 1).per(current_user.limit(:items))
+    paginated_<%= plural_table_name %> = paginate(<%= plural_table_name %>, :<%= plural_table_name %>)
 
     render inertia: "<%= class_name.pluralize %>/Index", props: {
-      <%= plural_table_name %>: -> { paginated_<%= plural_table_name %>.render(view: :index) }
+      <%= plural_table_name %>: -> { paginated_<%= plural_table_name %>.render(view: :index) },
+      pagination: -> { {
+        count: <%= plural_table_name %>.count,
+        **pagination_data(paginated_<%= plural_table_name %>)
+      } }
     }
   end
 
-  # GET <%= route_url %>/:id
   def show
     authorize <%= singular_table_name %>
     render inertia: "<%= class_name.pluralize %>/Show", props: {
@@ -28,7 +32,6 @@ class <%= controller_class_name %>Controller < ApplicationController
     }
   end
 
-  # GET <%= route_url %>/new
   def new
     authorize <%= orm_class.build(class_name) %>
     render inertia: "<%= class_name.pluralize %>/New", props: {
@@ -36,7 +39,6 @@ class <%= controller_class_name %>Controller < ApplicationController
     }
   end
 
-  # GET <%= route_url %>/:id/edit
   def edit
     authorize <%= singular_table_name %>
     render inertia: "<%= class_name.pluralize %>/Edit", props: {
@@ -44,7 +46,6 @@ class <%= controller_class_name %>Controller < ApplicationController
     }
   end
 
-  # POST <%= route_url %>
   def create
     authorize <%= orm_class.build(class_name) %>
     if <%= orm_instance.save %>
@@ -54,7 +55,6 @@ class <%= controller_class_name %>Controller < ApplicationController
     end
   end
 
-  # PATCH/PUT <%= route_url %>/:id
   def update
     authorize <%= singular_table_name %>
     if <%= orm_instance.update("#{singular_table_name}_params") %>
@@ -64,25 +64,11 @@ class <%= controller_class_name %>Controller < ApplicationController
     end
   end
 
-  # DELETE <%= route_url %>/:id
   def destroy
     authorize <%= singular_table_name %>
     <%= orm_instance.destroy %>
     redirect_to <%= index_helper %>_url, notice: <%= %("#{human_name} was successfully destroyed.") %>
   end
 
-  private
-
-  def sortable_fields
-    %w(<%= permitted_params.gsub(/[:,]/, '') %>).freeze
-  end
-
-  def <%= "#{singular_table_name}_params" %>
-    <%- if attributes_names.empty? -%>
-    params.fetch(:<%= singular_table_name %>, {})
-    <%- else -%>
-    params.require(:<%= singular_table_name %>).permit(<%= permitted_params %>)
-    <%- end -%>
-  end
 end
 <% end -%>

@@ -1,5 +1,5 @@
 class UserPolicy < ApplicationPolicy
-  class Scope < Scope
+  class Scope < ApplicationPolicy::Scope
   end
 
   def update_table_preferences?
