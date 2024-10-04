@@ -372,6 +372,30 @@ export const editProtocol: ((
 
 /**
  * Generates rails route to
+ * /remote_apis/:slug/edit(.:format)
+ * @param {any} slug
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const editRemoteApi: ((
+  slug: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /remote_endpoints/:slug/edit(.:format)
+ * @param {any} slug
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const editRemoteEndpoint: ((
+  slug: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /screens/:slug/edit(.:format)
  * @param {any} slug
  * @param {object | undefined} options
@@ -468,6 +492,26 @@ export const newProtocol: ((
 
 /**
  * Generates rails route to
+ * /remote_apis/new(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const newRemoteApi: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /remote_endpoints/new(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const newRemoteEndpoint: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /screens/new(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
@@ -555,6 +599,50 @@ export const protocol: ((
  * @returns {string} route path
  */
 export const protocols: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /remote_apis/:slug(.:format)
+ * @param {any} slug
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const remoteApi: ((
+  slug: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /remote_apis(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const remoteApis: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /remote_endpoints/:slug(.:format)
+ * @param {any} slug
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const remoteEndpoint: ((
+  slug: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /remote_endpoints(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const remoteEndpoints: ((
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 

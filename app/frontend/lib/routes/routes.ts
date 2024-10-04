@@ -756,6 +756,24 @@ export const editProtocol = /*#__PURE__*/ __jsr.r({"slug":{"r":true},"format":{}
 
 /**
  * Generates rails route to
+ * /remote_apis/:slug/edit(.:format)
+ * @param {any} slug
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const editRemoteApi = /*#__PURE__*/ __jsr.r({"slug":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"remote_apis"],[2,[7,"/"],[2,[3,"slug"],[2,[7,"/"],[2,[6,"edit"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /remote_endpoints/:slug/edit(.:format)
+ * @param {any} slug
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const editRemoteEndpoint = /*#__PURE__*/ __jsr.r({"slug":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"remote_endpoints"],[2,[7,"/"],[2,[3,"slug"],[2,[7,"/"],[2,[6,"edit"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
+
+/**
+ * Generates rails route to
  * /screens/:slug/edit(.:format)
  * @param {any} slug
  * @param {object | undefined} options
@@ -831,6 +849,22 @@ export const newProtocol = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6
 
 /**
  * Generates rails route to
+ * /remote_apis/new(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const newRemoteApi = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"remote_apis"],[2,[7,"/"],[2,[6,"new"],[1,[2,[8,"."],[3,"format"]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /remote_endpoints/new(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const newRemoteEndpoint = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"remote_endpoints"],[2,[7,"/"],[2,[6,"new"],[1,[2,[8,"."],[3,"format"]]]]]]]);
+
+/**
+ * Generates rails route to
  * /screens/new(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
@@ -901,6 +935,40 @@ export const protocol = /*#__PURE__*/ __jsr.r({"slug":{"r":true},"format":{}}, [
  * @returns {string} route path
  */
 export const protocols = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"protocols"],[1,[2,[8,"."],[3,"format"]]]]]);
+
+/**
+ * Generates rails route to
+ * /remote_apis/:slug(.:format)
+ * @param {any} slug
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const remoteApi = /*#__PURE__*/ __jsr.r({"slug":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"remote_apis"],[2,[7,"/"],[2,[3,"slug"],[1,[2,[8,"."],[3,"format"]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /remote_apis(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const remoteApis = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"remote_apis"],[1,[2,[8,"."],[3,"format"]]]]]);
+
+/**
+ * Generates rails route to
+ * /remote_endpoints/:slug(.:format)
+ * @param {any} slug
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const remoteEndpoint = /*#__PURE__*/ __jsr.r({"slug":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"remote_endpoints"],[2,[7,"/"],[2,[3,"slug"],[1,[2,[8,"."],[3,"format"]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /remote_endpoints(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const remoteEndpoints = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"remote_endpoints"],[1,[2,[8,"."],[3,"format"]]]]]);
 
 /**
  * Generates rails route to

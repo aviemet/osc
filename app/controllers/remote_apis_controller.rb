@@ -2,20 +2,24 @@ class RemoteApisController < ApplicationController
   include Searchable
 
   expose :remote_apis, -> { search(RemoteApi.includes_associated, sortable_fields) }
-    expose :remote_api, find: ->(id, scope){ scope.includes_associated.find(id) }
-  
-  # GET /remote_apis
+  expose :remote_api, find: ->(id, scope) { scope.includes_associated.find(id) }
+
+  # @route GET /remote_apis (remote_apis)
   def index
     authorize remote_apis
 
     paginated_remote_apis = remote_apis.page(params[:page] || 1).per(current_user.limit(:items))
 
     render inertia: "RemoteApis/Index", props: {
-      remote_apis: -> { paginated_remote_apis.render(view: :index) }
+      remote_apis: -> { paginated_remote_apis.render(view: :index) },
+      pagination: -> { {
+        count: remote_apis.count,
+        **pagination_data(paginated_remote_apis)
+      } }
     }
   end
 
-  # GET /remote_apis/:id
+  # @route GET /remote_apis/:slug (remote_api)
   def show
     authorize remote_api
     render inertia: "RemoteApis/Show", props: {
@@ -23,7 +27,7 @@ class RemoteApisController < ApplicationController
     }
   end
 
-  # GET /remote_apis/new
+  # @route GET /remote_apis/new (new_remote_api)
   def new
     authorize RemoteApi.new
     render inertia: "RemoteApis/New", props: {
@@ -31,7 +35,7 @@ class RemoteApisController < ApplicationController
     }
   end
 
-  # GET /remote_apis/:id/edit
+  # @route GET /remote_apis/:slug/edit (edit_remote_api)
   def edit
     authorize remote_api
     render inertia: "RemoteApis/Edit", props: {
@@ -39,7 +43,7 @@ class RemoteApisController < ApplicationController
     }
   end
 
-  # POST /remote_apis
+  # @route POST /remote_apis (remote_apis)
   def create
     authorize RemoteApi.new
     if remote_api.save
@@ -49,7 +53,8 @@ class RemoteApisController < ApplicationController
     end
   end
 
-  # PATCH/PUT /remote_apis/:id
+  # @route PATCH /remote_apis/:slug (remote_api)
+  # @route PUT /remote_apis/:slug (remote_api)
   def update
     authorize remote_api
     if remote_api.update(remote_api_params)
@@ -59,7 +64,7 @@ class RemoteApisController < ApplicationController
     end
   end
 
-  # DELETE /remote_apis/:id
+  # @route DELETE /remote_apis/:slug (remote_api)
   def destroy
     authorize remote_api
     remote_api.destroy!

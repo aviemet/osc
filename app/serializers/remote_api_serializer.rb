@@ -10,8 +10,15 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-require 'rails_helper'
+class RemoteApiSerializer < ApplicationSerializer
+  object_as :remote_api
 
-RSpec.describe RemoteApi, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+
+  attributes(
+    :title,
+    :root_url,
+    :description,
+    :auth_token,
+  )
 end

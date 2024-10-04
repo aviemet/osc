@@ -4,7 +4,7 @@ class RemoteEndpointsController < ApplicationController
   expose :remote_endpoints, -> { search(RemoteEndpoint.includes_associated, sortable_fields) }
     expose :remote_endpoint, find: ->(id, scope){ scope.includes_associated.find(id) }
   
-  # GET /remote_endpoints
+  # @route GET /remote_endpoints (remote_endpoints)
   def index
     authorize remote_endpoints
 
@@ -15,7 +15,7 @@ class RemoteEndpointsController < ApplicationController
     }
   end
 
-  # GET /remote_endpoints/:id
+  # @route GET /remote_endpoints/:slug (remote_endpoint)
   def show
     authorize remote_endpoint
     render inertia: "RemoteEndpoints/Show", props: {
@@ -23,7 +23,7 @@ class RemoteEndpointsController < ApplicationController
     }
   end
 
-  # GET /remote_endpoints/new
+  # @route GET /remote_endpoints/new (new_remote_endpoint)
   def new
     authorize RemoteEndpoint.new
     render inertia: "RemoteEndpoints/New", props: {
@@ -31,7 +31,7 @@ class RemoteEndpointsController < ApplicationController
     }
   end
 
-  # GET /remote_endpoints/:id/edit
+  # @route GET /remote_endpoints/:slug/edit (edit_remote_endpoint)
   def edit
     authorize remote_endpoint
     render inertia: "RemoteEndpoints/Edit", props: {
@@ -39,7 +39,7 @@ class RemoteEndpointsController < ApplicationController
     }
   end
 
-  # POST /remote_endpoints
+  # @route POST /remote_endpoints (remote_endpoints)
   def create
     authorize RemoteEndpoint.new
     if remote_endpoint.save
@@ -49,7 +49,8 @@ class RemoteEndpointsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /remote_endpoints/:id
+  # @route PATCH /remote_endpoints/:slug (remote_endpoint)
+  # @route PUT /remote_endpoints/:slug (remote_endpoint)
   def update
     authorize remote_endpoint
     if remote_endpoint.update(remote_endpoint_params)
@@ -59,7 +60,7 @@ class RemoteEndpointsController < ApplicationController
     end
   end
 
-  # DELETE /remote_endpoints/:id
+  # @route DELETE /remote_endpoints/:slug (remote_endpoint)
   def destroy
     authorize remote_endpoint
     remote_endpoint.destroy!

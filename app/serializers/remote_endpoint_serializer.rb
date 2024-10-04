@@ -17,10 +17,14 @@
 #
 #  fk_rails_...  (remote_api_id => remote_apis.id)
 #
-FactoryBot.define do
-  factory :remote_endpoint do
-    title { "MyString" }
-    remote_api { nil }
-    endpoint { "MyString" }
-  end
+class RemoteEndpointSerializer < ApplicationSerializer
+  object_as :remote_endpoint
+
+  
+
+  attributes(
+    :title,
+    :remote_api_id,
+    :endpoint,
+  )
 end
