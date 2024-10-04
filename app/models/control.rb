@@ -32,6 +32,7 @@ class Control < ApplicationRecord
   include PgSearch::Model
 
   before_validation :set_unique_order
+  before_validation :set_spacer_title, if: -> { self.control_type == "spacer" }
 
   pg_search_scope(
     :search,
@@ -55,7 +56,7 @@ class Control < ApplicationRecord
 
   scope :includes_associated, -> { includes([:protocol, :command]) }
 
-  validate :protocol_xor_command
+  validate :protocol_xor_command, if: -> { self.control_type != "spacer" }
   validates :order, presence: true
 
   private
@@ -69,6 +70,10 @@ class Control < ApplicationRecord
 
     max_order = screen.controls.maximum(:order)
     max_order ? max_order + 1 : 1
+  end
+
+  def set_spacer_title
+    self.title = "spacer_#{self.order}"
   end
 
   def protocol_xor_command

@@ -3,17 +3,21 @@ import { Affix, Button, Menu } from '@/Components'
 import ControlForm from '@/Features/Control/Form'
 import { modals } from '@mantine/modals'
 import { Routes } from '@/lib'
+import { useCreateControl } from '@/queries'
 
 const controlFormFilter = ['control.id', 'control.command', 'control.updated_at', 'control.created_at', 'control.command_id', 'control.protocol']
 
 type ControlType = 'button'|'spacer'|'slider'
 
 interface NewControlMenuProps {
+	screenId: number|false
 	menuId?: number
 }
 
-const NewControlMenu = ({ menuId }: NewControlMenuProps) => {
-	if(!menuId) return <></>
+const NewControlMenu = ({ screenId, menuId }: NewControlMenuProps) => {
+	const { mutate: createControl } = useCreateControl()
+
+	if(!menuId || !screenId) return <></>
 
 	const emptyData = (type: ControlType): Schema.ControlsFormData => ({
 		screen_id: menuId,
@@ -38,7 +42,10 @@ const NewControlMenu = ({ menuId }: NewControlMenuProps) => {
 	}
 
 	const handleNewSpacerClick = () => {
-
+		createControl({
+			control_type: "spacer",
+			screen_id: screenId,
+		})
 	}
 
 	return (

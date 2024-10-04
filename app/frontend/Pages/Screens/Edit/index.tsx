@@ -102,7 +102,7 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 					)) }
 				</Tabs>
 
-				<NewControlMenu menuId={ currentTabId || undefined } />
+				<NewControlMenu screenId={ currentTabId } menuId={ currentTabId || undefined } />
 
 			</Page>
 			
