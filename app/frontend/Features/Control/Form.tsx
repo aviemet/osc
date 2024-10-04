@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Code, Grid, Paper, ScrollArea, Text } from '@/Components'
-import { Form, TextInput, Submit, SwatchInput, FormConsumer } from '@/Components/Form'
+import { Form, TextInput, Submit, SwatchInput, FormConsumer, Radio } from '@/Components/Form'
 import { ProtocolDropdown } from '@/Components/Dropdowns'
 import { useGetProtocol } from '@/queries'
 import { FormProps } from 'use-inertia-form'
@@ -71,6 +71,13 @@ const ControlForm = ({ control, ...props }: ControlFormProps) => {
 							<SwatchInput label="Button Color" name="color" />
 						</Grid.Col> }
 				</> }</FormConsumer>
+
+				<Grid.Col>
+					<Radio.Group name="format.flex" label="Display Format">
+						<Radio value="shrink" label="Size of Content" />
+						<Radio value="expand" label="Fill Available Space" />
+					</Radio.Group>
+				</Grid.Col>
 
 				<Grid.Col>
 					<Submit>{ control?.id ? 'Update' : 'Create' } Control</Submit>

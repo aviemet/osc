@@ -8,8 +8,9 @@ export { default as HiddenInput }      from './HiddenInput'
 export { default as MultiSelect }      from './MultiSelect'
 export { default as NumberInput }      from './NumberInput'
 export { default as PasswordInput }    from './PasswordInput'
-export { default as SegmentedControl } from './SegmentedControl'
+export { default as Radio }            from './Radio'
 export { default as RichText }         from './RichText'
+export { default as SegmentedControl } from './SegmentedControl'
 export { default as Select }           from './Select'
 export { default as SwatchInput }      from './SwatchInput'
 export { default as Switch }           from './Switch'
@@ -21,10 +22,9 @@ export {
 	GroupedCheckbox,
 } from './Checkbox'
 
-export type InputConflicts = 'name'|'onChange'|'onBlur'|'onFocus'|'value'|'defaultValue'
+export type InputConflicts = 'name' | 'onChange' | 'onBlur' | 'onFocus' | 'value' | 'defaultValue'
 export interface BaseFormInputProps<T, TForm extends NestedObject = NestedObject>
-	extends UseInertiaInputProps<T>
-{
+	extends UseInertiaInputProps<T> {
 	model?: string
 	errorKey?: string
 	field?: boolean

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Divider, Page, Tabs } from '@/Components'
+import { Divider, Flex, Page, Tabs } from '@/Components'
 import { Form, Submit } from '@/Components/Form'
 import { Routes } from '@/lib'
 import { useLocation } from '@/lib/hooks'
@@ -91,10 +91,12 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 									filter={ ['screen.id', 'screen.slug', 'screen.created_at', 'screen.updated_at'] }
 									remember={ false }
 								>
-									<EditControls
-										screen={ screen }
-									/>
+									<Flex gap="md">
+										<EditControls screen={ screen } />
+									</Flex>
+
 									<Divider my="md" />
+
 									<Submit>Save Screen Layout</Submit>
 								</Form>
 							) }
@@ -105,7 +107,7 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 				<NewControlMenu screenId={ currentTabId } menuId={ currentTabId || undefined } />
 
 			</Page>
-			
+
 			<div id="control-form-portal" />
 		</>
 	)

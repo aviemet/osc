@@ -19,6 +19,7 @@ const ButtonControl = forwardRef<HTMLButtonElement, ButtonControlProps>((
 		key: 'last-button-clicked',
 		defaultValue: undefined,
 	})
+
 	const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.preventDefault()
 

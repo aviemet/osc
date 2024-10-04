@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Page, Tabs } from '@/Components'
+import { Box, Flex, Page, Tabs } from '@/Components'
 import Control from '../../../Features/Control'
 import { Routes } from '@/lib'
 import { useLocation } from '@/lib/hooks'
@@ -32,11 +32,11 @@ const ShowScreen = ({ screen, screens }: IShowScreenProps) => {
 				{ screens.map(iScreen => (
 					<Tabs.Panel key={ iScreen.id } value={ iScreen.slug }>
 						{ iScreen.id === screen.id &&
-							<Box>
+							<Flex gap="md">
 								{ screen?.controls?.map(control => (
 									<Control key={ control.id } control={ control } />
 								)) }
-							</Box>
+							</Flex>
 						}
 					</Tabs.Panel>
 				)) }

@@ -35,7 +35,7 @@ const EditControls = ({ screen }: IEditControlsProps) => {
 			color: '',
 		},
 	})
-	const { getData, setData, model: formModel } = useForm<{screen: Schema.ScreensEdit}>()
+	const { getData, setData, model: formModel } = useForm<{ screen: Schema.ScreensEdit }>()
 	const sensors = useSensors(
 		useSensor(PointerSensor),
 	)

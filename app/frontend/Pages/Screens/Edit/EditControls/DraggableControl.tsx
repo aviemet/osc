@@ -9,7 +9,7 @@ import cx from 'clsx'
 import * as classes from './Control.css'
 import { router } from '@inertiajs/react'
 
-interface DraggableControlProps extends ControlProps<{edit: true}> {}
+interface DraggableControlProps extends ControlProps<{ edit: true }> {}
 
 const DraggableControl = ({ control, ...props }: DraggableControlProps) => {
 	const {
