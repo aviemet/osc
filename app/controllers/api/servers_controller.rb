@@ -2,6 +2,8 @@ class Api::ServersController < ApplicationController
   expose :server
   expose :servers, -> { Server.all }
 
+  strong_params :server, permit: [:title, :hostname, :port, :description]
+
   # @route GET /api/servers (api_servers)
   def index
     render json: servers.render(view: :options), staus: :ok

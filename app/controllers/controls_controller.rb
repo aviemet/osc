@@ -2,6 +2,10 @@ class ControlsController < ApplicationController
   expose :controls, -> { search(Control.includes_associated, sortable_fields) }
   expose :control, find: ->(id, scope) { scope.includes_associated.find(id) }
 
+  sortable_fields %w(title type screen_id min_value max_value value protocol_id)
+
+  strong_params :control, permit: [:title, :control_type, :order, :color, :screen_id, :min_value, :max_value, :value, :protocol_id]
+
   # @route POST /controls (controls)
   def create
     authorize Control.new
@@ -30,15 +34,5 @@ class ControlsController < ApplicationController
     authorize control
     control.destroy!
     redirect_to controls_url, notice: "Control was successfully destroyed."
-  end
-
-  private
-
-  def sortable_fields
-    %w(title type screen_id min_value max_value value protocol_id).freeze
-  end
-
-  def control_params
-    params.require(:control).permit(:title, :control_type, :order, :color, :screen_id, :min_value, :max_value, :value, :protocol_id)
   end
 end

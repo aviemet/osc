@@ -1,8 +1,12 @@
 class Api::ProtocolsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:execute]
+
   expose :protocols, -> { Protocol.includes_associated.all }
   expose :protocol, id: -> { params[:slug] }, find_by: :slug
 
-  skip_before_action :authenticate_user!, only: [:execute]
+  strong_params :protocol, permit: [:title, :description, protocols_commands_attributes: [
+    :id, :protocol_id, :command_id, :command_value_id, :value, :delay, :order
+  ]]
 
   # @route GET /api/protocols/:slug (api_protocol)
   def show

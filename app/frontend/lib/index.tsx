@@ -1,6 +1,6 @@
 import { Routes } from '@/lib'
 
-export * as Routes from './routes'
+export * as Routes from './routes/routes'
 export * as formatter from './formatters'
 
 export * from './uuid'

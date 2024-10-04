@@ -2,6 +2,8 @@ class Api::ControlsController < ApplicationController
   expose :control
   expose :controls, -> { Control.all }
 
+  strong_params :control, permit: [:title, :control_type, :order, :color, :screen_id, :min_value, :max_value, :value, :protocol_id]
+
   # @route GET /api/options/controls (api_controls_options)
   def options
     authorize controls

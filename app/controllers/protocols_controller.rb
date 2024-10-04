@@ -2,6 +2,12 @@ class ProtocolsController < ApplicationController
   expose :protocols, -> { search(Protocol, sortable_fields) }
   expose :protocol, id: -> { params[:slug] }, scope: -> { Protocol.includes_associated }, find_by: :slug
 
+  sortable_fields %w(title)
+
+  strong_params :protocol, permit: [:title, :description, protocols_commands_attributes: [
+    :id, :protocol_id, :command_id, :command_value_id, :value, :delay, :order
+  ]]
+
   # @route GET /protocols (protocols)
   def index
     authorize protocols
@@ -72,19 +78,4 @@ class ProtocolsController < ApplicationController
     redirect_to protocols_url, notice: "Protocol was successfully destroyed."
   end
 
-  private
-
-  def sortable_fields
-    %w(title).freeze
-  end
-
-  def protocol_params
-    params.require(:protocol).permit(
-      :title,
-      :description,
-      protocols_commands_attributes: [
-        :id, :protocol_id, :command_id, :command_value_id, :value, :delay, :order
-      ],
-    )
-  end
 end
