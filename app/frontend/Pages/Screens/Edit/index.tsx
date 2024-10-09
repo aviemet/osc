@@ -1,24 +1,23 @@
 import React, { useState } from 'react'
-import { Divider, Flex, Page, Tabs } from '@/Components'
-import { Form, Submit } from '@/Components/Form'
+import { Page, Tabs } from '@/Components'
 import { Routes } from '@/lib'
 import { useLocation } from '@/lib/hooks'
 import { router } from '@inertiajs/react'
 import { useDroppable } from '@dnd-kit/core'
-import EditControls from './EditControls'
 import NewControlMenu from './NewControlMenu'
 import NewScreenTabButton from './ScreenTabControls/NewScreenTabButton'
 import EditScreenTabButton from './ScreenTabControls/EditScreenTabButton'
 
 import cx from 'clsx'
 import * as classes from './ScreenControl.css'
+import EditScreenForm from './Form'
 
-interface IEditScreenProps {
+interface EditScreenProps {
 	screen: Schema.ScreensEdit
 	screens: Schema.ScreensOptions[]
 }
 
-const EditScreen = ({ screen, screens }: IEditScreenProps) => {
+const EditScreen = ({ screen, screens }: EditScreenProps) => {
 	const getScreenId = (slug: string): number | false => {
 		const currentScreen = screens.find(s => s.slug === slug)
 		if(currentScreen?.id) {
@@ -82,24 +81,7 @@ const EditScreen = ({ screen, screens }: IEditScreenProps) => {
 							className={ cx(classes.tabsPanel) }
 							ref={ droppable.setNodeRef }
 						>
-							{ iScreen.id === screen.id && (
-								<Form
-									model="screen"
-									data={ { screen: screen } }
-									to={ Routes.screen(screen.slug) }
-									method="patch"
-									filter={ ['screen.id', 'screen.slug', 'screen.created_at', 'screen.updated_at'] }
-									remember={ false }
-								>
-									<Flex gap="md">
-										<EditControls screen={ screen } />
-									</Flex>
-
-									<Divider my="md" />
-
-									<Submit>Save Screen Layout</Submit>
-								</Form>
-							) }
+							{ iScreen.id === screen.id && <EditScreenForm screen={ screen } /> }
 						</Tabs.Panel>
 					)) }
 				</Tabs>

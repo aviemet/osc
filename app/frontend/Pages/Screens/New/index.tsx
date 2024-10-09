@@ -1,7 +1,7 @@
 import React from 'react'
 import { Title, Page, Section } from '@/Components'
 import { Routes } from '@/lib'
-import ScreenForm from '../Form'
+import NewScreenForm from './Form'
 
 interface INewScreenProps {
 	screen: Schema.ScreensFormData
@@ -16,7 +16,7 @@ const NewScreen = ({ ...data }: INewScreenProps) => {
 			<Section>
 				<Title>{ title }</Title>
 
-				<ScreenForm
+				<NewScreenForm
 					to={ Routes.screens() }
 					{ ...data }
 				/>

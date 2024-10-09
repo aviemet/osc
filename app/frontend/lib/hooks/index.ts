@@ -7,6 +7,7 @@ export { default as useInit } from './useInit'
 export { default as useAuth } from './useAuth'
 export { default as useContrastingTextColor } from './useContrastingTextColor'
 export { default as useCurrency, type UseCurrencyOptions } from './useCurrency'
+export { default as useViewportSize } from './useViewportSize'
 
 export * from '@mantine/hooks'
 

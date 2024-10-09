@@ -5,11 +5,11 @@ import { type ControlProps } from '..'
 import cx from 'clsx'
 import * as classes from '../Control.css'
 
-const SpacerControl = ({ edit = false, ...props }: ControlProps) => {
+const SpacerControl = ({ className, ...props }: ControlProps) => {
 	return (
 		<Box
 			{ ...props }
-			className={ cx(classes.spacer, props.className) }
+			className={ cx(classes.spacer, className) }
 		/>
 	)
 }

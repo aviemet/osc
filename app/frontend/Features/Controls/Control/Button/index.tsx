@@ -2,17 +2,17 @@ import React, { forwardRef } from 'react'
 import { Button } from '@/Components'
 import axios from 'axios'
 import { type ButtonProps } from '@mantine/core'
+import { useLocalStorage } from '@/lib/hooks'
 import { type ControlProps } from '..'
 import { controlRoute, controlTitle } from '../lib'
-import { useLocalStorage } from '@mantine/hooks'
 
 import cx from 'clsx'
 import * as classes from '../Control.css'
 
-interface ButtonControlProps extends ButtonProps, ControlProps {}
+export interface ButtonControlProps extends ButtonProps, ControlProps {}
 
 const ButtonControl = forwardRef<HTMLButtonElement, ButtonControlProps>((
-	{ children, edit, control, className, ...props },
+	{ children, control, disable, className, ...props },
 	ref,
 ) => {
 	const [lastButtonClicked, setLastButtonClicked] = useLocalStorage<number>({
@@ -23,7 +23,7 @@ const ButtonControl = forwardRef<HTMLButtonElement, ButtonControlProps>((
 	const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.preventDefault()
 
-		if(edit || !control?.id) return
+		if(disable || !control?.id) return
 
 		const route = controlRoute(control)
 

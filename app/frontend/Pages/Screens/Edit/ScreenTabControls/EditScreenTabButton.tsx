@@ -3,7 +3,7 @@ import { Routes } from '@/lib'
 import { Accordion, Box, Divider, Text } from '@/Components'
 import { EditIcon } from '@/Components/Icons'
 import { modals } from '@mantine/modals'
-import ScreenForm from '../../Form'
+import ScreenForm from '../../New/Form'
 import { DeleteButton } from '@/Components/Button'
 
 interface EditScreenTabButtonProps {

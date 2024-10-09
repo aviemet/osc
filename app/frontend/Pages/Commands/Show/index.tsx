@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Code, DangerousHtml, Group, Title, Link, Menu, Page, Section, List } from '@/Components'
 import { Routes } from '@/lib'
-import ButtonControl from '@/Features/Control/Button'
+import { Control } from '@/Features/Controls'
 import { EditButton } from '@/Components/Button'
 
 interface ShowCommandProps {
@@ -42,7 +42,7 @@ const ShowCommand = ({ command }: ShowCommandProps) => {
 				{ /* { command?.command_values && <>
 				<Box>Test:</Box>
 				{ command.command_values?.map(value => (
-					<ButtonControl key={ value.id } command={ command } />
+					<Control key={ value.id } command={ command } control={{ control_type: 'button' }} />
 				)) }
 			</> } */ }
 			</Section>

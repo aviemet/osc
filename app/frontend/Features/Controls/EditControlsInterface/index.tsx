@@ -12,14 +12,14 @@ import {
 	arrayMove,
 	SortableContext,
 } from '@dnd-kit/sortable'
-import DraggableControl from './DraggableControl'
+import EditInterfaceControl from './EditInterfaceControl'
 import { useDynamicInputs, useForm } from 'use-inertia-form'
 
-interface IEditControlsProps {
+interface EditControlInterfaceProps {
 	screen: Schema.ScreensEdit
 }
 
-const EditControls = ({ screen }: IEditControlsProps) => {
+const EditControlInterface = ({ screen }: EditControlInterfaceProps) => {
 	const { addInput, removeInput, paths } = useDynamicInputs({
 		model: 'controls',
 		emptyData: {
@@ -35,7 +35,9 @@ const EditControls = ({ screen }: IEditControlsProps) => {
 			color: '',
 		},
 	})
+
 	const { getData, setData, model: formModel } = useForm<{ screen: Schema.ScreensEdit }>()
+
 	const sensors = useSensors(
 		useSensor(PointerSensor),
 	)
@@ -45,13 +47,13 @@ const EditControls = ({ screen }: IEditControlsProps) => {
 	const handleDragEnd = ({ active, over }: DragEndEvent) => {
 		if(!over || active.id === over.id) return
 
-		const controls = getData(controlsPath) as Schema.ControlsEdit[]
+		const controls = getData(controlsPath) as Schema.ControlsFormData[]
 
 		const activeIndex = controls.findIndex(el => el.id === active.id)
 		const overIndex = controls.findIndex(el => el.id === over.id)
 
 		setData(controlsPath, arrayMove(
-			getData(controlsPath) as Schema.ControlsEdit[],
+			getData(controlsPath) as Schema.ControlsFormData[],
 			activeIndex,
 			overIndex,
 		).map((control, i) => {
@@ -70,10 +72,10 @@ const EditControls = ({ screen }: IEditControlsProps) => {
 				items={ getData(`${formModel}.controls`) as UniqueIdentifier[] }
 			>
 				{ paths.map((path, i) => {
-					const record = getData(`${formModel}.${path}`) as Schema.ControlsEdit
+					const record = getData(`${formModel}.${path}`) as Schema.ControlsFormData
 
 					return (
-						<DraggableControl
+						<EditInterfaceControl
 							key={ record.id }
 							control={ record }
 						/>
@@ -84,4 +86,4 @@ const EditControls = ({ screen }: IEditControlsProps) => {
 	)
 }
 
-export default EditControls
+export default EditControlInterface

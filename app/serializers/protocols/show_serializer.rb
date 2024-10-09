@@ -4,5 +4,7 @@ class Protocols::ShowSerializer < ProtocolSerializer
     :slug,
   )
 
+  self.timestamps
+
   has_many :commands, serializer: Protocols::CommandsSerializer
 end

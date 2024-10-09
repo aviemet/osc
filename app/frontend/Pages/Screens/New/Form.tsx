@@ -10,7 +10,7 @@ type TScreenFormData = {
 export interface ScreenFormProps {
 	to: string
 	method?: HTTPVerb
-	onSubmit?: (object: UseFormProps<TScreenFormData>) => boolean|void
+	onSubmit?: (object: UseFormProps<TScreenFormData>) => boolean | void
 	screen?: Schema.ScreensFormData
 }
 

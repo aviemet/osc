@@ -1,16 +1,16 @@
 import React from 'react'
 import { Affix, Button, Menu } from '@/Components'
-import ControlForm from '@/Features/Control/Form'
+import ControlForm from '@/Features/Controls/EditControlsInterface/Form'
 import { modals } from '@mantine/modals'
 import { Routes } from '@/lib'
 import { useCreateControl } from '@/queries'
 
 const controlFormFilter = ['control.id', 'control.command', 'control.updated_at', 'control.created_at', 'control.command_id', 'control.protocol']
 
-type ControlType = 'button'|'spacer'|'slider'
+type ControlType = 'button' | 'spacer' | 'slider'
 
 interface NewControlMenuProps {
-	screenId: number|false
+	screenId: number | false
 	menuId?: number
 }
 
@@ -60,7 +60,7 @@ const NewControlMenu = ({ screenId, menuId }: NewControlMenuProps) => {
 					>
 						Button
 					</Menu.Item>
-					{/* <Menu.Item>Slider</Menu.Item> */}
+					{ /* <Menu.Item>Slider</Menu.Item> */ }
 					<Menu.Item
 						onClick={ handleNewSpacerClick }
 					>

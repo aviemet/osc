@@ -1,5 +1,5 @@
 import React from 'react'
-import Control, { ControlProps } from '@/Features/Control'
+import { Control, ControlProps } from '@/Features/Controls'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { Box } from '@mantine/core'
@@ -9,7 +9,7 @@ import cx from 'clsx'
 import * as classes from './Control.css'
 import { router } from '@inertiajs/react'
 
-interface DraggableControlProps extends ControlProps<{ edit: true }> {}
+interface DraggableControlProps extends ControlProps<Schema.ControlsFormData> {}
 
 const DraggableControl = ({ control, ...props }: DraggableControlProps) => {
 	const {
@@ -35,13 +35,13 @@ const DraggableControl = ({ control, ...props }: DraggableControlProps) => {
 				control={ control }
 				onSuccess={ () => router.reload() }
 			/>
-			<Control
-				edit={ true }
+			<Control<Schema.ControlsFormData>
+				disable={ true }
+				wrapper={ false }
 				control={ control }
 				{ ...props }
 			/>
 		</Box>
-
 	)
 }
 

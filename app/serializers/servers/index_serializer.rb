@@ -2,7 +2,7 @@ class Servers::IndexSerializer < ServerSerializer
   attributes(
     :id,
     :slug,
-    :updated_at,
-    :created_at,
   )
+
+  self.timestamps
 end

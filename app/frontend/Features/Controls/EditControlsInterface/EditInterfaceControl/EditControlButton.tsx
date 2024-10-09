@@ -1,15 +1,16 @@
 import React from 'react'
 import { Routes } from '@/lib'
-import { Box, type BoxProps } from '@mantine/core'
+import { Box } from '@mantine/core'
 import { EditIcon } from '@/Components/Icons'
 import { modals } from '@mantine/modals'
-import ControlForm from '@/Features/Control/Form'
-import { type ControlProps } from '@/Features/Control'
+import ControlForm from '@/Features/Controls/EditControlsInterface/Form'
+import { type ControlProps } from '@/Features/Controls/Control'
 
 import cx from 'clsx'
 import * as classes from './Control.css'
 
-interface EditControlButtonProps extends BoxProps, ControlProps {
+interface EditControlButtonProps extends Omit<ControlProps, 'control'> {
+	control: Schema.ControlsFormData
 	onSuccess?: () => void
 }
 

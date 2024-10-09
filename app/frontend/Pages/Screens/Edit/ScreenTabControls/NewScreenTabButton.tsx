@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '@/Components'
 import { modals } from '@mantine/modals'
-import ScreenForm from '../../Form'
+import ScreenForm from '../../New/Form'
 import { Routes } from '@/lib'
 
 const NewScreenTabButton = () => {

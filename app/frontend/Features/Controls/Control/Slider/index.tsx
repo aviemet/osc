@@ -6,7 +6,7 @@ import { controlRoute, controlTitle } from '../lib'
 
 interface SliderControlProps extends SliderProps, ControlProps {}
 
-const SliderControl = ({ edit, control, ...props }: SliderControlProps) => {
+const SliderControl = ({ control, ...props }: SliderControlProps) => {
 	const route = controlRoute(control)
 
 	return (
