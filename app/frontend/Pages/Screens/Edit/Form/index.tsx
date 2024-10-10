@@ -1,8 +1,8 @@
 import React from 'react'
+import { Routes } from '@/lib'
 import { Divider, Flex } from '@/Components'
 import { Form, Submit } from '@/Components/Form'
-import { EditControlsInterface } from '@/Features/Controls'
-import { Routes } from '@/lib'
+import DndEditControlsInterface from './DndEditControlsInterface'
 
 interface EditScreenFormProps {
 	screen: Schema.ScreensEdit
@@ -20,7 +20,7 @@ const EditScreenForm = ({ screen }: EditScreenFormProps) => {
 		>
 
 			<Flex gap="md">
-				<EditControlsInterface screen={ screen } />
+				<DndEditControlsInterface screen={ screen } />
 			</Flex>
 
 			<Divider my="md" />

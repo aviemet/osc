@@ -1,17 +1,14 @@
 import React from 'react'
-import { Box } from '@/Components'
-import { type ControlProps } from '..'
+import { ControlSpacerBaseProps } from './Base'
+import EditControlSpacer from './Edit'
+import ControlSpacer from './Control'
 
-import cx from 'clsx'
-import * as classes from '../Control.css'
+interface ControlSpacerProps extends ControlSpacerBaseProps{ }
 
-const SpacerControl = ({ className, ...props }: ControlProps) => {
-	return (
-		<Box
-			{ ...props }
-			className={ cx(classes.spacer, className) }
-		/>
-	)
+export default ({ edit, disable, ...props }: ControlSpacerProps) => {
+	return edit ?
+		<EditControlSpacer { ...props } />
+		:
+		<ControlSpacer { ...props  } />
 }
 
-export default SpacerControl

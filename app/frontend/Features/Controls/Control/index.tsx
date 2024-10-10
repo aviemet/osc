@@ -1,12 +1,13 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import ButtonControl from './Button'
-import SliderControl from './Slider'
+// import SliderControl from './Slider'
 import SpacerControl from './Spacer'
 import { type BoxProps } from '@mantine/core'
 import { ConditionalWrapper, Box } from '@/Components'
+import EditControlWrapper from './EditControlWrapper'
 
 import cx from 'clsx'
-import * as classes from './Control.css'
+import * as classes from '../Controls.css'
 
 export interface ControlProps extends BoxProps {
 	children?: React.ReactNode
@@ -16,7 +17,7 @@ export interface ControlProps extends BoxProps {
 	disable?: boolean
 }
 
-const Control = ({ control, wrapper = true, className, ...props }: ControlProps) => {
+const Control = ({ control, edit, wrapper = true, className, ...props }: ControlProps) => {
 	const sharedProps = {
 		control,
 		m: "xs",
@@ -46,10 +47,15 @@ const Control = ({ control, wrapper = true, className, ...props }: ControlProps)
 
 	return (
 		<ConditionalWrapper
-			condition={ wrapper }
+			condition={ !edit || wrapper }
 			wrapper={ children => <Box className={ cx(classes.controlWrapper) }>{ children }</Box> }
 		>
-			<ControlComponent { ...sharedProps } { ...props } />
+			<ConditionalWrapper
+				condition={ !edit || wrapper }
+				wrapper={ children => <EditControlWrapper control={ control }>{ children }</EditControlWrapper> }
+			>
+				<ControlComponent { ...sharedProps } { ...props } />
+			</ConditionalWrapper>
 		</ConditionalWrapper>
 	)
 }

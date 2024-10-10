@@ -1,4 +1,7 @@
-import { Button, ActionIcon as IconButton } from '@mantine/core'
+import {
+	Button,
+	ActionIcon as IconButton,
+} from '@mantine/core'
 export default Button
 
 export { IconButton }

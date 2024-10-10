@@ -1,22 +1,21 @@
-
-import React, { forwardRef } from 'react'
-import { Button } from '@/Components'
+import React from 'react'
 import axios from 'axios'
-import { type ButtonProps } from '@mantine/core'
 import { useLocalStorage } from '@/lib/hooks'
-import { type ControlProps } from '..'
-import { controlRoute, controlTitle } from '../lib'
-import Base from './Base'
+import { controlRoute } from '../lib'
+import Base, { type ControlButtonBaseProps } from './Base'
 
 import cx from 'clsx'
-import * as classes from '../Control.css'
+import * as classes from '../../Controls.css'
 
-export interface ButtonControlProps extends ButtonProps, ControlProps {}
+export interface ControlButtonProps extends ControlButtonBaseProps {}
 
-const ButtonControl = forwardRef<HTMLButtonElement, ButtonControlProps>((
-	{ children, control, disable, className, ...props },
-	ref,
-) => {
+const ControlButton = ({
+	children,
+	control,
+	disable,
+	className,
+	...props
+}: ControlButtonProps) => {
 	const [lastButtonClicked, setLastButtonClicked] = useLocalStorage<number>({
 		key: 'last-button-clicked',
 		defaultValue: undefined,
@@ -42,11 +41,12 @@ const ButtonControl = forwardRef<HTMLButtonElement, ButtonControlProps>((
 			className={ cx([className, {
 				[classes.lastButtonClicked]: lastButtonClicked === control.id,
 			}]) }
+			control={ control }
 			{ ...props }
 		>
-			{ children || controlTitle(control) }
+			{ children }
 		</Base>
 	)
-})
+}
 
-export default ButtonControl
+export default ControlButton

@@ -1,29 +1,26 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import { Button } from '@/Components'
-import axios from 'axios'
-import { type ButtonProps } from '@mantine/core'
-import { useLocalStorage } from '@/lib/hooks'
+import { ElementProps, type ButtonProps } from '@mantine/core'
 import { type ControlProps } from '..'
-import { controlRoute, controlTitle } from '../lib'
+import { controlTitle } from '../lib'
 
 import cx from 'clsx'
-import * as classes from '../Control.css'
+import * as classes from '../../Controls.css'
 
-export interface ButtonControlBaseProps extends ButtonProps, ControlProps {}
+export interface ControlButtonBaseProps
+	extends ControlProps, ButtonProps,
+	ElementProps<'button', keyof ButtonProps>{ }
 
-const ButtonControlBase = forwardRef<HTMLButtonElement, ButtonControlBaseProps>((
-	{ children, control, disable, ...props },
-	ref,
-) => {
+const ControlButtonBase = ({ children, control, disable, className, ...props }: ControlButtonBaseProps) => {
 	return (
 		<Button
-			ref={ ref }
 			color={ control?.color ?? undefined }
+			className={ cx(classes.button, className) }
 			{ ...props }
 		>
 			{ children || controlTitle(control) }
 		</Button>
 	)
-})
+}
 
-export default ButtonControlBase
+export default ControlButtonBase

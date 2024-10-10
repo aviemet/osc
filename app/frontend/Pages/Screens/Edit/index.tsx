@@ -4,13 +4,13 @@ import { Routes } from '@/lib'
 import { useLocation } from '@/lib/hooks'
 import { router } from '@inertiajs/react'
 import { useDroppable } from '@dnd-kit/core'
+import EditScreenForm from './Form'
 import NewControlMenu from './NewControlMenu'
 import NewScreenTabButton from './ScreenTabControls/NewScreenTabButton'
 import EditScreenTabButton from './ScreenTabControls/EditScreenTabButton'
 
 import cx from 'clsx'
 import * as classes from './ScreenControl.css'
-import EditScreenForm from './Form'
 
 interface EditScreenProps {
 	screen: Schema.ScreensEdit

@@ -5,15 +5,15 @@ import { ProtocolDropdown } from '@/Components/Dropdowns'
 import { useGetProtocol } from '@/queries'
 import { FormProps } from 'use-inertia-form'
 
-type ControlFormData = {
+type EditControlFormData = {
 	control: Schema.ControlsFormData
 }
 
-export interface ControlFormProps extends Omit<FormProps<ControlFormData>, 'data'> {
+export interface EditControlFormProps extends Omit<FormProps<EditControlFormData>, 'data'> {
 	control?: Schema.ControlsFormData
 }
 
-const ControlForm = ({ control, ...props }: ControlFormProps) => {
+const EditControlForm = ({ control, ...props }: EditControlFormProps) => {
 	const [showingProtocolSlug, setShowingProtocolSlug] = useState(control?.protocol?.slug || '')
 
 	const { data } = useGetProtocol({ slug: showingProtocolSlug }, {
@@ -22,7 +22,7 @@ const ControlForm = ({ control, ...props }: ControlFormProps) => {
 	})
 
 	return (
-		<Form<ControlFormData>
+		<Form<EditControlFormData>
 			model="control"
 			data={ control ? { control } : undefined }
 			remember={ false }
@@ -37,7 +37,7 @@ const ControlForm = ({ control, ...props }: ControlFormProps) => {
 					</> }
 				</Grid.Col>
 
-				<FormConsumer<ControlFormData>>{ ({ data }) => <>
+				<FormConsumer<EditControlFormData>>{ ({ data }) => <>
 					{ data.control.control_type !== 'spacer' && <Grid.Col>
 						<ProtocolDropdown
 							onChange={ (protocol, options, form) => {
@@ -65,7 +65,7 @@ const ControlForm = ({ control, ...props }: ControlFormProps) => {
 					</> }
 				</Grid.Col>
 
-				<FormConsumer<ControlFormData>>{ ({ data }) => <>
+				<FormConsumer<EditControlFormData>>{ ({ data }) => <>
 					{ data.control.control_type !== 'spacer' &&
 						<Grid.Col>
 							<SwatchInput label="Button Color" name="color" />
@@ -87,4 +87,4 @@ const ControlForm = ({ control, ...props }: ControlFormProps) => {
 	)
 }
 
-export default ControlForm
+export default EditControlForm
