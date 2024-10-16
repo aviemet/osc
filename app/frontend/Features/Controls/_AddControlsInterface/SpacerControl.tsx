@@ -7,9 +7,11 @@ const SpacerControl = () => {
 		id: 'spacer',
 	})
 
-	const style = transform ? {
-		transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-	} : undefined
+	const style = transform
+		? {
+			transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+		}
+		: undefined
 
 	return (
 		<>
@@ -17,7 +19,9 @@ const SpacerControl = () => {
 				<Box
 					{ ...listeners }
 					{ ...attributes }
-				>Spacer</Box>
+				>
+					Spacer
+				</Box>
 			</div>
 		</>
 	)

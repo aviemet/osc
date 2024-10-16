@@ -17,11 +17,13 @@ const ProtocolDropdown = ({
 		<Select
 			label={ label }
 			name={ name }
-			options={ !data ? [] : data.map(protocol => ({
-				label: protocol.title,
-				value: String(protocol.id),
-				slug: protocol.slug,
-			})) }
+			options={ !data
+				? []
+				: data.map(protocol => ({
+					label: protocol.title,
+					value: String(protocol.id),
+					slug: protocol.slug,
+				})) }
 			{ ...props }
 		/>
 	)

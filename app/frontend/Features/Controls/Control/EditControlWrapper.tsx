@@ -7,12 +7,14 @@ import { CSS } from '@dnd-kit/utilities'
 import { Box, BoxProps } from '@mantine/core'
 import { EditIcon } from '@/Components/Icons'
 import { modals } from '@mantine/modals'
-import EditControlForm from '../EditControlForm'
+import ControlForm from '../ControlForm'
 
 import cx from 'clsx'
 import * as classes from '../Controls.css'
 
-interface EditControlWrapperProps extends ControlProps {}
+interface EditControlWrapperProps extends Omit<ControlProps, 'control' | 'edit'> {
+	control: Schema.ControlsFormData
+}
 
 const EditControlWrapper = ({ children, control, ...props }: EditControlWrapperProps) => {
 	const {
@@ -30,7 +32,7 @@ const EditControlWrapper = ({ children, control, ...props }: EditControlWrapperP
 		modals.open({
 			title: 'Edit Control',
 			children: (
-				<EditControlForm
+				<ControlForm
 					remember={ false }
 					control={ control }
 					to={ Routes.control(control.id!) }

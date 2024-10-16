@@ -9,13 +9,24 @@ import EditControlWrapper from './EditControlWrapper'
 import cx from 'clsx'
 import * as classes from '../Controls.css'
 
-export interface ControlProps extends BoxProps {
+export interface ControlPropsBase extends BoxProps {
 	children?: React.ReactNode
-	control: Schema.ControlsShow | Schema.ControlsEdit
-	edit?: true | undefined
+	edit?: boolean
 	wrapper?: boolean
 	disable?: boolean
 }
+
+type ControlPropsEdit = ControlPropsBase & {
+	edit: true
+	control: Schema.ControlsFormData
+}
+
+type ControlPropsShow = ControlPropsBase & {
+	edit?: false | undefined
+	control: Schema.ControlsShow
+}
+
+type ControlProps = ControlPropsEdit | ControlPropsShow
 
 const Control = ({ control, edit, wrapper = true, className, ...props }: ControlProps) => {
 	const sharedProps = {
@@ -51,8 +62,14 @@ const Control = ({ control, edit, wrapper = true, className, ...props }: Control
 			wrapper={ children => <Box className={ cx(classes.controlWrapper) }>{ children }</Box> }
 		>
 			<ConditionalWrapper
-				condition={ !edit || wrapper }
-				wrapper={ children => <EditControlWrapper control={ control }>{ children }</EditControlWrapper> }
+				condition={ edit === true }
+				wrapper={ children => (
+					<EditControlWrapper
+						control={ control as Schema.ControlsFormData }
+					>
+						{ children }
+					</EditControlWrapper>
+				) }
 			>
 				<ControlComponent { ...sharedProps } { ...props } />
 			</ConditionalWrapper>

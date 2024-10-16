@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Flex, Page, Tabs } from '@/Components'
+import { Flex, Page, Tabs } from '@/Components'
 import Control from '../../../Features/Controls/Control'
 import { Routes } from '@/lib'
 import { useLocation } from '@/lib/hooks'

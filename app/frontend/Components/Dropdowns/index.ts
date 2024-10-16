@@ -1,7 +1,9 @@
-import { type FormSelectProps } from '../Form/Inputs/Select'
+import { ComboboxItem, SelectOption, type FormSelectProps } from '../Form/Inputs/Select'
 import { type FormMultiSelectProps } from '../Form/Inputs/MultiSelect'
+import { NestedObject, UseFormProps } from 'use-inertia-form'
 
-export interface AsyncDropdown<T> extends Omit<FormSelectProps, 'defaultValue'|'onBlur'|'name'|'onSelect'> {
+type FormSelectOmits = 'defaultValue' | 'onBlur' | 'name' | 'onSelect' | 'onChange'
+export interface AsyncDropdown<T> extends Omit<FormSelectProps, FormSelectOmits> {
 	name?: string
 	label?: string
 	fetchOnOpen?: string
@@ -9,9 +11,10 @@ export interface AsyncDropdown<T> extends Omit<FormSelectProps, 'defaultValue'|'
 	errorKey?: string
 	initialData?: T[]
 	onSelect?: (data: T) => void
+	onChange?: (protocol: SelectOption | null, options: ComboboxItem[], form: UseFormProps<NestedObject>) => void
 }
 
-export interface AsyncMultiSelect<T> extends Omit<FormMultiSelectProps, 'onBlur'|'name'> {
+export interface AsyncMultiSelect<T> extends Omit<FormMultiSelectProps, 'onBlur' | 'name'> {
 	errorKey?: string
 	initialData?: T[]
 }
