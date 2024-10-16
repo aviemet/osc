@@ -1,14 +1,12 @@
 import React from 'react'
-import { ControlSpacerBaseProps } from './Base'
 import EditControlSpacer from './Edit'
 import ControlSpacer from './Control'
+import { type ControlProps } from '..'
 
-interface ControlSpacerProps extends ControlSpacerBaseProps{ }
-
-export default ({ edit, disable, ...props }: ControlSpacerProps) => {
+export default ({ edit, control, ...props }: ControlProps) => {
 	return edit ?
-		<EditControlSpacer { ...props } />
+		<EditControlSpacer edit={ true } control={ control } { ...props } />
 		:
-		<ControlSpacer { ...props  } />
+		<ControlSpacer control={ control } { ...props  } />
 }
 

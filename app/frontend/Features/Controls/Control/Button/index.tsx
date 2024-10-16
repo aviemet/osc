@@ -1,14 +1,12 @@
 import React from 'react'
-import { ControlButtonBaseProps } from './Base'
+import { type ControlButtonBaseProps } from './Base'
 import EditControlButton from './Edit'
 import ControlButton from './Control'
 
-interface ControlButtonProps extends ControlButtonBaseProps{ }
-
-export default ({ edit, ...props }: ControlButtonProps) => {
+export default ({ edit, control, ...props }: ControlButtonBaseProps) => {
 	return edit ?
-		<EditControlButton { ...props } />
+		<EditControlButton edit={ true } control={ control } { ...props } />
 		:
-		<ControlButton { ...props  } />
+		<ControlButton control={ control } { ...props  } />
 }
 

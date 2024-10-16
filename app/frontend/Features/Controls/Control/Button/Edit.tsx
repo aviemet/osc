@@ -1,7 +1,10 @@
 import React from 'react'
 import Base, { type ControlButtonBaseProps } from './Base'
 
-export interface EditControlButtonProps extends ControlButtonBaseProps {}
+export type EditControlButtonProps = ControlButtonBaseProps & {
+	edit: true
+	control: Schema.ControlsFormData
+}
 
 const EditControlButton = ({ ...props }: EditControlButtonProps) => {
 	return <Base { ...props } />

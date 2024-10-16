@@ -1,19 +1,12 @@
 import React from 'react'
-import { Slider } from '@/Components'
-import { type SliderProps } from '@mantine/core'
-import { ControlProps } from '..'
-import { controlRoute, controlTitle } from '../lib'
+import EditControlSlider from './Edit'
+import ControlSlider from './Control'
+import { type ControlProps } from '..'
 
-interface SliderControlProps extends SliderProps, ControlProps {}
-
-const SliderControl = ({ control, ...props }: SliderControlProps) => {
-	const route = controlRoute(control)
-
-	return (
-		<Slider { ...props }>
-			{ controlTitle(control) }
-		</Slider>
-	)
+export default ({ edit, control, ...props }: ControlProps) => {
+	return edit ?
+		<EditControlSlider edit={ true } control={ control } { ...props } />
+		:
+		<ControlSlider control={ control } { ...props  } />
 }
 
-export default SliderControl

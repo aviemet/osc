@@ -5,7 +5,7 @@ import { type ControlProps } from '..'
 import cx from 'clsx'
 import * as classes from '../../Controls.css'
 
-export interface ControlSpacerBaseProps extends ControlProps{ }
+export type ControlSpacerBaseProps = ControlProps & {}
 
 const ControlSpacerBase = ({ className, ...props }: ControlSpacerBaseProps) => {
 	return (

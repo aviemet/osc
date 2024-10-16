@@ -7,10 +7,14 @@ import Base, { type ControlButtonBaseProps } from './Base'
 import cx from 'clsx'
 import * as classes from '../../Controls.css'
 
-export interface ControlButtonProps extends ControlButtonBaseProps {}
+type ControlButtonProps = ControlButtonBaseProps & {
+	edit?: false
+	control: Schema.ControlsShow
+}
 
 const ControlButton = ({
 	children,
+	edit = false,
 	control,
 	disable,
 	className,

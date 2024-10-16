@@ -1,6 +1,6 @@
 import React from 'react'
 import ButtonControl from './Button'
-// import SliderControl from './Slider'
+import SliderControl from './Slider'
 import SpacerControl from './Spacer'
 import { type BoxProps } from '@mantine/core'
 import { ConditionalWrapper, Box } from '@/Components'
@@ -22,34 +22,32 @@ type ControlPropsEdit = ControlPropsBase & {
 }
 
 type ControlPropsShow = ControlPropsBase & {
-	edit?: false | undefined
+	edit: false | undefined
 	control: Schema.ControlsShow
 }
 
-type ControlProps = ControlPropsEdit | ControlPropsShow
+type ControlComponent =  (props: Omit<ControlProps, 'edit'> & {
+	edit: boolean
+	control: Schema.ControlsFormData | Schema.ControlsShow
+}) => React.ReactNode
 
-const Control = ({ control, edit, wrapper = true, className, ...props }: ControlProps) => {
-	const sharedProps = {
-		control,
-		m: "xs",
-		className: cx(className),
-	}
+export type ControlProps = ControlPropsEdit | ControlPropsShow
 
-	let ControlComponent
+const Control = ({ control, edit = false, wrapper = true, className, ...props }: ControlProps) => {
+	let ControlComponent: ControlComponent
 
 	switch(control.control_type) {
 		case 'button':
-			ControlComponent = ButtonControl
+			ControlComponent = ButtonControl as ControlComponent
 			break;
 
-			/*
 		case 'slider':
-			ControlComponent = SliderControl
+			ControlComponent = SliderControl as ControlComponent
 			break;
-		*/
+
 
 		case 'spacer':
-			ControlComponent = SpacerControl
+			ControlComponent = SpacerControl as ControlComponent
 			break;
 
 		default:
@@ -71,7 +69,13 @@ const Control = ({ control, edit, wrapper = true, className, ...props }: Control
 					</EditControlWrapper>
 				) }
 			>
-				<ControlComponent { ...sharedProps } { ...props } />
+				<ControlComponent
+					m="xs"
+					edit={ edit === true }
+					control={ control }
+					className={ cx(className) }
+					{ ...props }
+				/>
 			</ConditionalWrapper>
 		</ConditionalWrapper>
 	)

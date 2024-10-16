@@ -1,7 +1,11 @@
 import React from 'react'
-import Base, { type ControlSpacerBaseProps } from './Base'
+import Base from './Base'
+import { type ControlProps } from '..'
 
-export interface EditControlSpacerProps extends ControlSpacerBaseProps {}
+type EditControlSpacerProps = ControlProps & {
+	edit: true
+	control: Schema.ControlsFormData
+}
 
 const EditControlSpacer = ({ ...props }: EditControlSpacerProps) => {
 	return <Base { ...props } />

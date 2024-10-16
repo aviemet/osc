@@ -7,11 +7,9 @@ import { controlTitle } from '../lib'
 import cx from 'clsx'
 import * as classes from '../../Controls.css'
 
-export interface ControlButtonBaseProps
-	extends ControlProps, ButtonProps,
-	ElementProps<'button', keyof ButtonProps>{ }
+export type ControlButtonBaseProps = ControlProps & ButtonProps & ElementProps<'button', keyof ButtonProps> & { }
 
-const ControlButtonBase = ({ children, control, disable, className, ...props }: ControlButtonBaseProps) => {
+const ControlButtonBase = ({ children, control, disable, className, ...props }: ControlProps) => {
 	return (
 		<Button
 			color={ control?.color ?? undefined }
