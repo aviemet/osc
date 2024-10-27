@@ -443,7 +443,7 @@ export const editUserRegistration: ((
  * @returns {string} route path
  */
 export const home: ((
-  options?: {} & RouteOptions
+  options?: RouteOptions
 ) => string) & RouteHelperExtras;
 
 /**
@@ -565,7 +565,7 @@ export const protocols: ((
  * @returns {string} route path
  */
 export const root: ((
-  options?: {} & RouteOptions
+  options?: RouteOptions
 ) => string) & RouteHelperExtras;
 
 /**
