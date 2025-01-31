@@ -89,3 +89,5 @@ node_modules
 *.local
 
 /config/secrets/master.key
+
+.overmind.sock
