@@ -1,7 +1,7 @@
-import React from 'react'
-import { Title, Page, Section } from '@/Components'
-import { Routes } from '@/lib'
-import CommandsForm from '../Form'
+import React from "react"
+import { Title, Page, Section } from "@/Components"
+import { Routes } from "@/lib"
+import CommandsForm from "../Form"
 
 interface IEditCommandProps {
 	command: Schema.CommandsEdit

@@ -1,4 +1,4 @@
-const queryRoot = 'servers'
+const queryRoot = "servers"
 
 export const queryKeys = {
 	servers: [queryRoot] as const,

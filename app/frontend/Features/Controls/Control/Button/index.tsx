@@ -1,7 +1,7 @@
-import React from 'react'
-import { type ControlButtonBaseProps } from './Base'
-import EditControlButton from './Edit'
-import ControlButton from './Control'
+import React from "react"
+import { type ControlButtonBaseProps } from "./Base"
+import EditControlButton from "./Edit"
+import ControlButton from "./Control"
 
 export default ({ edit, control, ...props }: ControlButtonBaseProps) => {
 	return edit ?

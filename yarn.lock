@@ -1167,6 +1167,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint/json@npm:^0.10.0":
+  version: 0.10.0
+  resolution: "@eslint/json@npm:0.10.0"
+  dependencies:
+    "@eslint/core": "npm:^0.10.0"
+    "@eslint/plugin-kit": "npm:^0.2.5"
+    "@humanwhocodes/momoa": "npm:^3.3.4"
+    natural-compare: "npm:^1.4.0"
+  checksum: 10/663db57753902dde9a8aa6b167b33a2103fe582ae85c577dadf9734417f608ef520633263160189a7b8117ed4fb019671de20725d91d7e3c1d1e0fcc23a80975
+  languageName: node
+  linkType: hard
+
 "@eslint/object-schema@npm:^2.1.6":
   version: 2.1.6
   resolution: "@eslint/object-schema@npm:2.1.6"
@@ -1257,6 +1269,13 @@ __metadata:
   version: 1.0.1
   resolution: "@humanwhocodes/module-importer@npm:1.0.1"
   checksum: 10/e993950e346331e5a32eefb27948ecdee2a2c4ab3f072b8f566cd213ef485dd50a3ca497050608db91006f5479e43f91a439aef68d2a313bd3ded06909c7c5b3
+  languageName: node
+  linkType: hard
+
+"@humanwhocodes/momoa@npm:^3.3.4":
+  version: 3.3.6
+  resolution: "@humanwhocodes/momoa@npm:3.3.6"
+  checksum: 10/6135f839f6647888fa1c7b8d18f85abd050e260c12af84541da41ff75e43b1781027e84e9f99f3f50293e1d7420ff78437d85620a35b5c31424faba20366c223
   languageName: node
   linkType: hard
 
@@ -8535,6 +8554,7 @@ __metadata:
     "@dnd-kit/modifiers": "npm:^9.0.0"
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@eslint/compat": "npm:^1.2.6"
+    "@eslint/json": "npm:^0.10.0"
     "@inertiajs/core": "npm:^2.0.3"
     "@inertiajs/react": "npm:^2.0.3"
     "@linaria/core": "npm:^6.2.0"

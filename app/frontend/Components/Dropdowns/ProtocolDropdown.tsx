@@ -1,11 +1,11 @@
-import React from 'react'
-import { Select } from '@/Components/Form'
-import { type AsyncDropdown } from '.'
-import { useGetProtocolOptions } from '@/queries'
+import React from "react"
+import { Select } from "@/Components/Form"
+import { type AsyncDropdown } from "."
+import { useGetProtocolOptions } from "@/queries"
 
 const ProtocolDropdown = ({
-	label = 'Protocol',
-	name = 'protocol_id',
+	label = "Protocol",
+	name = "protocol_id",
 	initialData = [],
 	value,
 	onSelect,

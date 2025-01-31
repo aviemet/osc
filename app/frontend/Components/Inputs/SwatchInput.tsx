@@ -1,12 +1,12 @@
-import React, { forwardRef, useState } from 'react'
-import HiddenInput from './HiddenInput'
-import SwatchPicker from '../SwatchPicker'
-import Label from './Label'
-import { InputProps } from 'react-html-props'
-import { type BaseInputProps } from '.'
-import InputWrapper from './InputWrapper'
+import React, { forwardRef, useState } from "react"
+import HiddenInput from "./HiddenInput"
+import SwatchPicker from "../SwatchPicker"
+import Label from "./Label"
+import { InputProps } from "react-html-props"
+import { type BaseInputProps } from "."
+import InputWrapper from "./InputWrapper"
 
-export interface SwatchInputProps extends Omit<InputProps, 'onChange'>, BaseInputProps {
+export interface SwatchInputProps extends Omit<InputProps, "onChange">, BaseInputProps {
 	label?: React.ReactNode
 	initialValue?: string
 	onChange?: (color: string) => void
@@ -17,7 +17,7 @@ const SwatchInput = forwardRef<HTMLInputElement, SwatchInputProps>((
 	{ label, id, name, required, initialValue, onChange, wrapper, wrapperProps, ...props },
 	ref,
 ) => {
-	const [color, setColor] = useState(initialValue || '')
+	const [color, setColor] = useState(initialValue || "")
 
 	const handleChange = (color: string) => {
 		setColor(color)

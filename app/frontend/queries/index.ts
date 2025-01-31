@@ -3,13 +3,13 @@ import {
 	type UseMutationOptions,
 	type UseQueryResult,
 	type UseMutationResult,
-} from '@tanstack/react-query'
+} from "@tanstack/react-query"
 
 /**
  * Query types
  */
 
-interface LimitedQueryOptions<TData> extends Omit<UseQueryOptions<TData>, 'queryKey' | 'queryFn'> {}
+interface LimitedQueryOptions<TData> extends Omit<UseQueryOptions<TData>, "queryKey" | "queryFn"> {}
 
 type ReactQueryFunctionBasic<TData> = (options?: LimitedQueryOptions<TData>) => UseQueryResult<TData, Error>
 
@@ -30,7 +30,7 @@ export type ReactQueryFunction<TData, TParams = undefined> =
  */
 
 interface LimitedMutationOptions<TReturnData, TVariables, TError = unknown> extends
-	Omit<UseMutationOptions<TReturnData, TError, TVariables, unknown>, 'mutationKey' | 'onSuccess'> {
+	Omit<UseMutationOptions<TReturnData, TError, TVariables, unknown>, "mutationKey" | "onSuccess"> {
 	onSuccess?: (data: TReturnData, variables: TVariables) => void
 }
 
@@ -58,7 +58,7 @@ export type ReactMutationFunction<
  * Folder exports
  */
 
-export * from './commands'
-export * from './protocols'
-export * from './servers'
-export * from './controls'
+export * from "./commands"
+export * from "./protocols"
+export * from "./servers"
+export * from "./controls"

@@ -1,6 +1,6 @@
-import { vars, theme } from '@/lib/theme'
-import { rem } from '@mantine/core'
-import { css } from '@linaria/core'
+import { vars, theme } from "@/lib/theme"
+import { rem } from "@mantine/core"
+import { css } from "@linaria/core"
 
 export const wrapper = css`
 	overflow: auto;
@@ -84,6 +84,10 @@ export const table = css`
 			}
 		}
 
+		&.actions {
+			width: 1px;
+			white-space: nowrap;
+		}
 	}
 
 	/* On small screens, collapse tables into "cards" */
@@ -129,7 +133,6 @@ export const section = css`
 export const searchWrapper = css`
 	display: flex;
 	flex: 1;
-	width: 100%;
 `
 
 export const searchInput = css`

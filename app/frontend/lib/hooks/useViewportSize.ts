@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useViewportSize as useMantineViewportSize } from '@mantine/hooks';
+import { useEffect } from "react"
+import { useViewportSize as useMantineViewportSize } from "@mantine/hooks"
 
 type OnChangeCallback = (dimensions: { width: number, height: number }) => void
 

@@ -1,12 +1,12 @@
-import React, { forwardRef } from 'react'
-import { Select, type ComboboxData, type SelectProps } from '@mantine/core'
-import { router } from '@inertiajs/react'
-import { coerceArray } from '@/lib'
-import { type BaseInputProps } from '.'
-import Label from './Label'
-import InputWrapper from './InputWrapper'
+import React, { forwardRef } from "react"
+import { Select, type ComboboxData, type SelectProps } from "@mantine/core"
+import { router } from "@inertiajs/react"
+import { coerceArray } from "@/lib"
+import { type BaseInputProps } from "."
+import Label from "./Label"
+import InputWrapper from "./InputWrapper"
 
-export interface SelectInputProps extends Omit<SelectProps, 'data'>, BaseInputProps {
+export interface SelectInputProps extends Omit<SelectProps, "data">, BaseInputProps {
 	options?: ComboboxData
 	fetchOnOpen?: string
 }
@@ -18,7 +18,7 @@ const SelectComponent = forwardRef<HTMLInputElement, SelectInputProps>((
 		required,
 		id,
 		name,
-		size = 'md',
+		size = "md",
 		maxDropdownHeight = 400,
 		fetchOnOpen,
 		onDropdownOpen,

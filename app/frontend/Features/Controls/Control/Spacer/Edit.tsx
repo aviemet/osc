@@ -1,6 +1,6 @@
-import React from 'react'
-import Base from './Base'
-import { type ControlProps } from '..'
+import React from "react"
+import Base from "./Base"
+import { type ControlProps } from ".."
 
 type EditControlSpacerProps = ControlProps & {
 	edit: true

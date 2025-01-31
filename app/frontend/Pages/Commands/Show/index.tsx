@@ -1,15 +1,15 @@
-import React from 'react'
-import { Box, Code, DangerousHtml, Group, Title, Link, Menu, Page, Section, List } from '@/Components'
-import { Routes } from '@/lib'
-import { Control } from '@/Features/Controls'
-import { EditButton } from '@/Components/Button'
+import React from "react"
+import { Box, Code, DangerousHtml, Group, Title, Link, Menu, Page, Section, List } from "@/Components"
+import { Routes } from "@/lib"
+import { Control } from "@/Features/Controls"
+import { EditButton } from "@/Components/Button"
 
 interface ShowCommandProps {
 	command: Schema.CommandsShow
 }
 
 const ShowCommand = ({ command }: ShowCommandProps) => {
-	const title = command.title ?? 'Command'
+	const title = command.title ?? "Command"
 
 	return (
 		<Page title={ title }>

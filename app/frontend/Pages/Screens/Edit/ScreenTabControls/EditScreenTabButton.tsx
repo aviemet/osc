@@ -1,10 +1,10 @@
-import React from 'react'
-import { Routes } from '@/lib'
-import { Accordion, Box, Divider, Text } from '@/Components'
-import { EditIcon } from '@/Components/Icons'
-import { modals } from '@mantine/modals'
-import ScreenForm from '../../New/Form'
-import { DeleteButton } from '@/Components/Button'
+import React from "react"
+import { Routes } from "@/lib"
+import { Accordion, Box, Divider, Text } from "@/Components"
+import { EditIcon } from "@/Components/Icons"
+import { modals } from "@mantine/modals"
+import ScreenForm from "../../New/Form"
+import { DeleteButton } from "@/Components/Button"
 
 interface EditScreenTabButtonProps {
 	screen: Schema.ScreensOptions
@@ -18,7 +18,7 @@ const EditScreenTabButton = ({ screen, onSuccess, ...props }: EditScreenTabButto
 		e.preventDefault()
 
 		modals.open({
-			title: 'Edit Screen',
+			title: "Edit Screen",
 			children: (
 				<>
 					<ScreenForm

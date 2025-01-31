@@ -1,7 +1,7 @@
-import React from 'react'
-import { useInertiaInput } from 'use-inertia-form'
-import { Radio } from '@/Components/Inputs'
-import { type RadioGroupProps } from '@mantine/core'
+import React from "react"
+import { useInertiaInput } from "use-inertia-form"
+import { Radio } from "@/Components/Inputs"
+import { type RadioGroupProps } from "@mantine/core"
 
 export interface FormRadioGroupProps extends RadioGroupProps {
 	name: string

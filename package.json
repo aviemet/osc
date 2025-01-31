@@ -76,6 +76,7 @@
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "@eslint/compat": "^1.2.6",
+    "@eslint/json": "^0.10.0",
     "@stylistic/eslint-plugin": "^3.0.1",
     "@tanstack/eslint-plugin-query": "^5.66.0",
     "@tanstack/react-query-devtools": "^5.66.0",

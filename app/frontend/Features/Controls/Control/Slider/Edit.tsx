@@ -1,5 +1,5 @@
-import React from 'react'
-import Base, { type ControlSliderBaseProps } from './Base'
+import React from "react"
+import Base, { type ControlSliderBaseProps } from "./Base"
 
 type EditControlSliderProps = ControlSliderBaseProps & {
 	edit: true

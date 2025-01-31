@@ -1,5 +1,5 @@
-import React from 'react'
-import { Box, Title, Text } from '@/Components'
+import React from "react"
+import { Box, Title, Text } from "@/Components"
 
 const Home = () => {
 	return (

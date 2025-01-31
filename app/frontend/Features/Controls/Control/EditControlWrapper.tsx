@@ -1,18 +1,18 @@
-import React from 'react'
-import { Routes } from '@/lib'
-import { router } from '@inertiajs/react'
-import { Control, type ControlProps } from '@/Features/Controls'
-import { useSortable } from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
-import { Box, BoxProps } from '@mantine/core'
-import { EditIcon } from '@/Components/Icons'
-import { modals } from '@mantine/modals'
-import ControlForm from '../ControlForm'
+import React from "react"
+import { Routes } from "@/lib"
+import { router } from "@inertiajs/react"
+import { Control, type ControlProps } from "@/Features/Controls"
+import { useSortable } from "@dnd-kit/sortable"
+import { CSS } from "@dnd-kit/utilities"
+import { Box, BoxProps } from "@mantine/core"
+import { EditIcon } from "@/Components/Icons"
+import { modals } from "@mantine/modals"
+import ControlForm from "../ControlForm"
 
-import cx from 'clsx'
-import * as classes from '../Controls.css'
+import cx from "clsx"
+import * as classes from "../Controls.css"
 
-interface EditControlWrapperProps extends Omit<ControlProps, 'control' | 'edit'> {
+interface EditControlWrapperProps extends Omit<ControlProps, "control" | "edit"> {
 	control: Schema.ControlsFormData
 }
 
@@ -30,7 +30,7 @@ const EditControlWrapper = ({ children, control, ...props }: EditControlWrapperP
 		e.preventDefault()
 
 		modals.open({
-			title: 'Edit Control',
+			title: "Edit Control",
 			children: (
 				<ControlForm
 					remember={ false }
@@ -38,7 +38,7 @@ const EditControlWrapper = ({ children, control, ...props }: EditControlWrapperP
 					to={ Routes.control(control.id!) }
 					method="put"
 					onSubmit={ () => modals.closeAll() }
-					filter={ ['control.id', 'control.command', 'control.updated_at', 'control.created_at', 'control.command_id', 'control.protocol'] }
+					filter={ ["control.id", "control.command", "control.updated_at", "control.created_at", "control.command_id", "control.protocol"] }
 					// onSuccess={ () => {
 					// 	onSuccess?.()
 					// } }

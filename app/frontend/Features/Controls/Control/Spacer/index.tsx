@@ -1,7 +1,7 @@
-import React from 'react'
-import EditControlSpacer from './Edit'
-import ControlSpacer from './Control'
-import { type ControlProps } from '..'
+import React from "react"
+import EditControlSpacer from "./Edit"
+import ControlSpacer from "./Control"
+import { type ControlProps } from ".."
 
 export default ({ edit, control, ...props }: ControlProps) => {
 	return edit ?

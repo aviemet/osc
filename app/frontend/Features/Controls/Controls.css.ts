@@ -1,5 +1,5 @@
-import { vars } from '@/lib'
-import { css } from '@linaria/core'
+import { vars } from "@/lib"
+import { css } from "@linaria/core"
 
 const highlightBorderPx = 4
 

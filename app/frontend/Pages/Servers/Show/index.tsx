@@ -1,13 +1,13 @@
-import React from 'react'
-import { Group, Title, Menu, Page, Section, Text } from '@/Components'
-import { Routes } from '@/lib'
+import React from "react"
+import { Group, Title, Menu, Page, Section, Text } from "@/Components"
+import { Routes } from "@/lib"
 
 interface IShowServerProps {
 	server: Schema.ServersShow
 }
 
 const ShowServer = ({ server }: IShowServerProps) => {
-	const title =  'Server'
+	const title =  "Server"
 
 	return (
 		<Page title={ title }>
@@ -25,7 +25,7 @@ const ShowServer = ({ server }: IShowServerProps) => {
 					</Menu>
 				</Group>
 
-				<Text>{ `${server.hostname}${server?.port ? `:${server.port}` : ''}` }</Text>
+				<Text>{ `${server.hostname}${server?.port ? `:${server.port}` : ""}` }</Text>
 
 				<Text>{ server?.description }</Text>
 			</Section>

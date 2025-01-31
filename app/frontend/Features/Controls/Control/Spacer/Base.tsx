@@ -1,9 +1,9 @@
-import React from 'react'
-import { Box } from '@/Components'
-import { type ControlProps } from '..'
+import React from "react"
+import { Box } from "@/Components"
+import { type ControlProps } from ".."
 
-import cx from 'clsx'
-import * as classes from '../../Controls.css'
+import cx from "clsx"
+import * as classes from "../../Controls.css"
 
 export type ControlSpacerBaseProps = ControlProps & {}
 

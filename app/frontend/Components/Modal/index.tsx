@@ -1,9 +1,9 @@
-import React from 'react'
-import { Modal } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
-import { createContext } from '@/lib/hooks'
+import React from "react"
+import { Modal } from "@mantine/core"
+import { useDisclosure } from "@mantine/hooks"
+import { createContext } from "@/lib/hooks"
 
-export type TriggerComponent =  React.ReactElement<{onClick: () => void}>
+export type TriggerComponent =  React.ReactElement<{ onClick: () => void }>
 
 type ModalDisclosureVariables = {
 	opened: boolean

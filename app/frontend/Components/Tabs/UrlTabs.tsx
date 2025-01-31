@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
-import { Tabs } from '@mantine/core'
-import { type VisitOptions } from '@inertiajs/core'
-import { router } from '@inertiajs/react'
-import { TabsComponentProps } from '.'
-import { coerceArray } from '@/lib'
-import { useLocation } from '@/lib/hooks'
+import React, { useEffect } from "react"
+import { Tabs } from "@mantine/core"
+import { type VisitOptions } from "@inertiajs/core"
+import { router } from "@inertiajs/react"
+import { TabsComponentProps } from "."
+import { coerceArray } from "@/lib"
+import { useLocation } from "@/lib/hooks"
 
 const UrlTabs = ({ children, onChange, defaultValue, dependencies, ...props }: TabsComponentProps) => {
 	const { params } = useLocation()
@@ -23,16 +23,16 @@ const UrlTabs = ({ children, onChange, defaultValue, dependencies, ...props }: T
 		}, options || {}))
 	}
 
-	const activeTab = params.get('tab')
+	const activeTab = params.get("tab")
 
 	// Handle direct navigation to tabbed page
 	useEffect(() => {
 		if(!activeTab && defaultValue) {
 			navigateTab(defaultValue, { replace: true })
 		} else {
-			document.addEventListener('inertia:navigate', function reloadActiveTab() {
+			document.addEventListener("inertia:navigate", function reloadActiveTab() {
 				navigateTab(activeTab)
-				document.removeEventListener('inertia:navigate', reloadActiveTab)
+				document.removeEventListener("inertia:navigate", reloadActiveTab)
 			})
 		}
 	}, [])

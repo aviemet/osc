@@ -1,5 +1,5 @@
-import React from 'react'
-import FormConsumer from './FormConsumer'
+import React from "react"
+import FormConsumer from "./FormConsumer"
 
 const FormDataLogger = () => {
 	return (

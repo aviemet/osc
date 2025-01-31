@@ -1,8 +1,8 @@
-import React, { useMemo, useState } from 'react'
-import { Box, Button, Flex, Group, Label, Paper } from '@/Components'
-import { PlusCircleIcon, MinusCircleIcon, DraggableIcon } from '@/Components/Icons'
-import { NestedFields, NestedObject, useDynamicInputs, useForm } from 'use-inertia-form'
-import cx from 'clsx'
+import React, { useMemo, useState } from "react"
+import { Box, Button, Flex, Group, Label, Paper } from "@/Components"
+import { PlusCircleIcon, MinusCircleIcon, DraggableIcon } from "@/Components/Icons"
+import { NestedFields, NestedObject, useDynamicInputs, useForm } from "use-inertia-form"
+import cx from "clsx"
 import {
 	DndContext,
 	KeyboardSensor,
@@ -14,22 +14,22 @@ import {
 	DragEndEvent,
 	DragStartEvent,
 	UniqueIdentifier,
-} from '@dnd-kit/core'
+} from "@dnd-kit/core"
 import {
 	SortableContext,
 	arrayMove,
 	sortableKeyboardCoordinates,
 	useSortable,
 	verticalListSortingStrategy,
-} from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
+} from "@dnd-kit/sortable"
+import { CSS } from "@dnd-kit/utilities"
 
-import { createContext } from '@/lib/hooks'
-import { FormPointerSensor, FormTouchSensor } from '@/Components/Sortable'
-import { type DynamicInputsProps } from '.'
+import { createContext } from "@/lib/hooks"
+import { FormPointerSensor, FormTouchSensor } from "@/Components/Sortable"
+import { type DynamicInputsProps } from "."
 
-import * as classes from '../../Form.css'
-import { useDynamicInputContext } from './dynamicInputContext'
+import * as classes from "../../Form.css"
+import { useDynamicInputContext } from "./dynamicInputContext"
 
 interface NestedFieldProps<T = NestedObject> {
 	children: React.ReactNode | React.ReactElement<any, string | React.JSXElementConstructor<any>>[]
@@ -67,7 +67,7 @@ const NestedField = <T extends Record<string, any>>({
 			<NestedFields model={ model }>
 				<Flex align="center">
 					<Group component={ Paper } className={ cx(classes.dynamicInput) } style={ { flex: 1 } }>
-						<Paper shadow="xs" py="xs" px="md" radius="md" className={ cx('draggable') } { ...listeners }>
+						<Paper shadow="xs" py="xs" px="md" radius="md" className={ cx("draggable") } { ...listeners }>
 							<DraggableIcon />
 						</Paper>
 						<Box style={ { flex: 1 } }>

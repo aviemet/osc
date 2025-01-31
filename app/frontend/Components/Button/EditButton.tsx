@@ -1,9 +1,9 @@
-import React from 'react'
-import { Link } from '@/Components'
-import { EditIcon } from '@/Components/Icons'
-import { LinkProps } from '../Link'
+import React from "react"
+import { Link } from "@/Components"
+import { EditIcon } from "@/Components/Icons"
+import { LinkProps } from "../Link"
 
-interface IEditButtonProps extends Omit<LinkProps, 'children'> {
+interface IEditButtonProps extends Omit<LinkProps, "children"> {
 	label?: string
 }
 

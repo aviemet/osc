@@ -1,9 +1,9 @@
-import { Routes } from '@/lib'
-import axios from 'axios'
-import { type UserPreferences, type UserTablePreferences } from '@/types'
-import { useMutation, useQueryClient  } from '@tanstack/react-query'
-import { type ReactMutationFunction } from '..'
-import { queryKeys } from './keys'
+import { Routes } from "@/lib"
+import axios from "axios"
+import { type UserPreferences, type UserTablePreferences } from "@/types"
+import { useMutation, useQueryClient  } from "@tanstack/react-query"
+import { type ReactMutationFunction } from ".."
+import { queryKeys } from "./keys"
 
 type UserPreferencesParams = {
 	id: string | number
@@ -23,8 +23,8 @@ export const useUpdateUserPreferences: ReactMutationFunction<
 			const res = await axios.patch(Routes.apiUpdateUserPreferences(id), {
 				user: { user_preferences: preferences },
 			})
-			if(res.statusText !== 'OK') {
-				throw new Error('Failed to update user preferences')
+			if(res.statusText !== "OK") {
+				throw new Error("Failed to update user preferences")
 			}
 			return res.data
 		},
@@ -54,8 +54,8 @@ export const useUpdateUserTablePreferences: ReactMutationFunction<
 			const res = await axios.patch(Routes.apiUpdateTablePreferences(id), {
 				user: { table_preferences: preferences },
 			})
-			if(res.statusText !== 'OK') {
-				throw new Error('Failed to update table preferences')
+			if(res.statusText !== "OK") {
+				throw new Error("Failed to update table preferences")
 			}
 			return res.data
 		},

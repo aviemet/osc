@@ -1,10 +1,10 @@
-import React from 'react'
-import { Grid, Text } from '@/Components'
-import { Form, TextInput, Submit, RichText, Checkbox, DynamicInputs } from '@/Components/Form'
-import { type HTTPVerb, type UseFormProps } from 'use-inertia-form'
-import { CommandPayloadTypesDropdown, ServerDropdown } from '@/Components/Dropdowns'
-import { exclude } from '@/lib'
-import { useListState } from '@mantine/hooks'
+import React from "react"
+import { Grid, Text } from "@/Components"
+import { Form, TextInput, Submit, RichText, Checkbox, DynamicInputs } from "@/Components/Form"
+import { type HTTPVerb, type UseFormProps } from "use-inertia-form"
+import { CommandPayloadTypesDropdown, ServerDropdown } from "@/Components/Dropdowns"
+import { exclude } from "@/lib"
+import { useListState } from "@mantine/hooks"
 
 type CommandFormData = {
 	command: Schema.CommandsFormData
@@ -13,22 +13,22 @@ type CommandFormData = {
 export interface CommandFormProps {
 	to: string
 	method?: HTTPVerb
-	onSubmit?: (object: UseFormProps<CommandFormData>) => boolean|void
+	onSubmit?: (object: UseFormProps<CommandFormData>) => boolean | void
 	command?: Schema.CommandsFormData
 }
 
 const emptyCommand: Partial<Schema.CommandsFormData> = {
-	title: '',
+	title: "",
 	server_id: undefined,
-	address: '',
-	description: '',
+	address: "",
+	description: "",
 	payload_type: undefined,
 	allow_custom_value: false,
 	command_values: [],
 }
 
-const CommandForm = ({ method = 'post', command, ...props }: CommandFormProps) => {
-	const [deletedValues, deletedValueHandlers] = useListState<{ id: string|number, _destroy: boolean}>()
+const CommandForm = ({ method = "post", command, ...props }: CommandFormProps) => {
+	const [deletedValues, deletedValueHandlers] = useListState<{ id: string | number, _destroy: boolean }>()
 
 	const handleRemoveCommandValue = (record: Schema.CommandValue) => {
 		if(!record?.id) return
@@ -48,7 +48,7 @@ const CommandForm = ({ method = 'post', command, ...props }: CommandFormProps) =
 		}
 	}
 
-	const formCommand = exclude(command, ['id', 'slug', 'created_at', 'updated_at']) ?? emptyCommand
+	const formCommand = exclude(command, ["id", "slug", "created_at", "updated_at"]) ?? emptyCommand
 
 	return (
 		<Form
@@ -85,8 +85,8 @@ const CommandForm = ({ method = 'post', command, ...props }: CommandFormProps) =
 						label="Allowed Values"
 						model="command_values"
 						emptyData={ {
-							label: '',
-							value: '',
+							label: "",
+							value: "",
 						} }
 						onRemoveInput={ handleRemoveCommandValue }
 					>
@@ -105,7 +105,7 @@ const CommandForm = ({ method = 'post', command, ...props }: CommandFormProps) =
 					<RichText name="description" label="Description" />
 				</Grid.Col>
 
-				<Submit>{ command?.id ? 'Update' : 'Create' } Command</Submit>
+				<Submit>{ command?.id ? "Update" : "Create" } Command</Submit>
 			</Grid>
 		</Form>
 	)

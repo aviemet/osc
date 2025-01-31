@@ -1,29 +1,29 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { Box, Button, Label } from '@/Components'
-import { PlusCircleIcon } from '@/Components/Icons'
-import { useDynamicInputs, useForm } from 'use-inertia-form'
-import { DynamicInputContextProvider } from './dynamicInputContext'
-import cx from 'clsx'
+import React, { useEffect, useMemo, useState } from "react"
+import { Box, Button, Label } from "@/Components"
+import { PlusCircleIcon } from "@/Components/Icons"
+import { useDynamicInputs, useForm } from "use-inertia-form"
+import { DynamicInputContextProvider } from "./dynamicInputContext"
+import cx from "clsx"
 import {
 	DndContext,
 	useSensor,
 	useSensors,
-} from '@dnd-kit/core'
+} from "@dnd-kit/core"
 import {
 	restrictToVerticalAxis,
 	restrictToWindowEdges,
-} from '@dnd-kit/modifiers'
-import type { Active, DragEndEvent, DragStartEvent } from '@dnd-kit/core'
+} from "@dnd-kit/modifiers"
+import type { Active, DragEndEvent, DragStartEvent } from "@dnd-kit/core"
 import {
 	SortableContext,
 	arrayMove,
 	verticalListSortingStrategy,
-} from '@dnd-kit/sortable'
-import { createContext, useInit } from '@/lib/hooks'
-import { FormPointerSensor } from '@/Components/Sortable'
-import { type DynamicInputsProps } from '.'
-import NestedField from './NestedField'
-import { findMax } from '@/lib'
+} from "@dnd-kit/sortable"
+import { createContext, useInit } from "@/lib/hooks"
+import { FormPointerSensor } from "@/Components/Sortable"
+import { type DynamicInputsProps } from "."
+import NestedField from "./NestedField"
+import { findMax } from "@/lib"
 
 // import * as classes from '../Form.css'
 
@@ -47,7 +47,7 @@ const SortableDynamicInputs = <T extends OrderedObject>({
 	emptyData,
 	onAddInput,
 	onRemoveInput,
-	sortField = 'order',
+	sortField = "order",
 }: SortableDynamicInputsProps<T>) => {
 	/* Dynamic form stuff */
 	const { addInput, removeInput, paths } = useDynamicInputs<T>({ model, emptyData })
@@ -63,7 +63,7 @@ const SortableDynamicInputs = <T extends OrderedObject>({
 	const handleAddInput = () => {
 		onAddInput?.()
 		addInput((records: T[]) => {
-			const lastRecord = findMax(records, 'id')
+			const lastRecord = findMax(records, "id")
 			return {
 				order: records.length + 1,
 				key: lastRecord?.id + 1,
@@ -78,20 +78,20 @@ const SortableDynamicInputs = <T extends OrderedObject>({
 
 			const target = event.target as HTMLElement
 
-			if(target.closest('[data-portal]')) {
+			if(target.closest("[data-portal]")) {
 				event.stopPropagation()
 			}
 		}
 
-		const portals = document.querySelectorAll('[data-portal]')
+		const portals = document.querySelectorAll("[data-portal]")
 
 		portals.forEach(portal => {
-			portal.addEventListener('mousedown', handlePortalClick, { capture: true })
+			portal.addEventListener("mousedown", handlePortalClick, { capture: true })
 		})
 
 		return () => {
 			portals.forEach(portal => {
-				portal.removeEventListener('mousedown', handlePortalClick, { capture: true })
+				portal.removeEventListener("mousedown", handlePortalClick, { capture: true })
 			})
 		}
 	})
@@ -142,12 +142,12 @@ const SortableDynamicInputs = <T extends OrderedObject>({
 			const datumA = getData(`${formModel}.${pathA}`) as OrderedObject
 			const datumB = getData(`${formModel}.${pathB}`) as OrderedObject
 
-			return datumA.order > datumB.order ? 1 : -1
+			return datumA.order > datumB.order ? 1 : - 1
 		})
 	}, [paths])
 
 	return (
-		<Box className={ cx('dynamic_inputs', model, paths) }>
+		<Box className={ cx("dynamic_inputs", model, paths) }>
 			<Label style={ { flex: 1 } }>{ label }</Label>
 
 			<DndContext
@@ -176,7 +176,7 @@ const SortableDynamicInputs = <T extends OrderedObject>({
 						)
 					}) }
 
-					<Box style={ { textAlign: 'right' } }>
+					<Box style={ { textAlign: "right" } }>
 						<Button onClick={ handleAddInput } size='xs' mb="xs" mr="xs">
 							<PlusCircleIcon />
 						</Button>

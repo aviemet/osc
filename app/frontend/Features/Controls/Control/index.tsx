@@ -1,13 +1,13 @@
-import React from 'react'
-import ButtonControl from './Button'
-import SliderControl from './Slider'
-import SpacerControl from './Spacer'
-import { type BoxProps } from '@mantine/core'
-import { ConditionalWrapper, Box } from '@/Components'
-import EditControlWrapper from './EditControlWrapper'
+import React from "react"
+import ButtonControl from "./Button"
+import SliderControl from "./Slider"
+import SpacerControl from "./Spacer"
+import { type BoxProps } from "@mantine/core"
+import { ConditionalWrapper, Box } from "@/Components"
+import EditControlWrapper from "./EditControlWrapper"
 
-import cx from 'clsx'
-import * as classes from '../Controls.css'
+import cx from "clsx"
+import * as classes from "../Controls.css"
 
 export interface ControlPropsBase extends BoxProps {
 	children?: React.ReactNode
@@ -26,7 +26,7 @@ type ControlPropsShow = ControlPropsBase & {
 	control: Schema.ControlsShow
 }
 
-type ControlComponent =  (props: Omit<ControlProps, 'edit'> & {
+type ControlComponent =  (props: Omit<ControlProps, "edit"> & {
 	edit: boolean
 	control: Schema.ControlsFormData | Schema.ControlsShow
 }) => React.ReactNode
@@ -37,18 +37,18 @@ const Control = ({ control, edit = false, wrapper = true, className, ...props }:
 	let ControlComponent: ControlComponent
 
 	switch(control.control_type) {
-		case 'button':
+		case "button":
 			ControlComponent = ButtonControl as ControlComponent
-			break;
+			break
 
-		case 'slider':
+		case "slider":
 			ControlComponent = SliderControl as ControlComponent
-			break;
+			break
 
 
-		case 'spacer':
+		case "spacer":
 			ControlComponent = SpacerControl as ControlComponent
-			break;
+			break
 
 		default:
 			ControlComponent = React.Fragment

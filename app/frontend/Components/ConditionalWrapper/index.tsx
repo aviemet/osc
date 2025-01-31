@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react"
 
 interface ConditionalWrapperProps {
-	children: JSX.Element|React.ReactNode
+	children: JSX.Element | React.ReactNode
 	condition: boolean
-	wrapper: (children: JSX.Element|React.ReactNode) => JSX.Element
-	elseWrapper?: (children: JSX.Element|React.ReactNode) => JSX.Element
+	wrapper: (children: JSX.Element | React.ReactNode) => JSX.Element
+	elseWrapper?: (children: JSX.Element | React.ReactNode) => JSX.Element
 }
 
 const ConditionalWrapper = ({ children, condition, wrapper, elseWrapper }: ConditionalWrapperProps) => {

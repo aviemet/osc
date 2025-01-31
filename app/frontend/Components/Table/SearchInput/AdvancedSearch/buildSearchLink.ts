@@ -1,5 +1,5 @@
-import { NestedURLSearchParams, coerceArray, isUnset } from '@/lib'
-import { type InputParam } from './useAdvancedSearch'
+import { NestedURLSearchParams, coerceArray, isUnset } from "@/lib"
+import { type InputParam } from "./useAdvancedSearch"
 
 /**
  * Generate a URL for advanced searching
@@ -36,8 +36,8 @@ function buildSearchLink(
 		// Handle Date values
 		if(value instanceof Date || (Array.isArray(value) && value[0] instanceof Date)) {
 			const dateStr = coerceArray(value).reduce((str, date, i) => {
-				return `${str}${i === 0 ? '' : ','}${date.toISOString()}`
-			}, '')
+				return `${str}${i === 0 ? "" : ","}${date.toISOString()}`
+			}, "")
 			localValues.set(param.name, dateStr)
 			return
 		}
@@ -49,7 +49,7 @@ function buildSearchLink(
 	if(localValues.isEmpty()) {
 		return `${location.pathname}`
 	} else {
-		localValues.set('adv', 'true')
+		localValues.set("adv", "true")
 		return localValues.toString()
 	}
 }

@@ -1,30 +1,30 @@
-import React from 'react'
-import { type PageProps } from '@inertiajs/core'
-import Providers from '@/Layouts/Providers'
-import { Flash } from '@/Components/Flash'
+import Providers from "@/Layouts/Providers"
+import { Flash } from "@/Components"
 
-import AppLayout from './AppLayout'
-import AuthLayout from './AuthLayout'
-import PublicLayout from './PublicLayout'
+import BareAppLayout from "./AppLayout"
+import BareAuthLayout from "./AuthLayout"
+import BarePublicLayout from "./PublicLayout"
 
-import dayjs from 'dayjs'
-import localizedFormat from 'dayjs/plugin/localizedFormat'
-import duration from 'dayjs/plugin/duration'
-import relativeTime from 'dayjs/plugin/relativeTime'
+import dayjs from "dayjs"
+import localizedFormat from "dayjs/plugin/localizedFormat"
+import duration from "dayjs/plugin/duration"
+import relativeTime from "dayjs/plugin/relativeTime"
 
 dayjs.extend(localizedFormat)
 dayjs.extend(duration)
 dayjs.extend(relativeTime)
 
-interface LayoutWrapperProps {
-	children: React.ReactNode
+export const LAYOUTS = {
+	"auth": "auth",
+	"app": "app",
+	"public": "public",
 }
 
-interface InertiaPageProps extends PageProps {
-	props: LayoutWrapperProps
+export interface LayoutProps {
+	children: any
 }
 
-const LayoutWrapper = ({ children }: LayoutWrapperProps) => {
+export const LayoutWrapper = ({ children }: LayoutProps) => {
 	return (
 		<Providers>
 			<Flash />
@@ -33,32 +33,26 @@ const LayoutWrapper = ({ children }: LayoutWrapperProps) => {
 	)
 }
 
-const AppLayoutLayout = (page: InertiaPageProps) => {
+export const AppLayout = ({ children }: LayoutProps) => {
 	return (
 		<LayoutWrapper>
-			<AppLayout>{ page }</AppLayout>
+			<BareAppLayout>{ children }</BareAppLayout>
 		</LayoutWrapper>
 	)
 }
 
-const AuthLayoutLayout = (page: InertiaPageProps) => {
+export const AuthLayout = ({ children }: LayoutProps) => {
 	return (
 		<LayoutWrapper>
-			<AuthLayout>{ page }</AuthLayout>
+			<BareAuthLayout>{ children }</BareAuthLayout>
 		</LayoutWrapper>
 	)
 }
 
-const PublicLayoutLayout = (page: InertiaPageProps) => {
+export const PublicLayout = ({ children }: LayoutProps) => {
 	return (
 		<LayoutWrapper>
-			<PublicLayout>{ page }</PublicLayout>
+			<BarePublicLayout>{ children }</BarePublicLayout>
 		</LayoutWrapper>
 	)
-}
-
-export {
-	AppLayoutLayout as AppLayout,
-	AuthLayoutLayout as AuthLayout,
-	PublicLayoutLayout as PublicLayout,
 }

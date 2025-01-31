@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react"
 
 const useCheckboxState = (length: number, selected: number) => {
 	const [allChecked, setAllChecked] = useState(false)

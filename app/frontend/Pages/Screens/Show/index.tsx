@@ -1,9 +1,9 @@
-import React from 'react'
-import { Flex, Page, Tabs } from '@/Components'
-import Control from '../../../Features/Controls/Control'
-import { Routes } from '@/lib'
-import { useLocation } from '@/lib/hooks'
-import { router } from '@inertiajs/react'
+import React from "react"
+import { Flex, Page, Tabs } from "@/Components"
+import Control from "../../../Features/Controls/Control"
+import { Routes } from "@/lib"
+import { useLocation } from "@/lib/hooks"
+import { router } from "@inertiajs/react"
 
 interface IShowScreenProps {
 	screen: Schema.ScreensShow
@@ -13,7 +13,7 @@ interface IShowScreenProps {
 const ShowScreen = ({ screen, screens }: IShowScreenProps) => {
 	const { paths } = useLocation()
 
-	const title =  'Screen'
+	const title =  "Screen"
 
 	return (
 		<Page title={ title }>

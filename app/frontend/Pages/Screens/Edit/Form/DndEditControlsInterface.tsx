@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import {
 	DndContext,
 	useSensors,
@@ -7,13 +7,13 @@ import {
 	closestCenter,
 	UniqueIdentifier,
 	type DragEndEvent,
-} from '@dnd-kit/core'
+} from "@dnd-kit/core"
 import {
 	arrayMove,
 	SortableContext,
-} from '@dnd-kit/sortable'
-import { useDynamicInputs, useForm } from 'use-inertia-form'
-import { Control } from '@/Features/Controls'
+} from "@dnd-kit/sortable"
+import { useDynamicInputs, useForm } from "use-inertia-form"
+import { Control } from "@/Features/Controls"
 
 interface DndEditControlsInterfaceProps {
 	screen: Schema.ScreensEdit
@@ -21,18 +21,18 @@ interface DndEditControlsInterfaceProps {
 
 const DndEditControlsInterface = ({ screen }: DndEditControlsInterfaceProps) => {
 	const { addInput, removeInput, paths } = useDynamicInputs({
-		model: 'controls',
+		model: "controls",
 		emptyData: {
-			title: '',
-			control_type: '',
+			title: "",
+			control_type: "",
 			order: 0,
 			min_value: 0,
 			max_value: 0,
-			value: '',
+			value: "",
 			screen_id: screen.id,
-			protocol_id: '',
-			command_id: '',
-			color: '',
+			protocol_id: "",
+			command_id: "",
+			color: "",
 		},
 	})
 

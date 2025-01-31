@@ -1,9 +1,9 @@
-import { useQuery } from '@tanstack/react-query'
-import { Routes } from '@/lib'
-import axios from 'axios'
-import { ComboboxData } from '@mantine/core'
-import { type ReactQueryFunction } from '..'
-import { queryKeys } from "./keys";
+import { useQuery } from "@tanstack/react-query"
+import { Routes } from "@/lib"
+import axios from "axios"
+import { ComboboxData } from "@mantine/core"
+import { type ReactQueryFunction } from ".."
+import { queryKeys } from "./keys"
 export const useGetCommands: ReactQueryFunction<Schema.CommandsOptions[]> = (options) => {
 	return useQuery({
 		queryKey: queryKeys.commands,

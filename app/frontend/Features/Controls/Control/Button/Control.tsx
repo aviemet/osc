@@ -1,11 +1,11 @@
-import React from 'react'
-import axios from 'axios'
-import { useLocalStorage } from '@/lib/hooks'
-import { controlRoute } from '../lib'
-import Base, { type ControlButtonBaseProps } from './Base'
+import React from "react"
+import axios from "axios"
+import { useLocalStorage } from "@/lib/hooks"
+import { controlRoute } from "../lib"
+import Base, { type ControlButtonBaseProps } from "./Base"
 
-import cx from 'clsx'
-import * as classes from '../../Controls.css'
+import cx from "clsx"
+import * as classes from "../../Controls.css"
 
 type ControlButtonProps = ControlButtonBaseProps & {
 	edit?: false
@@ -21,7 +21,7 @@ const ControlButton = ({
 	...props
 }: ControlButtonProps) => {
 	const [lastButtonClicked, setLastButtonClicked] = useLocalStorage<number>({
-		key: 'last-button-clicked',
+		key: "last-button-clicked",
 		defaultValue: undefined,
 	})
 

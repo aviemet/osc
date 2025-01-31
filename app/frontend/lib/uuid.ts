@@ -1,4 +1,4 @@
-const B64_SEPARATOR = ' '
+const B64_SEPARATOR = " "
 
 export const encodeId = (model: string, id: number) => btoa(`${model}${B64_SEPARATOR}${id}`)
 

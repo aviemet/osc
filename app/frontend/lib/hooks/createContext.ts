@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 
 /**
  * createContext
@@ -15,7 +15,7 @@ const createContext = <T extends {} | null>() => {
 	function useContext(error = true) {
 		const c = React.useContext(context)
 		if(error && c === null) {
-			throw new Error('useContext must be inside a Provider with a value')
+			throw new Error("useContext must be inside a Provider with a value")
 		}
 		return c
 	}

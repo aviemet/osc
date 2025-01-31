@@ -1,6 +1,6 @@
-import { useState, useEffect, useMemo } from 'react'
-import { omit } from 'lodash'
-import { NestedURLSearchParams } from '@/lib/collections'
+import { useState, useEffect, useMemo } from "react"
+import { omit } from "lodash"
+import { NestedURLSearchParams } from "@/lib/collections"
 
 const useLocation = () => {
 	const [location, setLocation] = useState(window.location)
@@ -10,10 +10,10 @@ const useLocation = () => {
 	}
 
 	useEffect(() => {
-		window.addEventListener('popstate', listenToPopstate)
+		window.addEventListener("popstate", listenToPopstate)
 
 		return () => {
-			window.removeEventListener('popstate', listenToPopstate)
+			window.removeEventListener("popstate", listenToPopstate)
 		}
 	}, [])
 
@@ -21,14 +21,14 @@ const useLocation = () => {
 
 	return {
 		...omit(location, [
-			'toString',
-			'replace',
-			'reload',
-			'assign',
-			'ancestorOrigins',
+			"toString",
+			"replace",
+			"reload",
+			"assign",
+			"ancestorOrigins",
 		]),
 		path: `${location.origin}${location.pathname}`,
-		paths: location.pathname.replace(/^\//, '').split('/'),
+		paths: location.pathname.replace(/^\//, "").split("/"),
 		params,
 		paramsAsJson: useMemo(() => {
 			const hash: Record<string, string> = {}

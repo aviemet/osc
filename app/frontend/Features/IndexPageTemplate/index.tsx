@@ -1,7 +1,7 @@
-import React from 'react'
-import { Page, Table } from '@/Components'
-import TableTitleSection, { IIndexTableTitleSectionProps } from './TableTitleSection'
-import { type Pagination } from '@/types'
+import React from "react"
+import { Page, Table } from "@/Components"
+import TableTitleSection, { IIndexTableTitleSectionProps } from "./TableTitleSection"
+import { type Pagination } from "@/types"
 
 interface IIndexPageTemplateProps extends IIndexTableTitleSectionProps {
 	model: string

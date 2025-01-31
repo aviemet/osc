@@ -1,5 +1,5 @@
-import React from 'react'
-import Base, { type ControlButtonBaseProps } from './Base'
+import React from "react"
+import Base, { type ControlButtonBaseProps } from "./Base"
 
 export type EditControlButtonProps = ControlButtonBaseProps & {
 	edit: true

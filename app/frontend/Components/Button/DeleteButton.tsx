@@ -1,9 +1,9 @@
-import React from 'react'
-import { Link } from '@/Components'
-import { type LinkProps } from '../Link'
-import { TrashIcon } from '@/Components/Icons'
+import React from "react"
+import { Link } from "@/Components"
+import { type LinkProps } from "../Link"
+import { TrashIcon } from "@/Components/Icons"
 
-interface IDeleteButtonProps extends Omit<LinkProps, 'children'> {
+interface IDeleteButtonProps extends Omit<LinkProps, "children"> {
 	children?: string
 	label?: string
 }

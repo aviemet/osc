@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { type UseFormProps, useForm } from 'use-inertia-form'
+import React, { useEffect } from "react"
+import { type UseFormProps, useForm } from "use-inertia-form"
 
 interface FormComponentProps<TForm = any> {
 	children?: (form: UseFormProps<TForm>) => React.ReactNode

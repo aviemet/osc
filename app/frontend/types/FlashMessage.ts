@@ -1,1 +1,1 @@
-export type FlashMessage = Record<'success' | 'alert' | 'info' | 'warning', string>
+export type FlashMessage = Record<"success" | "alert" | "info" | "warning", string>

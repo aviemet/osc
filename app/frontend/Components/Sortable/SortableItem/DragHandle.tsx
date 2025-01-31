@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
-import { SortableItemContext } from '.'
+import React, { useContext } from "react"
+import { SortableItemContext } from "."
 
-import * as classes from './SortableItem.css'
+import * as classes from "./SortableItem.css"
 
 export function DragHandle() {
 	const { attributes, listeners, ref } = useContext(SortableItemContext)

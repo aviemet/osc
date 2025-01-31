@@ -1,13 +1,13 @@
-import React from 'react'
-import { Affix, Button, Menu } from '@/Components'
-import { modals } from '@mantine/modals'
-import { Routes } from '@/lib'
-import { useCreateControl } from '@/queries'
-import { ControlForm } from '@/Features/Controls'
+import React from "react"
+import { Affix, Button, Menu } from "@/Components"
+import { modals } from "@mantine/modals"
+import { Routes } from "@/lib"
+import { useCreateControl } from "@/queries"
+import { ControlForm } from "@/Features/Controls"
 
-const controlFormFilter = ['control.id', 'control.command', 'control.updated_at', 'control.created_at', 'control.command_id', 'control.protocol']
+const controlFormFilter = ["control.id", "control.command", "control.updated_at", "control.created_at", "control.command_id", "control.protocol"]
 
-type ControlType = 'button' | 'spacer' | 'slider'
+type ControlType = "button" | "spacer" | "slider"
 
 interface NewControlMenuProps {
 	screenId: number | false
@@ -23,15 +23,15 @@ const NewControlMenu = ({ screenId, menuId }: NewControlMenuProps) => {
 		screen_id: menuId,
 		control_type: type,
 		order: NaN,
-		title: '',
+		title: "",
 	})
 
 	const handleNewButtonClick = () => {
 		modals.open({
-			title: 'Add New Control Button',
+			title: "Add New Control Button",
 			children: (
 				<ControlForm
-					control={ emptyData('button') }
+					control={ emptyData("button") }
 					remember={ false }
 					to={ Routes.controls() }
 					onSubmit={ () => modals.closeAll() }

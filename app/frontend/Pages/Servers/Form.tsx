@@ -1,7 +1,7 @@
-import React from 'react'
-import { Grid } from '@/Components'
-import { Form, TextInput, Submit, Textarea, NumberInput } from '@/Components/Form'
-import { type HTTPVerb, type UseFormProps } from 'use-inertia-form'
+import React from "react"
+import { Grid } from "@/Components"
+import { Form, TextInput, Submit, Textarea, NumberInput } from "@/Components/Form"
+import { type HTTPVerb, type UseFormProps } from "use-inertia-form"
 
 type TServerFormData = {
 	server: Schema.ServersFormData
@@ -10,11 +10,11 @@ type TServerFormData = {
 export interface IServerFormProps {
 	to: string
 	method?: HTTPVerb
-	onSubmit?: (object: UseFormProps<TServerFormData>) => boolean|void
+	onSubmit?: (object: UseFormProps<TServerFormData>) => boolean | void
 	server: Schema.ServersFormData
 }
 
-const ServerForm = ({ method = 'post', server, ...props }: IServerFormProps) => {
+const ServerForm = ({ method = "post", server, ...props }: IServerFormProps) => {
 	return (
 		<Form
 			model="server"
@@ -41,7 +41,7 @@ const ServerForm = ({ method = 'post', server, ...props }: IServerFormProps) => 
 				</Grid.Col>
 
 				<Grid.Col>
-					<Submit>{ server.id ? 'Update' : 'Create' } Server</Submit>
+					<Submit>{ server.id ? "Update" : "Create" } Server</Submit>
 				</Grid.Col>
 
 			</Grid>

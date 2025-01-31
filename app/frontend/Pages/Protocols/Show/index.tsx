@@ -1,14 +1,14 @@
-import React from 'react'
-import { Box, Code, DangerousHtml, Group, Title, Menu, Page, Section, Table, Link } from '@/Components'
-import { Routes } from '@/lib'
-import { EditButton } from '@/Components/Button'
+import React from "react"
+import { Box, Code, DangerousHtml, Group, Title, Menu, Page, Section, Table, Link } from "@/Components"
+import { Routes } from "@/lib"
+import { EditButton } from "@/Components/Button"
 
 interface IShowProtocolProps {
 	protocol: Schema.ProtocolsShow
 }
 
 const ShowProtocol = ({ protocol }: IShowProtocolProps) => {
-	const title = protocol.title || 'Protocol'
+	const title = protocol.title || "Protocol"
 
 	return (
 		<Page title={ title }>

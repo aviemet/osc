@@ -1,4 +1,4 @@
-export { Checkbox as GroupedCheckbox } from '@/Components/Inputs'
+export { Checkbox as GroupedCheckbox } from "@/Components/Inputs"
 
-import FormCheckboxInput from './Checkbox'
+import FormCheckboxInput from "./Checkbox"
 export default FormCheckboxInput

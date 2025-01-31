@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react'
-import { Box, Title } from '@/Components'
-import SettingsLayout from '../../SettingsLayout'
-import useLayoutStore from '@/lib/store/LayoutStore'
+import React, { useEffect, useRef } from "react"
+import { Box, Title } from "@/Components"
+import SettingsLayout from "../../SettingsLayout"
+import useLayoutStore from "@/lib/store/LayoutStore"
 
 interface IAppearanceSettingsProps {
 	settings: {

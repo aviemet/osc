@@ -1,20 +1,20 @@
-import React, { useState } from 'react'
-import { Code, Grid, Paper, ScrollArea, Text } from '@/Components'
-import { Form, TextInput, Submit, SwatchInput, FormConsumer, Radio } from '@/Components/Form'
-import { ProtocolDropdown } from '@/Components/Dropdowns'
-import { useGetProtocol } from '@/queries'
-import { FormProps } from 'use-inertia-form'
+import React, { useState } from "react"
+import { Code, Grid, Paper, ScrollArea, Text } from "@/Components"
+import { Form, TextInput, Submit, SwatchInput, FormConsumer, Radio } from "@/Components/Form"
+import { ProtocolDropdown } from "@/Components/Dropdowns"
+import { useGetProtocol } from "@/queries"
+import { FormProps } from "use-inertia-form"
 
 type EditControlFormData = {
 	control: Schema.ControlsFormData
 }
 
-export interface EditControlFormProps extends Omit<FormProps<EditControlFormData>, 'data'> {
+export interface EditControlFormProps extends Omit<FormProps<EditControlFormData>, "data"> {
 	control?: Schema.ControlsFormData
 }
 
 const EditControlForm = ({ control, ...props }: EditControlFormProps) => {
-	const [showingProtocolSlug, setShowingProtocolSlug] = useState(control?.protocol?.slug || '')
+	const [showingProtocolSlug, setShowingProtocolSlug] = useState(control?.protocol?.slug || "")
 
 	const { data } = useGetProtocol({ slug: showingProtocolSlug }, {
 		initialData: control?.protocol || {},
@@ -31,14 +31,14 @@ const EditControlForm = ({ control, ...props }: EditControlFormProps) => {
 			<Grid>
 				<Grid.Col>
 					<TextInput name="title" label="Title" />
-					{ control?.control_type === 'slider' && <>
+					{ control?.control_type === "slider" && <>
 						<TextInput name="min_value" label="Min Value" />
 						<TextInput name="max_value" label="Max Value" />
 					</> }
 				</Grid.Col>
 
 				<FormConsumer<EditControlFormData>>{ ({ data }) => <>
-					{ data.control.control_type !== 'spacer' && <Grid.Col>
+					{ data.control.control_type !== "spacer" && <Grid.Col>
 						<ProtocolDropdown
 							onChange={ (protocol, options, form) => {
 								const option = options.find(option => option.value === protocol)
@@ -55,7 +55,7 @@ const EditControlForm = ({ control, ...props }: EditControlFormProps) => {
 						<ScrollArea>
 							<Paper bg="dark" radius="md" p="md" className="field">
 								{ data.commands?.map(command => (
-									<Code style={ { display: 'block' } } mb="xs" key={ command.id }>
+									<Code style={ { display: "block" } } mb="xs" key={ command.id }>
 										{ command.address }
 									</Code>
 								))
@@ -66,7 +66,7 @@ const EditControlForm = ({ control, ...props }: EditControlFormProps) => {
 				</Grid.Col>
 
 				<FormConsumer<EditControlFormData>>{ ({ data }) => <>
-					{ data.control.control_type !== 'spacer' &&
+					{ data.control.control_type !== "spacer" &&
 						<Grid.Col>
 							<SwatchInput label="Button Color" name="color" />
 						</Grid.Col> }
@@ -80,7 +80,7 @@ const EditControlForm = ({ control, ...props }: EditControlFormProps) => {
 				</Grid.Col>
 
 				<Grid.Col>
-					<Submit>{ control?.id ? 'Update' : 'Create' } Control</Submit>
+					<Submit>{ control?.id ? "Update" : "Create" } Control</Submit>
 				</Grid.Col>
 			</Grid>
 		</Form>

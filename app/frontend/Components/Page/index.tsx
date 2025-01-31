@@ -1,5 +1,5 @@
-import React from 'react'
-import { Head } from '@inertiajs/react'
+import React from "react"
+import { Head } from "@inertiajs/react"
 
 export interface PageProps {
 	children?: React.ReactNode

@@ -1,5 +1,5 @@
-import type { PointerEvent } from 'react'
-import { PointerSensor } from '@dnd-kit/core'
+import type { PointerEvent } from "react"
+import { PointerSensor } from "@dnd-kit/core"
 
 /**
  * An extended "PointerSensor" that prevent some
@@ -8,7 +8,7 @@ import { PointerSensor } from '@dnd-kit/core'
 export default class FormPointerSensor extends PointerSensor {
 	static activators = [
 		{
-			eventName: 'onPointerDown' as any,
+			eventName: "onPointerDown" as any,
 			handler: ({ nativeEvent: event }: PointerEvent) => {
 				if(
 					!event.isPrimary ||
@@ -26,11 +26,11 @@ export default class FormPointerSensor extends PointerSensor {
 
 function isInteractiveElement(element: Element | null) {
 	const interactiveElements = [
-		'button',
-		'input',
-		'textarea',
-		'select',
-		'option',
+		"button",
+		"input",
+		"textarea",
+		"select",
+		"option",
 	]
 	if(
 		element?.tagName &&

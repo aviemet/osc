@@ -1,4 +1,4 @@
-import { Routes } from '@/lib'
+import { Routes } from "@/lib"
 
 export const controlRoute = (control: Partial<Schema.Control>) => {
 	if(control?.protocol?.slug) {

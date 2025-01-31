@@ -1,9 +1,9 @@
-import React, { forwardRef } from 'react'
-import { Radio, type RadioProps as MantineRadioProps } from '@mantine/core'
-import { type BaseInputProps } from '.'
-import InputWrapper from './InputWrapper'
+import React, { forwardRef } from "react"
+import { Radio, type RadioProps as MantineRadioProps } from "@mantine/core"
+import { type BaseInputProps } from "."
+import InputWrapper from "./InputWrapper"
 
-export interface RadioProps extends Omit<MantineRadioProps, 'value'>, BaseInputProps {
+export interface RadioProps extends Omit<MantineRadioProps, "value">, BaseInputProps {
 	value: string
 }
 

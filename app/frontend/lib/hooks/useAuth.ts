@@ -1,4 +1,4 @@
-import usePageProps from './usePageProps'
+import usePageProps from "./usePageProps"
 
 const useAuth = () => {
 	const { auth } = usePageProps()

@@ -1,11 +1,11 @@
-import React from 'react'
-import { Form, TextInput, Submit, RichText } from '@/Components/Form'
-import { UseInertiaFormProps, type HTTPVerb, type UseFormProps } from 'use-inertia-form'
-import { Grid } from '@/Components'
-import CommandInputs from './CommandInputs'
-import { useGetCommands } from '@/queries'
-import SortableDynamicInputs from '@/Components/Form/Components/DynamicInputs/SortableDynamicInputs'
-import { exclude } from '@/lib'
+import React from "react"
+import { Form, TextInput, Submit, RichText } from "@/Components/Form"
+import { UseInertiaFormProps, type HTTPVerb, type UseFormProps } from "use-inertia-form"
+import { Grid } from "@/Components"
+import CommandInputs from "./CommandInputs"
+import { useGetCommands } from "@/queries"
+import SortableDynamicInputs from "@/Components/Form/Components/DynamicInputs/SortableDynamicInputs"
+import { exclude } from "@/lib"
 
 type ProtocolFormData = {
 	protocol: Schema.ProtocolsFormData
@@ -14,11 +14,11 @@ type ProtocolFormData = {
 export interface IProtocolFormProps {
 	to: string
 	method?: HTTPVerb
-	onSubmit?: (object: UseFormProps<ProtocolFormData>) => boolean|void
+	onSubmit?: (object: UseFormProps<ProtocolFormData>) => boolean | void
 	protocol: Schema.ProtocolsFormData
 }
 
-const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProps) => {
+const ProtocolForm = ({ method = "post", protocol, ...props }: IProtocolFormProps) => {
 	const { data: commands } = useGetCommands({
 		initialData: protocol.commands as Schema.CommandsEdit[],
 	})
@@ -28,13 +28,13 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 			data.protocol.protocols_commands = data.protocol.protocols_commands.map(cmd => {
 				const excludeKeys = [];
 
-				(['value', 'delay'] as const).forEach(check => {
-					if(cmd[check] === '') {
+				(["value", "delay"] as const).forEach(check => {
+					if(cmd[check] === "") {
 						excludeKeys.push(check)
 					}
 				})
 
-				return exclude(cmd, 'value')
+				return exclude(cmd, "value")
 			})
 
 			return data
@@ -44,13 +44,13 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 	return (
 		<Form
 			model="protocol"
-			data={ { protocol: exclude(protocol, ['id', 'slug']) } }
+			data={ { protocol: exclude(protocol, ["id", "slug"]) } }
 			method={ method }
 			filter={ [
-				'id',
-				'slug',
-				'created_at',
-				'updated_at',
+				"id",
+				"slug",
+				"created_at",
+				"updated_at",
 			] }
 			onSubmit={ handleFormSubmit }
 			{ ...props }
@@ -71,8 +71,8 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 						emptyData={ {
 							command_id: NaN,
 							command_value_id: NaN,
-							value: '',
-							delay: '',
+							value: "",
+							delay: "",
 							order: NaN,
 							key: NaN,
 						} }
@@ -81,7 +81,7 @@ const ProtocolForm = ({ method = 'post', protocol, ...props }: IProtocolFormProp
 					</SortableDynamicInputs>
 				</Grid.Col>
 
-				<Submit>{ protocol.id ? 'Update' : 'Create' } Protocol</Submit>
+				<Submit>{ protocol.id ? "Update" : "Create" } Protocol</Submit>
 			</Grid>
 		</Form>
 	)

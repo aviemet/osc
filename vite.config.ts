@@ -1,49 +1,49 @@
-import { defineConfig } from 'vite'
-import RubyPlugin from 'vite-plugin-ruby'
-import wyw from '@wyw-in-js/vite'
-import tsconfigPaths from 'vite-tsconfig-paths'
-import FullReload from 'vite-plugin-full-reload'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from "vite"
+import RubyPlugin from "vite-plugin-ruby"
+import wyw from "@wyw-in-js/vite"
+import tsconfigPaths from "vite-tsconfig-paths"
+import FullReload from "vite-plugin-full-reload"
+import react from "@vitejs/plugin-react"
+import path from "path"
 
 const config = defineConfig({
 	build: {
 		rollupOptions: {
 			external: [
-				'./app/frontend/Images/*',
+				"./app/frontend/Images/*",
 			],
 		},
-		outDir: 'public/vite-production',
+		outDir: "public/vite-production",
 	},
 	plugins: [
 		tsconfigPaths(),
 		RubyPlugin(),
-		FullReload(['config/routes.rb', 'app/views/**/*'], { delay: 200 }),
+		FullReload(["config/routes.rb", "app/views/**/*"], { delay: 200 }),
 		react({
 			babel: {
-				plugins: ['babel-plugin-macros'],
+				plugins: ["babel-plugin-macros"],
 			},
 		}),
 		wyw({
-			include: ['**/*.{ts,tsx}'],
+			include: ["**/*.{ts,tsx}"],
 			babelOptions: {
-				presets: ['@babel/preset-typescript', '@babel/preset-react'],
+				presets: ["@babel/preset-typescript", "@babel/preset-react"],
 			},
 		}),
 	],
 	resolve: {
-		dedupe: ['axios'],
+		dedupe: ["axios"],
 		alias: {
-			'@': path.resolve(__dirname, 'app', 'frontend'),
+			"@": path.resolve(__dirname, "app", "frontend"),
 		},
 	},
-	base: './',
+	base: "./",
 	server: {
 		fs: {
 			strict: false,
 		},
 	},
-	mode: process.env.NODE_ENV || 'development',
+	mode: process.env.NODE_ENV || "development",
 })
 
 export default config

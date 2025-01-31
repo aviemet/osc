@@ -1,13 +1,15 @@
-import React from 'react'
-import IconProvider from './IconProvider'
-import UiFrameworkProvider from './UiFrameworkProvider'
+import React from "react"
+import IconProvider from "./IconProvider"
+import UiFrameworkProvider from "./UiFrameworkProvider"
+import QueryProvider from "./QueryProvider"
+import ContrastingColorsSetup from "./ContrastingColorsSetup"
 
-import './reset.css'
-import '@mantine/core/styles.css'
-import '@mantine/tiptap/styles.css'
-import '@mantine/notifications/styles.css'
-import './global.css'
-import QueryProvider from './QueryProvider'
+import "./reset.css"
+import "./global.css"
+import "@mantine/core/styles.css"
+import "@mantine/tiptap/styles.css"
+import "@mantine/dates/styles.css"
+import "@mantine/notifications/styles.css"
 
 interface IProviderProps {
 	children?: React.ReactNode
@@ -17,6 +19,7 @@ const Providers = ({ children }: IProviderProps) => {
 	return (
 		<QueryProvider>
 			<UiFrameworkProvider>
+				<ContrastingColorsSetup />
 				<IconProvider>
 					{ children }
 				</IconProvider>

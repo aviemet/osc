@@ -1,9 +1,9 @@
-import React from 'react'
-import { Routes } from '@/lib'
-import { IndexPageTemplate } from '@/Features'
-import { NewIcon } from '@/Components/Icons'
-import UsersTable from '../Table'
-import { type Pagination } from '@/types'
+import React from "react"
+import { Routes } from "@/lib"
+import { IndexPageTemplate } from "@/Features"
+import { NewIcon } from "@/Components/Icons"
+import UsersTable from "../Table"
+import { type Pagination } from "@/types"
 
 interface IUserIndexProps {
 	users: Schema.UsersIndex[]
@@ -19,7 +19,7 @@ const UserIndex = ({ users, pagination }: IUserIndexProps) => {
 			pagination={ pagination }
 			deleteRoute={ Routes.users() }
 			menuOptions={ [
-				{ label: 'Invite New User', href: Routes.newUser(), icon: NewIcon },
+				{ label: "Invite New User", href: Routes.newUser(), icon: NewIcon },
 			] }
 		>
 			<UsersTable />

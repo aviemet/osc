@@ -1,14 +1,14 @@
-import React from 'react'
-import { Title, Page, Section } from '@/Components'
-import { Routes } from '@/lib'
-import ServersForm from '../Form'
+import React from "react"
+import { Title, Page, Section } from "@/Components"
+import { Routes } from "@/lib"
+import ServersForm from "../Form"
 
 interface IEditServerProps {
 	server: Schema.ServersEdit
 }
 
 const EditServer = ({ server }: IEditServerProps) => {
-	const title = 'Edit Server'
+	const title = "Edit Server"
 
 	return (
 		<Page title={ title }>

@@ -1,9 +1,9 @@
-import React from 'react'
-import { Routes } from '@/lib'
-import { IndexPageTemplate } from '@/Features'
-import { NewIcon } from '@/Components/Icons'
-import ProtocolsTable from '../Table'
-import { type Pagination } from '@/types'
+import React from "react"
+import { Routes } from "@/lib"
+import { IndexPageTemplate } from "@/Features"
+import { NewIcon } from "@/Components/Icons"
+import ProtocolsTable from "../Table"
+import { type Pagination } from "@/types"
 
 interface IProtocolIndexProps {
 	protocols: Schema.ProtocolsIndex[]
@@ -19,7 +19,7 @@ const ProtocolsIndex = ({ protocols, pagination }: IProtocolIndexProps) => {
 			pagination={ pagination }
 			deleteRoute={ Routes.protocols() }
 			menuOptions={ [
-				{ label: 'New Protocol', href: Routes.newProtocol(), icon: NewIcon },
+				{ label: "New Protocol", href: Routes.newProtocol(), icon: NewIcon },
 			] }
 		>
 			<ProtocolsTable />

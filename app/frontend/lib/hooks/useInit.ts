@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from "react"
 
 const useInit = (cb: Function) => {
 	const hasRunRef = useRef(false)

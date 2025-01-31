@@ -1,7 +1,7 @@
-import React from 'react'
-import { Slider } from '@/Components'
-import { ControlProps } from '..'
-import { controlRoute, controlTitle } from '../lib'
+import React from "react"
+import { Slider } from "@/Components"
+import { ControlProps } from ".."
+import { controlRoute, controlTitle } from "../lib"
 
 export type ControlSliderBaseProps = ControlProps & {}
 

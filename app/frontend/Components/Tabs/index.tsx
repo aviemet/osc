@@ -1,10 +1,10 @@
-import React from 'react'
-import { Tabs, type TabsProps } from '@mantine/core'
-import UrlTabs from './UrlTabs'
-import TabLink from './TabLink'
+import React from "react"
+import { Tabs, type TabsProps } from "@mantine/core"
+import UrlTabs from "./UrlTabs"
+import TabLink from "./TabLink"
 
-import cx from 'clsx'
-import * as classes from './Tabs.css'
+import cx from "clsx"
+import * as classes from "./Tabs.css"
 
 export interface TabsComponentProps extends TabsProps {
 	urlControlled?: boolean

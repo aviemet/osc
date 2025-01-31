@@ -1,3 +1,3 @@
 export interface UserPreferences {
-	colorScheme?: 'light'|'dark'|'auto'
+	colorScheme?: "light" | "dark" | "auto"
 }

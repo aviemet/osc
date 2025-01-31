@@ -1,12 +1,12 @@
-import React from 'react'
-import { useDraggable } from '@dnd-kit/core'
-import { Button, ButtonProps } from '@mantine/core'
+import React from "react"
+import { useDraggable } from "@dnd-kit/core"
+import { Button, ButtonProps } from "@mantine/core"
 
 interface ButtonControlProps extends ButtonProps { }
 
 const ButtonControl = ({ ...props }: ButtonControlProps) => {
 	const { attributes, listeners, setNodeRef, transform } = useDraggable({
-		id: 'button',
+		id: "button",
 	})
 
 	const style = transform

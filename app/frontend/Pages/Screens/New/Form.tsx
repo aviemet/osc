@@ -1,7 +1,7 @@
-import React from 'react'
-import { Form, TextInput, Submit } from '@/Components/Form'
-import { Grid } from '@/Components'
-import { type HTTPVerb, type UseFormProps } from 'use-inertia-form'
+import React from "react"
+import { Form, TextInput, Submit } from "@/Components/Form"
+import { Grid } from "@/Components"
+import { type HTTPVerb, type UseFormProps } from "use-inertia-form"
 
 type TScreenFormData = {
 	screen: Schema.ScreensFormData
@@ -14,7 +14,7 @@ export interface ScreenFormProps {
 	screen?: Schema.ScreensFormData
 }
 
-const ScreenForm = ({ method = 'post', screen, ...props }: ScreenFormProps) => {
+const ScreenForm = ({ method = "post", screen, ...props }: ScreenFormProps) => {
 	return (
 		<Form
 			model="screen"
@@ -28,7 +28,7 @@ const ScreenForm = ({ method = 'post', screen, ...props }: ScreenFormProps) => {
 				</Grid.Col>
 
 				<Grid.Col>
-					<Submit>{ screen?.id ? 'Update' : 'Create' } Screen</Submit>
+					<Submit>{ screen?.id ? "Update" : "Create" } Screen</Submit>
 				</Grid.Col>
 			</Grid>
 		</Form>

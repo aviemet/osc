@@ -1,7 +1,7 @@
-import React from 'react'
-import { Field, Form, TextInput, Submit } from '@/Components/Form'
-import { Routes } from '@/lib'
-import { Title, Link } from '@/Components'
+import React from "react"
+import { Field, Form, TextInput, Submit } from "@/Components/Form"
+import { Routes } from "@/lib"
+import { Title, Link } from "@/Components"
 
 type TPasswordsNewFormData = {
 	email: string
@@ -9,7 +9,7 @@ type TPasswordsNewFormData = {
 
 const PasswordsNew = () => {
 	const defaultData: TPasswordsNewFormData = {
-		email: '',
+		email: "",
 	}
 
 	return (

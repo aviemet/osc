@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import { Page, Tabs } from '@/Components'
-import { Routes } from '@/lib'
-import { useLocation } from '@/lib/hooks'
-import { router } from '@inertiajs/react'
-import { useDroppable } from '@dnd-kit/core'
-import EditScreenForm from './Form'
-import NewControlMenu from './NewControlMenu'
-import NewScreenTabButton from './ScreenTabControls/NewScreenTabButton'
-import EditScreenTabButton from './ScreenTabControls/EditScreenTabButton'
+import React, { useState } from "react"
+import { Page, Tabs } from "@/Components"
+import { Routes } from "@/lib"
+import { useLocation } from "@/lib/hooks"
+import { router } from "@inertiajs/react"
+import { useDroppable } from "@dnd-kit/core"
+import EditScreenForm from "./Form"
+import NewControlMenu from "./NewControlMenu"
+import NewScreenTabButton from "./ScreenTabControls/NewScreenTabButton"
+import EditScreenTabButton from "./ScreenTabControls/EditScreenTabButton"
 
-import cx from 'clsx'
-import * as classes from './ScreenControl.css'
+import cx from "clsx"
+import * as classes from "./ScreenControl.css"
 
 interface EditScreenProps {
 	screen: Schema.ScreensEdit
@@ -31,10 +31,10 @@ const EditScreen = ({ screen, screens }: EditScreenProps) => {
 
 	const [currentTabId, setCurrentTabId] = useState(getScreenId(paths[1]))
 
-	const title = 'Edit Screen'
+	const title = "Edit Screen"
 
 	const droppable = useDroppable({
-		id: 'screen_droppable',
+		id: "screen_droppable",
 	})
 
 	const handleTabChange = (value: string | null) => {

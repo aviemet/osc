@@ -1,6 +1,6 @@
-import React from 'react'
-import SettingsLayout from '../../SettingsLayout'
-import { Title } from '@/Components'
+import React from "react"
+import SettingsLayout from "../../SettingsLayout"
+import { Title } from "@/Components"
 
 const General = () => {
 	return (

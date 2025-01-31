@@ -1,16 +1,15 @@
-import React from 'react'
-import { router } from '@inertiajs/react'
-import { Routes } from '@/lib'
-import axios from 'axios'
-import { Menu } from '@/Components'
-import { ColumnsIcon } from '@/Components/Icons'
-import { Checkbox } from '@/Components/Inputs'
-import { useTableContext } from '../TableContext'
-import { Button } from '@mantine/core'
-import { usePageProps } from '@/lib/hooks'
+import { router } from "@inertiajs/react"
+import { Routes } from "@/lib"
+import axios from "axios"
+import { Menu } from "@/Components"
+import { ColumnsIcon } from "@/Components/Icons"
+import { Checkbox } from "@/Components/Inputs"
+import { useTableContext } from "../TableContext"
+import { Button } from "@mantine/core"
+import { usePageProps } from "@/lib/hooks"
 
-import cx from 'clsx'
-import * as classes from '../Table.css'
+import cx from "clsx"
+import * as classes from "../Table.css"
 
 const ColumnPicker = () => {
 	const { auth: { user } } = usePageProps()
@@ -19,7 +18,7 @@ const ColumnPicker = () => {
 	if(!hideable || !model) return <></>
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		axios.patch( Routes.apiUpdateTablePreferences(user.id), {
+		axios.patch( Routes.apiUpdateTablePreferences(user.id!), {
 			user: {
 				table_preferences: {
 					[model]: {
@@ -30,7 +29,7 @@ const ColumnPicker = () => {
 				},
 			},
 		}).then(() => {
-			router.reload({ only: ['auth'] })
+			router.reload({ only: ["auth"] })
 		})
 	}
 
@@ -44,7 +43,7 @@ const ColumnPicker = () => {
 
 			<Menu.Dropdown>
 				{ columns.filter(option => option.hideable).map(({ label, hideable }) => (
-					<Menu.Item key={ label } component="div" style={ { cursor: 'default', padding: 0 } }>
+					<Menu.Item key={ label } component="div" style={ { cursor: "default", padding: 0 } }>
 						<Checkbox
 							name={ hideable }
 							label={ label }
