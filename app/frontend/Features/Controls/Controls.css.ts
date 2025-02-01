@@ -4,7 +4,10 @@ import { css } from "@linaria/core"
 const highlightBorderPx = 4
 
 export const controlWrapper = css`
-
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: ${vars.spacing.md};
+	width: 100%;
 `
 
 export const lastButtonClicked = css`
@@ -12,13 +15,14 @@ export const lastButtonClicked = css`
 	margin: calc(${vars.spacing.xs} - ${highlightBorderPx}px);
 `
 export const spacer = css`
-	/* border-style: dashed;
-	border-width: 2px;
-	border-color: ${vars.colors.white}; */
+	border: 2px dotted ${vars.colors.gray[4]};
+	border-radius: ${vars.radius.sm};
+	min-height: 40px;
+	margin: ${vars.spacing.xs} 0;
 `
 
 export const button = css`
-
+	width: 100%;
 `
 
 export const editButtonIcon = css`

@@ -1,4 +1,3 @@
-import React from "react"
 import {
 	DndContext,
 	useSensors,
@@ -8,10 +7,7 @@ import {
 	UniqueIdentifier,
 	type DragEndEvent,
 } from "@dnd-kit/core"
-import {
-	arrayMove,
-	SortableContext,
-} from "@dnd-kit/sortable"
+import { arrayMove, SortableContext } from "@dnd-kit/sortable"
 import { useDynamicInputs, useForm } from "use-inertia-form"
 import { Control } from "@/Features/Controls"
 

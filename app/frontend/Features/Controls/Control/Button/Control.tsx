@@ -46,6 +46,7 @@ const ControlButton = ({
 				[classes.lastButtonClicked]: lastButtonClicked === control.id,
 			}]) }
 			control={ control }
+			edit={ edit }
 			{ ...props }
 		>
 			{ children }

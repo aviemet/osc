@@ -7,6 +7,6 @@ export default ({ edit, control, ...props }: ControlProps) => {
 	return edit ?
 		<EditControlSpacer edit={ true } control={ control } { ...props } />
 		:
-		<ControlSpacer control={ control } { ...props  } />
+		<ControlSpacer edit={ false } control={ control } { ...props  } />
 }
 
