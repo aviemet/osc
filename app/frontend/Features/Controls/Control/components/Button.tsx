@@ -1,25 +1,19 @@
 import React from "react"
 import axios from "axios"
+import { Button } from "@/Components"
 import { useLocalStorage } from "@/lib/hooks"
 import { controlRoute } from "../lib"
-import Base, { type ControlButtonBaseProps } from "./Base"
+import { type ControlProps } from ".."
 
 import cx from "clsx"
 import * as classes from "../../Controls.css"
 
-type ControlButtonProps = ControlButtonBaseProps & {
-	edit?: false
-	control: Schema.ControlsShow
-}
-
 const ControlButton = ({
-	children,
-	edit = false,
 	control,
 	disable,
 	className,
 	...props
-}: ControlButtonProps) => {
+}: ControlProps) => {
 	const [lastButtonClicked, setLastButtonClicked] = useLocalStorage<number>({
 		key: "last-button-clicked",
 		defaultValue: undefined,
@@ -40,17 +34,16 @@ const ControlButton = ({
 	}
 
 	return (
-		<Base
+		<Button
+			color={ control?.color ?? undefined }
 			onClick={ handleButtonClick }
-			className={ cx([className, {
+			className={ cx([className, "button", {
 				[classes.lastButtonClicked]: lastButtonClicked === control.id,
 			}]) }
-			control={ control }
-			edit={ edit }
 			{ ...props }
 		>
-			{ children }
-		</Base>
+			{ control.title }
+		</Button>
 	)
 }
 

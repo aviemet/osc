@@ -1,9 +1,10 @@
 import React from "react"
-import { Flex, Page, Tabs } from "@/Components"
+import { Page, Tabs } from "@/Components"
 import Control from "../../../Features/Controls/Control"
 import { Routes } from "@/lib"
 import { useLocation } from "@/lib/hooks"
 import { router } from "@inertiajs/react"
+import { ControlContainer } from "@/Features/Controls"
 
 interface IShowScreenProps {
 	screen: Schema.ScreensShow
@@ -32,11 +33,11 @@ const ShowScreen = ({ screen, screens }: IShowScreenProps) => {
 				{ screens.map(iScreen => (
 					<Tabs.Panel key={ iScreen.id } value={ iScreen.slug }>
 						{ iScreen.id === screen.id &&
-							<Flex gap="md">
+							<ControlContainer>
 								{ screen?.controls?.map(control => (
 									<Control key={ control.id } control={ control } />
 								)) }
-							</Flex>
+							</ControlContainer>
 						}
 					</Tabs.Panel>
 				)) }

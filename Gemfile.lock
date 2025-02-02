@@ -377,6 +377,8 @@ GEM
       parser (>= 3.3.1.0)
     rubocop-daemon (0.3.2)
       rubocop
+    rubocop-factory_bot (2.26.1)
+      rubocop (~> 1.61)
     rubocop-performance (1.23.1)
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
@@ -499,7 +501,9 @@ DEPENDENCIES
   rails (~> 7.1.4)
   rolify (~> 6.0)
   rspec-rails (>= 6.0.1)
+  rubocop (~> 1.71)
   rubocop-daemon (>= 0.3.2)
+  rubocop-factory_bot (~> 2.26)
   rubocop-performance (>= 1.13)
   rubocop-rails (>= 2.14)
   rubocop-rspec (>= 2.9)

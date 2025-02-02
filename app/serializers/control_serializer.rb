@@ -41,7 +41,7 @@ class ControlSerializer < ApplicationSerializer
     :screen_id,
     :protocol_id,
     :command_id,
-    control_type: { type: :string },
+    control_type: { type: Control.control_types.keys.map { |k| "\"#{k}\"" }.join(" | ") },
   )
 
   belongs_to :protocol, serializer: ProtocolSerializer

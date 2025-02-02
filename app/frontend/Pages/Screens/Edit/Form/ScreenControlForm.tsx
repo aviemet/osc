@@ -5,15 +5,15 @@ import { ProtocolDropdown } from "@/Components/Dropdowns"
 import { useGetProtocol } from "@/queries"
 import { FormProps } from "use-inertia-form"
 
-type EditControlFormData = {
-	control: Schema.ControlsFormData
+type ScreenControlFormData = {
+	control: Partial<Schema.ControlsFormData>
 }
 
-export interface EditControlFormProps extends Omit<FormProps<EditControlFormData>, "data"> {
+export interface EditScreenControlFormProps extends Omit<FormProps<ScreenControlFormData>, "data"> {
 	control?: Schema.ControlsFormData
 }
 
-const EditControlForm = ({ control, ...props }: EditControlFormProps) => {
+const ScreenControlForm = ({ control, ...props }: EditScreenControlFormProps) => {
 	const [showingProtocolSlug, setShowingProtocolSlug] = useState(control?.protocol?.slug || "")
 
 	const { data } = useGetProtocol({ slug: showingProtocolSlug }, {
@@ -22,7 +22,7 @@ const EditControlForm = ({ control, ...props }: EditControlFormProps) => {
 	})
 
 	return (
-		<Form<EditControlFormData>
+		<Form<ScreenControlFormData>
 			model="control"
 			data={ control ? { control } : undefined }
 			remember={ false }
@@ -37,7 +37,7 @@ const EditControlForm = ({ control, ...props }: EditControlFormProps) => {
 					</> }
 				</Grid.Col>
 
-				<FormConsumer<EditControlFormData>>{ ({ data }) => <>
+				<FormConsumer<ScreenControlFormData>>{ ({ data }) => <>
 					{ data.control.control_type !== "spacer" && <Grid.Col>
 						<ProtocolDropdown
 							onChange={ (protocol, options, form) => {
@@ -65,7 +65,7 @@ const EditControlForm = ({ control, ...props }: EditControlFormProps) => {
 					</> }
 				</Grid.Col>
 
-				<FormConsumer<EditControlFormData>>{ ({ data }) => <>
+				<FormConsumer<ScreenControlFormData>>{ ({ data }) => <>
 					{ data.control.control_type !== "spacer" &&
 						<Grid.Col>
 							<SwatchInput label="Button Color" name="color" />
@@ -87,4 +87,4 @@ const EditControlForm = ({ control, ...props }: EditControlFormProps) => {
 	)
 }
 
-export default EditControlForm
+export default ScreenControlForm

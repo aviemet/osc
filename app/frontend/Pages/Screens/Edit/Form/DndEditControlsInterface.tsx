@@ -10,13 +10,14 @@ import {
 import { arrayMove, SortableContext } from "@dnd-kit/sortable"
 import { useDynamicInputs, useForm } from "use-inertia-form"
 import { Control } from "@/Features/Controls"
+import EditControlWrapper from "./EditControlWrapper"
 
 interface DndEditControlsInterfaceProps {
 	screen: Schema.ScreensEdit
 }
 
 const DndEditControlsInterface = ({ screen }: DndEditControlsInterfaceProps) => {
-	const { addInput, removeInput, paths } = useDynamicInputs({
+	const { paths } = useDynamicInputs({
 		model: "controls",
 		emptyData: {
 			title: "",
@@ -71,11 +72,15 @@ const DndEditControlsInterface = ({ screen }: DndEditControlsInterfaceProps) => 
 					const record = getData(`${formModel}.${path}`) as Schema.ControlsFormData
 
 					return (
-						<Control
+						<EditControlWrapper
 							key={ record.id }
-							edit={ true }
 							control={ record }
-						/>
+						>
+							<Control
+								disable
+								control={ record }
+							/>
+						</EditControlWrapper>
 					)
 				}) }
 			</SortableContext>

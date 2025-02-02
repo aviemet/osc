@@ -1,18 +1,17 @@
 import React from "react"
 import { Routes } from "@/lib"
-import { router } from "@inertiajs/react"
-import { Control, type ControlProps } from "@/Features/Controls"
 import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
-import { Box, BoxProps } from "@mantine/core"
+import { Box } from "@mantine/core"
 import { EditIcon } from "@/Components/Icons"
 import { modals } from "@mantine/modals"
-import ControlForm from "../ControlForm"
+import ControlForm from "./ScreenControlForm"
 
 import cx from "clsx"
-import * as classes from "../Controls.css"
+import * as classes from "./EditControls.css"
 
-interface EditControlWrapperProps extends Omit<ControlProps, "control" | "edit"> {
+interface EditControlWrapperProps {
+	children: React.ReactNode
 	control: Schema.ControlsFormData
 }
 

@@ -7,6 +7,7 @@ ruby "3.3.4"
 gem "rails", "~> 7.1.4"
 gem "pg", "~> 1.1"
 gem "puma", "~> 6.0"
+gem "overmind", "~> 2.5"
 
 # Assets
 gem "inertia_rails", ">= 3.1"
@@ -60,6 +61,8 @@ group :development, :test do
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
 
   # Linting
+  gem "rubocop", "~> 1.71", require: false
+  gem "rubocop-factory_bot", "~> 2.26", require: false
   gem "rubocop-rails", ">= 2.14", require: false
   gem "rubocop-rspec", ">= 2.9", require: false
   gem "rubocop-performance", ">= 1.13", require: false
@@ -98,5 +101,3 @@ group :test do
   gem "simplecov", ">= 0.22.0"
   gem "pundit-matchers", ">= 3.1"
 end
-
-gem "overmind", "~> 2.5"

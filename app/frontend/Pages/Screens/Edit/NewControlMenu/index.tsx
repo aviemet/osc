@@ -3,7 +3,7 @@ import { Affix, Button, Menu } from "@/Components"
 import { modals } from "@mantine/modals"
 import { Routes } from "@/lib"
 import { useCreateControl } from "@/queries"
-import { ControlForm } from "@/Features/Controls"
+import ControlForm from "../Form/ScreenControlForm"
 
 const controlFormFilter = ["control.id", "control.command", "control.updated_at", "control.created_at", "control.command_id", "control.protocol"]
 
