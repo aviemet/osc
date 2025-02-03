@@ -5,10 +5,10 @@ import { CSS } from "@dnd-kit/utilities"
 import { Box } from "@mantine/core"
 import { EditIcon } from "@/Components/Icons"
 import { modals } from "@mantine/modals"
-import ControlForm from "./ScreenControlForm"
 
 import cx from "clsx"
 import * as classes from "./EditControls.css"
+import ScreenControlForm from "@/Features/Controls/Form"
 
 interface EditControlWrapperProps {
 	children: React.ReactNode
@@ -31,7 +31,7 @@ const EditControlWrapper = ({ children, control, ...props }: EditControlWrapperP
 		modals.open({
 			title: "Edit Control",
 			children: (
-				<ControlForm
+				<ScreenControlForm
 					remember={ false }
 					control={ control }
 					to={ Routes.control(control.id!) }

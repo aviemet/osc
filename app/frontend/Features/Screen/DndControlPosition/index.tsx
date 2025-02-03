@@ -2,17 +2,17 @@ import React from "react"
 import { Routes } from "@/lib"
 import { Divider } from "@/Components"
 import { Form, Submit } from "@/Components/Form"
-import DndEditControlsInterface from "./DndEditControlsInterface"
 import { ControlContainer } from "@/Features/Controls"
+import DndEditControlsInterface from "./DndEditControlsInterface"
 
 import cx from "clsx"
 import * as classes from "./EditControls.css"
 
-interface EditScreenFormProps {
+interface DndControlPositionProps {
 	screen: Schema.ScreensEdit
 }
 
-const EditScreenForm = ({ screen }: EditScreenFormProps) => {
+const DndControlPosition = ({ screen }: DndControlPositionProps) => {
 	return (
 		<Form
 			model="screen"
@@ -34,4 +34,4 @@ const EditScreenForm = ({ screen }: EditScreenFormProps) => {
 	)
 }
 
-export default EditScreenForm
+export default DndControlPosition

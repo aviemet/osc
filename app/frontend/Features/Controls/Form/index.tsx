@@ -1,9 +1,12 @@
 import React, { useState } from "react"
-import { Code, Grid, Paper, ScrollArea, Text } from "@/Components"
+import { Accordion, Code, Grid, Paper, ScrollArea, Text } from "@/Components"
 import { Form, TextInput, Submit, SwatchInput, FormConsumer, Radio } from "@/Components/Form"
 import { ProtocolDropdown } from "@/Components/Dropdowns"
 import { useGetProtocol } from "@/queries"
 import { FormProps } from "use-inertia-form"
+import { DeleteButton } from "@/Components/Button"
+import { modals } from "@mantine/modals"
+import { Routes } from "@/lib"
 
 type ScreenControlFormData = {
 	control: Partial<Schema.ControlsFormData>
@@ -78,6 +81,23 @@ const ScreenControlForm = ({ control, ...props }: EditScreenControlFormProps) =>
 						<Radio value="expand" label="Fill Available Space" />
 					</Radio.Group>
 				</Grid.Col>
+
+				{ control?.id && <Grid.Col>
+					<Accordion>
+						<Accordion.Item value="delete">
+							<Accordion.Control>Permanently Delete</Accordion.Control>
+							<Accordion.Panel>
+								<Text>Will permanently delete this control</Text>
+								<DeleteButton
+									href={ Routes.control(control?.id!) }
+									onClick={ () => modals.closeAll() }
+								>
+									Delete
+								</DeleteButton>
+							</Accordion.Panel>
+						</Accordion.Item>
+					</Accordion>
+				</Grid.Col> }
 
 				<Grid.Col>
 					<Submit>{ control?.id ? "Update" : "Create" } Control</Submit>

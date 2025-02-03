@@ -4,13 +4,13 @@ import { Routes } from "@/lib"
 import { useLocation } from "@/lib/hooks"
 import { router } from "@inertiajs/react"
 import { useDroppable } from "@dnd-kit/core"
-import EditScreenForm from "./Form"
 import NewControlMenu from "./NewControlMenu"
 import NewScreenTabButton from "./ScreenTabControls/NewScreenTabButton"
 import EditScreenTabButton from "./ScreenTabControls/EditScreenTabButton"
 
 import cx from "clsx"
 import * as classes from "./ScreenControl.css"
+import DndControlPosition from "@/Features/Screen/DndControlPosition"
 
 interface EditScreenProps {
 	screen: Schema.ScreensEdit
@@ -81,7 +81,7 @@ const EditScreen = ({ screen, screens }: EditScreenProps) => {
 							className={ cx(classes.tabsPanel) }
 							ref={ droppable.setNodeRef }
 						>
-							{ iScreen.id === screen.id && <EditScreenForm screen={ screen } /> }
+							{ iScreen.id === screen.id && <DndControlPosition screen={ screen } /> }
 						</Tabs.Panel>
 					)) }
 				</Tabs>

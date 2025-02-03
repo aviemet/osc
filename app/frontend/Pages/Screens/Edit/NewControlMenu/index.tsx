@@ -3,7 +3,7 @@ import { Affix, Button, Menu } from "@/Components"
 import { modals } from "@mantine/modals"
 import { Routes } from "@/lib"
 import { useCreateControl } from "@/queries"
-import ControlForm from "../Form/ScreenControlForm"
+import ScreenControlForm from "@/Features/Controls/Form"
 
 const controlFormFilter = ["control.id", "control.command", "control.updated_at", "control.created_at", "control.command_id", "control.protocol"]
 
@@ -30,7 +30,7 @@ const NewControlMenu = ({ screenId, menuId }: NewControlMenuProps) => {
 		modals.open({
 			title: "Add New Control Button",
 			children: (
-				<ControlForm
+				<ScreenControlForm
 					control={ emptyData("button") }
 					remember={ false }
 					to={ Routes.controls() }
