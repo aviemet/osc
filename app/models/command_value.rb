@@ -20,5 +20,7 @@
 class CommandValue < ApplicationRecord
   resourcify
 
+  validates :value, presence: true
+
   belongs_to :command
 end

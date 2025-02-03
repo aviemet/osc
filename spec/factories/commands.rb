@@ -26,8 +26,31 @@ FactoryBot.define do
   factory :command do
     title { "OSC Message" }
     address { "/test/endpoint" }
-    payload_type { 0 }
+    payload_type { :integer }
+    allow_custom_value { false }
 
     server
+
+    trait :with_values do
+      after(:create) do |command|
+        create_list(:command_value, 2, command: command)
+      end
+    end
+
+    transient do
+      protocol { nil }
+      delay { nil }
+    end
+
+    after(:create) do |command, evaluator|
+      if evaluator.protocol
+        create(
+          :protocols_command,
+          command: command,
+          protocol: evaluator.protocol,
+          delay: evaluator.delay,
+        )
+      end
+    end
   end
 end

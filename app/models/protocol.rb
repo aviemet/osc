@@ -41,9 +41,11 @@ class Protocol < ApplicationRecord
       protocols_commands.*,
       COALESCE(protocols_commands.value, command_values.value) AS value
     ')
-      .joins('LEFT JOIN command_values ON command_values.id = protocols_commands.command_value_id')
+      .joins("LEFT JOIN command_values ON command_values.id = protocols_commands.command_value_id")
       .includes([:server, :command_values])
   }, through: :protocols_commands, dependent: :nullify
+
+  validates :title, presence: true
 
   scope :includes_associated, -> { includes([:protocols_commands]) }
 

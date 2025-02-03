@@ -10,11 +10,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     first_run = false
     if User.count == 0
       flash.clear
-      flash[:notice] = t('devise.registrations.first_run_create_admin')
+      flash[:notice] = t("devise.registrations.first_run_create_admin")
       first_run = true
     end
 
-    render inertia: 'Auth/Devise/Register', props: {
+    render inertia: "Devise/Register", props: {
       user: User.new,
       first_run:,
     }

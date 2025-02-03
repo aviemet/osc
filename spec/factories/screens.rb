@@ -15,7 +15,7 @@
 #
 FactoryBot.define do
   factory :screen do
-    title { "MyString" }
-    order { 1 }
+    title { Faker::Company.bs.split.first }
+    order { nil }
   end
 end

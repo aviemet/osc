@@ -1,11 +1,11 @@
-require 'rails_helper'
-require 'socket'
+require "rails_helper"
+require "socket"
 
 RSpec.describe OscService do
   let(:command) { build(:command) }
 
-  describe '#send' do
-    it 'sends message via UDP' do
+  describe "#send" do
+    it "sends message via UDP" do
       mock_socket = instance_double(UDPSocket)
 
       allow(UDPSocket).to receive(:new).and_return(mock_socket)

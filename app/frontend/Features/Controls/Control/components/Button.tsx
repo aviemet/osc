@@ -22,6 +22,7 @@ const ControlButton = ({
 	const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.preventDefault()
 
+		// Do nothing if disabled or the control has not been persisted
 		if(disable || !control?.id) return
 
 		const route = controlRoute(control)

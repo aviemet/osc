@@ -1,10 +1,10 @@
 class ControlsController < ApplicationController
   expose :controls, -> { search(Control.includes_associated, sortable_fields) }
-  expose :control, find: ->(id, scope) { scope.includes_associated.find(id) }
+  expose :control, scope: -> { Control.includes_associated }
 
   sortable_fields %w(title type screen_id min_value max_value value protocol_id)
 
-  strong_params :control, permit: [:title, :control_type, :order, :color, :screen_id, :min_value, :max_value, :value, :protocol_id]
+  strong_params :control, permit: [:title, :control_type, :order, :color, :screen_id, :min_value, :max_value, :value, :command_id, :protocol_id]
 
   # @route POST /controls (controls)
   def create
@@ -13,7 +13,7 @@ class ControlsController < ApplicationController
     if control.save
       redirect_to edit_screen_path(control.screen), notice: "Control was successfully created."
     else
-      redirect_to new_control_path, inertia: { errors: control.errors }
+      redirect_to edit_screen_path(control.screen), inertia: { errors: control.errors }
     end
   end
 
@@ -25,7 +25,7 @@ class ControlsController < ApplicationController
     if control.update(control_params)
       redirect_to edit_screen_path(control.screen), inertia: { method: :get }, notice: "Control was successfully updated."
     else
-      redirect_to edit_control_path, inertia: { errors: control.errors }
+      redirect_to edit_screen_path(control.screen), inertia: { errors: control.errors }
     end
   end
 
@@ -33,6 +33,6 @@ class ControlsController < ApplicationController
   def destroy
     authorize control
     control.destroy!
-    redirect_to controls_url, notice: "Control was successfully destroyed."
+    redirect_to edit_screen_path(control.screen), notice: "Control was successfully destroyed."
   end
 end

@@ -18,7 +18,6 @@ class SendOscProtocolJob < OscJob
           commands_grouped_by_delay.push(command)
           next
         end
-
         # When a command has a delay, send off the batch and start fresh
         delay += command[:delay]
 

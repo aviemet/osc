@@ -36,7 +36,7 @@ class Control < ApplicationRecord
 
   pg_search_scope(
     :search,
-    against: [:title, :type, :screen, :order, :min_value, :max_value, :value, :protocol],
+    against: [:title, :control_type, :screen, :order, :min_value, :max_value, :value, :protocol],
     associated_against: {
       screen: [], protocol: [],
     },
@@ -58,6 +58,8 @@ class Control < ApplicationRecord
 
   validate :protocol_xor_command, if: -> { self.control_type != "spacer" }
   validates :order, presence: true
+  validates :title, presence: true
+  validates :control_type, presence: true
 
   private
 
@@ -79,6 +81,6 @@ class Control < ApplicationRecord
   def protocol_xor_command
     return if protocol.blank? ^ command.blank?
 
-    errors.add(:protocol_xor_command, 'A control must reference either a protocol or a command')
+    errors.add(:protocol_xor_command, "A control must reference either a protocol or a command")
   end
 end

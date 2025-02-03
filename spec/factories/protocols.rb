@@ -15,6 +15,6 @@
 #
 FactoryBot.define do
   factory :protocol do
-    title { "MyString" }
+    title { Faker::Verb.base + " " + Faker::Appliance.equipment }
   end
 end

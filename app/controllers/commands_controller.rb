@@ -48,6 +48,7 @@ class CommandsController < ApplicationController
   # @route POST /commands (commands)
   def create
     authorize Command.new
+
     if command.save
       redirect_to commands_path, notice: "Command was successfully created."
     else

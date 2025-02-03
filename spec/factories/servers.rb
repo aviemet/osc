@@ -4,7 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  description :text
-#  hostname    :string
+#  hostname    :string           not null
 #  port        :integer
 #  slug        :string           not null
 #  title       :string           not null

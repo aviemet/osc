@@ -3,20 +3,31 @@ class OscJob < ApplicationJob
   private
 
   def send_osc_command(command, client = nil)
-    client ||= udp_client_from_server(command[:server])
+    command_hash = command_hash(command)
 
-    # pry command
+    client ||= udp_client_from_server(command_hash[:server])
+
     message = OscService::Message.new(
-      command[:address],
-      cast_to_type(command[:value], command[:payload_type]),
+      command_hash[:address],
+      cast_to_type(command_hash[:value], command_hash[:payload_type]),
     )
 
     client.send(message)
   rescue Errno::ECONNREFUSED => e
-    server = command[:server] || Server.find(command[:server_id])
+    server = command_hash[:server] || Server.find(command_hash[:server_id])
     log_connection_error(server, e)
   rescue StandardError => e
     Rails.logger.error({ error: e })
+  end
+
+  def command_hash(command)
+    if command.respond_to?(:attributes)
+      command.attributes.with_indifferent_access.merge(
+        server: command.server.attributes.with_indifferent_access,
+      )
+    else
+      command
+    end
   end
 
   def udp_client_from_server(server)

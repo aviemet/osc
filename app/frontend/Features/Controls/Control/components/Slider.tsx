@@ -6,7 +6,7 @@ import cx from "clsx"
 
 export type ControlSpacerBaseProps = ControlProps & {}
 
-const ControlSpacerBase = ({ control, className, ...props }: ControlSpacerBaseProps) => {
+const ControlSpacerBase = ({ control, disable, className, ...props }: ControlSpacerBaseProps) => {
 	return (
 		<Box
 			{ ...props }
