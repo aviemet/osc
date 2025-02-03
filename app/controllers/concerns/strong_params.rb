@@ -1,4 +1,4 @@
-require 'active_support/concern'
+require "active_support/concern"
 
 module StrongParams
   extend ActiveSupport::Concern

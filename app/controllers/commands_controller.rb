@@ -1,5 +1,5 @@
 class CommandsController < ApplicationController
-  expose :commands, -> { search(Command.includes_associated, sortable_fields) }
+  expose :commands, -> { search(Command.includes_associated) }
   expose :command, id: -> { params[:slug] }, scope: -> { Command.includes_associated }, find_by: :slug
 
   sortable_fields %w(title address payload_type)

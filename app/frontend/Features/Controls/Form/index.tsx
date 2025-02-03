@@ -3,12 +3,12 @@ import { Accordion, Code, Grid, Paper, ScrollArea, Text } from "@/Components"
 import { Form, TextInput, Submit, SwatchInput, FormConsumer, Radio } from "@/Components/Form"
 import { ProtocolDropdown } from "@/Components/Dropdowns"
 import { useGetProtocol } from "@/queries"
-import { FormProps } from "use-inertia-form"
+import { FormProps, UseFormProps } from "use-inertia-form"
 import { DeleteButton } from "@/Components/Button"
 import { modals } from "@mantine/modals"
 import { Routes } from "@/lib"
 
-type ScreenControlFormData = {
+export type ScreenControlFormData = {
 	control: Partial<Schema.ControlsFormData>
 }
 
@@ -20,7 +20,6 @@ const ScreenControlForm = ({ control, ...props }: EditScreenControlFormProps) =>
 	const [showingProtocolSlug, setShowingProtocolSlug] = useState(control?.protocol?.slug || "")
 
 	const { data } = useGetProtocol({ slug: showingProtocolSlug }, {
-		initialData: control?.protocol || {},
 		enabled: !!showingProtocolSlug,
 	})
 

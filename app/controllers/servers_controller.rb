@@ -1,5 +1,5 @@
 class ServersController < ApplicationController
-  expose :servers, -> { search(Server.includes_associated, sortable_fields) }
+  expose :servers, -> { search(Server.includes_associated) }
   expose :server, id: -> { params[:slug] }, scope: -> { Server.includes_associated }, find_by: :slug
 
   sortable_fields %w(title hostname port description)

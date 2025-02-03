@@ -3,9 +3,8 @@
 module Searchable
   extend ActiveSupport::Concern
 
-  attr_reader :sortable_fields
-
   included do
+    class_attribute :internal_sortable_fields
 
     before_action :remove_empty_query_parameters
 
@@ -16,15 +15,18 @@ module Searchable
     #   Sortable fields in nested models use dot-notation: "related_model.field"
     #   To sort by a method on the model class which is not a database field, use `self`: "self.calculated_number"
     ##
-    def search(model, sortable_fields = [])
-      sort(search_by_params(model), model, sortable_fields)
+    def search(model)
+      sort(basic_search(model), model)
     end
 
     ##
-    # Apply defaults to the paginate method
-    # resource: ActiveRecord object to call `page` on
-    # key: Per user defined key stored in User model for persisted pagination limits
-    ##
+    # @param [ActiveRecord::Relation] resource The relation to paginate
+    # @param [String, nil] key The key used to determine pagination limit from user preferences
+    # @return [ActiveRecord::Relation] The paginated relation
+    # @example
+    #   paginate(User.all, 'users')
+    #
+    # Apply defaults to the paginate method using user-specific limits
     def paginate(resource, key)
       resource.page(params[:page] || 1).per(key ? current_user.limit(key) : nil)
     end
@@ -47,7 +49,7 @@ module Searchable
 
   class_methods do
     def sortable_fields(fields)
-      @sortable_fields = fields
+      self.internal_sortable_fields = fields
     end
   end
 
@@ -56,53 +58,66 @@ module Searchable
   ##
   # Filters ActiveRecord relation by search params
   ##
-  def search_by_params(model)
+  def basic_search(model)
     return model unless params[:search]
 
-    model.where(id: model.search(params[:search]).pluck(:id))
+    model.search(params[:search])
   end
 
   ##
   # Sorts ActiveRecord relation by sort params
   ##
-  def sort(obj, model, sortable_fields)
+  def sort(obj, model)
     # With empty sort params, don't sort
     return obj unless params[:sort]
 
     # Sort using db query
-    obj.order(sort_string(model, sortable_fields))
+    obj.order(sort_string(model))
   end
 
   ##
   # Returns a string to be used in an `order` statement
   ##
-  def sort_string(model, sortable_fields)
-    return unless sortable_fields&.include?(params[:sort])
+  def sort_string(model)
+    return unless self.class.internal_sortable_fields&.include?(params[:sort])
 
     field_type = get_field_type(model, params[:sort])
+
     # Don't error if field doesn't exist on model
     return if field_type.nil?
 
-    sort_str = params[:sort].to_s
-    "#{sort_str} #{direction}"
+    "#{add_explicit_table_prefix(model, params[:sort].to_s)} #{direction}"
+  end
+
+  ##
+  # Ensures a sort parameter is scoped to a table name to avoid ambiguous parameter error
+  ##
+  def add_explicit_table_prefix(model, sort_param)
+    if sort_param.include? "."
+      return sort_param
+    end
+
+    "#{model.table_name}.#{sort_param}"
   end
 
   ##
   # Returns the data type of a database field
   ##
   def get_field_type(model, column)
+    split_fields = column.split(".")
+
     # if `column` is in the form 'model.field', or further chained such as 'model1.model2.field',
     # ignore the passed `model` param and use the last chained model sent in `column`
-    split_fields = column.split(".")
     if split_fields.length > 1
       model = split_fields[-2].titleize.singularize.constantize
       column = split_fields[-1]
     end
+
     model.column_for_attribute(column).type
   end
 
   def direction
-    %w(asc desc).freeze.include?(params[:direction]) ? params[:direction] : 'asc'
+    %w(asc desc).freeze.include?(params[:direction]) ? params[:direction] : "asc"
   end
 
   def remove_empty_query_parameters
@@ -110,14 +125,14 @@ module Searchable
     non_empty_params = request.query_parameters.compact_blank
 
     # Remove direction param if table is not sorted
-    if non_empty_params['direction'].present? && non_empty_params['sort'].blank?
-      non_empty_params.delete('direction')
+    if non_empty_params["direction"].present? && non_empty_params["sort"].blank?
+      non_empty_params.delete("direction")
     end
 
     return unless request.query_parameters.keys.length > non_empty_params.keys.length
 
     # Rebuild the URL without empty query parameters
-    new_url = "#{request.path}?#{non_empty_params.to_param}"
+    new_url = "#{request.path}#{non_empty_params.empty? ? '' : '?'}#{non_empty_params.to_param}"
     redirect_to new_url
   end
 end

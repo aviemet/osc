@@ -1,4 +1,4 @@
-require 'active_support/concern'
+require "active_support/concern"
 
 module InertiaShare::Flash
   extend ActiveSupport::Concern

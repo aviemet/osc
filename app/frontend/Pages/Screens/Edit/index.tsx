@@ -18,6 +18,7 @@ interface EditScreenProps {
 }
 
 const EditScreen = ({ screen, screens }: EditScreenProps) => {
+
 	const getScreenId = (slug: string): number | false => {
 		const currentScreen = screens.find(s => s.slug === slug)
 		if(currentScreen?.id) {

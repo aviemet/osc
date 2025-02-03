@@ -1,5 +1,5 @@
 class ControlsController < ApplicationController
-  expose :controls, -> { search(Control.includes_associated, sortable_fields) }
+  expose :controls, -> { search(Control.includes_associated) }
   expose :control, scope: -> { Control.includes_associated }
 
   sortable_fields %w(title type screen_id min_value max_value value protocol_id)
@@ -9,7 +9,7 @@ class ControlsController < ApplicationController
   # @route POST /controls (controls)
   def create
     authorize Control.new
-    ap({ control:, screen: control.screen })
+
     if control.save
       redirect_to edit_screen_path(control.screen), notice: "Control was successfully created."
     else

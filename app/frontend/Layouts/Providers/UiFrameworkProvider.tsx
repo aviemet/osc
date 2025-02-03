@@ -46,7 +46,7 @@ const UiFrameworkProvider = ({ children }: { children: React.ReactNode }) => {
 			console.log({ vars })
 		}
 	})
-	console.log({ children })
+
 	return (
 		<MantineProvider
 			theme={ theme }

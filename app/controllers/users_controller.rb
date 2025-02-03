@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  expose :users, -> { search(User.all.includes_associated, sortable_fields) }
-  expose :user, id: -> { params[:slug] }, scope: -> { Circle.includes_associated }, find_by: :slug
+  expose :users, -> { search(User.all.includes_associated) }
+  expose :user, id: -> { params[:slug] }, scope: -> { User.includes_associated }, find_by: :slug
 
   sortable_fields %w(email active first_name last_name number)
 
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   def update
     authorize user
     if user.update(user_params)
-      redirect_to user, notice: 'User was successfully updated.'
+      redirect_to user, notice: "User was successfully updated."
     else
       redirect_to edit_user_path(user), inertia: { errors: user.errors }
     end
@@ -77,7 +77,7 @@ class UsersController < ApplicationController
     authorize user
     user.destroy
     respond_to do
-      redirect_to users_url, notice: 'User was successfully destroyed.'
+      redirect_to users_url, notice: "User was successfully destroyed."
     end
   end
 
