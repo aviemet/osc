@@ -1,5 +1,5 @@
-import { vars } from '@/lib/theme'
-import { css } from '@linaria/core'
+import { vars } from "@/lib/theme"
+import { css } from "@linaria/core"
 
 export const droppable = css`
 	width: 100%;

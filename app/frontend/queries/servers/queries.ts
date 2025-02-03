@@ -1,8 +1,8 @@
-import { 	useQuery } from '@tanstack/react-query'
-import { Routes } from '@/lib'
-import axios from 'axios'
-import { type ReactQueryFunction } from '..'
-import { queryKeys } from './keys'
+import { 	useQuery } from "@tanstack/react-query"
+import { Routes } from "@/lib"
+import axios from "axios"
+import { type ReactQueryFunction } from ".."
+import { queryKeys } from "./keys"
 
 export const useGetServers: ReactQueryFunction<Schema.ServersOptions[]> = (options) => {
 	return useQuery({

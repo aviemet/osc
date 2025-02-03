@@ -2,10 +2,10 @@ import { fixupPluginRules } from '@eslint/compat'
 import stylistic from '@stylistic/eslint-plugin'
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
-import jsoncPlugin from 'eslint-plugin-jsonc'
 import tsParser from '@typescript-eslint/parser'
+import jsoncPlugin from 'eslint-plugin-jsonc'
 import jsoncParser from 'jsonc-eslint-parser'
-// import stylelint from 'eslint-plugin-stylelint'
+import json from "@eslint/json";
 
 const ignores = [
 	'app/javascript/**/*',
@@ -51,7 +51,6 @@ export default [
 			'react-hooks': fixupPluginRules(reactHooksPlugin),
 			'jsx-a11y': jsxA11yPlugin,
 			'@stylistic': stylistic,
-			// stylelint: fixupPluginRules(stylelint),
 		},
 		rules: {
 			'@stylistic/indent': ['error', 'tab', {
@@ -124,9 +123,12 @@ export default [
 			'eqeqeq': 'error',
 			'no-console': 'warn',
 			'eol-last': ['error', 'always'],
-			// 'stylelint/no-invalid': 'error',
-			// ...stylelint.rules,
+			'semi': ['error', 'never'],
 			...reactHooksPlugin.configs.recommended.rules,
+			'@stylistic/quotes': ['error', 'double', { 
+				avoidEscape: true,
+				allowTemplateLiterals: true 
+			}],
 		},
 	},
 	// Typescript declaration files
@@ -141,15 +143,18 @@ export default [
 	},
 	// Json files
 	{
-		files: ['**/*.json', '**/*.jsonc'],
+		files: ['**/*.json', '**/*.jsonc', '**/*.json5'],
+		language: "json/json",
 		ignores,
 		plugins: {
 			jsonc: jsoncPlugin,
+			json,
 		},
 		languageOptions: {
 			parser: jsoncParser,
 		},
 		rules: {
+			"json/no-duplicate-keys": "error",
 			'jsonc/indent': ['error', 2, { ignoredNodes: ['Property'] }],
 			'@stylistic/no-multi-spaces': 'off',
 		},

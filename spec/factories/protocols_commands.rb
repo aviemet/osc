@@ -28,6 +28,6 @@ FactoryBot.define do
   factory :protocols_command do
     protocol { nil }
     command { nil }
-    delay { 1 }
+    delay { nil }
   end
 end

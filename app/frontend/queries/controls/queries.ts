@@ -1,7 +1,7 @@
-import { useQuery } from '@tanstack/react-query'
-import { Routes } from '@/lib'
-import axios from 'axios'
-import { type ReactQueryFunction } from '..'
+import { useQuery } from "@tanstack/react-query"
+import { Routes } from "@/lib"
+import axios from "axios"
+import { type ReactQueryFunction } from ".."
 
 export const useGetControl: ReactQueryFunction<Schema.ControlsShow, { slug: string }> = ({ slug }, options) => {
 	return useQuery({
@@ -16,7 +16,7 @@ export const useGetControl: ReactQueryFunction<Schema.ControlsShow, { slug: stri
 
 export const useGetControls: ReactQueryFunction<Schema.ControlsOptions[]> = (options) => {
 	return useQuery({
-		queryKey: ['controls'],
+		queryKey: ["controls"],
 		queryFn: async () => {
 			const res = await axios.get(Routes.apiControls())
 			return res.data

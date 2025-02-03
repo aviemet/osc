@@ -1,7 +1,7 @@
-import { type SelectProps, type InputProps } from '@mantine/core'
+import { type SelectProps, type InputProps } from "@mantine/core"
 
 type OverriddenColors = {
-	[key in keyof Colors]: key extends 'primary'
+	[key in keyof Colors]: key extends "primary"
 		? {
 			0: string
 			1: string
@@ -24,7 +24,7 @@ type OverriddenColors = {
 		: Colors[key]
 }
 
-declare module '@mantine/vanilla-extract/lib/types' {
+declare module "@mantine/vanilla-extract/lib/types" {
 	type Colors = OverriddenColors
 
 	interface MantineVars {
@@ -32,7 +32,7 @@ declare module '@mantine/vanilla-extract/lib/types' {
 	}
 }
 
-declare module '@mantine/vanilla-extract' {
+declare module "@mantine/vanilla-extract" {
 	type Colors = OverriddenColors
 
 	interface MantineVars {
@@ -40,7 +40,7 @@ declare module '@mantine/vanilla-extract' {
 	}
 }
 
-declare module '@mantine/core' {
+declare module "@mantine/core" {
 	export interface MantineThemeOther {
 		colorSchemeOption: (light: any, dark: any) => any
 		header: {
@@ -74,7 +74,7 @@ declare module '@mantine/core' {
 	> = {
 		as?: T
 	} & TProps &
-	Omit<PropsOf<T>, keyof TProps & 'as'>
+	Omit<PropsOf<T>, keyof TProps & "as">
 
 	interface PolymorphicComponent<T extends React.Element> {
 		as: T

@@ -1,7 +1,7 @@
-import { cloneDeep, get, unset } from 'lodash'
+import { cloneDeep, get, unset } from "lodash"
 
-export { default as NestedObject } from './Collections/NestedObject'
-export { default as NestedURLSearchParams } from './Collections/NestedURLSearchParams'
+export { default as NestedObject } from "./Collections/NestedObject"
+export { default as NestedURLSearchParams } from "./Collections/NestedURLSearchParams"
 
 /**
  * Ensures the object is an array member

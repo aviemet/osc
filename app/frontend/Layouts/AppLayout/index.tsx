@@ -1,13 +1,14 @@
-import React from 'react'
-import { AppShell, Burger, Container, Divider, Link, Menu, Title } from '@/Components'
-import { useAuth } from '@/lib/hooks'
-import { Routes } from '@/lib'
+import React from "react"
+import { AppShell, Burger, Container, Divider, Link, Menu, Title } from "@/Components"
+import { ToggleColorSchemeButton } from "@/Components/Button"
+import { HomeIcon } from "@/Components/Icons"
+import { Routes } from "@/lib"
+import { useAuth } from "@/lib/hooks"
+import { LayoutProps } from "../index"
 
-import * as classes from './AppLayout.css'
-import { HomeIcon } from '@/Components/Icons'
-import { ToggleColorSchemeButton } from '@/Components/Button'
+import * as classes from "./AppLayout.css"
 
-const AppLayout = ({ children }: { children: any }) => {
+const AppLayout = ({ children }: LayoutProps) => {
 	const { isLoggedIn } = useAuth()
 
 	return (

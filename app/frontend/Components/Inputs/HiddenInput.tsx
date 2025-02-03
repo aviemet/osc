@@ -1,5 +1,5 @@
-import React, { forwardRef } from 'react'
-import { InputProps } from 'react-html-props'
+import React, { forwardRef } from "react"
+import { InputProps } from "react-html-props"
 
 const TextInputComponent = forwardRef<HTMLInputElement, InputProps>((
 	{ name, id, ...props },

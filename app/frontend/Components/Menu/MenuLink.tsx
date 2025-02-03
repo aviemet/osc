@@ -1,10 +1,10 @@
-import React, { forwardRef } from 'react'
-import { Menu, createPolymorphicComponent, type MenuItemProps as MantineMenuItemProps } from '@mantine/core'
-import cx from 'clsx'
-import { Link } from '@/Components'
-import { LinkProps } from '../Link'
+import React, { forwardRef } from "react"
+import { Menu, createPolymorphicComponent, type MenuItemProps as MantineMenuItemProps } from "@mantine/core"
+import cx from "clsx"
+import { Link } from "@/Components"
+import { LinkProps } from "../Link"
 
-type ConflictingProps = 'color'|'children'|'classNames'|'styles'|'variant'|'vars'
+type ConflictingProps = "color" | "children" | "classNames" | "styles" | "variant" | "vars"
 interface MenuItemProps extends MantineMenuItemProps, Omit<LinkProps, ConflictingProps> {
 	disabled?: boolean
 	type?: string

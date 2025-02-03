@@ -6,5 +6,7 @@ class Users::IndexSerializer < UserSerializer
     user_preferences: { type: "IUserPreferences" },
   )
 
+  self.timestamps
+
   has_many :roles, serializer: RoleSerializer
 end

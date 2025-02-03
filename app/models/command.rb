@@ -29,7 +29,7 @@ class Command < ApplicationRecord
   pg_search_scope(
     :search,
     against: [:title, :address, :payload, :description],
-    assoicated_against: {
+    associated_against: {
       protocols: [:title, :description]
     },
     using: {
@@ -42,6 +42,8 @@ class Command < ApplicationRecord
 
   enum :payload_type, { integer: 0, float: 1, string: 2, blob: 3, time: 4, symbol: 5, character: 6, boolean: 7 }
 
+  attribute :allow_custom_value, :boolean, default: false
+
   slug :title
 
   has_many :protocols_commands, dependent: :destroy
@@ -49,6 +51,8 @@ class Command < ApplicationRecord
   has_many :command_values, dependent: :destroy
 
   belongs_to :server
+
+  validates :title, presence: true
 
   scope :includes_associated, -> { includes([:protocols_commands, :protocols, :command_values]) }
 

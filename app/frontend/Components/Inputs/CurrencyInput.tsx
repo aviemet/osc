@@ -1,15 +1,14 @@
-import React, { forwardRef } from 'react'
-import { NumberInput, type NumberInputProps } from '@mantine/core'
-import Label from './Label'
-import InputWrapper from './InputWrapper'
-import { type BaseInputProps } from '.'
+import React, { forwardRef } from "react"
+import { NumberInput, type NumberInputProps } from "@mantine/core"
+import Label from "./Label"
+import InputWrapper from "./InputWrapper"
+import { type BaseInputProps } from "."
 
 export interface CurrencyInputProps
 	extends
 	NumberInputProps,
-	BaseInputProps
-{
-	symbol?: string|React.ReactNode
+	BaseInputProps {
+	symbol?: string | React.ReactNode
 }
 
 const NumberInputComponent = forwardRef<HTMLInputElement, CurrencyInputProps>((
@@ -19,8 +18,8 @@ const NumberInputComponent = forwardRef<HTMLInputElement, CurrencyInputProps>((
 		required = false,
 		id,
 		pattern,
-		size = 'md',
-		symbol = '$',
+		size = "md",
+		symbol = "$",
 		wrapper,
 		wrapperProps,
 		onClick,

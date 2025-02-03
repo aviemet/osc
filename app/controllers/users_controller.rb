@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   sortable_fields %w(email active first_name last_name number)
 
-  strong_params :user, permit: [:email, :password, :active, :first_name, :last_name, :number]
+  strong_params :user, permit: [:email, :password, :active, :first_name, :last_name, :number, user_preferences: {}]
 
   # @route GET /users (users)
   def index

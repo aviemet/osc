@@ -1,11 +1,11 @@
-import React from 'react'
-import { Select } from '@/Components/Form'
-import { type AsyncDropdown } from '.'
-import { useGetServers } from '@/queries'
+import React from "react"
+import { Select } from "@/Components/Form"
+import { type AsyncDropdown } from "."
+import { useGetServers } from "@/queries"
 
 const ServerDropdown = ({
-	label = 'Server',
-	name = 'server_id',
+	label = "Server",
+	name = "server_id",
 	initialData = [],
 	value,
 	onSelect,
@@ -17,10 +17,12 @@ const ServerDropdown = ({
 		<Select
 			label={ label }
 			name={ name }
-			options={ !data ? [] : data.map(server => ({
-				label: server.title!,
-				value: String(server.id),
-			})) }
+			options={ !data
+				? []
+				: data.map(server => ({
+					label: server.title!,
+					value: String(server.id),
+				})) }
 			{ ...props }
 		/>
 	)

@@ -1,4 +1,4 @@
-const queryRoot = 'control'
+const queryRoot = "control"
 
 export const queryKeys = {
 	controls: [queryRoot] as const,

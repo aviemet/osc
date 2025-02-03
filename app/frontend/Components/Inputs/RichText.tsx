@@ -1,8 +1,8 @@
-import React, { forwardRef } from 'react'
-import RichTextEditor, { type RichTextEditorProps } from '../RichTextEditor'
-import Label from './Label'
-import { type BaseInputProps } from '.'
-import InputWrapper from './InputWrapper'
+import React, { forwardRef } from "react"
+import RichTextEditor, { type RichTextEditorProps } from "../RichTextEditor"
+import Label from "./Label"
+import { type BaseInputProps } from "."
+import InputWrapper from "./InputWrapper"
 
 export interface RichTextInputProps extends RichTextEditorProps, BaseInputProps {
 	label?: React.ReactNode

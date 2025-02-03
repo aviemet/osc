@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react'
-import { Grid, Label } from '@/Components'
-import { NumberInput, TextInput, useDynamicInputContext } from '@/Components/Form'
-import { CommandDropdown, CommandValueDropdown } from '@/Components/Dropdowns'
-import { useForm } from 'use-inertia-form'
-import dayjs from 'dayjs'
-import { humanizeDuration } from '@/lib/formatters'
-import TextInputComponent from '@/Components/Inputs/TextInput'
+import React, { useMemo } from "react"
+import { Grid, Label } from "@/Components"
+import { NumberInput, TextInput, useDynamicInputContext } from "@/Components/Form"
+import { CommandDropdown, CommandValueDropdown } from "@/Components/Dropdowns"
+import { useForm } from "use-inertia-form"
+import dayjs from "dayjs"
+import { humanizeDuration } from "@/lib/formatters"
+import TextInputComponent from "@/Components/Inputs/TextInput"
 
 interface CommandInputsProps {
 	commands: Schema.CommandsOptions[]
@@ -16,7 +16,7 @@ const CommandInputs = ({ commands }: CommandInputsProps) => {
 	const { setData } = useForm()
 
 	const handleChange = () => {
-		setData(`protocol.protocols_commands[${index}].command_value_id`, '')
+		setData(`protocol.protocols_commands[${index}].command_value_id`, "")
 	}
 
 	const activeCommand = useMemo(
@@ -53,9 +53,9 @@ const CommandInputs = ({ commands }: CommandInputsProps) => {
 				<Label>Human Readable Duration</Label>
 				<TextInputComponent readOnly variant="outline" value={
 					(record?.delay || 0) === 0 ?
-						'No Delay'
+						"No Delay"
 						:
-						humanizeDuration(dayjs.duration(record?.delay || 0, 'millisecond'))
+						humanizeDuration(dayjs.duration(record?.delay || 0, "millisecond"))
 				} />
 			</Grid.Col>
 

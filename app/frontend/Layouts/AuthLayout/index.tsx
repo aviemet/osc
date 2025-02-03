@@ -1,6 +1,8 @@
-import React from 'react'
-import { Box, Center, Flex, Paper } from '@/Components'
-import * as classes from './AuthLayout.css'
+import React from "react"
+import { Box, Center, Flex, Paper } from "@/Components"
+
+import cx from "clsx"
+import * as classes from "./AuthLayout.css"
 
 interface LayoutProps {
 	children: any
@@ -8,7 +10,7 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
 	return (
-		<Flex className={ classes.authLayout }>
+		<Flex className={ cx(classes.authLayout) }>
 			<Center p="lg" id="auth-layout-left">
 				<Paper shadow="lg" radius="lg" p="xl" withBorder>
 					{ children }

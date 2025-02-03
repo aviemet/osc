@@ -52,6 +52,7 @@ class ProtocolsController < ApplicationController
   # @route POST /protocols (protocols)
   def create
     authorize Protocol.new
+
     if protocol.save
       redirect_to protocol, notice: "Protocol was successfully created."
     else

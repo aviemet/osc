@@ -1,8 +1,8 @@
-import React from 'react'
-import { Form, TextInput, PasswordInput, Submit, Field } from '@/Components/Form'
-import { Routes } from '@/lib'
-import { Box, Title, Link, Grid, Text } from '@/Components'
-import { type UseFormProps } from 'use-inertia-form'
+import React from "react"
+import { Form, TextInput, PasswordInput, Submit, Field } from "@/Components/Form"
+import { Routes } from "@/lib"
+import { Box, Title, Link, Grid, Text } from "@/Components"
+import { type UseFormProps } from "use-inertia-form"
 
 type RegisterFormData = {
 	user: {
@@ -21,32 +21,32 @@ const Register = ({ user, first_run }: RegisterProps) => {
 	const handleFormChange = ({ data }: UseFormProps<RegisterFormData>) => {
 	}
 
-	const handlePasswordChange = (value: string|number, { data, getError, clearErrors }: UseFormProps<RegisterFormData>) => {
-		if(getError('user.password') || getError('user.password_confirmation')) {
+	const handlePasswordChange = (value: string | number, { data, getError, clearErrors }: UseFormProps<RegisterFormData>) => {
+		if(getError("user.password") || getError("user.password_confirmation")) {
 			if(data.user.password === data.user.password_confirmation) {
-				clearErrors('user.password')
-				clearErrors('user.password_confirmation')
+				clearErrors("user.password")
+				clearErrors("user.password_confirmation")
 			}
 		}
 	}
 
 	const handleSubmit = ({ data, setError, errors, transform }: UseFormProps<RegisterFormData>) => {
 		if(data.user.password !== data.user.password_confirmation) {
-			setError('user.password_confirmation', 'Passwords must match')
+			setError("user.password_confirmation", "Passwords must match")
 			return false
 		}
 	}
 
-	const handleEmailBlur = (value: string|number, form: UseFormProps<RegisterFormData>) => {
+	const handleEmailBlur = (value: string | number, form: UseFormProps<RegisterFormData>) => {
 	}
 
 	return (
 		<Form
 			data={ {
 				user: {
-					email: '',
-					password: '',
-					password_confirmation: '',
+					email: "",
+					password: "",
+					password_confirmation: "",
 				},
 			} }
 			model="user"

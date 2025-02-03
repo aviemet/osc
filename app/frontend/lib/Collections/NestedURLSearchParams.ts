@@ -1,12 +1,12 @@
-import { unset, get, set, isEmpty } from 'lodash'
+import { unset, get, set, isEmpty } from "lodash"
 
 export default class NestedURLSearchParams {
 	_data: Record<string, unknown> = {}
 
-	constructor(initialData?: string|Record<string, any>|URLSearchParams) {
+	constructor(initialData?: string | Record<string, any> | URLSearchParams) {
 		if(!initialData) return
 
-		if(initialData instanceof URLSearchParams || typeof initialData === 'string') {
+		if(initialData instanceof URLSearchParams || typeof initialData === "string") {
 			let searchParams: URLSearchParams
 
 			if(initialData instanceof URLSearchParams) {
@@ -65,7 +65,7 @@ export default class NestedURLSearchParams {
 	}
 
 	toString() {
-		return `?${convertToQueryString(this.data)}`.replace(/\&$/, '')
+		return `?${convertToQueryString(this.data)}`.replace(/\&$/, "")
 	}
 
 	params() {
@@ -77,10 +77,10 @@ export default class NestedURLSearchParams {
 	}
 }
 
-const ignoreValues = [undefined, null, '']
+const ignoreValues = [undefined, null, ""]
 
-const convertToQueryString = (obj: Record<string, any>, parentKey = ''): string => {
-	let queryString = ''
+const convertToQueryString = (obj: Record<string, any>, parentKey = ""): string => {
+	let queryString = ""
 
 	for(const key in obj) {
 		if(Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -90,7 +90,7 @@ const convertToQueryString = (obj: Record<string, any>, parentKey = ''): string 
 
 			const formattedKey = parentKey ? `${parentKey}[${key}]` : key
 
-			if(typeof value === 'object' && Object.prototype.toString.call(value) === '[object Object]' && value !== null) {
+			if(typeof value === "object" && Object.prototype.toString.call(value) === "[object Object]" && value !== null) {
 				queryString += convertToQueryString(value, formattedKey)
 			} else {
 				let formattedValue = value

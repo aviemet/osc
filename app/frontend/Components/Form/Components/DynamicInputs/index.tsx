@@ -1,11 +1,11 @@
-import React from 'react'
-import { Box, Button, Flex, Label, Paper } from '@/Components'
-import { PlusCircleIcon, MinusCircleIcon } from '@/Components/Icons'
-import { NestedFields, NestedObject, useDynamicInputs, useForm } from 'use-inertia-form'
-import { DynamicInputContextProvider } from './dynamicInputContext'
-import cx from 'clsx'
+import React from "react"
+import { Box, Button, Flex, Label, Paper } from "@/Components"
+import { PlusCircleIcon, MinusCircleIcon } from "@/Components/Icons"
+import { NestedFields, NestedObject, useDynamicInputs, useForm } from "use-inertia-form"
+import { DynamicInputContextProvider } from "./dynamicInputContext"
+import cx from "clsx"
 
-import * as classes from '../../Form.css'
+import * as classes from "../../Form.css"
 
 export interface DynamicInputsProps<T = NestedObject> {
 	children: React.ReactNode | React.ReactElement[]
@@ -38,7 +38,7 @@ const DynamicInputs = <T extends Record<string, any>>({
 	}
 
 	return (
-		<Box className={ cx('dynamic_inputs', model, paths) }>
+		<Box className={ cx("dynamic_inputs", model, paths) }>
 			<Label style={ { flex: 1 } }>{ label }</Label>
 
 			{ paths.map((path, i) => (
@@ -64,7 +64,7 @@ const DynamicInputs = <T extends Record<string, any>>({
 				</DynamicInputContextProvider>
 			)) }
 
-			<Box style={ { textAlign: 'right' } }>
+			<Box style={ { textAlign: "right" } }>
 				<Button onClick={ handleAddInput } size='xs' mb="xs" mr="xs">
 					<PlusCircleIcon />
 				</Button>
@@ -75,4 +75,4 @@ const DynamicInputs = <T extends Record<string, any>>({
 
 export default DynamicInputs
 
-export { useDynamicInputContext } from './dynamicInputContext'
+export { useDynamicInputContext } from "./dynamicInputContext"

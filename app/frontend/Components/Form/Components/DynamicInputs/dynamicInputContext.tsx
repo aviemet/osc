@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 
 export interface DynamicInputProps<T> {
 	record: T
@@ -15,7 +15,7 @@ export const useDynamicInputContext = <T extends {}>(): DynamicInputProps<T> => 
 	const context = React.useContext(DynamicInputContext)
 
 	if(context === null) {
-		throw new Error('useContext must be inside a Provider with a value')
+		throw new Error("useContext must be inside a Provider with a value")
 	}
 
 	return context as DynamicInputProps<T>

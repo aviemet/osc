@@ -1,23 +1,23 @@
-import { useForm } from 'use-inertia-form'
+import { useForm } from "use-inertia-form"
 
 /**
  * Test if a value is "unset" in the context of a form input value. Returns true if the value can be considered "empty"
  * @param v Variable to test whether is an "unset" value
  * @returns boolean
  */
-export const isUnset = <T extends any>(v: T): v is T extends (null | undefined | '') ? T : never => {
+export const isUnset = <T extends any>(v: T): v is T extends (null | undefined | "") ? T : never => {
 	if(
 		v === null ||
 		v === undefined ||
-		(typeof v === 'string' && v === '') ||
+		(typeof v === "string" && v === "") ||
 		Number.isNaN(v) ||
-		JSON.stringify(v) === '{}'
+		JSON.stringify(v) === "{}"
 	) {
 		return true
 	}
 
 	if(Array.isArray(v)) {
-		return !v.some(el => el !== '' && el !== undefined)
+		return !v.some(el => el !== "" && el !== undefined)
 	}
 
 	return false
@@ -29,13 +29,13 @@ export function getInputOnChange<Value>(
 	return (val: Value | React.ChangeEvent<unknown> | ((current: Value) => Value)) => {
 		if(!val) {
 			setValue(val as Value)
-		} else if(typeof val === 'function') {
+		} else if(typeof val === "function") {
 			setValue(val)
-		} else if(typeof val === 'object' && 'nativeEvent' in val) {
+		} else if(typeof val === "object" && "nativeEvent" in val) {
 			const { currentTarget } = val
 
 			if(currentTarget instanceof HTMLInputElement) {
-				if(currentTarget.type === 'checkbox') {
+				if(currentTarget.type === "checkbox") {
 					setValue(currentTarget.checked as any)
 				} else {
 					setValue(currentTarget.value as any)

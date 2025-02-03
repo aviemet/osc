@@ -30,13 +30,17 @@
 #
 FactoryBot.define do
   factory :control do
-    title { "MyString" }
-    type { 1 }
-    screen { nil }
-    position { "" }
-    min_value { "9.99" }
-    max_value { "9.99" }
-    value { "9.99" }
-    protocol { nil }
+    title { Faker::Company.buzzword }
+    control_type { :button }
+    order { nil } # Will be set by callback
+    screen
+
+    trait :with_protocol do
+      protocol
+    end
+
+    trait :with_command do
+      command
+    end
   end
 end

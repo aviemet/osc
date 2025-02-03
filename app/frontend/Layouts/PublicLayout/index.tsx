@@ -1,15 +1,12 @@
-import React from 'react'
-import { useDisclosure } from '@mantine/hooks'
-import { AppShell, Burger, Skeleton } from '@mantine/core'
-import { Group, Link, Box } from '@/Components'
-import { CircleDotIcon } from '@/Components/Icons'
-import { Routes } from '@/lib'
+import React from "react"
+import { useDisclosure } from "@mantine/hooks"
+import { AppShell, Burger, Skeleton } from "@mantine/core"
+import { Group, Link, Box } from "@/Components"
+import { CircleDotIcon } from "@/Components/Icons"
+import { Routes } from "@/lib"
+import { LayoutProps } from "../index"
 
-interface PublicLayoutProps {
-	children: any
-}
-
-const PublicLayout: React.FC<PublicLayoutProps> = ({ children }) => {
+const PublicLayout = ({ children }: LayoutProps) => {
 	const [opened, { toggle }] = useDisclosure()
 
 	return (
@@ -17,7 +14,7 @@ const PublicLayout: React.FC<PublicLayoutProps> = ({ children }) => {
 			header={ { height: { base: 30, md: 50, lg: 60 } } }
 			navbar={ {
 				width: { base: 100, md: 200, lg: 300 },
-				breakpoint: 'sm',
+				breakpoint: "sm",
 				collapsed: { mobile: !opened },
 			} }
 			padding="md"
@@ -34,7 +31,7 @@ const PublicLayout: React.FC<PublicLayoutProps> = ({ children }) => {
 				</Group>
 			</AppShell.Header>
 			<AppShell.Navbar p="md">
-        Navigation
+				Navigation
 				{ Array(15)
 					.fill(0)
 					.map((_, index) => (

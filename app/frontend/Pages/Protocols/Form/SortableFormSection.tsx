@@ -1,20 +1,20 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState } from "react"
 import {
 	DndContext,
 	useSensor,
 	useSensors,
-} from '@dnd-kit/core'
-import type { Active, DragEndEvent, DragStartEvent, UniqueIdentifier } from '@dnd-kit/core'
+} from "@dnd-kit/core"
+import type { Active, DragEndEvent, DragStartEvent, UniqueIdentifier } from "@dnd-kit/core"
 import {
 	SortableContext,
 	arrayMove,
 	verticalListSortingStrategy,
-} from '@dnd-kit/sortable'
+} from "@dnd-kit/sortable"
 
 // import * as classes from './SortableList.css'
-import { useForm } from 'use-inertia-form'
-import { createContext } from '@/lib/hooks'
-import { FormPointerSensor } from '@/Components/Sortable'
+import { useForm } from "use-inertia-form"
+import { createContext } from "@/lib/hooks"
+import { FormPointerSensor } from "@/Components/Sortable"
 
 const [useSortableFormContext, SortableFormContextProvider] = createContext()
 export { useSortableFormContext }
@@ -32,7 +32,7 @@ interface SortableFormSectionProps {
 const SortableFormSection = <T extends BaseItem>({
 	children,
 	model,
-	sortField = 'order',
+	sortField = "order",
 }: SortableFormSectionProps) => {
 	const form = useForm()
 	const [active, setActive] = useState<Active | null>(null)

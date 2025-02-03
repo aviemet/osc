@@ -1,7 +1,7 @@
-import React from 'react'
-import { useInertiaInput } from 'use-inertia-form'
-import { Checkbox } from '@/Components/Inputs'
-import { type CheckboxGroupProps } from '@mantine/core'
+import React from "react"
+import { useInertiaInput } from "use-inertia-form"
+import { Checkbox } from "@/Components/Inputs"
+import { type CheckboxGroupProps } from "@mantine/core"
 
 export interface FormCheckboxGroupProps extends CheckboxGroupProps {
 	name: string

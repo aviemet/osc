@@ -7,6 +7,7 @@ ruby "3.3.4"
 gem "rails", "~> 7.1.4"
 gem "pg", "~> 1.1"
 gem "puma", "~> 6.0"
+gem "overmind", "~> 2.5"
 
 # Assets
 gem "inertia_rails", ">= 3.1"
@@ -31,7 +32,6 @@ gem "public_activity", "~> 3.0"
 # Helpers
 gem "factory_bot", ">= 6.2"
 gem "js-routes", "~> 2.2"
-gem "foreman", "~> 0.87.2"
 gem "amazing_print", "~> 1.4"
 gem "eventmachine", "~> 1.2"
 # gem "ruby-osc", "~> 1.0"
@@ -55,25 +55,27 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
-  gem "rspec-rails", "~> 6.0.1"
+  gem "rspec-rails", ">= 6.0.1"
   gem "factory_bot_rails", ">=6.2"
-  gem "pry-rails", "~> 0.3.9"
+  gem "pry-rails", ">= 0.3.9"
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
 
   # Linting
-  gem "rubocop-rails", "~> 2.14", require: false
-  gem "rubocop-rspec", "~> 2.9", require: false
-  gem "rubocop-performance", "~> 1.13", require: false
-  gem "rubocop-daemon", "~> 0.3.2", require: false
+  gem "rubocop", "~> 1.71", require: false
+  gem "rubocop-factory_bot", "~> 2.26", require: false
+  gem "rubocop-rails", ">= 2.14", require: false
+  gem "rubocop-rspec", ">= 2.9", require: false
+  gem "rubocop-performance", ">= 1.13", require: false
+  gem "rubocop-daemon", ">= 0.3.2", require: false
 
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri mingw x64_mingw]
 
-  gem "dotenv-rails", "~> 2.8"
+  gem "dotenv-rails", ">= 3.1"
 
   # File annotation
-  gem "chusaku", "~> 1.2", require: false
-  gem "annotate", "~> 3.2", require: false
+  gem "chusaku", ">= 1.2", require: false
+  gem "annotate", ">= 3.2", require: false
 end
 
 group :development do
@@ -93,9 +95,9 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
   gem "generator_spec", ">= 0.9.4"
-  gem "database_cleaner-active_record", "~> 2.0"
-  gem "shoulda-matchers", "~> 5.1"
-  gem "bullet", "~> 7.0"
-  gem "simplecov", "~> 0.22.0"
-  gem "pundit-matchers", "~> 3.1"
+  gem "database_cleaner-active_record", ">= 2.0"
+  gem "shoulda-matchers", ">= 5.1"
+  gem "bullet", ">= 8.0"
+  gem "simplecov", ">= 0.22.0"
+  gem "pundit-matchers", ">= 3.1"
 end

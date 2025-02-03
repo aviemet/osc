@@ -4,7 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  description :text
-#  hostname    :string
+#  hostname    :string           not null
 #  port        :integer
 #  slug        :string           not null
 #  title       :string           not null
@@ -34,7 +34,9 @@ class Server < ApplicationRecord
 
   has_many :commands, dependent: :nullify
 
-  scope :includes_associated, -> { includes([:commands]) }
+  attribute :port, :integer, default: 9091
 
-  attribute :port, :integer, default: 8080
+  validates :hostname, presence: true
+
+  scope :includes_associated, -> { includes([:commands]) }
 end

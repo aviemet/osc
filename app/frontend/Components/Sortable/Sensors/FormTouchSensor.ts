@@ -1,5 +1,5 @@
-import type { TouchEvent } from 'react'
-import { TouchSensor } from '@dnd-kit/core'
+import type { TouchEvent } from "react"
+import { TouchSensor } from "@dnd-kit/core"
 
 /**
  * An extended "TouchSensor" that prevent some
@@ -8,7 +8,7 @@ import { TouchSensor } from '@dnd-kit/core'
 export default class FormTouchSensor extends TouchSensor {
 	static activators = [
 		{
-			eventName: 'onTouchDown' as any,
+			eventName: "onTouchDown" as any,
 			handler: ({ nativeEvent: event }: TouchEvent) => {
 				if(isInteractiveElement(event.target as Element)) {
 					return false
@@ -22,11 +22,11 @@ export default class FormTouchSensor extends TouchSensor {
 
 function isInteractiveElement(element: Element | null) {
 	const interactiveElements = [
-		'button',
-		'input',
-		'textarea',
-		'select',
-		'option',
+		"button",
+		"input",
+		"textarea",
+		"select",
+		"option",
 	]
 	if(
 		element?.tagName &&

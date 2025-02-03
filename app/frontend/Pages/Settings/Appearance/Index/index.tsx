@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react'
-import { Box, Title } from '@/Components'
-import SettingsLayout from '../../SettingsLayout'
-import useLayoutStore from '@/lib/store/LayoutStore'
+import React, { useEffect, useRef } from "react"
+import { Box, Title } from "@/Components"
+import SettingsLayout from "../../SettingsLayout"
+import useStore from "@/lib/store"
 
 interface IAppearanceSettingsProps {
 	settings: {
@@ -10,7 +10,7 @@ interface IAppearanceSettingsProps {
 }
 
 const AppearanceSettings = ({ settings }: IAppearanceSettingsProps) => {
-	const { primaryColor, setPrimaryColor } = useLayoutStore()
+	const { primaryColor, setPrimaryColor } = useStore()
 	const RevertColorRef = useRef<string>(primaryColor!)
 
 	useEffect(() => {

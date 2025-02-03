@@ -55,16 +55,15 @@ class User < ApplicationRecord
   # :omniauthable, :timeoutable, :confirmable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :lockable, :trackable
 
-  scope :includes_associated, -> { includes([:circles]) }
+  password_complexity_regex = /\A(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{8,70}\z/
+  validates :password, format: { with: password_complexity_regex }, on: [:create, :update], confirmation: true, if: :password
 
-  belongs_to :person, optional: true
-
-  def circles
-    Circle.with_roles(Circle.find_roles.pluck(:name), self)
-  end
+  validates :email, presence: true, uniqueness: true
+  validates :email, length: { maximum: 255 }
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   # Rows page for pagination
   def limit(model)
-    self.table_preferences&.[](model.to_s)&.[]('limit')
+    self.table_preferences&.[](model.to_s)&.[]("limit")
   end
 end

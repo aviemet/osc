@@ -1,17 +1,19 @@
-import React, { useEffect, useMemo } from 'react'
-import { MantineProvider, createTheme, px, type CSSVariablesResolver } from '@mantine/core'
-import { type CSSVariables } from '@mantine/core/lib/core/MantineProvider/convert-css-variables/css-variables-object-to-string'
-import { ModalsProvider } from '@mantine/modals'
-import { Notifications } from '@mantine/notifications'
-import { theme as themeObject, vars } from '@/lib/theme'
-import useLayoutStore from '@/lib/store/LayoutStore'
-import { toKebabCase } from '@/lib'
+import React, { useMemo } from "react"
+import { MantineProvider, createTheme, type CSSVariablesResolver } from "@mantine/core"
+import { type CSSVariables } from "@mantine/core/lib/core/MantineProvider/convert-css-variables/css-variables-object-to-string"
+import { ModalsProvider } from "@mantine/modals"
+import { Notifications } from "@mantine/notifications"
+import { theme as themeObject, vars } from "@/lib/theme"
+import useStore from "@/lib/store"
+import { toKebabCase } from "@/lib"
+import { useInit } from "@/lib/hooks"
+import { Flash } from "@/Components"
 
 const UiFrameworkProvider = ({ children }: { children: React.ReactNode }) => {
 	/**
 	 * Primary color customization
 	 */
-	const { primaryColor } = useLayoutStore()
+	const { primaryColor } = useStore()
 
 	const theme = useMemo(() => createTheme({ ...themeObject, primaryColor }), [primaryColor])
 
@@ -39,19 +41,12 @@ const UiFrameworkProvider = ({ children }: { children: React.ReactNode }) => {
 	}, [primaryColor])
 
 
-	useEffect(() => {
-		/* eslint-disable no-console */
-		if(process.env.NODE_ENV && process.env.NODE_ENV === 'development') {
-			console.log({ theme })
+	useInit(() => {
+		if(import.meta.env.MODE === "development") {
 			console.log({ vars })
-
-			console.log({ breakpointsPx: Object.fromEntries(
-				Object.entries(theme.breakpoints ?? []).map(([key, val]) => [key, px(val)]),
-			) })
 		}
-		/* eslint-enable */
-	}, [])
-
+	})
+	console.log({ children })
 	return (
 		<MantineProvider
 			theme={ theme }
@@ -59,7 +54,8 @@ const UiFrameworkProvider = ({ children }: { children: React.ReactNode }) => {
 			cssVariablesResolver={ cssVariablesResolver }
 		>
 			<Notifications position="bottom-left" autoClose={ 5000 } />
-			<ModalsProvider labels={ { confirm: 'Submit', cancel: 'Cancel' } }>
+			<ModalsProvider labels={ { confirm: "Submit", cancel: "Cancel" } }>
+				<Flash />
 				{ children }
 			</ModalsProvider>
 		</MantineProvider>

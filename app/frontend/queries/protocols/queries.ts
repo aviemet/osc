@@ -1,8 +1,8 @@
-import { useQuery } from '@tanstack/react-query'
-import { Routes } from '@/lib'
-import axios from 'axios'
-import { type ReactQueryFunction } from '..'
-import { queryKeys } from './keys'
+import { useQuery } from "@tanstack/react-query"
+import { Routes } from "@/lib"
+import axios from "axios"
+import { type ReactQueryFunction } from ".."
+import { queryKeys } from "./keys"
 
 export const useGetProtocol: ReactQueryFunction<Schema.ProtocolsShow, { slug: string }> = ({ slug }, options) => {
 	return useQuery({

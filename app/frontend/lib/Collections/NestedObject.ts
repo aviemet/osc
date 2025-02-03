@@ -1,9 +1,9 @@
-import { unset, get, set, isEmpty } from 'lodash'
+import { unset, get, set, isEmpty } from "lodash"
 
 export default class NestedObject {
 	data = {}
 
-	constructor(initialData?: Record<string, any>|Map<string, any>) {
+	constructor(initialData?: Record<string, any> | Map<string, any>) {
 		if(!initialData) return
 
 		for(const [key, value] of Object.entries(initialData)) {

@@ -32,14 +32,12 @@ class Screen < ApplicationRecord
 
   slug :title
 
-  has_many :controls, -> { order(order: :asc) }, dependent: :nullify, inverse_of: :screen
+  has_many :controls, -> { order(order: :asc) }, dependent: :destroy, inverse_of: :screen
 
   default_scope { order(:order) }
   scope :includes_associated, -> { includes([:controls]) }
 
-  validates :title, format: { without: /new/ }
-
-  accepts_nested_attributes_for :controls, reject_if: ->(attributes) { attributes['title'].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :controls, reject_if: ->(attributes) { attributes["title"].blank? }, allow_destroy: true
 
   private
 
@@ -47,6 +45,12 @@ class Screen < ApplicationRecord
     return unless self.order.nil?
 
     last_screen = Screen.order(:order).last
-    self.order = last_screen.nil? ? 1 : last_screen.order + 1
+
+    self.order = if last_screen.nil? || last_screen.order.nil?
+                   1
+                 else
+                   last_screen.order + 1
+                 end
   end
+
 end

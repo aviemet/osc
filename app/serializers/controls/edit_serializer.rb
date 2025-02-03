@@ -2,9 +2,9 @@ class Controls::EditSerializer < ControlSerializer
 
   attributes(
     :id,
-    :updated_at,
-    :created_at,
   )
+
+  self.timestamps
 
   belongs_to :protocol, serializer: Protocols::EditSerializer
 end

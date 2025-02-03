@@ -1,9 +1,9 @@
-import React from 'react'
-import { Routes } from '@/lib'
-import { IndexPageTemplate } from '@/Features'
-import { NewIcon } from '@/Components/Icons'
-import ServersTable from '../Table'
-import { type Pagination } from '@/types'
+import React from "react"
+import { Routes } from "@/lib"
+import { IndexPageTemplate } from "@/Features"
+import { NewIcon } from "@/Components/Icons"
+import ServersTable from "../Table"
+import { type Pagination } from "@/types"
 
 interface IServerIndexProps {
 	servers: Schema.ServersIndex[]
@@ -19,7 +19,7 @@ const ServersIndex = ({ servers, pagination }: IServerIndexProps) => {
 			pagination={ pagination }
 			deleteRoute={ Routes.servers() }
 			menuOptions={ [
-				{ label: 'New Server', href: Routes.newServer(), icon: NewIcon },
+				{ label: "New Server", href: Routes.newServer(), icon: NewIcon },
 			] }
 		>
 			<ServersTable />

@@ -1,7 +1,7 @@
-import React from 'react'
-import { Routes } from '@/lib'
-import { Table, Link, type TableProps } from '@/Components'
-import { DeleteButton, EditButton } from '@/Components/Button'
+import React from "react"
+import { Routes } from "@/lib"
+import { Table, Link, type TableProps, Group } from "@/Components"
+import { DeleteButton, EditButton } from "@/Components/Button"
 
 const ProtocolTable = (props: TableProps) => {
 	return (
@@ -24,8 +24,10 @@ const ProtocolTable = (props: TableProps) => {
 						<Table.Cell>{ protocol.commands.length }</Table.Cell>
 
 						<Table.Cell fitContent>
-							<DeleteButton href={ Routes.protocol(protocol.slug) } mr="xs" />
-							<EditButton href={ Routes.editProtocol(protocol.slug) } />
+							<Group wrap="nowrap">
+								<DeleteButton href={ Routes.protocol(protocol.slug) } />
+								<EditButton href={ Routes.editProtocol(protocol.slug) } />
+							</Group>
 						</Table.Cell>
 
 					</Table.Row>

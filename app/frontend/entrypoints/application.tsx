@@ -1,44 +1,51 @@
-import React from 'react'
-import { createInertiaApp } from '@inertiajs/react'
-import { createRoot } from 'react-dom/client'
-import { PublicLayout, AppLayout, AuthLayout } from '../Layouts'
+import React from "react"
+import { createInertiaApp, router } from "@inertiajs/react"
+import { createRoot } from "react-dom/client"
+import { LAYOUTS } from "../Layouts"
+import {
+	applyPropsMiddleware,
+	setupCSRFToken,
+	setupInertiaListeners,
+	handlePageLayout,
+} from "./middleware"
 
-type PagesObject = { default: React.ComponentType<any> & {
-	layout?: React.ComponentType<any>
+import dayjs from "dayjs"
+import localizedFormat from "dayjs/plugin/localizedFormat"
+import duration from "dayjs/plugin/duration"
+import relativeTime from "dayjs/plugin/relativeTime"
+
+const pages = import.meta.glob<PagesObject>("../Pages/**/index.tsx")
+
+dayjs.extend(localizedFormat)
+dayjs.extend(localizedFormat)
+dayjs.extend(duration)
+dayjs.extend(relativeTime)
+
+const SITE_TITLE = "OSC"
+
+export type PagesObject<T = any> = { default: React.ComponentType<T> & {
+	layout?: React.ComponentType<T>
+	defaultLayout?: keyof typeof LAYOUTS
 } }
 
-const pages = import.meta.glob<PagesObject>('../Pages/**/index.tsx')
+document.addEventListener("DOMContentLoaded", () => {
+	setupCSRFToken()
+	setupInertiaListeners(router)
 
-document.addEventListener('DOMContentLoaded', () => {
 	createInertiaApp({
-		title: title => `OSC - ${title}`,
+		title: title => `${SITE_TITLE} - ${title}`,
 
-		resolve: async name => {
-			let checkedName = name
-			let layout
+		resolve: async (name) => {
+			const page: PagesObject = (await pages[`../Pages/${name}/index.tsx`]())
 
-			switch(name.substring(0, name.indexOf('/'))) {
-				case 'Public':
-					layout = PublicLayout
-					checkedName = name.replace('Public/', '')
-					break
-				case 'Auth':
-					layout = AuthLayout
-					checkedName = name.replace('Auth/', '')
-					break
-				default:
-					layout = AppLayout
-			}
-
-			const page = (await pages[`../Pages/${checkedName}/index.tsx`]()).default
-
-			if(page.layout === undefined) page.layout = layout
-
-			return page
+			return handlePageLayout(page)
 		},
 
 		setup({ el, App, props }) {
 			const root = createRoot(el)
+
+			props.initialPage.props = applyPropsMiddleware(props.initialPage.props)
+
 			root.render(<App { ...props } />)
 		},
 	})

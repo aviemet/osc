@@ -1,9 +1,10 @@
-import React from 'react'
-import { Box, Page, Tabs } from '@/Components'
-import Control from '../../../Features/Control'
-import { Routes } from '@/lib'
-import { useLocation } from '@/lib/hooks'
-import { router } from '@inertiajs/react'
+import React from "react"
+import { Page, Tabs } from "@/Components"
+import Control from "../../../Features/Controls/Control"
+import { Routes } from "@/lib"
+import { useLocation } from "@/lib/hooks"
+import { router } from "@inertiajs/react"
+import { ControlContainer } from "@/Features/Controls"
 
 interface IShowScreenProps {
 	screen: Schema.ScreensShow
@@ -13,7 +14,7 @@ interface IShowScreenProps {
 const ShowScreen = ({ screen, screens }: IShowScreenProps) => {
 	const { paths } = useLocation()
 
-	const title =  'Screen'
+	const title =  "Screen"
 
 	return (
 		<Page title={ title }>
@@ -32,11 +33,11 @@ const ShowScreen = ({ screen, screens }: IShowScreenProps) => {
 				{ screens.map(iScreen => (
 					<Tabs.Panel key={ iScreen.id } value={ iScreen.slug }>
 						{ iScreen.id === screen.id &&
-							<Box>
+							<ControlContainer>
 								{ screen?.controls?.map(control => (
 									<Control key={ control.id } control={ control } />
 								)) }
-							</Box>
+							</ControlContainer>
 						}
 					</Tabs.Panel>
 				)) }

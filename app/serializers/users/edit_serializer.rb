@@ -1,10 +1,9 @@
 class Users::EditSerializer < UserSerializer
-
   attributes(
     :id,
-    :updated_at,
-    :created_at,
   )
+
+  self.timestamps
 
   has_many :roles, serializer: RoleSerializer
 end

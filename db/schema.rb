@@ -130,7 +130,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_170737) do
   create_table "servers", force: :cascade do |t|
     t.string "title", null: false
     t.string "slug", null: false
-    t.string "hostname"
+    t.string "hostname", null: false
     t.integer "port"
     t.text "description"
     t.datetime "created_at", null: false

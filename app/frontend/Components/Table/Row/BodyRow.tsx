@@ -1,9 +1,9 @@
-import React, { forwardRef } from 'react'
-import { type TableRow } from './index'
-import { Table } from '@mantine/core'
-import RowCheckbox from './RowCheckbox'
-import { useTableContext } from '../TableContext'
-import { usePageProps } from '@/lib/hooks'
+import React, { forwardRef, useCallback } from "react"
+import { type TableRow } from "./index"
+import { Table } from "@mantine/core"
+import RowCheckbox from "./RowCheckbox"
+import { useTableContext } from "../TableContext"
+import { usePageProps } from "@/lib/hooks"
 
 interface RowInContextProps extends TableRow {
 	name?: string
@@ -19,25 +19,36 @@ const RowInContext = forwardRef<HTMLTableRowElement, RowInContextProps>((
 	const { auth: { user: { table_preferences } } } = usePageProps()
 	const { tableState: { model, columns } } = useTableContext()
 
+	const isColumnHidden = useCallback((columnIndex: number) => (
+		columns[columnIndex]?.hideable &&
+		model &&
+		table_preferences?.[model]?.hide?.[columns[columnIndex].hideable]
+	), [columns, model, table_preferences])
+
 	const length = rows?.length || 0
 
 	return (
 		<Table.Tr { ...props } ref={ ref }>
-			{ selectable && length > 0 && <RowCheckbox name={ name || '' } selected={ selected } /> }
+			{ selectable && length > 0 && <RowCheckbox name={ name || "" } selected={ selected } /> }
 
 			{ children && React.Children.map(children, (cell, i) => {
-				if((
-					columns[i]?.hideable &&
-					model &&
-					table_preferences?.[model]?.hide?.[columns[i].hideable]
-				)) {
-					return <React.Fragment key={ columns[i]?.label } />
+				const label = columns[i]?.label
+
+				if(isColumnHidden(i)) {
+					return <React.Fragment key={ label } />
 				}
-				return React.cloneElement(cell, {
-					key: columns[i]?.label,
-					'data-cell': columns[i]?.label,
-					role: 'cell',
-				})
+
+				const cellProps = {
+					key: label,
+					"data-cell": label,
+					role: "cell",
+				}
+
+				if(Array.isArray(cell)) {
+					return cell.map(subCell => React.cloneElement(subCell, cellProps))
+				}
+
+				return React.cloneElement(cell, cellProps)
 			}) }
 		</Table.Tr>
 	)

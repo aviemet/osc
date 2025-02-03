@@ -1,13 +1,12 @@
-import React, { useReducer, useEffect } from 'react'
-import { createContext } from '@/lib/hooks'
-import { type Pagination } from '@/types'
+import React, { useReducer, useEffect } from "react"
+import { createContext } from "../../lib/hooks"
 
 /**
  * Table Section Context
  * Used by Cell component to determine which tag to use
  */
 interface TableSectionContextProvider {
-	section: 'head'|'body'|'footer'
+	section: "head" | "body" | "footer"
 }
 
 const [useTableSectionContext, TableSectionContextProvider] = createContext<TableSectionContextProvider>()
@@ -18,7 +17,7 @@ export { useTableSectionContext, TableSectionContextProvider }
  */
 interface TableState {
 	selectable: boolean
-	pagination?: Pagination
+	pagination?: Schema.Pagination
 	rows?: Record<string,any>[]
 	columns: { hideable: string, label: string }[]
 	selected: Set<string>
@@ -35,7 +34,7 @@ interface TableContextValues {
 interface TableContextProviderProps {
 	children: React.ReactNode
 	selectable?: boolean
-	pagination?: Pagination
+	pagination?: Schema.Pagination
 	rows?: Record<string,any>[]
 	hideable?: boolean
 
@@ -85,7 +84,7 @@ const TableProvider = ({
 interface StatePreservingRowUpdaterProps {
 	children: React.ReactElement
 	rows?: Record<string,any>[]
-	pagination?: Pagination
+	pagination?: Schema.Pagination
 }
 
 /**

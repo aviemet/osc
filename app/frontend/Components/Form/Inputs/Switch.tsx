@@ -1,9 +1,9 @@
-import React from 'react'
-import Field from '../Components/Field'
-import SwitchInput, { type SwitchProps } from '@/Components/Inputs/Switch'
-import { NestedObject, useInertiaInput } from 'use-inertia-form'
-import ConditionalWrapper from '@/Components/ConditionalWrapper'
-import { type InputConflicts, type BaseFormInputProps } from '.'
+import React from "react"
+import Field from "../Components/Field"
+import SwitchInput, { type SwitchProps } from "@/Components/Inputs/Switch"
+import { NestedObject, useInertiaInput } from "use-inertia-form"
+import ConditionalWrapper from "@/Components/ConditionalWrapper"
+import { type InputConflicts, type BaseFormInputProps } from "."
 
 interface FormSwitchProps<TForm extends NestedObject = NestedObject>
 	extends

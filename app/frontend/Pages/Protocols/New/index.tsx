@@ -1,14 +1,14 @@
-import React from 'react'
-import { Title, Page, Section } from '@/Components'
-import { Routes } from '@/lib'
-import ProtocolForm from '../Form'
+import React from "react"
+import { Title, Page, Section } from "@/Components"
+import { Routes } from "@/lib"
+import ProtocolForm from "../Form"
 
 interface INewProtocolProps {
 	protocol: Schema.ProtocolsFormData
 }
 
 const NewProtocol = ({ ...data }: INewProtocolProps) => {
-	const title = 'New Protocol'
+	const title = "New Protocol"
 
 	return (
 		<Page title={ title }>

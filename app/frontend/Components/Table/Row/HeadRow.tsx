@@ -1,10 +1,10 @@
-import React, { useEffect, forwardRef } from 'react'
-import { type TableRow } from './index'
-import { Table } from '@mantine/core'
-import HeadCheckbox from './HeadCheckbox'
-import { useTableContext } from '../TableContext'
-import { useCheckboxState } from '@/lib/hooks'
-import { coerceArray } from '../../../lib/index'
+import React, { useEffect, forwardRef } from "react"
+import { type TableRow } from "./index"
+import { Table } from "@mantine/core"
+import HeadCheckbox from "./HeadCheckbox"
+import { useTableContext } from "../TableContext"
+import { useCheckboxState } from "@/lib/hooks"
+import { coerceArray } from "../../../lib/index"
 
 interface HeadRowProps extends TableRow {
 	name?: string

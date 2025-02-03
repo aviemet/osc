@@ -1,14 +1,14 @@
-import React from 'react'
-import { Title, Page, Section } from '@/Components'
-import { Routes } from '@/lib'
-import ServerForm from '../Form'
+import React from "react"
+import { Title, Page, Section } from "@/Components"
+import { Routes } from "@/lib"
+import ServerForm from "../Form"
 
 interface INewServerProps {
 	server: Schema.ServersFormData
 }
 
 const NewServer = ({ ...data }: INewServerProps) => {
-	const title = 'New Server'
+	const title = "New Server"
 
 	return (
 		<Page title={ title }>

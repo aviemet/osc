@@ -1,7 +1,7 @@
-import React from 'react'
-import { Routes } from '@/lib'
-import { Table, Link, type TableProps } from '@/Components'
-import { DeleteButton, EditButton } from '@/Components/Button'
+import React from "react"
+import { Routes } from "@/lib"
+import { Table, Link, type TableProps, Group } from "@/Components"
+import { DeleteButton, EditButton } from "@/Components/Button"
 
 const CommandTable = (props: TableProps) => {
 	return (
@@ -32,8 +32,10 @@ const CommandTable = (props: TableProps) => {
 						</Table.Cell>
 
 						<Table.Cell fitContent>
-							<DeleteButton href={ Routes.command(command.slug) } mr="xs" />
-							<EditButton href={ Routes.editCommand(command.slug) } />
+							<Group wrap="nowrap">
+								<EditButton href={ Routes.editCommand(command.slug) } />
+								<DeleteButton href={ Routes.command(command.slug) } />
+							</Group>
 						</Table.Cell>
 
 					</Table.Row>

@@ -24,10 +24,9 @@ class Api::ProtocolsController < ApplicationController
   def execute
     authorize protocol
 
-    protocol.create_activity key: :slug, owner: current_user
+    protocol.create_activity :execute, owner: current_user
 
     SendOscProtocolJob.perform_later(protocol)
-
     render json: protocol, status: :accepted
   end
 
@@ -43,7 +42,7 @@ class Api::ProtocolsController < ApplicationController
   # @route PATCH /api/protocols/:slug (api_protocol)
   # @route PUT /api/protocols/:slug (api_protocol)
   def update
-    if protocol.save
+    if protocol.update(protocol_params)
       render json: protocol.render, status: :created
     else
       render json: { errors: protocol.errors }, status: :not_acceptable

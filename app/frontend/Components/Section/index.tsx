@@ -1,10 +1,10 @@
-import React from 'react'
-import { Box, ElementProps, type BoxProps } from '@mantine/core'
+import React from "react"
+import { Box, ElementProps, type BoxProps } from "@mantine/core"
 
-import cx from 'clsx'
-import * as classes from './Section.css'
+import cx from "clsx"
+import * as classes from "./Section.css"
 
-interface ISectionProps extends BoxProps, ElementProps<'section'> {
+interface ISectionProps extends BoxProps, ElementProps<"section"> {
 	fullHeight?: boolean
 }
 

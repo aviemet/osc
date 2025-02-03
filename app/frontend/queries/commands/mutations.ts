@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { type ReactMutationFunction } from ".."
-import axios from 'axios';
-import { Routes } from "@/lib";
-import { queryKeys } from "./keys";
+import axios from "axios"
+import { Routes } from "@/lib"
+import { queryKeys } from "./keys"
 
 export const useCreateCommand: ReactMutationFunction<Schema.CommandsFormData, Schema.CommandsShow> = (options) => {
 	const queryClient = useQueryClient()

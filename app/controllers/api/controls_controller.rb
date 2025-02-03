@@ -1,8 +1,8 @@
 class Api::ControlsController < ApplicationController
-  expose :control
   expose :controls, -> { Control.all }
+  expose :control
 
-  strong_params :control, permit: [:title, :control_type, :order, :color, :screen_id, :min_value, :max_value, :value, :protocol_id]
+  strong_params :control, permit: [:title, :control_type, :order, :color, :screen_id, :min_value, :max_value, :value, :command_id, :protocol_id]
 
   # @route GET /api/options/controls (api_controls_options)
   def options
@@ -10,18 +10,10 @@ class Api::ControlsController < ApplicationController
     render json: controls.render(view: :options), status: :ok
   end
 
-  def execute
-    authorize control
-
-    control.create_activity key: :slug, owner: current_user
-
-    SendOscProtocolJob.perform_later(control)
-
-    render json: control, status: :accepted
-  end
-
   # @route POST /api/controls (api_controls)
   def create
+    authorize Control.new
+
     if control.save
       render json: control.render, status: :created
     else
@@ -32,7 +24,9 @@ class Api::ControlsController < ApplicationController
   # @route PATCH /api/controls/:id (api_control)
   # @route PUT /api/controls/:id (api_control)
   def update
-    if control.save
+    authorize control
+
+    if control.update(control_params)
       render json: control.render, status: :created
     else
       render json: { errors: control.errors }, status: :not_acceptable

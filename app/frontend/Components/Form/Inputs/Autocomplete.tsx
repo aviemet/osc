@@ -1,10 +1,10 @@
-import React from 'react'
-import Field from '../Components/Field'
-import AutocompleteInput, { type AutocompleteProps } from '@/Components/Inputs/AutocompleteInput'
-import cx from 'clsx'
-import { NestedObject, useInertiaInput } from 'use-inertia-form'
-import { InputConflicts, type BaseFormInputProps } from '.'
-import ConditionalWrapper from '@/Components/ConditionalWrapper'
+import React from "react"
+import Field from "../Components/Field"
+import AutocompleteInput, { type AutocompleteProps } from "@/Components/Inputs/AutocompleteInput"
+import cx from "clsx"
+import { NestedObject, useInertiaInput } from "use-inertia-form"
+import { InputConflicts, type BaseFormInputProps } from "."
+import ConditionalWrapper from "@/Components/ConditionalWrapper"
 
 interface FormAutocompleteProps<TForm extends NestedObject = NestedObject>
 	extends
