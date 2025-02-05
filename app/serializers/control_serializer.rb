@@ -29,8 +29,6 @@
 #  fk_rails_...  (screen_id => screens.id)
 #
 class ControlSerializer < ApplicationSerializer
-  object_as :control
-
   attributes(
     :title,
     :order,

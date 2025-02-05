@@ -3,14 +3,25 @@ class ApplicationSerializer < Oj::Serializer
 
   identifier
 
-  def currency_for(obj)
-    obj.cost&.amount&.to_f
+  def self.currency_for(field)
+    type "Money"
+    define_method(field) do
+      money = @object.send(field)
+
+      return nil if money.nil?
+
+      {
+        amount: money.to_f,
+        cents: money.cents,
+        currency_iso: money.currency.iso_code,
+      }
+    end
   end
 
   def self.timestamps
     attributes(
-      :updated_at,
-      :created_at,
+      updated_at: { optional: true },
+      created_at: { optional: true },
     )
   end
 end

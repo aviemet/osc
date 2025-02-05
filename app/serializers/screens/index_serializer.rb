@@ -1,8 +1,2 @@
-class Screens::IndexSerializer < ScreenSerializer
-  attributes(
-    :slug,
-    :id,
-  )
-
-  self.timestamps
+class Screens::IndexSerializer < Screens::PersistedSerializer
 end

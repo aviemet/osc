@@ -1,23 +1,27 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Routes } from "@/lib"
 import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
-import { Box } from "@mantine/core"
+import { Box, type BoxProps } from "@/Components"
 import { EditIcon } from "@/Components/Icons"
 import { modals } from "@mantine/modals"
 import { useForm, UseFormProps } from "use-inertia-form"
+import ResizeHandle from "@/Features/Controls/ResizeHandle"
+import ControlEditIcon from "./ControlEditIcon"
 
 import cx from "clsx"
 import * as classes from "./EditControls.css"
-import ScreenControlForm, { ScreenControlFormData } from "@/Features/Controls/Form"
 
-interface EditControlWrapperProps {
+interface EditControlWrapperProps extends BoxProps {
 	children: React.ReactNode
-	control: Schema.ControlsFormData
+	control: Schema.ControlsEdit
 }
 
 const EditControlWrapper = ({ children, control, ...props }: EditControlWrapperProps) => {
 	const { getData, setData } = useForm<{ screen: Schema.ScreensEdit }>()
+	const [resizing, setResizing] = useState(false)
+	const [size, setSize] = useState({ width: 1, height: 1 })
+
 	const {
 		attributes,
 		listeners,
@@ -26,58 +30,74 @@ const EditControlWrapper = ({ children, control, ...props }: EditControlWrapperP
 		transition,
 	} = useSortable({ id: control.id! })
 
-	const handleEditSuccess = (form: UseFormProps<ScreenControlFormData>) => {
-		const updatedControl = form.data.control
-		const controls = getData("screen.controls") as Schema.ControlsEdit[]
-		const controlIndex = controls.findIndex(c => c.id === updatedControl.id)
+	// const handleResizeStart = (e: React.MouseEvent) => {
+	// 	e.stopPropagation()
+	// 	setResizing(true)
 
-		if(controlIndex !== - 1) {
-			const updatedControls = [...controls]
-			updatedControls[controlIndex] = updatedControl
-			setData("screen.controls", updatedControls)
-		}
+	// 	const startX = e.clientX
+	// 	const startY = e.clientY
+	// 	const startWidth = size.width
+	// 	const startHeight = size.height
 
-		modals.closeAll()
-	}
+	// 	const handleMouseMove = (e: MouseEvent) => {
+	// 		const deltaX = Math.floor((e.clientX - startX) / 150) // 150px is grid cell width
+	// 		const deltaY = Math.floor((e.clientY - startY) / 150) // 150px is grid cell height
 
-	const handleEditButtonClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-		e.stopPropagation()
-		e.preventDefault()
+	// 		setSize({
+	// 			width: Math.max(1, startWidth + deltaX),
+	// 			height: Math.max(1, startHeight + deltaY),
+	// 		})
+	// 	}
 
-		modals.open({
-			title: "Edit Control",
-			children: (
-				<ScreenControlForm
-					remember={ false }
-					control={ control }
-					to={ Routes.control(control.id) }
-					method="put"
-					onSuccess={ handleEditSuccess }
-					filter={ ["control.id", "control.command", "control.updated_at", "control.created_at", "control.command_id", "control.protocol"] }
-				/>
-			),
-		})
-	}
+	// 	const handleMouseUp = () => {
+	// 		setResizing(false)
+	// 		document.removeEventListener("mousemove", handleMouseMove)
+	// 		document.removeEventListener("mouseup", handleMouseUp)
+
+	// 		// Update control in form data
+	// 		const controls = getData("screen.controls") as Schema.ControlsFormData[]
+	// 		const controlIndex = controls.findIndex(c => c.id === control.id)
+
+	// 		if(controlIndex !== - 1) {
+	// 			const updatedControls = [...controls]
+	// 			updatedControls[controlIndex] = {
+	// 				...control,
+	// 				format: {
+	// 					...control.format,
+	// 					gridWidth: size.width,
+	// 					gridHeight: size.height,
+	// 				},
+	// 			}
+	// 			setData("screen.controls", updatedControls)
+	// 		}
+	// 	}
+
+	// 	document.addEventListener("mousemove", handleMouseMove)
+	// 	document.addEventListener("mouseup", handleMouseUp)
+	// }
 
 	return (
 		<Box
-			className={ cx(classes.editControlWrapper) }
+			className={ cx(classes.editControlWrapper, "control", control.control_type) }
 			ref={ setNodeRef }
 			style={ {
 				transform: CSS.Transform.toString(transform),
 				transition,
+				gridColumn: `span ${size.width}`,
+				gridRow: `span ${size.height}`,
+				position: "relative",
 			} }
-			{ ...listeners }
+			{ ...(resizing ? {} : listeners) }
 			{ ...attributes }
+			{ ...props }
 		>
-			<Box
-				className={ cx(classes.editButtonIcon) }
-				onMouseUp={ handleEditButtonClick }
-				{ ...props }
-			>
-				<EditIcon size={ 11 } />
-			</Box>
+			<ControlEditIcon control={ control } />
 			{ children }
+			{ /* <ResizeHandle position="left" onResize={ handleResizeStart } />
+			<ResizeHandle position="top" onResize={ handleResizeStart } />
+			<ResizeHandle position="right" onResize={ handleResizeStart } />
+			<ResizeHandle position="bottom" onResize={ handleResizeStart } />
+			<ResizeHandle position="corner" onResize={ handleResizeStart } /> */ }
 		</Box>
 	)
 }

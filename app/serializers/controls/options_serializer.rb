@@ -1,6 +1,4 @@
-class Controls::OptionsSerializer < ApplicationSerializer
-  object_as :control
-
+class Controls::OptionsSerializer < ControlSerializer
   attributes(
     :id,
     :title,

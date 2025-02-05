@@ -1,10 +1,5 @@
-class Controls::ShowSerializer < ControlSerializer
+class Controls::ShowSerializer < Controls::PersistedSerializer
   attributes(
     :id,
   )
-
-  self.timestamps
-
-  belongs_to :protocol, serializer: ProtocolSerializer, optional: true
-  belongs_to :command, serializer: CommandSerializer, optional: true
 end

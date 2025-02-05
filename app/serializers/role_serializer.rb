@@ -15,8 +15,6 @@
 #  index_roles_on_resource                                (resource_type,resource_id)
 #
 class RoleSerializer < ApplicationSerializer
-  object_as :role
-
   attributes(
     :name,
     :resource_type,

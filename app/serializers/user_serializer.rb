@@ -47,8 +47,6 @@
 #  index_users_on_user_preferences      (user_preferences) USING gin
 #
 class UserSerializer < ApplicationSerializer
-  object_as :user
-
   attributes(
     :email,
     :active,

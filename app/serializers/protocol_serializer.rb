@@ -14,8 +14,6 @@
 #  index_protocols_on_slug  (slug) UNIQUE
 #
 class ProtocolSerializer < ApplicationSerializer
-  object_as :protocol
-
   identifier :slug
 
   attributes(

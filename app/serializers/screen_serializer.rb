@@ -14,8 +14,6 @@
 #  index_screens_on_slug  (slug) UNIQUE
 #
 class ScreenSerializer < ApplicationSerializer
-  object_as :screen
-
   identifier :slug
 
   attributes(

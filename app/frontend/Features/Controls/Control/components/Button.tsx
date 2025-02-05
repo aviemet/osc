@@ -38,9 +38,9 @@ const ControlButton = ({
 		<Button
 			color={ control?.color ?? undefined }
 			onClick={ handleButtonClick }
-			className={ cx([className, "button", {
+			className={ cx(className, "button", {
 				[classes.lastButtonClicked]: lastButtonClicked === control.id,
-			}]) }
+			}) }
 			{ ...props }
 		>
 			{ control.title }

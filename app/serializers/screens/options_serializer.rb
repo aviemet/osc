@@ -1,11 +1,2 @@
-class Screens::OptionsSerializer < ApplicationSerializer
-  object_as :screen
-
-  identifier :slug
-
-  attributes(
-    :slug,
-    :title,
-    :order,
-  )
+class Screens::OptionsSerializer < Screens::PersistedSerializer
 end

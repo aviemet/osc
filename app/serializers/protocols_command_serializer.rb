@@ -25,8 +25,6 @@
 #  fk_rails_...  (protocol_id => protocols.id)
 #
 class ProtocolsCommandSerializer < ApplicationSerializer
-  object_as :protocols_command
-
   identifier :id
 
   attributes(

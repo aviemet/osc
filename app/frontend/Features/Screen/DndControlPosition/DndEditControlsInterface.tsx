@@ -12,6 +12,8 @@ import { useDynamicInputs, useForm } from "use-inertia-form"
 import { Control } from "@/Features/Controls"
 import EditControlWrapper from "./EditControlWrapper"
 
+import cx from "clsx"
+
 interface DndEditControlsInterfaceProps {
 	screen: Schema.ScreensEdit
 }
@@ -75,10 +77,12 @@ const DndEditControlsInterface = ({ screen }: DndEditControlsInterfaceProps) => 
 						<EditControlWrapper
 							key={ record.id }
 							control={ record }
+							className={ cx("control-wrapper") }
 						>
 							<Control
 								disable
 								control={ record }
+								wrapper={ false }
 							/>
 						</EditControlWrapper>
 					)

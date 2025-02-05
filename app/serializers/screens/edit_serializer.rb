@@ -1,10 +1,3 @@
-class Screens::EditSerializer < ScreenSerializer
-  attributes(
-    :id,
-    :slug,
-  )
-
-  self.timestamps
-
+class Screens::EditSerializer < Screens::PersistedSerializer
   has_many :controls, serializer: Controls::EditSerializer
 end

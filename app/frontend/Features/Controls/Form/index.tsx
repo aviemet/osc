@@ -78,6 +78,7 @@ const ScreenControlForm = ({ control, ...props }: EditScreenControlFormProps) =>
 					<Radio.Group name="format.flex" label="Display Format">
 						<Radio value="shrink" label="Size of Content" />
 						<Radio value="expand" label="Fill Available Space" />
+						<Radio value="break" label="Break to New Line" />
 					</Radio.Group>
 				</Grid.Col>
 

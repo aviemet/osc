@@ -16,8 +16,6 @@
 #  index_servers_on_slug  (slug) UNIQUE
 #
 class ServerSerializer < ApplicationSerializer
-  object_as :server
-
   identifier :slug
 
   attributes(

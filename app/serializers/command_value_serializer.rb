@@ -18,8 +18,6 @@
 #  fk_rails_...  (command_id => commands.id)
 #
 class CommandValueSerializer < ApplicationSerializer
-  object_as :command_value
-
   attributes(
     :label,
     :value,

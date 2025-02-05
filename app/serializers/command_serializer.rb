@@ -23,8 +23,6 @@
 #  fk_rails_...  (server_id => servers.id)
 #
 class CommandSerializer < ApplicationSerializer
-  object_as :command
-
   identifier :slug
 
   attributes(

@@ -8,11 +8,11 @@ import DndEditControlsInterface from "./DndEditControlsInterface"
 import cx from "clsx"
 import * as classes from "./EditControls.css"
 
-interface DndControlPositionProps {
+interface DndControlFormProps {
 	screen: Schema.ScreensEdit
 }
 
-const DndControlPosition = ({ screen }: DndControlPositionProps) => {
+const DndControlForm = ({ screen }: DndControlFormProps) => {
 	return (
 		<Form
 			model="screen"
@@ -34,4 +34,4 @@ const DndControlPosition = ({ screen }: DndControlPositionProps) => {
 	)
 }
 
-export default DndControlPosition
+export default DndControlForm

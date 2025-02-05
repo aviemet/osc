@@ -1,7 +1,2 @@
-class Controls::IndexSerializer < ControlSerializer
-  attributes(
-    :id,
-  )
-
-  self.timestamps
+class Controls::IndexSerializer < Controls::PersistedSerializer
 end
