@@ -1,3 +1,4 @@
+import React from "react"
 import {
 	DndContext,
 	useSensors,
@@ -20,6 +21,7 @@ interface DndEditControlsInterfaceProps {
 }
 
 const DndEditControlsInterface = ({ screen }: DndEditControlsInterfaceProps) => {
+	const { getData, setData, model: formModel } = useForm<{ screen: Schema.ScreensEdit }>()
 	const { paths } = useDynamicInputs({
 		model: "controls",
 		emptyData: {
@@ -36,7 +38,23 @@ const DndEditControlsInterface = ({ screen }: DndEditControlsInterfaceProps) => 
 		},
 	})
 
-	const { getData, setData, model: formModel } = useForm<{ screen: Schema.ScreensEdit }>()
+	const customHandleEvent = (element: HTMLElement | null) => {
+		let cur = element
+
+		while(cur) {
+			if(cur.dataset.noDnd) return false
+			cur = cur.parentElement
+		}
+
+		return true
+	}
+
+	PointerSensor.activators = [{
+		eventName: "onPointerDown",
+		handler: ({ nativeEvent: event }: React.PointerEvent<Element>) => (
+			customHandleEvent(event.target as HTMLElement)
+		),
+	}]
 
 	const sensors = useSensors(
 		useSensor(PointerSensor),
@@ -69,15 +87,14 @@ const DndEditControlsInterface = ({ screen }: DndEditControlsInterfaceProps) => 
 			onDragEnd={ handleDragEnd }
 			modifiers={ [restrictToParentElement] }
 		>
-			<SortableContext
-				items={ getData(`${formModel}.controls`) as UniqueIdentifier[] }
-			>
+			<SortableContext items={ getData(`${formModel}.controls`) as UniqueIdentifier[] }>
 				{ paths.map((path, i) => {
-					const record = getData(`${formModel}.${path}`) as Schema.ControlsFormData
+					const record = getData(`${formModel}.${path}`) as Schema.ControlsEdit
 
 					return (
 						<EditControlWrapper
 							key={ record.id }
+							index={ i }
 							control={ record }
 							className={ cx("control-wrapper") }
 						>

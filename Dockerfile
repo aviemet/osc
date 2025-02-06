@@ -52,6 +52,34 @@ RUN bundle exec bootsnap precompile --gemfile app/ lib/
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN RACK_ENV=production RAILS_ENV=production NODE_ENV=production SECRET_KEY_BASE=DUMMY bundle exec rails assets:precompile
 
+FROM ruby:$RUBY_VERSION AS FINAL_IMAGE
+
+# Copy only the necessary production files
+COPY --from=BUILD_IMAGE /osc/bin /osc/bin/
+COPY --from=BUILD_IMAGE /osc/config /osc/config
+COPY --from=BUILD_IMAGE /osc/app /osc/app
+COPY --from=BUILD_IMAGE /osc/public/vite /osc/public/vite
+COPY --from=BUILD_IMAGE /osc/db /osc/db
+COPY --from=BUILD_IMAGE /osc/lib/assets /osc/lib/assets
+COPY --from=BUILD_IMAGE /osc/lib/middleware /osc/lib/middleware
+COPY --from=BUILD_IMAGE /osc/lib/custom_failure.rb /osc/lib/custom_failure.rb
+COPY --from=BUILD_IMAGE /osc/vendor /osc/vendor
+COPY --from=BUILD_IMAGE /osc/tmp/cache /osc/tmp/cache
+COPY --from=BUILD_IMAGE /osc/Rakefile /osc/
+COPY --from=BUILD_IMAGE /osc/config.ru /osc/
+COPY --from=BUILD_IMAGE /osc/Gemfile /osc/
+COPY --from=BUILD_IMAGE /osc/Gemfile.lock /osc/
+COPY --from=BUILD_IMAGE /osc/vite.config.js /osc/
+COPY --from=BUILD_IMAGE /osc/package.json /osc/
+COPY --from=BUILD_IMAGE /osc/yarn.lock /osc/
+COPY --from=BUILD_IMAGE /osc/yarn.lock /osc/
+
+# Make sure the entrypoint script is executable
+RUN chmod +x /osc/bin/docker-entrypoint
+
+# Create necessary directories
+RUN mkdir -p /osc/tmp/pids /osc/log
+
 # Entrypoint prepares the database
 ENTRYPOINT ["/osc/bin/docker-entrypoint"]
 

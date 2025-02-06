@@ -1,7 +1,6 @@
-import React from "react"
 import { Routes } from "@/lib"
-import { Divider } from "@/Components"
-import { Form, Submit } from "@/Components/Form"
+import { Divider, Group, Link } from "@/Components"
+import { Form, FormConsumer, Submit } from "@/Components/Form"
 import { ControlContainer } from "@/Features/Controls"
 import DndEditControlsInterface from "./DndEditControlsInterface"
 
@@ -29,7 +28,12 @@ const DndControlForm = ({ screen }: DndControlFormProps) => {
 
 			<Divider my="md" />
 
-			<Submit>Save Screen Layout</Submit>
+			<FormConsumer>{ ({ isDirty }) => (
+				<Group justify="center">
+					<Link as="button" href={ Routes.home() } color="red" disabled={ !isDirty }>Cancel</Link>
+					<Submit disabled={ !isDirty }>Save Screen Layout</Submit>
+				</Group>
+			) }</FormConsumer>
 		</Form>
 	)
 }

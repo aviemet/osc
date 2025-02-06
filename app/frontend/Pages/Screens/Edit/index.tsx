@@ -10,7 +10,7 @@ import EditScreenTabButton from "./ScreenTabControls/EditScreenTabButton"
 
 import cx from "clsx"
 import * as classes from "./ScreenControl.css"
-import DndControlPosition from "@/Features/Screen/DndControlPosition"
+import DndControlPosition from "@/Features/Screen/DndControlLayout"
 
 interface EditScreenProps {
 	screen: Schema.ScreensEdit

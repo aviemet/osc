@@ -8,7 +8,7 @@ class ScreensController < ApplicationController
   sortable_fields %w(title order)
 
   strong_params :screen, permit: [:title, :order, controls_attributes: [
-    :id, :title, :order
+    :id, :title, :order, :control_type, :color, :value, :protocol_id, :command_id
   ]]
 
   # @route GET / (root)

@@ -1,44 +1,48 @@
 import { useState } from "react"
 import { Accordion, Code, Grid, Paper, ScrollArea, Text } from "@/Components"
-import { TextInput, Submit, SwatchInput, FormConsumer, Radio } from "@/Components/Form"
+import { TextInput, SwatchInput, Radio } from "@/Components/Form"
 import { ProtocolDropdown } from "@/Components/Dropdowns"
 import { useGetProtocol } from "@/queries"
-import { FormProps, useForm } from "use-inertia-form"
+import { useForm } from "use-inertia-form"
 import { DeleteButton } from "@/Components/Button"
 import { modals } from "@mantine/modals"
-import { Routes } from "@/lib"
+import { isUnset, Routes } from "@/lib"
 import { type ScreenControlFormData } from "@/Features/Controls/Form"
 
-const ControlFormInputs = () => {
-	const { data: formData, getData, model } = useForm<ScreenControlFormData>()
-	console.log({ model })
-	const [showingProtocolSlug, setShowingProtocolSlug] = useState<string>(getData("control.protocol.slug") as string || "")
+interface ControlFormInputsProps {
+	index?: number
+	closeModal?: () => void
+}
+
+const ControlFormInputs = ({ index, closeModal }: ControlFormInputsProps) => {
+	const modelBase = `screen.controls[${index}]`
+	const { getData } = useForm<ScreenControlFormData>()
+
+	const [showingProtocolSlug, setShowingProtocolSlug] = useState<string>(getData(`${modelBase}.protocol.slug`) as string || "")
 
 	const { data } = useGetProtocol({ slug: showingProtocolSlug }, {
 		enabled: !!showingProtocolSlug,
 	})
-	console.log({ data })
+
 	return (
 		<Grid>
 			<Grid.Col>
 				<TextInput name="title" label="Title" />
-				{ getData("control.control_type") === "slider" && <>
+				{ getData(`${modelBase}.control_type`) === "slider" && <>
 					<TextInput name="min_value" label="Min Value" />
 					<TextInput name="max_value" label="Max Value" />
 				</> }
 			</Grid.Col>
 
-			<FormConsumer<ScreenControlFormData>>{ ({ data }) => <>
-				{ getData("control.control_type") !== "spacer" && <Grid.Col>
-					<ProtocolDropdown
-						onChange={ (protocol, options, form) => {
-							const option = options.find(option => option.value === protocol)
-							if(option) {
-								setShowingProtocolSlug(option.slug)
-							}
-						} } />
-				</Grid.Col> }
-			</> }</FormConsumer>
+			{ getData(`${modelBase}.control_type`) !== "spacer" && <Grid.Col>
+				<ProtocolDropdown
+					onChange={ (protocol, options, form) => {
+						const option = options.find(option => option.value === protocol)
+						if(option) {
+							setShowingProtocolSlug(option.slug)
+						}
+					} } />
+			</Grid.Col> }
 
 			<Grid.Col>
 				{ data && <>
@@ -56,12 +60,11 @@ const ControlFormInputs = () => {
 				</> }
 			</Grid.Col>
 
-			<FormConsumer<ScreenControlFormData>>{ ({ data }) => <>
-				{ getData("control.control_type") !== "spacer" &&
-						<Grid.Col>
-							<SwatchInput label="Button Color" name="color" />
-						</Grid.Col> }
-			</> }</FormConsumer>
+			{ getData(`${modelBase}.control_type`) !== "spacer" &&
+				<Grid.Col>
+					<SwatchInput label="Button Color" name="color" />
+				</Grid.Col>
+			}
 
 			<Grid.Col>
 				<Radio.Group name="format.flex" label="Display Format">
@@ -71,14 +74,14 @@ const ControlFormInputs = () => {
 				</Radio.Group>
 			</Grid.Col>
 
-			{ getData("control.id") && <Grid.Col>
+			{ !isUnset(getData(`${modelBase}.id`)) && <Grid.Col>
 				<Accordion>
 					<Accordion.Item value="delete">
 						<Accordion.Control>Permanently Delete</Accordion.Control>
 						<Accordion.Panel>
 							<Text>Will permanently delete this control</Text>
 							<DeleteButton
-								href={ Routes.control(getData("control.id")!) }
+								href={ Routes.control(getData(`${modelBase}.id`)!) }
 								onClick={ () => modals.closeAll() }
 							>
 								Delete
@@ -88,9 +91,11 @@ const ControlFormInputs = () => {
 				</Accordion>
 			</Grid.Col> }
 
+			{ /*
 			<Grid.Col>
-				<Submit>{ getData("control.id") ? "Update" : "Create" } Control</Submit>
+				<Button onClick={ handleUpdateClick } w="100%">Update Control</Button>
 			</Grid.Col>
+			*/ }
 		</Grid>
 	)
 }

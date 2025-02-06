@@ -1,5 +1,5 @@
 import React from "react"
-import { Form, TextInput, Submit } from "@/Components/Form"
+import { Form, TextInput, Submit, NumberInput } from "@/Components/Form"
 import { Grid } from "@/Components"
 import { type HTTPVerb, type UseFormProps } from "use-inertia-form"
 
@@ -25,6 +25,14 @@ const ScreenForm = ({ method = "post", screen, ...props }: ScreenFormProps) => {
 			<Grid>
 				<Grid.Col>
 					<TextInput name="title" label="Title" />
+				</Grid.Col>
+
+				<Grid.Col span={ 4 }>
+					<NumberInput name="columns" label="Columns" />
+				</Grid.Col>
+
+				<Grid.Col span={ 4 }>
+					<NumberInput name="row_height" label="Row Height" />
 				</Grid.Col>
 
 				<Grid.Col>
