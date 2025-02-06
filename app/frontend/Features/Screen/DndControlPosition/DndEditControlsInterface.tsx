@@ -11,6 +11,7 @@ import { arrayMove, SortableContext } from "@dnd-kit/sortable"
 import { useDynamicInputs, useForm } from "use-inertia-form"
 import { Control } from "@/Features/Controls"
 import EditControlWrapper from "./EditControlWrapper"
+import { restrictToParentElement } from "@dnd-kit/modifiers"
 
 import cx from "clsx"
 
@@ -66,6 +67,7 @@ const DndEditControlsInterface = ({ screen }: DndEditControlsInterfaceProps) => 
 			sensors={ sensors }
 			collisionDetection={ closestCenter }
 			onDragEnd={ handleDragEnd }
+			modifiers={ [restrictToParentElement] }
 		>
 			<SortableContext
 				items={ getData(`${formModel}.controls`) as UniqueIdentifier[] }

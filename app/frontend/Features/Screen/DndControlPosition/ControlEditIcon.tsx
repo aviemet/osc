@@ -1,9 +1,12 @@
-import { Box, BoxProps } from "@/Components"
+import { Button, Modal, IconButton, IconButtonProps } from "@/Components"
 import { EditIcon } from "@/Components/Icons"
 import { modals } from "@mantine/modals"
-import ScreenControlForm from "@/Features/Controls/Form"
 import { Routes } from "@/lib"
-import { useForm, UseFormProps } from "use-inertia-form"
+import { useDisclosure } from "@/lib/hooks"
+import { NestedFields, useForm, UseFormProps } from "use-inertia-form"
+import { router } from "@inertiajs/react"
+import ScreenControlForm, { ScreenControlFormData } from "@/Features/Controls/Form"
+import ControlInputs from "../ControlInputs"
 
 import cx from "clsx"
 import * as classes from "./EditControls.css"
@@ -12,54 +15,69 @@ type ScreenControlEditFormData = {
 	control: Schema.ControlsEdit
 }
 
-interface ControlEditIconProps extends BoxProps {
+interface ControlEditIconProps extends IconButtonProps {
 	control: Schema.ControlsEdit
 }
 
 const ControlEditIcon = ({ control, ...props }: ControlEditIconProps) => {
 	const { getData, setData } = useForm<{ screen: Schema.ScreensEdit }>()
+	const [opened, { open, close }] = useDisclosure(false)
 
-	const handleEditButtonClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+	const handleEditButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.stopPropagation()
 		e.preventDefault()
-
-		modals.open({
-			title: "Edit Control",
-			children: (
-				<ScreenControlForm<ScreenControlEditFormData>
-					remember={ false }
-					control={ { control } }
-					to={ Routes.control(control.id) }
-					method="put"
-					onSuccess={ handleEditSuccess }
-					filter={ ["control.id", "control.command", "control.updated_at", "control.created_at", "control.command_id", "control.protocol"] }
-				/>
-			),
-		})
+		console.log("HI")
+		open()
+		// modals.open({
+		// 	title: "Edit Control",
+		// 	children: (
+		// 		// <ScreenControlForm
+		// 		// 	remember={ false }
+		// 		// 	control={ control }
+		// 		// 	to={ Routes.control(control.id) }
+		// 		// 	method="put"
+		// 		// 	onSuccess={ handleEditSuccess }
+		// 		// />
+		// 	),
+		// })
 	}
 
-	const handleEditSuccess = (form: UseFormProps<ScreenControlEditFormData>) => {
-		const updatedControl = form.data.control
-		const controls = getData("screen.controls")
-		const controlIndex = controls.findIndex(c => c.id === updatedControl.id)
+	const handleEditSuccess = (form: UseFormProps<ScreenControlFormData>) => {
+		// const updatedControl = form.data.control
+		// const controls = getData("screen.controls")
+		// const controlIndex = controls.findIndex(c => c.id === updatedControl.id)
 
-		if(controlIndex !== - 1) {
-			const updatedControls = [...controls]
-			updatedControls[controlIndex] = updatedControl
-			setData("screen.controls", updatedControls)
-		}
+		// if(controlIndex !== - 1) {
+		// 	const updatedControls = [...controls]
+		// 	updatedControls[controlIndex] = updatedControl
+		// 	setData("screen.controls", updatedControls)
+		// }
+
+		router.reload()
 
 		modals.closeAll()
 	}
 
 	return (
-		<Box
-			className={ cx(classes.editButtonIcon) }
-			onMouseUp={ handleEditButtonClick }
-			{ ...props }
-		>
-			<EditIcon size={ 11 } />
-		</Box>
+		<>
+			<Modal opened={ opened } onClose={ close }>
+				<>
+					<NestedFields model="controls">
+						<ControlInputs />
+					</NestedFields>
+				</>
+			</Modal>
+
+			<IconButton
+				variant="subtle"
+				color="gray"
+				className={ cx(classes.editButtonIcon) }
+				onClick={ handleEditButtonClick }
+				{ ...props }
+			>
+				<EditIcon size={ 11 } />
+			</IconButton>
+		</>
 	)
 }
 

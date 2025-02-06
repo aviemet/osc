@@ -32,7 +32,7 @@ const EditControlWrapper = ({ children, control, ...props }: EditControlWrapperP
 
 	// const handleResizeStart = (e: React.MouseEvent) => {
 	// 	e.stopPropagation()
-	// 	setResizing(true)
+	// 	setResizing(true)c
 
 	// 	const startX = e.clientX
 	// 	const startY = e.clientY

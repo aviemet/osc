@@ -37,6 +37,7 @@ const ControlButton = ({
 	return (
 		<Button
 			color={ control?.color ?? undefined }
+			disabled={ disable }
 			onClick={ handleButtonClick }
 			className={ cx(className, "button", {
 				[classes.lastButtonClicked]: lastButtonClicked === control.id,

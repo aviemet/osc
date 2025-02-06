@@ -1,9 +1,15 @@
-export { default as Button } from "./Button"
+export {
+	default as Button,
+	type ButtonProps,
+	IconButton,
+	type IconButtonProps,
+} from "./Button"
 export { default as ConditionalWrapper } from "./ConditionalWrapper"
 export { default as DangerousHtml } from "./DangerousHtml"
 export { default as Flash } from "./Flash"
 export { default as Link } from "./Link"
 export { default as Menu } from "./Menu"
+// export { default as Modal } from "./Modal"
 export { default as Page, type PageProps } from "./Page"
 export { default as RichTextEditor } from "./RichTextEditor"
 export { default as Section } from "./Section"
@@ -33,6 +39,7 @@ export {
 	Group, type GroupProps,
 	Image, type ImageProps,
 	List, type ListProps,
+	Modal, type ModalProps,
 	Paper, type PaperProps,
 	Popover, type PopoverProps,
 	ScrollArea, type ScrollAreaProps,
