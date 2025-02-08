@@ -4,6 +4,7 @@ import { Routes } from "@/lib"
 import { Title, Link } from "@/Components"
 import { type UseFormProps } from "use-inertia-form"
 import * as classes from "./Login.css"
+import { useTranslation } from "react-i18next"
 
 type LoginFormData = {
 	user: {
@@ -13,15 +14,17 @@ type LoginFormData = {
 	}
 }
 
-const defaultData = {
-	user: {
-		email: "",
-		password: "",
-		remember_me: false,
-	},
-}
-
 const Login = () => {
+	const { t } = useTranslation()
+
+	const defaultData = {
+		user: {
+			email: "",
+			password: "",
+			remember_me: false,
+		},
+	}
+
 	const handleSubmit = ({ data }: UseFormProps<LoginFormData>) => {
 		if(data.user.email === "" || data.user.password === "") {
 			return false
@@ -38,13 +41,13 @@ const Login = () => {
 		>
 
 			<div>
-				<Title>OSC</Title>
+				<Title>{ t("site.title") }</Title>
 			</div>
 
 			<Field>
 				<TextInput
 					name="email"
-					placeholder="Email"
+					placeholder={ t("auth.login.email_placeholder") }
 					autoFocus
 					autoComplete="Email"
 					required
@@ -55,22 +58,22 @@ const Login = () => {
 			<Field>
 				<PasswordInput
 					name="password"
-					placeholder="Password"
+					placeholder={ t("auth.login.password_placeholder") }
 					autoComplete="current-password"
 					required
 				/>
 			</Field>
 
 			<Field>
-				<Submit>Log In</Submit>
+				<Submit>{ t("auth.login.submit") }</Submit>
 			</Field>
 
 			<Field>
-				<Checkbox name="remember_me" label="Remember Me" />
+				<Checkbox name="remember_me" label={ t("auth.login.remember_me") } />
 			</Field>
 
-			<Link href={ Routes.newUserPassword() }>Reset Password</Link>
-			<Link href={ Routes.newUserRegistration() }>Register</Link>
+			<Link href={ Routes.newUserPassword() }>{ t("auth.login.links.reset_password") }</Link>
+			<Link href={ Routes.newUserRegistration() }>{ t("auth.login.links.register") }</Link>
 
 		</Form>
 	)

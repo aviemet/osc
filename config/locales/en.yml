@@ -31,3 +31,54 @@
 
 en:
   hello: "Hello world"
+
+  # Layout
+  site:
+    title: "OSC"
+
+  # Auth
+  auth:
+    login:
+      title: "Log In"
+      email_placeholder: "Email"
+      password_placeholder: "Password"
+      remember_me: "Remember Me"
+      submit: "Log In"
+      links:
+        reset_password: "Reset Password"
+        register: "Register"
+    register:
+      title: "Sign Up"
+      email_placeholder: "Email"
+      password_placeholder: "Password"
+      confirm_password_placeholder: "Confirm Password"
+      submit: "Sign Up"
+      login_instead: "Log In Instead"
+      admin_setup: "There is currently no admin user, please create one below"
+    confirmations:
+      title: "Please check your email"
+      instructions: "An email has been sent to the address provided. Please follow the link to confirm your account."
+      resend_instructions: "If you don't receive an email, use the form below to resend it."
+      email_placeholder: "Email"
+      submit: "Resend confirmation instructions"
+      links:
+        register: "Register"
+        login: "Log In Instead"
+
+  # Settings
+  settings:
+    title: "Settings"
+    tabs:
+      general: "General"
+      appearance: "Appearance"
+      mail: "Mail"
+      notifications: "Notifications"
+      asset_tags: "Asset Tags"
+      ldap: "LDAP"
+      tickets: "Tickets"
+      backups: "Backups"
+      logs: "Logs"
+    appearance:
+      title: "Appearance Settings"
+    general:
+      title: "General Settings"

@@ -2,12 +2,15 @@ import React from "react"
 import { Form, TextInput, Submit } from "@/Components/Form"
 import { Routes } from "@/lib"
 import { Title, Link } from "@/Components"
+import { useTranslation } from "react-i18next"
 
 interface IConfirmationsNew {
 	user: Schema.User
 }
 
 const ConfirmationsNew = ({ user }: IConfirmationsNew) => {
+	const { t } = useTranslation()
+
 	return (
 		<Form
 			model="user"
@@ -15,22 +18,30 @@ const ConfirmationsNew = ({ user }: IConfirmationsNew) => {
 			to={ Routes.userConfirmation() }
 		>
 			<div>
-				<Title order={ 3 }>Please check your email</Title>
-				<p>An email has been sent to the address provided. Please follow the link to confirm your account.</p>
-				<p>If you don&apos;t receive an email, use the form below to resend it.</p>
+				<Title order={ 3 }>{ t("auth.confirmations.title") }</Title>
+				<p>{ t("auth.confirmations.instructions") }</p>
+				<p>{ t("auth.confirmations.resend_instructions") }</p>
 			</div>
 
 			<div>
-				<TextInput name="email" placeholder="Email" autoComplete="Email" required />
+				<TextInput
+					name="email"
+					placeholder={ t("auth.confirmations.email_placeholder") }
+					autoComplete="Email"
+					required
+				/>
 			</div>
 
 			<div>
-				<Submit className="large">Resend confirmation instructions</Submit>
+				<Submit className="large">{ t("auth.confirmations.submit") }</Submit>
 			</div>
 
-			<Link href={ Routes.newUserRegistration() }>Register</Link>
-			<Link href={ Routes.newUserSession() }>Log In Instead</Link>
-
+			<Link href={ Routes.newUserRegistration() }>
+				{ t("auth.confirmations.links.register") }
+			</Link>
+			<Link href={ Routes.newUserSession() }>
+				{ t("auth.confirmations.links.login") }
+			</Link>
 		</Form>
 	)
 }

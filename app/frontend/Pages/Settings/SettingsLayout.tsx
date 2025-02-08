@@ -3,6 +3,7 @@ import { Paper, Page, Box, Section, Tabs } from "@/Components"
 import { router } from "@inertiajs/react"
 import { px, useMantineTheme } from "@mantine/core"
 import { useViewportSize, useLocation } from "@/lib/hooks"
+import { useTranslation } from "react-i18next"
 
 interface SettingsLayoutProps {
 	children: React.ReactNode
@@ -14,22 +15,16 @@ type Tab = {
 	icon?: React.ReactNode
 }
 
-const tabs: Tab[] = [
-	{ name: "general", label: "General" },
-	{ name: "appearance", label: "Appearance" },
-	{ name: "mail", label: "Mail" },
-	{ name: "notifications", label: "Notifications" },
-	// { name: 'integrations', label: 'Integrations' },
-	{ name: "asset_tags", label: "Asset Tags" },
-	// { name: 'barcodes', label: 'Barcodes' },
-	{ name: "ldap", label: "LDAP" },
-	{ name: "tickets", label: "Tickets" },
-	{ name: "backups", label: "Backups" },
-	{ name: "logs", label: "Logs" },
-]
-
 const SettingsLayout = ({ children }: SettingsLayoutProps) => {
-	const title = "Settings"
+	const { t } = useTranslation()
+
+	const tabs: Tab[] = [
+		{ name: "general", label: t("settings.tabs.general") },
+		{ name: "appearance", label: t("settings.tabs.appearance") },
+		{ name: "logs", label: t("settings.tabs.logs") },
+	]
+
+	const title = t("settings.title")
 	const { width } = useViewportSize()
 	const theme = useMantineTheme()
 	const [mobileFormat, setMobileFormat] = useState(window.innerWidth < Number(px(theme.breakpoints.sm)))

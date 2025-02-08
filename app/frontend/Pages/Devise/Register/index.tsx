@@ -3,6 +3,7 @@ import { Form, TextInput, PasswordInput, Submit, Field } from "@/Components/Form
 import { Routes } from "@/lib"
 import { Box, Title, Link, Grid, Text } from "@/Components"
 import { type UseFormProps } from "use-inertia-form"
+import { useTranslation } from "react-i18next"
 
 type RegisterFormData = {
 	user: {
@@ -18,6 +19,8 @@ interface RegisterProps {
 }
 
 const Register = ({ user, first_run }: RegisterProps) => {
+	const { t } = useTranslation()
+
 	const handleFormChange = ({ data }: UseFormProps<RegisterFormData>) => {
 	}
 
@@ -32,7 +35,7 @@ const Register = ({ user, first_run }: RegisterProps) => {
 
 	const handleSubmit = ({ data, setError, errors, transform }: UseFormProps<RegisterFormData>) => {
 		if(data.user.password !== data.user.password_confirmation) {
-			setError("user.password_confirmation", "Passwords must match")
+			setError("user.password_confirmation", t("auth.register.passwords_must_match"))
 			return false
 		}
 	}
@@ -54,21 +57,20 @@ const Register = ({ user, first_run }: RegisterProps) => {
 			onChange={ handleFormChange }
 			onSubmit={ handleSubmit }
 		>
-
 			<Box>
-				<Title mb="sm">Sign Up</Title>
+				<Title mb="sm">{ t("auth.register.title") }</Title>
 
 				{ first_run &&
-					<Text>There is currently no admin user, please create one below</Text>
+					<Text>{ t("auth.register.admin_setup") }</Text>
 				}
-
 			</Box>
+
 			<Grid>
 				<Grid.Col>
 					<Field>
 						<TextInput
 							name="email"
-							placeholder="Email"
+							placeholder={ t("auth.register.email_placeholder") }
 							autoFocus
 							autoComplete="Email"
 							required
@@ -81,34 +83,38 @@ const Register = ({ user, first_run }: RegisterProps) => {
 					<Field>
 						<PasswordInput
 							name="password"
-							placeholder="Password"
+							placeholder={ t("auth.register.password_placeholder") }
 							autoComplete="new-password"
 							required
 							onChange={ handlePasswordChange }
 						/>
 					</Field>
-
 				</Grid.Col>
+
 				<Grid.Col>
 					<Field>
 						<PasswordInput
 							name="password_confirmation"
-							placeholder="Confirm Password"
+							placeholder={ t("auth.register.confirm_password_placeholder") }
 							autoComplete="new-password"
 							required
 							onChange={ handlePasswordChange }
 						/>
 					</Field>
-
 				</Grid.Col>
+
 				<Grid.Col>
 					<Field mb={ 16 }>
-						<Submit className="large">Sign Up</Submit>
+						<Submit className="large">{ t("auth.register.submit") }</Submit>
 					</Field>
-
 				</Grid.Col>
 			</Grid>
-			{ !first_run && <Link href={ Routes.newUserSession() }>Log In Instead</Link> }
+
+			{ !first_run &&
+				<Link href={ Routes.newUserSession() }>
+					{ t("auth.register.login_instead") }
+				</Link>
+			}
 		</Form>
 	)
 }
