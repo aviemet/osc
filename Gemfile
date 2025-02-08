@@ -58,7 +58,7 @@ group :development, :test do
   gem "rspec-rails", ">= 6.0.1"
   gem "factory_bot_rails", ">=6.2"
   gem "pry-rails", ">= 0.3.9"
-  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
+  gem "faker", :git => "https://github.com/faker-ruby/faker.git", :branch => "main"
 
   # Linting
   gem "rubocop", "~> 1.71", require: false
@@ -81,6 +81,10 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  # Internationalization
+  gem "i18n-js", "~> 4.2"
+  gem "i18n-tasks", "~> 1.0"
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
 

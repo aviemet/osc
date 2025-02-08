@@ -1,0 +1,134 @@
+---
+description: Typescript Rules
+globs: *.ts, *.tsx
+---
+You are an expert in TypeScript, Node.js, Vite, Vitest, Inertia.js, React, Mantine, TanStack Query, CSS, HTML, UI and UX.
+
+## Code Style and Structure
+
+- Use functional and declarative programming patterns; avoid classes.
+- Prefer iteration and modularization over code duplication.
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
+- Consider edge cases and error scenarios, for simple edge cases, use the "return early" pattern to avoid nesting.
+- Properly structure files, all frontend code goes in /app/frontend
+    - /app/frontend/Components for all general purpose, highly reusable components.
+    - /app/frontend/Features for all feature specific components.
+    - /app/frontend/Layouts for all layout components.
+    - /app/frontend/lib for all non-react code.
+    - /app/frontend/Pages for all top-level Inertia pages. These components are the entry point for each route from the server.
+    - /app/frontend/queries for all async react-query methods, following the convention and type definitions in /app/frontend/queries/index.ts.
+    - /app/frontend/types for any globally used types or interfaces, or any custom types used in serializers. (Do no modify anything in types/serializers as it is all auto generated)
+
+  ### TypeScript Usage
+
+  - Use TypeScript for all javascript code; prefer interfaces over types.
+  - Write concise, technical TypeScript code with accurate examples.
+  - Avoid enums; use maps instead.
+  - Use functional components with TypeScript interfaces.
+  - Apply generics to functions, actions, and slices where type flexibility is needed.
+  - Utilize TypeScript utility types (Partial, Pick, Omit) for cleaner and reusable code.
+  - Prefer interface over type for defining object structures, especially when extending.
+  - Use mapped types for creating variations of existing types dynamically.
+
+  ### React Component Architecture
+
+  - Use functional components with TypeScript interfaces.
+  - Define components using `const`.
+  - Extract reusable logic into custom hooks.
+  - Implement proper component composition.
+  - Implement proper cleanup in useEffect hooks.
+
+  ### React Performance Optimization
+
+  - Use `useCallback` for memoizing expensive callback functions.
+  - Implement `useMemo` for expensive computations.
+  - Avoid inline function definitions in JSX.
+  - Implement code splitting using dynamic imports.
+  - Implement proper key props in lists (avoid using index as key).
+  
+  ### Variable and Function Naming Patterns
+  - Prefix event handlers with 'handle': handleClick, handleSubmit
+  - Prefix boolean variables with verbs: isLoading, hasError, canSubmit
+  - Prefix custom hooks with 'use': useAuth, useForm
+  - Use complete words over abbreviations except for:
+    - err (error)
+    - req (request)
+    - res (response)
+    - props (properties)
+    - ref (reference)
+
+  ### File Naming Conventions
+
+  - Use lowercase with dashes for directories (e.g., components/auth-wizard).
+  - Favor named exports for components.
+
+## Syntax and Formatting
+
+- Use the "function" keyword for pure functions.
+- Avoid unnecessary curly braces in conditionals; use concise syntax for simple statements.
+- Use declarative JSX.
+
+## Testing
+
+- Write tests using Vitest and React-Testing-Library and Playwright.
+- Put test files in app/frontend/tests in a folder structure which matches the file's location.
+
+  ### Unit Testing
+
+  - Write thorough unit tests to validate individual functions and components.
+  - Use Vitest and React Testing Library for reliable and efficient testing of React components.
+  - Follow patterns like Arrange-Act-Assert to ensure clarity and consistency in tests.
+  - Mock external dependencies and API calls to isolate unit tests.
+
+  ### Integration Testing
+
+  - Focus on user workflows to ensure app functionality.
+  - Set up and tear down test environments properly to maintain test independence.
+  - Use snapshot testing selectively to catch unintended UI changes without over-relying on it.
+  - Leverage testing utilities (e.g., screen in RTL) for cleaner and more readable tests.
+
+  ### E2E Testing
+
+  - Use Playwright to write end to end tests, putting test files in app/frontend/tests/e2e.
+  - Don't mock the server, assume that the server will be running in a test environment during when running e2e tests.
+
+## Accessibility (a11y)
+
+- Rely primarily on existing accessibility in Mantine.
+- Use semantic HTML for meaningful structure.
+- Apply accurate ARIA attributes where needed.
+- Ensure full keyboard navigation support.
+- Manage focus order and visibility effectively.
+- Maintain accessible color contrast ratios.
+- Follow a logical heading hierarchy.
+- Make all interactive elements accessible.
+- Provide clear and accessible error feedback.
+ 
+## Internationalization (i18n)
+
+- Use next-i18next to load translations in components.
+- Translation json files are generated by the i18n-js gem, do not modify them directly. Translations are defined in the Rails locales folder in yml files.
+- Implement proper locale detection.
+- Use proper number and date formatting.
+- Use proper currency formatting.
+- Implement proper RTL support.
+
+## UI and Styling
+
+- Use proxied Mantine components for styling. Mantine proxy files are located in app/frontend/Components.
+- Use CSS modules for styling, name CSS files using the same name as the root component with the extension ".css.ts". CSS module files use Linaria and should import the "css" method from "@/lib".
+- Implement responsive design; use a mobile-first approach.
+- Use Mantine's dark mode methods for implementing visual themes in CSS files.
+
+## Global State
+
+- Use zustand for global state.
+- Don't store values in global state unless they are truly frontend only. Most state should be managed on the server.
+- Avoid large, all-encompassing slices; separate concerns by feature.
+
+## Performance Optimization
+
+- Minimize 'useEffect', and 'setState'.
+- Wrap client components in Suspense with fallback.
+- Optimize images: use WebP format, include size data, implement lazy loading.
+

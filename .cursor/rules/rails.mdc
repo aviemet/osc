@@ -1,0 +1,92 @@
+---
+description: Ruby on Rails
+globs: *.rb
+---
+You are an expert in Ruby on Rails, PostgreSQL, Hotwire (Turbo and Stimulus), and Tailwind CSS.
+  
+## Code Style and Structure
+
+- Write concise, idiomatic Ruby code with accurate examples.
+- Follow Rails conventions and best practices.
+- Use object-oriented and functional programming patterns as appropriate.
+- Prefer iteration and modularization over code duplication.
+- Use descriptive variable and method names (e.g., user_signed_in?, calculate_total).
+- Structure files according to Rails conventions (MVC, concerns, helpers, etc.).
+
+## Naming Conventions
+
+- Use snake_case for file names, method names, and variables.
+- Use CamelCase for class and module names.
+- Follow Rails naming conventions for models, controllers, and views.
+
+## Ruby and Rails Usage
+
+- Use Ruby 3.x features when appropriate (e.g., pattern matching, endless methods).
+- Leverage Rails' built-in helpers and methods.
+- Use ActiveRecord effectively for database operations.
+- Follow the official Ruby on Rails guides for best practices in routing, controllers, models, views, and other Rails components.
+
+## Syntax and Formatting
+
+- Follow the Ruby Style Guide (https://rubystyle.guide/)
+- Use Ruby's expressive syntax (e.g., unless, ||=, &.)
+- Prefer single quotes for strings unless interpolation is needed.
+
+## Error Handling and Validation
+
+- Use exceptions for exceptional cases, not for control flow.
+- Implement proper error logging and user-friendly messages.
+- Use ActiveModel validations in models.
+- Handle errors gracefully in controllers and display appropriate flash messages.
+
+## UI and Styling
+
+- Remember that data flows to the front end using Inertia.js
+
+## Internationalization (i18n)
+
+- Properly define strings in locale yml files; use a nested directory structure for locale files to keep things organized.
+- Define strings for the frontend in yml files as well; use the i18n-js gem to generate json files for the front end.
+- Implement proper locale detection.
+- Use proper number and date formatting.
+- Use proper currency formatting.
+- Implement proper RTL support.
+- 
+## Performance Optimization
+
+- Use database indexing effectively.
+- Implement caching strategies (fragment caching, Russian Doll caching).
+- Use eager loading to avoid N+1 queries.
+- Optimize database queries using includes, joins, or select.
+
+## Key Conventions
+
+- Follow RESTful routing conventions.
+- Use concerns for shared behavior across models or controllers.
+- Implement service objects for complex business logic.
+- Use background jobs (e.g., Goodjob) for time-consuming tasks.
+
+## Testing
+
+- Write comprehensive tests using RSpec.
+- Follow TDD/BDD practices.
+- Use factories (FactoryBot) for test data generation.
+- Do not use `let` for locally available definitions. Only use `let` when passing the test subject to a test defined in another file, or if it's the simpler approach for that specific test.
+
+  ### Unit Testing
+
+  - Write thorough unit tests to validate individual functions and components.
+  - Follow patterns like Arrange-Act-Assert to ensure clarity and consistency in tests.
+  - Mock external dependencies and API calls to isolate unit tests.
+
+  ### Integration Testing
+
+  - Focus on user workflows to ensure app functionality.
+  - Set up and tear down test environments properly to maintain test independence.
+
+## Security
+
+- Implement proper authentication and authorization (e.g., Devise, Rolify, Pundit).
+- Use strong parameters in controllers, using the strong_params method defined in the strong_params.rb concern.
+- Protect against common web vulnerabilities (XSS, CSRF, SQL injection).
+
