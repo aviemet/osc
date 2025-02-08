@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react"
 import { Paper, Page, Box, Section, Tabs } from "@/Components"
 import { router } from "@inertiajs/react"
 import { px, useMantineTheme } from "@mantine/core"
+import { useTranslation } from "@/lib"
 import { useViewportSize, useLocation } from "@/lib/hooks"
-import { useTranslation } from "react-i18next"
 
 interface SettingsLayoutProps {
 	children: React.ReactNode

@@ -5,6 +5,8 @@ import BareAppLayout from "./AppLayout"
 import BareAuthLayout from "./AuthLayout"
 import BarePublicLayout from "./PublicLayout"
 
+import "@/lib/i18n"
+
 import dayjs from "dayjs"
 import localizedFormat from "dayjs/plugin/localizedFormat"
 import duration from "dayjs/plugin/duration"

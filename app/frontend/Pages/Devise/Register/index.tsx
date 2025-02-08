@@ -1,9 +1,8 @@
 import React from "react"
 import { Form, TextInput, PasswordInput, Submit, Field } from "@/Components/Form"
-import { Routes } from "@/lib"
+import { Routes, useTranslation } from "@/lib"
 import { Box, Title, Link, Grid, Text } from "@/Components"
 import { type UseFormProps } from "use-inertia-form"
-import { useTranslation } from "react-i18next"
 
 type RegisterFormData = {
 	user: {

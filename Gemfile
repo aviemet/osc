@@ -34,6 +34,7 @@ gem "factory_bot", ">= 6.2"
 gem "js-routes", "~> 2.2"
 gem "amazing_print", "~> 1.4"
 gem "eventmachine", "~> 1.2"
+gem "listen", "~> 3.9"
 # gem "ruby-osc", "~> 1.0"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,8 +1,7 @@
 import React from "react"
 import { Form, TextInput, Submit } from "@/Components/Form"
-import { Routes } from "@/lib"
+import { Routes, useTranslation } from "@/lib"
 import { Title, Link } from "@/Components"
-import { useTranslation } from "react-i18next"
 
 interface IConfirmationsNew {
 	user: Schema.User

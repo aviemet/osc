@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react"
+import { useTranslation } from "@/lib"
+import useStore from "@/lib/store"
 import { Box, Title } from "@/Components"
 import SettingsLayout from "../../SettingsLayout"
-import useStore from "@/lib/store"
-import { useTranslation } from "react-i18next"
 
 interface IAppearanceSettingsProps {
 	settings: {

@@ -17,7 +17,6 @@ import relativeTime from "dayjs/plugin/relativeTime"
 const pages = import.meta.glob<PagesObject>("../Pages/**/index.tsx")
 
 dayjs.extend(localizedFormat)
-dayjs.extend(localizedFormat)
 dayjs.extend(duration)
 dayjs.extend(relativeTime)
 

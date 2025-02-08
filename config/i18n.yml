@@ -1,0 +1,14 @@
+---
+embed_fallback_translations:
+  enabled: true
+
+translations:
+  - file: app/frontend/lib/locales/en.json
+    patterns:
+      - "*"
+      - "!*.activerecord"
+      - "!*.number.nth"
+
+  - file: app/frontend/lib/locales/:locale.json
+    patterns:
+      - "*"

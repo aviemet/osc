@@ -17,3 +17,5 @@ export const polymorphicRoute = (model: string, param: string | number) => {
 }
 
 export { withLayout } from "./withLayout"
+
+export { useTranslation } from "react-i18next"

@@ -4,6 +4,7 @@ require:
   - rubocop-rspec
 
 AllCops:
+  TargetRubyVersion: 3.3.4
   Exclude:
     - "bin/**/*"
     - "node_modules/**/*"
