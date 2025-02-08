@@ -16,6 +16,9 @@
 #  index_servers_on_slug  (slug) UNIQUE
 #
 class Server < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :history]
+
   include PgSearch::Model
   include PublicActivity::Model
 
@@ -29,8 +32,6 @@ class Server < ApplicationRecord
   )
 
   resourcify
-
-  slug :title
 
   has_many :commands, dependent: :nullify
 

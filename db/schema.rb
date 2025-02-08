@@ -124,6 +124,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_170737) do
     t.string "slug", null: false
     t.string "title", null: false
     t.integer "order", null: false
+    t.integer "columns", default: 6, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_screens_on_slug", unique: true

@@ -23,6 +23,9 @@
 #  fk_rails_...  (server_id => servers.id)
 #
 class Command < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :history]
+
   include PgSearch::Model
   include PublicActivity::Model
 
@@ -43,8 +46,6 @@ class Command < ApplicationRecord
   enum :payload_type, { integer: 0, float: 1, string: 2, blob: 3, time: 4, symbol: 5, character: 6, boolean: 7 }
 
   attribute :allow_custom_value, :boolean, default: false
-
-  slug :title
 
   has_many :protocols_commands, dependent: :destroy
   has_many :protocols, through: :protocols_commands

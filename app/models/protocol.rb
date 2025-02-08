@@ -14,6 +14,9 @@
 #  index_protocols_on_slug  (slug) UNIQUE
 #
 class Protocol < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :history]
+
   include PgSearch::Model
   include PublicActivity::Model
 
@@ -31,8 +34,6 @@ class Protocol < ApplicationRecord
   )
 
   resourcify
-
-  slug :title
 
   has_many :protocols_commands, -> { order(order: :asc) }, dependent: :destroy, inverse_of: :protocol
   has_many :commands, -> {

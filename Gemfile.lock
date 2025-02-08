@@ -165,6 +165,8 @@ GEM
     ffi (1.17.1-x86_64-darwin)
     ffi (1.17.1-x86_64-linux-gnu)
     ffi (1.17.1-x86_64-linux-musl)
+    friendly_id (5.5.1)
+      activerecord (>= 4.0.0)
     generator_spec (0.10.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
@@ -423,10 +425,6 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.13.1)
     simplecov_json_formatter (0.1.4)
-    slug (4.1.1)
-      activerecord (> 3.0.0)
-      activesupport (> 3.0.0)
-      rake
     sorbet-runtime (0.5.11796)
     stringio (3.1.2)
     terminal-table (4.0.0)
@@ -505,6 +503,7 @@ DEPENDENCIES
   factory_bot (>= 6.2)
   factory_bot_rails (>= 6.2)
   faker!
+  friendly_id (~> 5.5)
   generator_spec (>= 0.9.4)
   i18n-js (~> 4.2)
   i18n-tasks (~> 1.0)
@@ -534,7 +533,6 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers (>= 5.1)
   simplecov (>= 0.22.0)
-  slug (~> 4.1)
   types_from_serializers (~> 2.1)
   tzinfo-data
   vite_rails (~> 3.0)

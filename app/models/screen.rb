@@ -3,6 +3,7 @@
 # Table name: screens
 #
 #  id         :bigint           not null, primary key
+#  columns    :integer          default(6), not null
 #  order      :integer          not null
 #  slug       :string           not null
 #  title      :string           not null
@@ -14,7 +15,12 @@
 #  index_screens_on_slug  (slug) UNIQUE
 #
 class Screen < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :history]
+
   include PgSearch::Model
+
+  attribute :columns, :integer, default: 6
 
   pg_search_scope(
     :search,
@@ -29,8 +35,6 @@ class Screen < ApplicationRecord
   before_validation :set_screen_order
 
   resourcify
-
-  slug :title
 
   has_many :controls, -> { order(order: :asc) }, dependent: :destroy, inverse_of: :screen
 

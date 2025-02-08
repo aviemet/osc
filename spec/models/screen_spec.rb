@@ -3,6 +3,7 @@
 # Table name: screens
 #
 #  id         :bigint           not null, primary key
+#  columns    :integer          default(6), not null
 #  order      :integer          not null
 #  slug       :string           not null
 #  title      :string           not null
