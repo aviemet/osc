@@ -6,8 +6,8 @@ const highlightBorderPx = 4
 export const controlContainer = css`
 	display: grid;
 	grid-auto-flow: dense;
-	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-	grid-auto-rows: 150px;
+	grid-template-columns: repeat(6, 1fr);
+	grid-auto-rows: 50px;
 	gap: ${vars.spacing.md};
 	padding: ${vars.spacing.md};
 	width: 100%;

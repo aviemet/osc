@@ -124,6 +124,15 @@ if Rails.env.development?
       screen: screen,
     })
 
+    30.times do |i|
+      Control.create({
+        title: "Control #{i}",
+        control_type: :button,
+        command: Command.first,
+        screen: screen,
+      })
+    end
+
     ap "Created #{Control.count} Control(s)"
   end
 end

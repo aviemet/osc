@@ -124,24 +124,10 @@ const EditControlWrapper = ({ children, index, control, ...props }: EditControlW
 			<ControlEditIcon control={ control } index={ index } />
 			{ children }
 
-			<ResizeHandle position="left" onResize={ (e) => handleResizeStart(e, "left") } />
 			<ResizeHandle position="right" onResize={ (e) => handleResizeStart(e, "right") } />
-			<ResizeHandle position="top" onResize={ (e) => handleResizeStart(e, "top") } />
 			<ResizeHandle position="bottom" onResize={ (e) => handleResizeStart(e, "bottom") } />
 
-			{ /* Corner handles */ }
-			<ResizeHandle position="corner" placement="top-left" onResize={ (e) => {
-				handleResizeStart(e, "left")
-				handleResizeStart(e, "top")
-			} } />
-			<ResizeHandle position="corner" placement="top-right" onResize={ (e) => {
-				handleResizeStart(e, "right")
-				handleResizeStart(e, "top")
-			} } />
-			<ResizeHandle position="corner" placement="bottom-left" onResize={ (e) => {
-				handleResizeStart(e, "left")
-				handleResizeStart(e, "bottom")
-			} } />
+			{ /* Corner handle */ }
 			<ResizeHandle position="corner" placement="bottom-right" onResize={ (e) => {
 				handleResizeStart(e, "right")
 				handleResizeStart(e, "bottom")

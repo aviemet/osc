@@ -8,6 +8,8 @@ class CreateControls < ActiveRecord::Migration[7.1]
       t.decimal :max_value
       t.decimal :value
       t.string :color
+      t.integer :width
+      t.integer :height
       t.references :screen, null: false, foreign_key: true
       t.references :protocol, null: true, foreign_key: true
       t.references :command, null: true, foreign_key: true

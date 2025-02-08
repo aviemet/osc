@@ -66,6 +66,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_170737) do
     t.decimal "max_value"
     t.decimal "value"
     t.string "color"
+    t.integer "width"
+    t.integer "height"
     t.bigint "screen_id", null: false
     t.bigint "protocol_id"
     t.bigint "command_id"

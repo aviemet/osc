@@ -19,8 +19,8 @@ export const editControlsForm = css`
 
 export const editButtonIcon = css`
 	position: absolute;
-	top: 5px;
-	right: 13px;
+	top: 0;
+	right: 0;
 	cursor: pointer;
 	z-index: 100;
 `

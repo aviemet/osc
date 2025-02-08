@@ -5,11 +5,13 @@
 #  id           :bigint           not null, primary key
 #  color        :string
 #  control_type :integer          not null
+#  height       :integer
 #  max_value    :decimal(, )
 #  min_value    :decimal(, )
 #  order        :integer          not null
 #  title        :string           not null
 #  value        :decimal(, )
+#  width        :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  command_id   :bigint
