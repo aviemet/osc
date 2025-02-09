@@ -20,5 +20,6 @@ class ScreenSerializer < ApplicationSerializer
   attributes(
     :title,
     :order,
+    :columns,
   )
 end

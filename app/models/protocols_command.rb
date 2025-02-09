@@ -25,17 +25,11 @@
 #  fk_rails_...  (protocol_id => protocols.id)
 #
 class ProtocolsCommand < ApplicationRecord
-  include PgSearch::Model
-
-  pg_search_scope(
-    :search,
+  include PgSearchable
+  pg_search_config(
     against: [:protocol, :command, :delay],
     associated_against: {
       protocol: [:title], command: [:title],
-    },
-    using: {
-      tsearch: { prefix: true },
-      trigram: {}
     },
   )
 

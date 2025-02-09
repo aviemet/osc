@@ -37,5 +37,9 @@ export const globals = css`
 		}
 	}
 
+	:root {
+		--screen-grid-columns: 6;
+	}
+
 
 `

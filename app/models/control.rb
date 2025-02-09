@@ -31,22 +31,13 @@
 #  fk_rails_...  (screen_id => screens.id)
 #
 class Control < ApplicationRecord
-  include PgSearch::Model
+  include PgSearchable
+  pg_search_config(
+    against: [:title, :control_type, :screen, :order, :min_value, :max_value, :value, :protocol],
+  )
 
   before_validation :set_unique_order
   before_validation :set_spacer_title, if: -> { self.control_type == "spacer" }
-
-  pg_search_scope(
-    :search,
-    against: [:title, :control_type, :screen, :order, :min_value, :max_value, :value, :protocol],
-    associated_against: {
-      screen: [], protocol: [],
-    },
-    using: {
-      tsearch: { prefix: true },
-      trigram: {}
-    },
-  )
 
   resourcify
 

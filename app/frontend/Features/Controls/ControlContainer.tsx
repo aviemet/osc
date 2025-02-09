@@ -6,11 +6,15 @@ import * as classes from "./Controls.css"
 interface ControlContainerProps {
 	children: React.ReactNode
 	className?: string
+	columns?: number
 }
 
-const ControlContainer = ({ children, className }: ControlContainerProps) => {
+const ControlContainer = ({ children, className, columns = 6 }: ControlContainerProps) => {
 	return (
-		<Box className={ cx(classes.controlContainer, className) }>
+		<Box className={ cx(
+			classes.controlContainer,
+			className
+		) }>
 			{ children }
 		</Box>
 	)

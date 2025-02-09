@@ -6,12 +6,12 @@ const highlightBorderPx = 4
 export const controlContainer = css`
 	display: grid;
 	grid-auto-flow: dense;
-	grid-template-columns: repeat(6, 1fr);
 	grid-auto-rows: 50px;
 	gap: ${vars.spacing.md};
 	padding: ${vars.spacing.md};
 	width: 100%;
 	position: relative;
+	grid-template-columns: repeat(var(--screen-grid-columns, 12), 1fr);
 
 	.control-wrapper {
 		width: 100%;

@@ -19,16 +19,9 @@ class Server < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: [:slugged, :history]
 
-  include PgSearch::Model
-  include PublicActivity::Model
-
-  pg_search_scope(
-    :search,
+  include PgSearchable
+  pg_search_config(
     against: [:title, :hostname, :port, :description],
-    using: {
-      tsearch: { prefix: true },
-      trigram: {}
-    },
   )
 
   resourcify

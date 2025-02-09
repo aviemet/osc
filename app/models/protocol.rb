@@ -17,20 +17,9 @@ class Protocol < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: [:slugged, :history]
 
-  include PgSearch::Model
-  include PublicActivity::Model
-
-  multisearchable(
-    against: [:title, :slug],
-  )
-
-  pg_search_scope(
-    :search,
-    against: [:title],
-    using: {
-      tsearch: { prefix: true },
-      trigram: {}
-    },
+  include PgSearchable
+  pg_search_config(
+    against: [:title, :description],
   )
 
   resourcify

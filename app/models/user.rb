@@ -47,7 +47,10 @@
 #  index_users_on_user_preferences      (user_preferences) USING gin
 #
 class User < ApplicationRecord
-  include PublicActivity::Model
+  include PgSearchable
+  pg_search_config(
+    against: [:email],
+  )
 
   resourcify
   rolify

@@ -18,23 +18,18 @@ class Screen < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: [:slugged, :history]
 
-  include PgSearch::Model
+  include PgSearchable
+  pg_search_config(
+    against: [:title, :order],
+  )
+
+  resourcify
 
   attribute :columns, :integer, default: 6
 
-  pg_search_scope(
-    :search,
-    against: [:title, :order],
-    using: {
-      tsearch: { prefix: true },
-      trigram: {}
-    },
-  )
   self.implicit_order_column = "order"
 
   before_validation :set_screen_order
-
-  resourcify
 
   has_many :controls, -> { order(order: :asc) }, dependent: :destroy, inverse_of: :screen
 

@@ -5,7 +5,7 @@ class ScreensController < ApplicationController
   expose :screen, id: -> { params[:slug] }, scope: -> { Screen.includes_associated }, find_by: :slug
   expose :main_screen, -> { Screen.order(:order).first }
 
-  sortable_fields %w(title order)
+  sortable_fields %w(title order columns)
 
   strong_params :screen, permit: [:title, :order, controls_attributes: [
     :id, :title, :order, :control_type, :color, :value, :protocol_id, :command_id

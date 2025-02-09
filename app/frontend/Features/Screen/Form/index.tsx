@@ -28,7 +28,7 @@ const ScreenForm = ({ method = "post", screen, ...props }: ScreenFormProps) => {
 				</Grid.Col>
 
 				<Grid.Col span={ 4 }>
-					<NumberInput name="columns" label="Columns" />
+					<NumberInput name="columns" label="Columns" min={ 1 } max={ 12 } />
 				</Grid.Col>
 
 				<Grid.Col span={ 4 }>

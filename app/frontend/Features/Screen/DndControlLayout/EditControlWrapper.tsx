@@ -43,7 +43,7 @@ const EditControlWrapper = ({ children, index, control, ...props }: EditControlW
 
 	const maxGridSize = useMemo(() => {
 		const container = containerRef.current?.closest(controlContainer)
-		console.log({ container, ref: containerRef.current })
+
 		if(!container) return { columns: 1, rows: 1 }
 
 		const { width, height } = container.getBoundingClientRect()
@@ -55,7 +55,6 @@ const EditControlWrapper = ({ children, index, control, ...props }: EditControlW
 			rows: Math.floor((height + gap) / (gridSize + gap)),
 		}
 	}, [])
-	console.log({ maxGridSize })
 
 	const handleResizeStart = (e: React.MouseEvent, position: "left" | "right" | "top" | "bottom") => {
 		e.preventDefault()
