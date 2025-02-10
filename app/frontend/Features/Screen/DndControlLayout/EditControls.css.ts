@@ -1,4 +1,4 @@
-import { vars } from "@/lib"
+import { vars, theme } from "@/lib"
 import { css } from "@linaria/core"
 
 export const editControlsForm = css`
@@ -36,4 +36,20 @@ export const editControl = css`
 export const editControlWrapper = css`
 	display: inline-block;
 	position: relative;
+`
+
+export const controlOverlay = css`
+	background-color: ${vars.colors.white[5]};
+	opacity: 0.5;
+	border: 2px dashed ${vars.colors.gray[4]};
+	border-radius: ${vars.radius.sm};
+	width: 100%;
+	height: ${theme.other.controls.rowHeight};
+	position: absolute;
+	pointer-events: none;
+`
+
+export const dragging = css`
+	opacity: 0.9;
+	height: ${theme.other.controls.rowHeight};
 `

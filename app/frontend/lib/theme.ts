@@ -24,6 +24,9 @@ export const themeObject = {
 			sortButtonHeight: 5,
 			sortButtonWidth: 6,
 		},
+		controls: {
+			rowHeight: "3rem",
+		},
 	},
 }
 

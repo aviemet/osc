@@ -39,6 +39,9 @@ const ControlEditIcon = ({ control, index, ...props }: ControlEditIconProps) => 
 			<IconButton
 				variant="subtle"
 				color="gray"
+				size="sm"
+				mt={ 2 }
+				mr={ 2 }
 				className={ cx(classes.editButtonIcon) }
 				onClick={ handleEditButtonClick }
 				data-no-dnd

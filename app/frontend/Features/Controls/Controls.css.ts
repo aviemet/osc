@@ -1,4 +1,4 @@
-import { vars } from "@/lib"
+import { vars, theme } from "@/lib"
 import { css } from "@linaria/core"
 
 const highlightBorderPx = 4
@@ -6,12 +6,12 @@ const highlightBorderPx = 4
 export const controlContainer = css`
 	display: grid;
 	grid-auto-flow: dense;
-	grid-auto-rows: 50px;
+	grid-auto-rows: ${theme.other.controls.rowHeight};
 	gap: ${vars.spacing.md};
 	padding: ${vars.spacing.md};
 	width: 100%;
 	position: relative;
-	grid-template-columns: repeat(var(--screen-grid-columns, 12), 1fr);
+	grid-template-columns: repeat(var(--screen-grid-columns, 6), 1fr);
 
 	.control-wrapper {
 		width: 100%;

@@ -7,6 +7,8 @@ import {
 	closestCenter,
 	UniqueIdentifier,
 	type DragEndEvent,
+	type DragStartEvent,
+	DragOverlay,
 } from "@dnd-kit/core"
 import { arrayMove, SortableContext } from "@dnd-kit/sortable"
 import { useDynamicInputs, useForm } from "use-inertia-form"
@@ -14,6 +16,7 @@ import { Control } from "@/Features/Controls"
 import EditControlWrapper from "./EditControlWrapper"
 import { restrictToParentElement } from "@dnd-kit/modifiers"
 
+import * as classes from "./EditControls.css"
 import cx from "clsx"
 
 interface DndEditControlsInterfaceProps {
@@ -22,6 +25,8 @@ interface DndEditControlsInterfaceProps {
 
 const DndEditControlsInterface = ({ screen }: DndEditControlsInterfaceProps) => {
 	const { getData, setData, model: formModel } = useForm<{ screen: Schema.ScreensEdit }>()
+	const [activeId, setActiveId] = React.useState<UniqueIdentifier | null>(null)
+
 	const { paths } = useDynamicInputs({
 		model: "controls",
 		emptyData: {
@@ -60,11 +65,17 @@ const DndEditControlsInterface = ({ screen }: DndEditControlsInterfaceProps) => 
 		useSensor(PointerSensor),
 	)
 
-	const controlsPath = `${formModel}.controls`
+
+	const handleDragStart = (event: DragStartEvent) => {
+		setActiveId(event.active.id)
+	}
 
 	const handleDragEnd = ({ active, over }: DragEndEvent) => {
+		setActiveId(null)
+
 		if(!over || active.id === over.id) return
 
+		const controlsPath = `${formModel}.controls`
 		const controls = getData(controlsPath) as Schema.ControlsFormData[]
 
 		const activeIndex = controls.findIndex(el => el.id === active.id)
@@ -80,14 +91,19 @@ const DndEditControlsInterface = ({ screen }: DndEditControlsInterfaceProps) => 
 		}))
 	}
 
+	const controls = getData(`${formModel}.controls`) as Schema.ControlsEdit[]
+
+	if(!controls || controls.length === 0) return <></>
+
 	return (
 		<DndContext
 			sensors={ sensors }
 			collisionDetection={ closestCenter }
+			onDragStart={ handleDragStart }
 			onDragEnd={ handleDragEnd }
 			modifiers={ [restrictToParentElement] }
 		>
-			<SortableContext items={ getData(`${formModel}.controls`) as UniqueIdentifier[] }>
+			<SortableContext items={ controls }>
 				{ paths.map((path, i) => {
 					const record = getData(`${formModel}.${path}`) as Schema.ControlsEdit
 
@@ -98,15 +114,33 @@ const DndEditControlsInterface = ({ screen }: DndEditControlsInterfaceProps) => 
 							control={ record }
 							className={ cx("control-wrapper") }
 						>
-							<Control
-								disable
-								control={ record }
-								wrapper={ false }
-							/>
+							{ activeId === record.id ?
+								<div className={ cx(classes.controlOverlay) } />
+								:
+								<Control
+									disable
+									control={ record }
+									wrapper={ false }
+								/>
+							}
 						</EditControlWrapper>
 					)
 				}) }
 			</SortableContext>
+
+			<DragOverlay>
+				{ activeId
+					? (
+						<Control
+							disable
+							control={ controls.find(c => c.id === activeId) as Schema.ControlsEdit }
+							wrapper={ false }
+							className={ cx(classes.dragging) }
+						/>
+					)
+					: null }
+			</DragOverlay>
+
 		</DndContext>
 	)
 }

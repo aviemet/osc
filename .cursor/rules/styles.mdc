@@ -1,0 +1,9 @@
+---
+description: 
+globs: **/*
+---
+- DO NOT USE TAILWIND.
+- This project uses Mantine as a component library.
+- CSS is written using CSS modules with Linaria. CSS is written in separate files with a `css.ts` extension.
+- CSS is imported into React components using `import * as classes from (filename).css`. It should always be accompanied by `import cx from clsx` and referencing classes should always use `cx`.
+- Mantine CSS variables are exported using Mantine's `themeToVars` which converts the base Mantine theme object into CSS variables.
