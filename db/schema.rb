@@ -47,11 +47,11 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_08_234448) do
   create_table "commands", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
-    t.string "slug", null: false
     t.string "address"
     t.bigint "server_id", null: false
     t.integer "payload_type"
     t.boolean "allow_custom_value", default: false, null: false
+    t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["server_id"], name: "index_commands_on_server_id"
@@ -66,8 +66,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_08_234448) do
     t.decimal "max_value"
     t.decimal "value"
     t.string "color"
-    t.integer "width"
-    t.integer "height"
+    t.integer "col_span"
+    t.integer "row_span"
     t.bigint "screen_id", null: false
     t.bigint "protocol_id"
     t.bigint "command_id"
@@ -132,10 +132,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_08_234448) do
   end
 
   create_table "screens", force: :cascade do |t|
-    t.string "slug", null: false
     t.string "title", null: false
     t.integer "order", null: false
     t.integer "columns", default: 6, null: false
+    t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_screens_on_slug", unique: true
@@ -143,10 +143,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_08_234448) do
 
   create_table "servers", force: :cascade do |t|
     t.string "title", null: false
-    t.string "slug", null: false
     t.string "hostname", null: false
     t.integer "port"
     t.text "description"
+    t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_servers_on_slug", unique: true

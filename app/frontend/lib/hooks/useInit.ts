@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 
-const useInit = (cb: Function) => {
+export const useInit = (cb: Function) => {
 	const hasRunRef = useRef(false)
 	useEffect(() => {
 		let cleanup
@@ -13,5 +13,3 @@ const useInit = (cb: Function) => {
 		// eslint-disable-next-line
 	}, [])
 }
-
-export default useInit

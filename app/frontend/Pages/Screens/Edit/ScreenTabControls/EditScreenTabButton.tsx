@@ -12,7 +12,7 @@ interface EditScreenTabButtonProps {
 }
 
 const EditScreenTabButton = ({ screen, onSuccess, ...props }: EditScreenTabButtonProps) => {
-
+	console.log({ route: Routes.screen(screen.slug) })
 	const handleEditButtonClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		e.stopPropagation()
 		e.preventDefault()
@@ -24,10 +24,12 @@ const EditScreenTabButton = ({ screen, onSuccess, ...props }: EditScreenTabButto
 					<ScreenForm
 						to={ Routes.screen(screen.slug) }
 						screen={ screen }
-						method="patch"
+						method="put"
 						onSubmit={ () => modals.closeAll() }
 					/>
-					<Divider />
+
+					<Divider my="md" />
+
 					<Accordion>
 						<Accordion.Item value="delete">
 							<Accordion.Control>Permanently Delete</Accordion.Control>

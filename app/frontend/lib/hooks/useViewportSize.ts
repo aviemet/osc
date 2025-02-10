@@ -3,7 +3,7 @@ import { useViewportSize as useMantineViewportSize } from "@mantine/hooks"
 
 type OnChangeCallback = (dimensions: { width: number, height: number }) => void
 
-const useViewportSize = (onChange?: OnChangeCallback) => {
+export const useViewportSize = (onChange?: OnChangeCallback) => {
 	const { width, height } = useMantineViewportSize()
 
 	useEffect(() => {
@@ -12,5 +12,3 @@ const useViewportSize = (onChange?: OnChangeCallback) => {
 
 	return { width, height }
 }
-
-export default useViewportSize

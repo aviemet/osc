@@ -7,7 +7,7 @@ class ScreensController < ApplicationController
 
   sortable_fields %w(title order columns)
 
-  strong_params :screen, permit: [:title, :order, controls_attributes: [
+  strong_params :screen, permit: [:title, :order, :columns, controls_attributes: [
     :id, :title, :order, :control_type, :color, :value, :protocol_id, :command_id
   ]]
 
@@ -19,6 +19,8 @@ class ScreensController < ApplicationController
 
   # @route GET /screens/:slug (screen)
   def show
+    authorize screen
+
     render inertia: "Screens/Show", props: {
       screen: -> { screen.render(view: :show) },
       screens: -> { Screen.all.render(view: :options) },
@@ -28,6 +30,7 @@ class ScreensController < ApplicationController
   # @route GET /screens/new (new_screen)
   def new
     authorize Screen.new
+
     render inertia: "Screens/New", props: {
       screen: Screen.new.render(view: :form_data)
     }
@@ -52,6 +55,7 @@ class ScreensController < ApplicationController
   # @route POST /screens (screens)
   def create
     authorize Screen.new
+
     if screen.save
       redirect_to edit_screen_path(screen.slug), notice: "Screen was successfully created."
     else
@@ -63,6 +67,7 @@ class ScreensController < ApplicationController
   # @route PUT /screens/:slug (screen)
   def update
     authorize screen
+    ap({ path: edit_screen_path(screen.slug) })
     if screen.update(screen_params)
       redirect_to edit_screen_path(screen.slug), notice: "Screen was successfully updated."
     else
@@ -73,6 +78,7 @@ class ScreensController < ApplicationController
   # @route DELETE /screens/:slug (screen)
   def destroy
     authorize screen
+
     screen.destroy!
     redirect_to edit_screens_path, notice: "Screen was successfully destroyed."
   end

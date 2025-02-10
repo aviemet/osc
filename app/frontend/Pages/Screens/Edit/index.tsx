@@ -1,16 +1,16 @@
 import React, { useState } from "react"
 import { Page, Tabs } from "@/Components"
 import { Routes } from "@/lib"
-import { useLocation } from "@/lib/hooks"
+import { useLocation, useScreenColumns } from "@/lib/hooks"
 import { router } from "@inertiajs/react"
 import { useDroppable } from "@dnd-kit/core"
+import DndControlPosition from "@/Features/Screen/DndControlLayout"
 import NewControlMenu from "./NewControlMenu"
 import NewScreenTabButton from "./ScreenTabControls/NewScreenTabButton"
 import EditScreenTabButton from "./ScreenTabControls/EditScreenTabButton"
 
 import cx from "clsx"
 import * as classes from "./ScreenControl.css"
-import DndControlPosition from "@/Features/Screen/DndControlLayout"
 
 interface EditScreenProps {
 	screen: Schema.ScreensEdit
@@ -18,6 +18,7 @@ interface EditScreenProps {
 }
 
 const EditScreen = ({ screen, screens }: EditScreenProps) => {
+	useScreenColumns(screen.columns)
 
 	const getScreenId = (slug: string): number | false => {
 		const currentScreen = screens.find(s => s.slug === slug)

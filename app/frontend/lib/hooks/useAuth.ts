@@ -1,6 +1,6 @@
-import usePageProps from "./usePageProps"
+import { usePageProps } from "./usePageProps"
 
-const useAuth = () => {
+export const useAuth = () => {
 	const { auth } = usePageProps()
 
 	return {
@@ -8,5 +8,3 @@ const useAuth = () => {
 		currentUser: auth?.user,
 	}
 }
-
-export default useAuth

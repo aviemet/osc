@@ -4,7 +4,7 @@ class ControlsController < ApplicationController
 
   sortable_fields %w(title type screen_id min_value max_value value protocol_id)
 
-  strong_params :control, permit: [:title, :control_type, :order, :color, :screen_id, :min_value, :max_value, :value, :command_id, :protocol_id]
+  strong_params :control, permit: [:title, :control_type, :order, :color, :screen_id, :min_value, :max_value, :value, :command_id, :protocol_id, :col_span, :row_span]
 
   # @route POST /controls (controls)
   def create

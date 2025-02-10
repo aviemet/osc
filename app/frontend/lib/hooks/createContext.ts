@@ -6,7 +6,8 @@ import React from "react"
  * @param error Whether to throw an error if not inside a Context. Defaults to true
  * @returns Tuple of `useContext` hook for accessing this context value, and the JSX Context Provider Component
  */
-const createContext = <T extends {} | null>() => {
+
+export const createContext = <T extends {} | null>() => {
 	const context = React.createContext<T | null>(null)
 
 	function useContext(): T
@@ -22,5 +23,3 @@ const createContext = <T extends {} | null>() => {
 
 	return [useContext, context.Provider] as const
 }
-
-export default createContext

@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react"
 import { omit } from "lodash"
 import { NestedURLSearchParams } from "@/lib/collections"
 
-const useLocation = () => {
+export const useLocation = () => {
 	const [location, setLocation] = useState(window.location)
 
 	const listenToPopstate = () => {
@@ -41,5 +41,3 @@ const useLocation = () => {
 		toString: () => location.toString(),
 	}
 }
-
-export default useLocation

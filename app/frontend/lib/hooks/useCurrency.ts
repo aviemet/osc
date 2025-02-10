@@ -11,7 +11,7 @@ interface UseCurrencyProps {
 
 type OmittedOptions = Pick<Intl.NumberFormatOptions, "style" | "currency">
 
-const useCurrency = ({
+export const useCurrency = ({
 	amount,
 	currency = "USD",
 	locale = "en-US",
@@ -40,5 +40,3 @@ const useCurrency = ({
 
 	return [value, currencyFormatter]
 }
-
-export default useCurrency

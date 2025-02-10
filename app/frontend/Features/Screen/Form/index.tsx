@@ -1,16 +1,16 @@
 import React from "react"
-import { Form, TextInput, Submit, NumberInput } from "@/Components/Form"
+import { Form, TextInput, Submit, NumberInput, FormConsumer } from "@/Components/Form"
 import { Grid } from "@/Components"
 import { type HTTPVerb, type UseFormProps } from "use-inertia-form"
 
-type TScreenFormData = {
+type ScreenFormData = {
 	screen: Schema.ScreensFormData
 }
 
 export interface ScreenFormProps {
 	to: string
 	method?: HTTPVerb
-	onSubmit?: (object: UseFormProps<TScreenFormData>) => boolean | void
+	onSubmit?: (object: UseFormProps<ScreenFormData>) => boolean | void
 	screen?: Schema.ScreensFormData
 }
 
@@ -20,8 +20,13 @@ const ScreenForm = ({ method = "post", screen, ...props }: ScreenFormProps) => {
 			model="screen"
 			data={ screen ? { screen } : undefined }
 			method={ method }
+			filter={ ["id", "slug", "screen.created_at", "screen.updated_at"] }
 			{ ...props }
 		>
+			<FormConsumer>{ ({ data }) => {
+				console.log({ data })
+				return <></>
+			} }</FormConsumer>
 			<Grid>
 				<Grid.Col>
 					<TextInput name="title" label="Title" />

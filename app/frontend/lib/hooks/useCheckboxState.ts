@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-const useCheckboxState = (length: number, selected: number) => {
+export const useCheckboxState = (length: number, selected: number) => {
 	const [allChecked, setAllChecked] = useState(false)
 	const [indeterminate, setIndeterminate] = useState(false)
 
@@ -24,5 +24,3 @@ const useCheckboxState = (length: number, selected: number) => {
 
 	return { allChecked, indeterminate }
 }
-
-export default useCheckboxState
