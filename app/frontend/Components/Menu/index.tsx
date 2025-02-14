@@ -1,6 +1,4 @@
-import React from "react"
 import { Menu, type MenuProps } from "@mantine/core"
-import MenuItem from "./MenuItem"
 import MenuLink from "./MenuLink"
 import MenuTarget from "./MenuTarget"
 
@@ -13,7 +11,7 @@ const MenuComponent = ({ children, ...props }: MenuProps) => {
 MenuComponent.Target = MenuTarget
 MenuComponent.Dropdown = Menu.Dropdown
 MenuComponent.Label = Menu.Label
-MenuComponent.Item = MenuItem
+MenuComponent.Item = Menu.Item
 MenuComponent.Link = MenuLink
 MenuComponent.Divider = Menu.Divider
 

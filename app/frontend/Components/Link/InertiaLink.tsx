@@ -6,7 +6,7 @@ import { Button } from "@/Components"
 import { exclude } from "@/lib/collections"
 import AnchorLink, { type AnchorLinkProps } from "@/Components/Link/AnchorLink"
 
-interface LinkProps extends AnchorLinkProps {
+interface ILinkProps extends AnchorLinkProps {
 	children?: React.ReactNode
 	href: string
 	as: "a" | "button"
@@ -16,36 +16,23 @@ interface LinkProps extends AnchorLinkProps {
 	disabled?: boolean
 }
 
-const InertiaLinkComponent = forwardRef<HTMLAnchorElement, LinkProps>((
-	{
-		children,
-		href,
-		as = "a",
-		method,
-		visit,
-		buttonProps,
-		style,
-		disabled,
-		onClick,
-		...props
-	},
+const InertiaLinkComponent = forwardRef<HTMLAnchorElement, ILinkProps>((
+	{ children, href, as = "a", method, visit, buttonProps, style, disabled, ...props },
 	ref,
 ) => {
-	const handleHTTP = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+	const handleHTTP = (e: React.MouseEvent<Element, MouseEvent>) => {
 		e.preventDefault()
 
 		router.visit(href, {
 			method,
 			...visit,
 		})
-
-		onClick?.(e)
 	}
 
 	const mergedButtonProps = Object.assign(
 		{ disabled },
-		exclude(buttonProps, "onClick"),
-		exclude(props, ["classNames", "styles", "vars", "onClick"]),
+		buttonProps,
+		exclude(props, ["classNames", "style", "vars"]),
 	)
 
 	const processedHref = disabled ? "#" : href

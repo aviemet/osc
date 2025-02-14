@@ -1,10 +1,10 @@
-import React from "react"
-import { AppShell, Burger, Container, Divider, Link, Menu, Title } from "@/Components"
+import { AppShell, Burger, Container, Link, Menu, Title } from "@/Components"
 import { ToggleColorSchemeButton } from "@/Components/Button"
-import { HomeIcon } from "@/Components/Icons"
+import { HomeIcon, SignInIcon } from "@/Components/Icons"
 import { Routes } from "@/lib"
 import { useAuth } from "@/lib/hooks"
 import { LayoutProps } from "../index"
+import LoggedInLinks from "./LoggedInLinks"
 
 import * as classes from "./AppLayout.css"
 
@@ -29,21 +29,16 @@ const AppLayout = ({ children }: LayoutProps) => {
 						<Burger size="sm" className={ classes.menu }></Burger>
 					</Menu.Target>
 
-					<Menu.Dropdown>
-						{ isLoggedIn ?
-							<>
-								<Menu.Link href={ Routes.editScreens() }>Edit Screens</Menu.Link>
-								<Divider />
-								<Menu.Link href={ Routes.servers() }>Servers</Menu.Link>
-								<Menu.Link href={ Routes.protocols() }>Protocols</Menu.Link>
-								<Menu.Link href={ Routes.commands() }>Commands</Menu.Link>
-								<Divider />
-								<Menu.Link href={ Routes.destroyUserSession() }>Sign Out</Menu.Link>
-							</>
-							:
-							<Menu.Link href={ Routes.newUserSession() }>Sign In</Menu.Link>
-						}
-					</Menu.Dropdown>
+					<Menu.Dropdown>{ isLoggedIn ?
+						<LoggedInLinks />
+						:
+						<Menu.Link
+							href={ Routes.newUserSession() }
+							leftSection={ <SignInIcon /> }
+						>
+							Sign In
+						</Menu.Link>
+					}</Menu.Dropdown>
 				</Menu>
 
 			</AppShell.Header>

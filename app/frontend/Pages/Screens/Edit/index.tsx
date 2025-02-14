@@ -78,6 +78,7 @@ const EditScreen = ({ screen, screens }: EditScreenProps) => {
 
 					{ screens.map(iScreen => (
 						<Tabs.Panel
+							p={ 0 }
 							key={ `${iScreen.id}-${iScreen.slug}` }
 							value={ iScreen.slug }
 							className={ cx(classes.tabsPanel) }

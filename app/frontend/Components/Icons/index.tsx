@@ -14,10 +14,11 @@ export {
 	TbSquarePlus as ReplenishIcon,
 	TbSun as SunIcon,
 	TbMoonStars as MoonIcon,
+	TbLogin as SignInIcon,
+	TbLogout as SignOutIcon,
 } from "react-icons/tb"
 
 export {
-	MdExitToApp as LogoutIcon,
 	MdMenu as MenuBarsIcon,
 	MdMoreVert as MenuDotsIcon,
 	MdExpandMore as ExpandIcon,
@@ -88,3 +89,19 @@ export {
 export {
 	LiaHandsHelpingSolid as HelpingIcon,
 } from "react-icons/lia"
+
+export {
+	LuScreenShare as ScreenIcon,
+} from "react-icons/lu"
+
+export {
+	GoServer as ServerIcon,
+} from "react-icons/go"
+
+export {
+	TbListTree as ProtocolsIcon,
+} from "react-icons/tb"
+
+export {
+	HiMiniCommandLine as CommandsIcon,
+} from "react-icons/hi2"

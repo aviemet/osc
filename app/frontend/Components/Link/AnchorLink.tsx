@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react"
+import { forwardRef } from "react"
 import { Link, type InertiaLinkProps } from "@inertiajs/react"
 import { Anchor, type AnchorProps } from "@mantine/core"
 
