@@ -54,6 +54,9 @@ class Control < ApplicationRecord
   validates :title, presence: true
   validates :control_type, presence: true
 
+  attribute :col_span, :integer, default: 1
+  attribute :row_span, :integer, default: 1
+
   private
 
   def set_unique_order

@@ -1,5 +1,5 @@
 import { Routes } from "@/lib"
-import { Divider, Group, Link } from "@/Components"
+import { Button, Divider, Group, Link } from "@/Components"
 import { Form, FormConsumer, Submit } from "@/Components/Form"
 import { ControlContainer } from "@/Features/Controls"
 import DndEditControlsInterface from "./DndEditControlsInterface"
@@ -28,10 +28,28 @@ const DndControlForm = ({ screen }: DndControlFormProps) => {
 
 			<Divider my="md" />
 
-			<FormConsumer>{ ({ isDirty }) => (
-				<Group justify="center">
-					<Link as="button" href={ Routes.home() } color="red" disabled={ !isDirty }>Cancel</Link>
+			<FormConsumer>{ ({ isDirty, reset }) => (
+				<Group justify="center" mb="sm">
+
+					<Link
+						as="button"
+						href={ Routes.home() }
+						color="red"
+						disabled={ !isDirty }
+					>
+						Cancel
+					</Link>
+
+					<Button
+						onClick={ reset }
+						color="gray"
+						disabled={ !isDirty }
+					>
+						Reset
+					</Button>
+
 					<Submit disabled={ !isDirty }>Save Screen Layout</Submit>
+
 				</Group>
 			) }</FormConsumer>
 		</Form>

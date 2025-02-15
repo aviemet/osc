@@ -1,5 +1,5 @@
 import React from "react"
-import { Form, TextInput, Submit, NumberInput, FormConsumer } from "@/Components/Form"
+import { Form, TextInput, Submit, NumberInput } from "@/Components/Form"
 import { Grid } from "@/Components"
 import { type HTTPVerb, type UseFormProps } from "use-inertia-form"
 
@@ -23,10 +23,6 @@ const ScreenForm = ({ method = "post", screen, ...props }: ScreenFormProps) => {
 			filter={ ["id", "slug", "screen.created_at", "screen.updated_at"] }
 			{ ...props }
 		>
-			<FormConsumer>{ ({ data }) => {
-				console.log({ data })
-				return <></>
-			} }</FormConsumer>
 			<Grid>
 				<Grid.Col>
 					<TextInput name="title" label="Title" />

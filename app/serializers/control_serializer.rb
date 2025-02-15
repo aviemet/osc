@@ -41,6 +41,8 @@ class ControlSerializer < ApplicationSerializer
     :screen_id,
     :protocol_id,
     :command_id,
+    :col_span,
+    :row_span,
     control_type: { type: Control.control_types.keys.map { |k| "\"#{k}\"" }.join(" | ") },
   )
 

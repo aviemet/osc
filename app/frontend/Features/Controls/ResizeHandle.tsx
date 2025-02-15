@@ -1,84 +1,23 @@
-import React from "react"
+import { useEffect, useState } from "react"
 import { Box } from "@/Components"
-import { vars } from "@/lib"
-import { css } from "@linaria/core"
 
 import cx from "clsx"
+import * as classes from "./Controls.css"
 
-const handleStyles = css`
-  position: absolute;
-  background-color: ${vars.colors.gray[3]};
-  border-radius: ${vars.radius.sm};
-  z-index: 100;
-  opacity: 0;
-  transition: opacity 0.2s;
+const RESIZE_CURSORS = {
+	w: classes.ewResize,
+	e: classes.ewResize,
+	n: classes.nsResize,
+	s: classes.nsResize,
+	ne: classes.nwseResize,
+	se: classes.nwseResize,
+	sw: classes.nwseResize,
+	nw: classes.nwseResize,
+} as const
 
-  &:hover {
-    opacity: 1;
-    background-color: ${vars.colors.blue[5]};
-  }
-
-  &.left {
-    cursor: w-resize;
-    left: -3px;
-    top: 0;
-    width: 6px;
-    height: 100%;
-  }
-
-  &.right {
-    cursor: e-resize;
-    right: -3px;
-    top: 0;
-    width: 6px;
-    height: 100%;
-  }
-
-  &.top {
-    cursor: n-resize;
-    top: -3px;
-    left: 0;
-    height: 6px;
-    width: 100%;
-  }
-
-  &.bottom {
-    cursor: s-resize;
-    bottom: -3px;
-    left: 0;
-    height: 6px;
-    width: 100%;
-  }
-
-  &.corner {
-    height: 10px;
-    width: 10px;
-
-    &.top-left {
-      cursor: nw-resize;
-      top: -3px;
-      left: -3px;
-    }
-
-    &.top-right {
-      cursor: ne-resize;
-      top: -3px;
-      right: -3px;
-    }
-
-    &.bottom-left {
-      cursor: sw-resize;
-      bottom: -3px;
-      left: -3px;
-    }
-
-    &.bottom-right {
-      cursor: se-resize;
-      bottom: -3px;
-      right: -3px;
-    }
-  }
-`
+const removeResizeCursor = () => {
+	document.body.classList.remove(RESIZE_CURSORS.w, RESIZE_CURSORS.e, RESIZE_CURSORS.n, RESIZE_CURSORS.s, RESIZE_CURSORS.nw, RESIZE_CURSORS.ne, RESIZE_CURSORS.se, RESIZE_CURSORS.sw)
+}
 
 interface ResizeHandleProps {
 	position: "left" | "right" | "top" | "bottom" | "corner"
@@ -87,10 +26,62 @@ interface ResizeHandleProps {
 }
 
 const ResizeHandle = ({ position, placement, onResize }: ResizeHandleProps) => {
+	const [isDragging, setIsDragging] = useState(false)
+
+	useEffect(() => {
+		if(isDragging) {
+			const handleGlobalMouseUp = () => {
+				setIsDragging(false)
+				removeResizeCursor()
+			}
+
+			window.addEventListener("mouseup", handleGlobalMouseUp)
+			return () => window.removeEventListener("mouseup", handleGlobalMouseUp)
+		}
+	}, [isDragging])
+
+	let cursorDirection: keyof typeof RESIZE_CURSORS
+	switch(position) {
+		case "left":
+			cursorDirection = "w"
+			break
+		case "right":
+			cursorDirection = "e"
+			break
+		case "top":
+			cursorDirection = "n"
+			break
+		case "bottom":
+			cursorDirection = "s"
+			break
+		case "corner":
+			switch(placement) {
+				case "top-left":
+					cursorDirection = "nw"
+					break
+				case "top-right":
+					cursorDirection = "ne"
+					break
+				case "bottom-left":
+					cursorDirection = "sw"
+					break
+				case "bottom-right":
+					cursorDirection = "se"
+					break
+			}
+			break
+	}
+
+	const handleMouseDown = (e: React.MouseEvent) => {
+		setIsDragging(true)
+		document.body.classList.add(RESIZE_CURSORS[cursorDirection])
+		onResize(e)
+	}
+
 	return (
 		<Box
-			className={ cx(handleStyles, position, placement) }
-			onMouseDown={ onResize }
+			className={ cx(classes.handleStyles, position, placement) }
+			onMouseDown={ handleMouseDown }
 			data-no-dnd
 		/>
 	)

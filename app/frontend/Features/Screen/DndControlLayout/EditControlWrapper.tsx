@@ -1,18 +1,13 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from "react"
-import { Routes } from "@/lib"
+import React, { useState, useRef, useCallback, useMemo } from "react"
 import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
 import { Box, type BoxProps } from "@/Components"
-import { EditIcon } from "@/Components/Icons"
-import { modals } from "@mantine/modals"
-import { useForm, UseFormProps } from "use-inertia-form"
+import { useForm } from "use-inertia-form"
 import ResizeHandle from "@/Features/Controls/ResizeHandle"
 import ControlEditIcon from "./ControlEditIcon"
-import { mergeRefs } from "@mantine/hooks"
 
 import cx from "clsx"
 import * as classes from "./EditControls.css"
-import { controlContainer } from "@/Features/Controls/Controls.css"
 
 interface EditControlWrapperProps extends BoxProps {
 	children: React.ReactNode
@@ -21,12 +16,11 @@ interface EditControlWrapperProps extends BoxProps {
 }
 
 const EditControlWrapper = ({ children, index, control, ...props }: EditControlWrapperProps) => {
-	// const { getData, setData } = useForm<{ screen: Schema.ScreensEdit }>()
-	const [startPos, setStartPos] = useState({ x: 0, y: 0 })
+	const { getData, setData } = useForm<{ screen: Schema.ScreensEdit }>()
+	const formPath = `screen.controls.[${index}]`
 
 	const containerRef = useRef<HTMLDivElement>(null)
 	const [resizing, setResizing] = useState(false)
-	const [size, setSize] = useState({ width: 1, height: 1 })
 
 	const {
 		attributes,
@@ -37,61 +31,48 @@ const EditControlWrapper = ({ children, index, control, ...props }: EditControlW
 	} = useSortable({ id: control.id! })
 
 	const mergedRef = useCallback((element: HTMLDivElement | null) => {
-		setNodeRef(element)
-		return mergeRefs(containerRef, setNodeRef)
+		if(element) {
+			containerRef.current = element
+			setNodeRef(element)
+		}
 	}, [setNodeRef])
 
-	const maxGridSize = useMemo(() => {
-		const container = containerRef.current?.closest(controlContainer)
+	const gridWidth = useMemo(() => {
+		const container = document.querySelector(".mantine-Container-root")
+		if(!container) return 0
+		const columns = getData("screen.columns")
+		return (container.clientWidth - ((columns - 1) * 16)) / columns
+	}, [getData])
 
-		if(!container) return { columns: 1, rows: 1 }
-
-		const { width, height } = container.getBoundingClientRect()
-		const gridSize = 150 // matches the grid cell size from Controls.css.ts
-		const gap = 16 // matches the gap from Controls.css.ts
-
-		return {
-			columns: Math.floor((width + gap) / (gridSize + gap)),
-			rows: Math.floor((height + gap) / (gridSize + gap)),
-		}
-	}, [])
-
-	const handleResizeStart = (e: React.MouseEvent, position: "left" | "right" | "top" | "bottom") => {
+	const handleResizeStart = (e: React.MouseEvent, position: "right" | "bottom") => {
 		e.preventDefault()
+
+		if(!containerRef.current) return
+
+		const gridHeight = Math.floor(containerRef.current.getBoundingClientRect().height)
+
 		setResizing(true)
-		const initialSize = { ...size }
-		setStartPos({ x: e.clientX, y: e.clientY })
+		const startPos = { x: e.clientX, y: e.clientY }
 
 		const handleMouseMove = (e: MouseEvent) => {
+			const startColSpan = control.col_span ?? 1
+			const startRowSpan = control.row_span ?? 1
+
 			const deltaX = e.clientX - startPos.x
 			const deltaY = e.clientY - startPos.y
-			const gridSize = 150 // matches the grid cell size from Controls.css.ts
 
-			const gridDeltaX = Math.floor(deltaX / gridSize)
-			const gridDeltaY = Math.floor(deltaY / gridSize)
+			const gridDeltaX = Math.floor(deltaX / gridWidth)
+			const gridDeltaY = Math.floor(deltaY / gridHeight)
 
 			if(position === "right") {
-				setSize({
-					...initialSize,
-					width: Math.min(maxGridSize.columns, Math.max(1, initialSize.width + gridDeltaX)),
-				})
-			} else if(position === "left") {
-				setSize({
-					...initialSize,
-					width: Math.max(1, initialSize.width - gridDeltaX),
-				})
+				setData(`${formPath}.col_span`, Math.min(
+					getData("screen.columns"),
+					Math.max(1, startColSpan + gridDeltaX))
+				)
 			}
 
 			if(position === "bottom") {
-				setSize({
-					...initialSize,
-					height: Math.max(1, initialSize.height + gridDeltaY),
-				})
-			} else if(position === "top") {
-				setSize({
-					...initialSize,
-					height: Math.max(1, initialSize.height - gridDeltaY),
-				})
+				setData(`${formPath}.row_span`, Math.max(1, startRowSpan + gridDeltaY))
 			}
 		}
 
@@ -112,8 +93,8 @@ const EditControlWrapper = ({ children, index, control, ...props }: EditControlW
 			style={ {
 				transform: CSS.Transform.toString(transform),
 				transition,
-				gridColumn: `span ${size.width}`,
-				gridRow: `span ${size.height}`,
+				gridColumn: `span ${control.col_span}`,
+				gridRow: `span ${control.row_span}`,
 				position: "relative",
 			} }
 			{ ...(resizing ? {} : listeners) }

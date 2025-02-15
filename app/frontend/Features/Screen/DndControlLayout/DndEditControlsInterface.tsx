@@ -24,9 +24,9 @@ interface DndEditControlsInterfaceProps {
 }
 
 const DndEditControlsInterface = ({ screen }: DndEditControlsInterfaceProps) => {
-	const { getData, setData, model: formModel } = useForm<{ screen: Schema.ScreensEdit }>()
+	const { data, getData, setData, model: formModel } = useForm<{ screen: Schema.ScreensEdit }>()
 	const [activeId, setActiveId] = React.useState<UniqueIdentifier | null>(null)
-
+	// console.log({ data })
 	const { paths } = useDynamicInputs({
 		model: "controls",
 		emptyData: {
@@ -40,6 +40,8 @@ const DndEditControlsInterface = ({ screen }: DndEditControlsInterfaceProps) => 
 			protocol_id: "",
 			command_id: "",
 			color: "",
+			col_span: 1,
+			row_span: 1,
 		},
 	})
 
